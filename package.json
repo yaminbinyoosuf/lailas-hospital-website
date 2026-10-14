@@ -3,18 +3,29 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Official website for Lailas Hospital & IVF Centre, Chemmad, Malappuram, Kerala.",
+  "description": "Website for Lailas Hospital & IVF Centre, Chemmad, Malappuram, Kerala.",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node tools/prerender.mjs",
     "preview": "vite preview --port=4173",
     "typecheck": "tsc --noEmit",
-    "lint": "tsc --noEmit"
+    "photos": "node tools/process-photos.mjs",
+    "brand": "node tools/make-brand-assets.mjs",
+    "check:copy": "node tools/check-copy.mjs",
+    "check:contrast": "node tools/check-contrast.mjs",
+    "screenshots": "node tools/screenshot.mjs",
+    "check": "npm run typecheck && npm run check:contrast && npm run check:copy"
   },
   "dependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/noto-sans-malayalam": "^5.3.0",
+    "@fontsource-variable/source-sans-3": "^5.3.1",
+    "@fontsource/manjari": "^5.3.0",
     "lucide-react": "^0.546.0",
+    "motion": "^14.2.0",
     "react": "^19.0.1",
-    "react-dom": "^19.0.1"
+    "react-dom": "^19.0.1",
+    "react-router": "^8.4.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -22,6 +33,8 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
+    "puppeteer-core": "^25.14.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.0"

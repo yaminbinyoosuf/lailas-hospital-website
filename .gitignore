@@ -6,3 +6,8 @@ coverage/
 *.log
 .env*
 
+dist-ssr/
+photos/*
+!photos/README.md
+screenshots/
+.lighthouse/

@@ -1,0 +1,338 @@
+/* Self-hosted fonts (font-display: swap is set by Fontsource). */
+@import '@fontsource-variable/fraunces/opsz.css';
+@import '@fontsource-variable/source-sans-3/index.css';
+@import '@fontsource-variable/noto-sans-malayalam/index.css';
+@import '@fontsource/manjari/malayalam-400.css';
+@import '@fontsource/manjari/malayalam-700.css';
+
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Design tokens
+   Contrast (WCAG AA) is checked by `npm run check:contrast`.
+   ========================================================================== */
+@theme {
+  --font-serif: 'Fraunces Variable', 'Manjari', ui-serif, Georgia, serif;
+  --font-sans: 'Source Sans 3 Variable', 'Noto Sans Malayalam Variable', ui-sans-serif, system-ui,
+    -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Surfaces */
+  --color-ivory: #fbf7f0;
+  --color-paper: #fffdf9;
+  --color-sand: #f3ece0;
+  --color-sand-deep: #e8dece;
+  --color-line: #e2d8c8;
+
+  /* Text */
+  --color-ink: #1f2a27;
+  --color-ink-soft: #4b5753;
+  --color-ink-muted: #5f6a66;
+
+  /* Primary: deep teal green */
+  --color-teal-50: #eef5f3;
+  --color-teal-100: #dcebe6;
+  --color-teal-200: #b9d5cd;
+  --color-teal-300: #8db9ad;
+  --color-teal-500: #3e8073;
+  --color-teal-600: #2b6b60;
+  --color-teal-700: #1f5a51;
+  --color-teal-800: #18473f;
+  --color-teal-900: #12362f;
+  --color-teal-950: #0b241f;
+
+  /* Single warm accent: clay */
+  --color-clay-50: #fbf1ea;
+  --color-clay-100: #f6e6da;
+  --color-clay-200: #edcdb6;
+  --color-clay-400: #d18b63;
+  --color-clay-500: #bf6e45;
+  --color-clay-600: #a3552f;
+  --color-clay-700: #874425;
+
+  /* Secondary surfaces: sage */
+  --color-sage-50: #f2f5ef;
+  --color-sage-100: #e6ece1;
+  --color-sage-200: #d3ddcb;
+  --color-sage-300: #b7c6ac;
+  --color-sage-500: #7c9071;
+  --color-sage-700: #4d6044;
+
+  /* Emergency only */
+  --color-emergency: #b3261e;
+  --color-emergency-700: #8c1d17;
+  --color-emergency-50: #fcedeb;
+
+  --radius-sm: 0.625rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 2.75rem;
+
+  --shadow-soft: 0 1px 2px rgb(31 42 39 / 0.05), 0 8px 24px -12px rgb(31 42 39 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(31 42 39 / 0.05), 0 20px 40px -20px rgb(31 42 39 / 0.22);
+
+  --ease-gentle: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --breakpoint-xs: 26rem;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  @media (min-width: 768px) {
+    body {
+      font-size: 1.125rem; /* 18px */
+    }
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    color: var(--color-ink);
+    text-wrap: balance;
+    font-optical-sizing: auto;
+  }
+  p, li {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--color-teal-200);
+    color: var(--color-teal-950);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-teal-600);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  /* Malayalam: roomier lines, no negative tracking. */
+  :lang(ml) body {
+    line-height: 1.85;
+  }
+  :lang(ml) h1, :lang(ml) h2, :lang(ml) h3, :lang(ml) h4 {
+    letter-spacing: 0 !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* ==========================================================================
+   Type scale
+   ========================================================================== */
+@utility t-display {
+  font-family: var(--font-serif);
+  font-weight: 380;
+  font-size: clamp(2.6rem, 1.7rem + 3.8vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+}
+@utility t-h1 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+}
+@utility t-h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.5rem + 1.9vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+@utility t-h3 {
+  font-family: var(--font-serif);
+  font-weight: 450;
+  font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+@utility t-lead {
+  font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+}
+@utility t-label {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+@utility t-number {
+  font-family: var(--font-serif);
+  font-weight: 330;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+:lang(ml) .t-display {
+  font-size: clamp(2rem, 1.45rem + 2.4vw, 3.5rem);
+}
+:lang(ml) .t-h1 {
+  font-size: clamp(1.875rem, 1.4rem + 1.9vw, 3rem);
+}
+:lang(ml) .t-h2 {
+  font-size: clamp(1.75rem, 1.35rem + 1.5vw, 2.625rem);
+}
+:lang(ml) .t-h3 {
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+}
+:lang(ml) .t-label {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ==========================================================================
+   Shapes: arches and soft masks echo a doorway and a cradle
+   ========================================================================== */
+@utility shape-arch {
+  border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+}
+@utility shape-cradle {
+  border-radius: var(--radius-xl) var(--radius-xl) 999px 999px;
+}
+@utility shape-soft {
+  border-radius: var(--radius-xl);
+}
+@utility shape-leaf {
+  border-radius: var(--radius-2xl) var(--radius-md) var(--radius-2xl) var(--radius-md);
+}
+
+/* Scroll rows: snap, hidden scrollbar, keep focus rings visible */
+@utility scroll-row {
+  display: grid;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  & > * {
+    scroll-snap-align: start;
+  }
+}
+
+/* Native <dialog> sheet animation */
+dialog.sheet {
+  opacity: 0;
+  translate: 0 2rem;
+  transition:
+    opacity 0.3s var(--ease-gentle),
+    translate 0.4s var(--ease-gentle),
+    overlay 0.4s allow-discrete,
+    display 0.4s allow-discrete;
+}
+dialog.sheet[open] {
+  opacity: 1;
+  translate: 0 0;
+}
+@starting-style {
+  dialog.sheet[open] {
+    opacity: 0;
+    translate: 0 2rem;
+  }
+}
+dialog.sheet::backdrop {
+  background: rgb(11 36 31 / 0);
+  transition:
+    background 0.3s,
+    overlay 0.3s allow-discrete,
+    display 0.3s allow-discrete;
+}
+dialog.sheet[open]::backdrop {
+  background: rgb(11 36 31 / 0.45);
+}
+@starting-style {
+  dialog.sheet[open]::backdrop {
+    background: rgb(11 36 31 / 0);
+  }
+}
+
+/* Range input for the pregnancy guide */
+.week-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3rem;
+  background: transparent;
+  cursor: pointer;
+}
+.week-range::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-teal-600) var(--fill, 0%),
+    var(--color-sage-200) var(--fill, 0%)
+  );
+}
+.week-range::-moz-range-track {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-sage-200);
+}
+.week-range::-moz-range-progress {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-teal-600);
+}
+.week-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 2rem;
+  height: 2rem;
+  margin-top: -0.75rem;
+  border-radius: 999px;
+  background: var(--color-paper);
+  border: 3px solid var(--color-teal-700);
+  box-shadow: var(--shadow-soft);
+}
+.week-range::-moz-range-thumb {
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 999px;
+  background: var(--color-paper);
+  border: 3px solid var(--color-teal-700);
+}
+.week-range:focus-visible {
+  outline: none;
+}
+.week-range:focus-visible::-webkit-slider-thumb {
+  outline: 3px solid var(--color-teal-600);
+  outline-offset: 3px;
+}
+.week-range:focus-visible::-moz-range-thumb {
+  outline: 3px solid var(--color-teal-600);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
