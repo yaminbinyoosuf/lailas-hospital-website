@@ -40,7 +40,7 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
           className={cn(
             'mt-12',
             few
-              ? 'grid gap-12 md:grid-cols-2'
+              ? 'grid gap-12 lg:grid-cols-2'
               : 'scroll-row -mx-5 auto-cols-[74%] gap-5 px-5 pb-2 xs:auto-cols-[60%] sm:auto-cols-[44%] lg:mx-0 lg:grid lg:grid-flow-row lg:grid-cols-4 lg:gap-8 lg:overflow-visible lg:px-0',
           )}
         >

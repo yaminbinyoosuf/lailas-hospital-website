@@ -1,4 +1,4 @@
-import { MotionConfig } from 'motion/react';
+import { LazyMotion, MotionConfig } from 'motion/react';
 import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
 import { BookingProvider } from './booking/BookingProvider';
@@ -15,6 +15,8 @@ import { IvfPage } from './pages/IvfPage';
 import { MaternityPage } from './pages/MaternityPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { PrivacyPage } from './pages/PrivacyPage';
+
+const loadMotionFeatures = () => import('./lib/motionFeatures').then((m) => m.default);
 
 const StyleguidePage = import.meta.env.DEV ? lazy(() => import('./pages/StyleguidePage')) : null;
 
@@ -34,6 +36,7 @@ export function App() {
   return (
     <LanguageProvider>
       <BookingProvider>
+        <LazyMotion features={loadMotionFeatures} strict>
         <MotionConfig reducedMotion="user">
           <SkipLink />
           <ScrollManager />
@@ -70,6 +73,7 @@ export function App() {
           </div>
           <MobileBar />
         </MotionConfig>
+        </LazyMotion>
       </BookingProvider>
     </LanguageProvider>
   );

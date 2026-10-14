@@ -1,11 +1,13 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { en, type Copy } from '../content/copy/en';
-import { ml } from '../content/copy/ml';
 
 export type Lang = 'en' | 'ml';
 
 const STORAGE_KEY = 'lailas.lang';
-const dictionaries: Record<Lang, Copy> = { en, ml };
+
+/** Malayalam loads only when someone chooses it, so English visitors never download it. */
+let mlCache: Copy | null = null;
+const loadMl = async () => (mlCache ??= (await import('../content/copy/ml')).ml);
 
 interface LanguageContextValue {
   lang: Lang;
@@ -21,30 +23,41 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
  */
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>('en');
+  const [copy, setCopy] = useState<Copy>(en);
+
+  const apply = useCallback(async (next: Lang) => {
+    const dict = next === 'ml' ? await loadMl() : en;
+    setCopy(dict);
+    setLangState(next);
+  }, []);
 
   useEffect(() => {
+    let saved: string | null = null;
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === 'en' || saved === 'ml') setLangState(saved);
+      saved = localStorage.getItem(STORAGE_KEY);
     } catch {
       /* storage unavailable: keep English */
     }
-  }, []);
+    if (saved === 'ml') void apply('ml');
+  }, [apply]);
 
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  const setLang = useCallback((next: Lang) => {
-    setLangState(next);
-    try {
-      localStorage.setItem(STORAGE_KEY, next);
-    } catch {
-      /* ignore */
-    }
-  }, []);
+  const setLang = useCallback(
+    (next: Lang) => {
+      void apply(next);
+      try {
+        localStorage.setItem(STORAGE_KEY, next);
+      } catch {
+        /* ignore */
+      }
+    },
+    [apply],
+  );
 
-  const value = useMemo(() => ({ lang, copy: dictionaries[lang], setLang }), [lang, setLang]);
+  const value = useMemo(() => ({ lang, copy, setLang }), [lang, copy, setLang]);
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 

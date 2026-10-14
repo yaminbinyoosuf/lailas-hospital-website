@@ -1,4 +1,3 @@
-import { useMotionValueEvent, useScroll } from 'motion/react';
 import { CalendarDays, Menu, Phone, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router';
@@ -15,9 +14,13 @@ import { mainNav } from './navItems';
 export function Header() {
   const copy = useCopy();
   const { open } = useBooking();
-  const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
-  useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 48));
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <header

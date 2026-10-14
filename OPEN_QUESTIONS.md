@@ -22,7 +22,7 @@ What is each number for, and should 2953377 be published?
 
 **Q16. Map pin.** The structured data uses latitude 11.0421, longitude 75.9221. Please confirm these match Plus Code 2WV6+7JH and the real entrance.
 
-**Q17. Travel times.** The 2026 build lists the airport as about 22 km and a 35 minute drive. Please check the distance and times for all four starting points (Tirurangadi 2 km, NH 66 Thalappara 4 km, Parappanangadi station 8 km, Calicut airport 22 km).
+**Q17. Travel times** (hidden on the site until confirmed, see `flags.showTravelTimes`). The 2026 build lists the airport as about 22 km and a 35 minute drive. Please check the distance and times for all four starting points (Tirurangadi 2 km, NH 66 Thalappara 4 km, Parappanangadi station 8 km, Calicut airport 22 km).
 
 **Q18. Road name.** The road appears as "Kozhikode Road (Thalappara Road)", "Chemmad-Thalappara Road", "Kozhikode-Thalappara Road" and "Chemmad-Tirurangadi Road". Which name should patients use?
 
@@ -93,7 +93,7 @@ If you have audited figures for C-section or outcome rates, send them and we can
 
 **Q19. Malayalam.** The source code here is **older** than the compiled `lailas_hospital_2026.html`. Only that build has the Malayalam lines, the pregnancy week tool and the travel guide. Is there a newer source folder? If not, we rebuild from this one plus the facts taken from the HTML.
 
-**Q24. Malayalam review.** We will write the Malayalam translations. Who at the hospital can review them before launch?
+**Q24. Malayalam review.** All Malayalam text is in `src/content/copy/ml.ts`. Who at the hospital can review it before launch? Please also check how the doctors' names are spelled in Malayalam (used for photo descriptions).
 
 ## Booking
 
@@ -102,3 +102,5 @@ If you have audited figures for C-section or outcome rates, send them and we can
 ## Website
 
 **Q28. Old URLs.** The current sitemap lists `/about`, `/obstetrics-gynaecology`, `/departments` and `/privacy`. The new site has fewer pages. Should these old URLs redirect, and is the current site live and indexed by Google?
+
+**Q29. Hosting.** Where is lailashospital.com hosted today, and who can deploy? The new site is a static `dist/` folder.

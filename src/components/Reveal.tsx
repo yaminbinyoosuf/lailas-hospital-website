@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import type { ReactNode } from 'react';
 
 interface RevealProps {
@@ -12,7 +12,7 @@ interface RevealProps {
 
 /** Soft fade and rise when content scrolls into view. Runs once. */
 export function Reveal({ children, className, delay = 0, y = 20, as = 'div' }: RevealProps) {
-  const Comp = as === 'li' ? motion.li : motion.div;
+  const Comp = as === 'li' ? m.li : m.div;
   return (
     <Comp
       className={className}

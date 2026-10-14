@@ -19,9 +19,9 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
         id={doctor.imageId as ImageId}
         shape="arch"
         sizes={row ? '(min-width: 640px) 18rem, 85vw' : '(min-width: 1024px) 20vw, (min-width: 640px) 40vw, 75vw'}
-        className={cn(row ? 'w-full shrink-0 sm:w-64 lg:w-72' : 'w-full')}
+        className={cn(row ? 'w-full max-w-[20rem] shrink-0 sm:w-52 xl:w-60' : 'w-full')}
       />
-      <div className={cn('flex flex-1 flex-col', row ? 'pt-2' : 'pt-6')}>
+      <div className={cn('flex min-w-0 flex-1 flex-col', row ? 'pt-2' : 'pt-6')}>
         <p className="text-[0.9375rem] font-semibold text-clay-600">{profile.role}</p>
         <h3 className="t-h3 mt-1 text-teal-950">{doctor.name}</h3>
         <p className="text-[0.9375rem] text-ink-muted">{doctor.qualifications}</p>

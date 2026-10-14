@@ -1,13 +1,10 @@
 import { CalendarDays, MessageCircle, Phone } from 'lucide-react';
-import { motion } from 'motion/react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button, ButtonAnchor } from '../components/Button';
 import { Container } from '../components/Container';
 import { Photo } from '../components/Photo';
 import { contact, whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
-
-const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   const copy = useCopy();
@@ -52,22 +49,15 @@ export function Hero() {
         </div>
 
         <div className="relative lg:col-span-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease }}
-            className="relative ml-auto w-[86%] max-w-[34rem] sm:w-[70%] lg:w-[88%]"
+          <div className="hero-enter relative ml-auto w-[86%] max-w-[34rem] sm:w-[70%] lg:w-[88%]"
           >
             <Photo id="hero-main" shape="arch" priority sizes="(min-width: 1024px) 40vw, 86vw" />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease, delay: 0.25 }}
-            className="absolute bottom-[-6%] left-0 w-[42%] max-w-[15rem] rounded-full border-[6px] border-ivory sm:w-[34%] lg:bottom-[8%] lg:w-[38%]"
+          </div>
+          <div
+            className="hero-enter absolute [animation-delay:0.25s] bottom-[-6%] left-0 w-[42%] max-w-[15rem] rounded-full border-[6px] border-ivory sm:w-[34%] lg:bottom-[8%] lg:w-[38%]"
           >
             <Photo id="hero-secondary" shape="circle" sizes="15rem" />
-          </motion.div>
+          </div>
         </div>
       </Container>
 
