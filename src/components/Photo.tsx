@@ -17,10 +17,10 @@ const shapes: Record<PhotoShape, string> = {
    made the empty state look like decoration, which competed with the real
    content beside it. */
 const tiles: Record<Tone, string> = {
-  sand: 'bg-sand text-clay-400',
+  sand: 'bg-sand text-clay-500',
   sage: 'bg-sage-100 text-sage-500',
-  clay: 'bg-clay-50 text-clay-400',
-  teal: 'bg-teal-50 text-teal-300',
+  clay: 'bg-clay-50 text-clay-500',
+  teal: 'bg-teal-50 text-teal-500',
 };
 
 const darkTiles: Record<Tone, string> = {
@@ -80,10 +80,37 @@ export function Photo({
   if (!photo) {
     if (omitIfMissing) return null;
     return (
-      <div aria-hidden="true" className={cn(frame, onDark ? darkTiles[entry.tone] : tiles[entry.tone])} style={{ aspectRatio: ratio }}>
-        <svg className="absolute -right-[18%] -bottom-[22%] h-[78%] w-auto opacity-30" viewBox="0 0 100 100" fill="none">
-          <circle cx="50" cy="50" r="46" stroke="currentColor" strokeWidth="1.4" />
-          <circle cx="66" cy="34" r="9" stroke="currentColor" strokeWidth="1.4" />
+      <div
+        aria-hidden="true"
+        className={cn(frame, 'relative', onDark ? darkTiles[entry.tone] : tiles[entry.tone])}
+        style={{ aspectRatio: ratio }}
+      >
+        {/* Tonal panel with the brand's circle and bud motif, lifted from the
+            logo. The frame is already an arch, so drawing a second arch inside
+            it read as a duplicate; this mark is quieter and distinct. */}
+        <svg
+          className="absolute inset-0 h-full w-full opacity-[0.5]"
+          viewBox="0 0 100 100"
+          fill="none"
+          aria-hidden="true"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <circle
+            cx="52"
+            cy="56"
+            r="24"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            vectorEffect="non-scaling-stroke"
+          />
+          <circle
+            cx="52"
+            cy="56"
+            r="9"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            vectorEffect="non-scaling-stroke"
+          />
         </svg>
       </div>
     );

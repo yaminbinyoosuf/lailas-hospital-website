@@ -84,6 +84,22 @@
 
   --ease-gentle: cubic-bezier(0.22, 1, 0.36, 1);
 
+  /* ------------------------------------------------------------------
+     Premium surface details. Both are tokenised so they stay consistent
+     and can be tuned in one place rather than sprinkled through markup.
+     ------------------------------------------------------------------ */
+  /* Paper grain: a very low-opacity fractal noise, large tile, so cream
+     surfaces read as stock rather than flat screen white. */
+  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  --grain-opacity: 0.028;
+
+  /* Soft radial glow: a warm bloom behind hero and closing bands. */
+  --glow-teal: radial-gradient(60% 70% at 50% 0%, rgb(62 128 115 / 0.14) 0%, transparent 70%);
+  --glow-clay: radial-gradient(55% 65% at 80% 20%, rgb(209 139 99 / 0.12) 0%, transparent 72%);
+
+  /* Hairline: the border weight that replaces shadows on cards. */
+  --hairline: 1px;
+
   --breakpoint-xs: 26rem;
 }
 
@@ -263,6 +279,57 @@
 :lang(ml) .t-label {
   letter-spacing: 0;
   text-transform: none;
+}
+
+/* ==========================================================================
+   Surfaces
+   ========================================================================== */
+
+/* Cream stock with a whisper of grain. Applied to band-level sections, never
+   to cards, so the texture reads as paper rather than noise. */
+@utility surface-grain {
+  position: relative;
+}
+.surface-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--texture-grain);
+  background-size: 240px 240px;
+  opacity: var(--grain-opacity);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* Warm bloom behind hero and closing bands. */
+@utility surface-glow {
+  background-image: var(--glow-teal);
+}
+@utility surface-glow-clay {
+  background-image: var(--glow-clay);
+}
+
+/* Hairline rules. Thin dividers carry hierarchy; shadows only signal float. */
+@utility rule-y {
+  border-block: var(--hairline) solid var(--color-line);
+}
+@utility rule-top {
+  border-top: var(--hairline) solid var(--color-line);
+}
+
+/* Refined inline link: a hairline underline that thickens on hover rather
+   than the browser default or a colour-only change. */
+@utility link-quiet {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+  text-decoration-color: color-mix(in oklab, var(--color-teal-600) 45%, transparent);
+  transition: text-decoration-color 0.2s var(--ease-gentle),
+    text-decoration-thickness 0.2s var(--ease-gentle);
+}
+.link-quiet:hover {
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--color-teal-700);
 }
 
 /* ==========================================================================

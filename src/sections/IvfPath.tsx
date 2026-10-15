@@ -2,7 +2,6 @@ import { ArrowRight, CalendarDays, MessageCircle } from 'lucide-react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button, ButtonAnchor, ButtonLink } from '../components/Button';
 import { Container } from '../components/Container';
-import { IvfIllustration } from '../components/IvfIllustration';
 import { Photo } from '../components/Photo';
 import { Reveal } from '../components/Reveal';
 import { Section } from '../components/Section';
@@ -10,31 +9,52 @@ import { whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 
 /** The 4 step path as a timeline. Horizontal on desktop, vertical on phones. */
+/**
+ * The four step fertility journey.
+ *
+ * Numbers in Fraunces rather than icon tiles: a journey is sequential, and
+ * typographic numerals carry that better than four interchangeable glyphs. The
+ * connector is a single hairline that runs behind the markers.
+ */
 export function IvfTimeline({ onDark = true }: { onDark?: boolean }) {
   const copy = useCopy();
-  const line = onDark ? 'before:bg-teal-700' : 'before:bg-line';
+
+  const line = onDark ? 'bg-teal-700' : 'bg-line';
+  const marker = onDark
+    ? 'bg-teal-900 text-clay-200 ring-1 ring-teal-700'
+    : 'bg-paper text-clay-600 ring-1 ring-line';
+  const stepWord = onDark ? 'text-teal-300' : 'text-clay-600';
+  const title = onDark ? 'text-ivory' : 'text-teal-950';
+  const body = onDark ? 'text-teal-100' : 'text-ink-soft';
+
   return (
-    <ol
-      className={`relative grid gap-10 before:absolute before:top-8 before:bottom-8 before:left-8 before:w-px md:grid-cols-4 md:gap-8 md:before:right-8 md:before:bottom-auto md:before:h-px md:before:w-auto ${line}`}
-    >
+    <ol className="relative grid gap-12 md:grid-cols-4 md:gap-8">
+      {/* Hairline connector: vertical on phones, horizontal from md up. */}
+      <span
+        aria-hidden="true"
+        className={`absolute left-[1.4rem] top-4 bottom-4 w-px md:left-4 md:right-4 md:top-[1.4rem] md:bottom-auto md:h-px md:w-auto ${line}`}
+      />
+
       {copy.ivf.steps.map((s, i) => (
-        <Reveal as="li" key={s.title} delay={i * 0.1} className="relative grid grid-cols-[4rem_1fr] gap-5 md:block">
-            <span
-              className={
-                onDark
-                  ? 'relative grid size-16 place-items-center rounded-full bg-teal-800 text-clay-200 ring-1 ring-teal-600'
-                  : 'relative grid size-16 place-items-center rounded-full bg-paper text-clay-500 ring-1 ring-line'
-              }
-            >
-              <IvfIllustration step={i as 0 | 1 | 2 | 3} className="size-10" />
-            </span>
-            <div className="md:mt-6">
-              <p className={onDark ? 't-small font-semibold text-teal-200' : 't-small font-semibold text-clay-600'}>
-                {copy.ivf.stepWord} {i + 1}
-              </p>
-              <h3 className={onDark ? 't-h3 mt-1 text-ivory' : 't-h3 mt-1 text-teal-950'}>{s.title}</h3>
-              <p className={onDark ? 'mt-2 text-teal-100' : 'mt-2 text-ink-soft'}>{s.body}</p>
-            </div>
+        <Reveal
+          as="li"
+          key={s.title}
+          delay={i * 0.1}
+          className="relative grid grid-cols-[2.8rem_1fr] gap-5 md:block"
+        >
+          <span
+            className={`t-number relative grid size-11 place-items-center rounded-full text-[1.0625rem] ${marker}`}
+          >
+            {i + 1}
+          </span>
+
+          <div className="md:mt-7">
+            <p className={`t-label ${stepWord}`}>
+              {copy.ivf.stepWord} {i + 1}
+            </p>
+            <h3 className={`t-h3 mt-2 ${title}`}>{s.title}</h3>
+            <p className={`mt-2.5 t-small ${body}`}>{s.body}</p>
+          </div>
         </Reveal>
       ))}
     </ol>

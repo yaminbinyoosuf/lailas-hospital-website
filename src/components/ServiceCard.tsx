@@ -15,7 +15,7 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
   return (
     <article
       className={cn(
-        'group flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] bg-paper ring-1 ring-line transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]',
+        'group flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] bg-paper ring-1 ring-line transition-[transform,box-shadow] duration-500 ease-[var(--ease-gentle)] hover:-translate-y-0.5 hover:ring-teal-200 hover:shadow-[var(--shadow-soft)]',
         wide && 'md:flex-row',
         className,
       )}
