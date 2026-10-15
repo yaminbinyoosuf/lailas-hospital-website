@@ -3,29 +3,31 @@ import { getPhoto, images, type ImageId, type Tone } from '../content/images';
 import { useLang } from '../i18n/LanguageProvider';
 import { cn } from '../lib/format';
 
-export type PhotoShape = 'arch' | 'cradle' | 'soft' | 'leaf' | 'circle' | 'none';
+export type PhotoShape = 'arch' | 'cradle' | 'soft' | 'circle' | 'none';
 
 const shapes: Record<PhotoShape, string> = {
   arch: 'shape-arch',
   cradle: 'shape-cradle',
   soft: 'shape-soft',
-  leaf: 'shape-leaf',
   circle: 'rounded-full',
   none: '',
 };
 
+/* Placeholder tiles are flat washes of a single brand tint. Gradients here
+   made the empty state look like decoration, which competed with the real
+   content beside it. */
 const tiles: Record<Tone, string> = {
-  sand: 'bg-[linear-gradient(155deg,var(--color-sand)_10%,var(--color-sand-deep)_100%)] text-clay-400',
-  sage: 'bg-[linear-gradient(155deg,var(--color-sage-100)_10%,var(--color-sage-200)_100%)] text-sage-500',
-  clay: 'bg-[linear-gradient(155deg,var(--color-clay-50)_10%,var(--color-clay-100)_100%)] text-clay-400',
-  teal: 'bg-[linear-gradient(155deg,var(--color-teal-50)_10%,var(--color-teal-100)_100%)] text-teal-300',
+  sand: 'bg-sand text-clay-400',
+  sage: 'bg-sage-100 text-sage-500',
+  clay: 'bg-clay-50 text-clay-400',
+  teal: 'bg-teal-50 text-teal-300',
 };
 
 const darkTiles: Record<Tone, string> = {
-  sand: 'bg-[linear-gradient(155deg,var(--color-teal-800)_10%,var(--color-teal-700)_100%)] text-teal-500',
-  sage: 'bg-[linear-gradient(155deg,var(--color-teal-800)_10%,var(--color-teal-700)_100%)] text-teal-500',
-  clay: 'bg-[linear-gradient(155deg,var(--color-teal-800)_10%,var(--color-teal-700)_100%)] text-teal-500',
-  teal: 'bg-[linear-gradient(155deg,var(--color-teal-800)_10%,var(--color-teal-700)_100%)] text-teal-500',
+  sand: 'bg-teal-800 text-teal-500',
+  sage: 'bg-teal-800 text-teal-500',
+  clay: 'bg-teal-800 text-teal-500',
+  teal: 'bg-teal-800 text-teal-500',
 };
 
 interface PhotoProps {
@@ -38,6 +40,12 @@ interface PhotoProps {
   priority?: boolean;
   /** Use a darker tile on dark sections. */
   onDark?: boolean;
+  /**
+   * Render nothing at all while the photograph is missing. Use for wide
+   * decorative bands, where an empty tile reads as a void; leave it off for
+   * portraits and service images, where the tile reserves the layout slot.
+   */
+  omitIfMissing?: boolean;
   className?: string;
 }
 
@@ -46,7 +54,16 @@ interface PhotoProps {
  * has not supplied the photo yet. The tile carries no text and is hidden
  * from screen readers, so nothing pretends to be a real image.
  */
-export function Photo({ id, shape = 'soft', aspect, sizes = '100vw', priority, onDark, className }: PhotoProps) {
+export function Photo({
+  id,
+  shape = 'soft',
+  aspect,
+  sizes = '100vw',
+  priority,
+  onDark,
+  omitIfMissing,
+  className,
+}: PhotoProps) {
   const entry = images[id];
   const photo = getPhoto(id);
   const { lang } = useLang();
@@ -61,6 +78,7 @@ export function Photo({ id, shape = 'soft', aspect, sizes = '100vw', priority, o
   const frame = cn('relative isolate overflow-hidden', shapes[shape], className);
 
   if (!photo) {
+    if (omitIfMissing) return null;
     return (
       <div aria-hidden="true" className={cn(frame, onDark ? darkTiles[entry.tone] : tiles[entry.tone])} style={{ aspectRatio: ratio }}>
         <svg className="absolute -right-[18%] -bottom-[22%] h-[78%] w-auto opacity-30" viewBox="0 0 100 100" fill="none">

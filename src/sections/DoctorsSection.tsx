@@ -21,7 +21,7 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
   const copy = useCopy();
   const few = doctors.length < 3;
   return (
-    <Section tone={tone} labelledBy="doctors-title">
+    <Section tone={tone} labelledBy="doctors-title" space="tight">
       <Container>
         <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">

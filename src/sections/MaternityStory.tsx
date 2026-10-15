@@ -13,7 +13,7 @@ export function MaternityStory() {
   const [births, founded, ultrasound] = copy.maternity.stats;
 
   return (
-    <Section tone="sand" labelledBy="maternity-title">
+    <Section tone="sand" labelledBy="maternity-title" space="loose">
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
           <Photo id="maternity-story" shape="arch" sizes="(min-width: 1024px) 34vw, 90vw" className="mx-auto max-w-[30rem]" />
@@ -31,7 +31,7 @@ export function MaternityStory() {
             <p className="t-number text-[clamp(4.5rem,2.5rem+8vw,9rem)] text-clay-600">
               <CountUp value={births.value} suffix={births.suffix} />
             </p>
-            <p className="mt-3 text-[1.1875rem] text-ink">{births.label}</p>
+            <p className="mt-3 t-h4 text-ink">{births.label}</p>
             <div className="mt-10 grid grid-cols-2 gap-8">
               {[founded, ultrasound].map((s) => (
                 <div key={s.label}>
@@ -53,7 +53,7 @@ export function MaternityStory() {
         <ol className="mt-8 grid gap-10 md:grid-cols-3 md:gap-8">
           {copy.maternity.expect.map((e, i) => (
             <Reveal as="li" key={e.title} delay={i * 0.08} className="border-t-2 border-clay-400 pt-5">
-              <p className="font-serif text-[1.375rem] text-ink">{e.title}</p>
+              <p className="t-h3 text-ink">{e.title}</p>
               <p className="mt-2 text-ink-soft">{e.body}</p>
             </Reveal>
           ))}

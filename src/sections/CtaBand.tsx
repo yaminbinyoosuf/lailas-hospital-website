@@ -5,9 +5,9 @@ import { Reveal } from '../components/Reveal';
 /** Closing invitation on inner pages. */
 export function CtaBand({ title, body, actions }: { title: string; body: string; actions: ReactNode }) {
   return (
-    <section aria-labelledby="cta-title" className="py-20 md:py-24">
+    <section aria-labelledby="cta-title" className="bg-teal-800 text-ivory">
       <Container>
-        <Reveal className="grid gap-8 overflow-hidden rounded-[2.5rem] bg-teal-800 px-7 py-12 text-ivory md:grid-cols-12 md:items-center md:px-14 md:py-16">
+        <Reveal className="grid gap-8 py-16 md:grid-cols-12 md:items-center md:py-20">
           <div className="md:col-span-7">
             <h2 id="cta-title" className="t-h2 text-ivory">
               {title}

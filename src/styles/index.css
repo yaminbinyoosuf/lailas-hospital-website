@@ -1,6 +1,6 @@
 /* Self-hosted fonts (font-display: swap is set by Fontsource). */
 @import '@fontsource-variable/fraunces/opsz.css';
-@import '@fontsource-variable/source-sans-3/index.css';
+@import '@fontsource-variable/instrument-sans/index.css';
 @import '@fontsource-variable/noto-sans-malayalam/index.css';
 @import '@fontsource/manjari/malayalam-400.css';
 @import '@fontsource/manjari/malayalam-700.css';
@@ -12,8 +12,13 @@
    Contrast (WCAG AA) is checked by `npm run check:contrast`.
    ========================================================================== */
 @theme {
-  --font-serif: 'Fraunces Variable', 'Manjari', ui-serif, Georgia, serif;
-  --font-sans: 'Source Sans 3 Variable', 'Noto Sans Malayalam Variable', ui-sans-serif, system-ui,
+  /* Display: Fraunces is the brand's voice — an optical-size variable serif with
+     real character. Interface: Instrument Sans, a sharper editorial grotesque
+     that holds up at the 14–16px sizes where most of this site lives.
+     Noto Sans Malayalam sits in the fallback chain so Malayalam copy renders
+     correctly wherever Latin glyphs are missing. */
+  --font-serif: 'Fraunces Variable', 'Noto Sans Malayalam Variable', 'Manjari', ui-serif, Georgia, serif;
+  --font-sans: 'Instrument Sans Variable', 'Noto Sans Malayalam Variable', ui-sans-serif, system-ui,
     -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   /* Surfaces */
@@ -62,14 +67,20 @@
   --color-emergency-700: #8c1d17;
   --color-emergency-50: #fcedeb;
 
+  /* Three tiers, each with one job:
+       sm   controls — buttons, inputs, chips, small tiles
+       md   content surfaces — service tiles, media, inner blocks
+       lg   major surfaces — page-level panels, hero media
+     Nothing else. A single arbitrary radius is what makes a page feel
+     assembled rather than designed. */
   --radius-sm: 0.625rem;
-  --radius-md: 1rem;
+  --radius-md: 1.125rem;
   --radius-lg: 1.5rem;
-  --radius-xl: 2rem;
-  --radius-2xl: 2.75rem;
 
-  --shadow-soft: 0 1px 2px rgb(31 42 39 / 0.05), 0 8px 24px -12px rgb(31 42 39 / 0.12);
-  --shadow-lift: 0 2px 4px rgb(31 42 39 / 0.05), 0 20px 40px -20px rgb(31 42 39 / 0.22);
+  /* Reserve shadow for things that genuinely float above the page: the sticky
+     header, the booking sheet, the mobile bar. Cards use a hairline ring. */
+  --shadow-soft: 0 1px 2px rgb(31 42 39 / 0.04), 0 8px 24px -16px rgb(31 42 39 / 0.10);
+  --shadow-lift: 0 2px 6px rgb(31 42 39 / 0.05), 0 20px 44px -22px rgb(31 42 39 / 0.20);
 
   --ease-gentle: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -89,20 +100,22 @@
     background: var(--color-ivory);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 1.0625rem; /* 17px */
-    line-height: 1.6;
+    font-size: 1rem; /* 16px */
+    line-height: 1.62;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
   @media (min-width: 768px) {
     body {
-      font-size: 1.125rem; /* 18px */
+      font-size: 1.0625rem; /* 17px */
     }
   }
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
-    font-weight: 400;
+    /* Slightly above the variable font's default so large settings keep their
+       colour on cream stock instead of thinning out. */
+    font-weight: 450;
     color: var(--color-ink);
     text-wrap: balance;
     font-optical-sizing: auto;
@@ -135,66 +148,117 @@
 
 /* ==========================================================================
    Type scale
+   --------------------------------------------------------------------------
+   One step per role. Sizes are fluid between a 375px and a 1440px viewport so
+   headings never need a breakpoint of their own, and the small end of each
+   clamp is deliberately modest — an oversized headline on a phone is the most
+   common way a good design starts to look generic.
+
+     t-display  hero only          40 → 72px
+     t-h1       page titles        32 → 48px
+     t-h2       section headings   28 → 40px
+     t-h3       card / sub heads   20 → 26px
+     t-h4       list-item heads    17 → 19px
+     t-lead     intro paragraphs   17 → 20px
+     t-body     default copy       16 → 17px  (set on body)
+     t-small    descriptions       15px
+     t-meta     captions, labels   13px
    ========================================================================== */
 @utility t-display {
   font-family: var(--font-serif);
-  font-weight: 380;
-  font-size: clamp(2.6rem, 1.7rem + 3.8vw, 5rem);
-  line-height: 1.02;
-  letter-spacing: -0.022em;
+  font-weight: 450;
+  font-size: clamp(2.5rem, 1.9rem + 2.6vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
 }
 @utility t-h1 {
   font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
-  line-height: 1.06;
+  font-weight: 450;
+  font-size: clamp(2rem, 1.6rem + 1.7vw, 3rem);
+  line-height: 1.08;
   letter-spacing: -0.018em;
 }
 @utility t-h2 {
   font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(2rem, 1.5rem + 1.9vw, 3.25rem);
-  line-height: 1.08;
+  font-weight: 450;
+  font-size: clamp(1.75rem, 1.45rem + 1.25vw, 2.5rem);
+  line-height: 1.12;
   letter-spacing: -0.015em;
 }
 @utility t-h3 {
   font-family: var(--font-serif);
-  font-weight: 450;
-  font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1.1rem + 0.62vw, 1.75rem);
+  line-height: 1.26;
+  letter-spacing: -0.012em;
+}
+@utility t-h4 {
+  font-family: var(--font-sans);
+  font-weight: 650;
+  font-size: clamp(1.0625rem, 1.02rem + 0.18vw, 1.1875rem);
+  line-height: 1.35;
+  letter-spacing: -0.006em;
 }
 @utility t-lead {
-  font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  font-size: clamp(1.0625rem, 1.02rem + 0.22vw, 1.25rem);
+  line-height: 1.6;
+  letter-spacing: -0.004em;
+  color: var(--color-ink-soft);
+}
+@utility t-body {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+/* Supporting copy inside cards and lists — one step down from body, still
+   comfortably readable rather than shrinking to a caption. */
+@utility t-small {
+  font-size: 0.9375rem;
   line-height: 1.6;
   color: var(--color-ink-soft);
 }
+@utility t-meta {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+/* Eyebrow above a section heading. Sentence-free, wide-tracked, small — it
+   labels the section without competing with the heading itself. */
 @utility t-label {
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: var(--color-teal-700);
 }
+/* Oversized figures. Weight is raised as the size drops so numerals never look
+   anaemic, and tabular figures keep multi-number rows aligned. */
 @utility t-number {
   font-family: var(--font-serif);
-  font-weight: 330;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  font-weight: 450;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
 :lang(ml) .t-display {
-  font-size: clamp(2rem, 1.45rem + 2.4vw, 3.5rem);
+  font-size: clamp(1.875rem, 1.5rem + 1.8vw, 3.125rem);
 }
 :lang(ml) .t-h1 {
-  font-size: clamp(1.875rem, 1.4rem + 1.9vw, 3rem);
+  font-size: clamp(1.75rem, 1.45rem + 1.3vw, 2.5rem);
 }
 :lang(ml) .t-h2 {
-  font-size: clamp(1.75rem, 1.35rem + 1.5vw, 2.625rem);
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2.125rem);
 }
 :lang(ml) .t-h3 {
-  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  font-size: clamp(1.1875rem, 1.1rem + 0.4vw, 1.5rem);
+}
+:lang(ml) .t-h4,
+:lang(ml) .t-label,
+:lang(ml) .t-number,
+:lang(ml) .t-meta {
+  letter-spacing: 0;
 }
 :lang(ml) .t-label {
   letter-spacing: 0;
@@ -211,10 +275,7 @@
   border-radius: var(--radius-xl) var(--radius-xl) 999px 999px;
 }
 @utility shape-soft {
-  border-radius: var(--radius-xl);
-}
-@utility shape-leaf {
-  border-radius: var(--radius-2xl) var(--radius-md) var(--radius-2xl) var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 /* Scroll rows: snap, hidden scrollbar, keep focus rings visible */

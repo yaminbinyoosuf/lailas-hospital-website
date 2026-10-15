@@ -28,7 +28,7 @@ export function Services() {
   };
 
   return (
-    <Section id="services" labelledBy="services-title" className="border-t border-line">
+    <Section id="services" labelledBy="services-title" space="tight" className="border-t border-line">
       <Container>
         <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <h2 id="services-title" className="t-h2 text-teal-950 lg:col-span-7">
@@ -57,7 +57,7 @@ export function Services() {
                 onClick={() => setActive(g)}
                 onKeyDown={onKeyDown}
                 className={cn(
-                  'min-h-12 rounded-full px-5 text-[1.0625rem] font-semibold whitespace-nowrap transition-colors',
+                  'min-h-11 rounded-[var(--radius-sm)] px-4 t-small font-semibold whitespace-nowrap transition-colors',
                   selected
                     ? g === 'emergency'
                       ? 'bg-emergency text-white'
@@ -83,7 +83,7 @@ export function Services() {
               hidden={g !== active}
               className="mt-8"
             >
-              <p className="max-w-2xl font-serif text-[1.375rem] leading-snug text-ink md:text-[1.625rem]">
+              <p className="max-w-2xl t-h3 text-ink">
                 {copy.services.groups[g].intro}
               </p>
               {single ? (

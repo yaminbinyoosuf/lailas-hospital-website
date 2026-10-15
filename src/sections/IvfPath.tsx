@@ -29,7 +29,7 @@ export function IvfTimeline({ onDark = true }: { onDark?: boolean }) {
               <IvfIllustration step={i as 0 | 1 | 2 | 3} className="size-10" />
             </span>
             <div className="md:mt-6">
-              <p className={onDark ? 'text-[0.9375rem] font-semibold text-teal-200' : 'text-[0.9375rem] font-semibold text-clay-600'}>
+              <p className={onDark ? 't-small font-semibold text-teal-200' : 't-small font-semibold text-clay-600'}>
                 {copy.ivf.stepWord} {i + 1}
               </p>
               <h3 className={onDark ? 't-h3 mt-1 text-ivory' : 't-h3 mt-1 text-teal-950'}>{s.title}</h3>
@@ -46,7 +46,7 @@ export function IvfPath() {
   const { open } = useBooking();
 
   return (
-    <Section tone="teal" labelledBy="ivf-title">
+    <Section tone="teal" labelledBy="ivf-title" space="loose">
       <Container className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
         <Reveal className="lg:col-span-7">
           <p className="t-label text-teal-200">{copy.ivf.label}</p>
@@ -81,7 +81,7 @@ export function IvfPath() {
       <Container className="mt-20 md:mt-24">
         <IvfTimeline />
         <Reveal className="mt-16 grid gap-8 border-t border-teal-700 pt-10 md:grid-cols-12">
-          <p className="font-serif text-[1.375rem] leading-snug text-ivory italic md:col-span-8 md:text-[1.625rem]">
+          <p className="t-h3 text-ivory italic md:col-span-8">
             {copy.ivf.promise}
           </p>
           <div className="md:col-span-4 md:text-right">

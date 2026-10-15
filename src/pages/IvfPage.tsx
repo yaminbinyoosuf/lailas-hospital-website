@@ -53,7 +53,7 @@ export function IvfPage() {
             </h2>
             <ul className="mt-8 space-y-4">
               {page.when.map((w) => (
-                <li key={w} className="flex gap-3 text-[1.125rem]">
+                <li key={w} className="flex gap-3 t-h4">
                   <Check className="mt-1.5 size-5 shrink-0 text-teal-600" aria-hidden="true" />
                   <span>{w}</span>
                 </li>
@@ -65,7 +65,7 @@ export function IvfPage() {
             <ol className="mt-8 space-y-8">
               {page.firstVisit.map((f, i) => (
                 <li key={f.title} className="grid grid-cols-[3.5rem_1fr] gap-4">
-                  <span className="t-number text-[3rem] text-clay-500" aria-hidden="true">
+                  <span className="t-number text-[clamp(2rem,1.5rem+1.6vw,2.75rem)] text-clay-500" aria-hidden="true">
                     {i + 1}
                   </span>
                   <div>
@@ -94,7 +94,7 @@ export function IvfPage() {
 
       <section aria-labelledby="bring-title" className="pb-20 md:pb-28">
         <Container className="grid gap-8 lg:grid-cols-2">
-          <Reveal className="rounded-[2rem] bg-paper p-8 ring-1 ring-line md:p-12">
+          <Reveal className="rounded-[var(--radius-lg)] bg-paper p-8 ring-1 ring-line md:p-12">
             <h2 id="bring-title" className="t-h3 text-teal-950">
               {page.bringTitle}
             </h2>
@@ -108,9 +108,9 @@ export function IvfPage() {
             </ul>
             <p className="mt-6 text-ink-muted">{page.bringNote}</p>
           </Reveal>
-          <Reveal className="rounded-[2rem] bg-teal-900 p-8 text-ivory md:p-12" delay={0.08}>
+          <Reveal className="rounded-[var(--radius-lg)] bg-teal-900 p-8 text-ivory md:p-12" delay={0.08}>
             <h2 className="t-h3 text-ivory">{page.promiseTitle}</h2>
-            <p className="mt-6 font-serif text-[1.5rem] leading-snug italic md:text-[1.75rem]">{copy.ivf.promise}</p>
+            <p className="mt-6 t-h3 italic">{copy.ivf.promise}</p>
           </Reveal>
         </Container>
       </section>

@@ -21,7 +21,7 @@ export function LanguageToggle({ tone = 'dark', className }: { tone?: 'dark' | '
             aria-pressed={active}
             onClick={() => setLang(o.lang)}
             className={cn(
-              'min-h-9 min-w-11 rounded-full px-3 text-[0.9375rem] font-semibold transition-colors',
+              'inline-flex min-h-11 min-w-11 items-center justify-center rounded-[var(--radius-sm)] px-3 t-small font-semibold transition-colors sm:min-h-10',
               tone === 'dark'
                 ? active
                   ? 'bg-ivory text-teal-900'

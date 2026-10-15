@@ -12,7 +12,7 @@ export function TopStrip() {
       <Container className="flex min-h-11 items-center justify-between gap-3">
         <a
           href={`tel:${contact.primary.tel}`}
-          className="group inline-flex min-h-11 items-center gap-2.5 text-[0.9375rem]"
+          className="group inline-flex min-h-11 items-center gap-2.5 t-small"
         >
           <span className="grid size-6 place-items-center rounded-full bg-emergency">
             <Phone className="size-3.5" aria-hidden="true" />

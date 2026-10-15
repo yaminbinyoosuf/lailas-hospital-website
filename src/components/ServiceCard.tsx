@@ -15,7 +15,7 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
   return (
     <article
       className={cn(
-        'group flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-paper ring-1 ring-line transition-shadow duration-300 hover:shadow-[var(--shadow-lift)]',
+        'group flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] bg-paper ring-1 ring-line transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]',
         wide && 'md:flex-row',
         className,
       )}
@@ -26,12 +26,12 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
           shape="none"
           aspect={wide ? 4 / 3 : 3 / 2}
           sizes={wide ? '(min-width: 768px) 40vw, 90vw' : '(min-width: 1024px) 26vw, (min-width: 640px) 45vw, 85vw'}
-          className={cn('transition-transform duration-700 ease-[var(--ease-gentle)] group-hover:scale-[1.03]', wide && 'md:h-full')}
+          className={cn(wide && 'md:h-full')}
         />
       </div>
       <div className={cn('flex flex-1 flex-col p-6 md:p-7', wide && 'md:w-1/2 md:p-10')}>
-        <h3 className={cn('t-h3 text-teal-950', wide && 'md:text-[2rem]')}>{text.name}</h3>
-        <p className="mt-3 text-ink-soft">{text.summary}</p>
+        <h3 className={cn('t-h3 text-teal-950')}>{text.name}</h3>
+        <p className="mt-3 t-small">{text.summary}</p>
         <ul className="mt-5 space-y-2.5">
           {text.offerings.map((o) => (
             <li key={o} className="flex gap-3">
@@ -41,7 +41,7 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
           ))}
         </ul>
         <div className="mt-auto pt-6">
-          <p className="flex items-center gap-2 text-[0.9375rem] text-ink-muted">
+          <p className="flex items-center gap-2 t-small text-ink-muted">
             <Clock className="size-4 shrink-0" aria-hidden="true" />
             {text.availability}
           </p>
@@ -49,7 +49,7 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
             <Button
               variant="quiet"
               className="mt-2"
-              iconAfter={<ArrowRight aria-hidden="true" className="transition-transform group-hover:translate-x-1" />}
+              iconAfter={<ArrowRight aria-hidden="true" />}
               onClick={() => open({ kind: 'service', id: service.id })}
             >
               {copy.services.book}

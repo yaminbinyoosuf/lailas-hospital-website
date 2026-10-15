@@ -9,7 +9,9 @@ import { mainNav } from './navItems';
 export function Footer() {
   const copy = useCopy();
   const year = new Date().getFullYear();
-  const heading = 'font-serif text-xl text-ivory';
+  /* Column headings get a hairline so four same-sized columns still read as
+     distinct groups rather than one block of text. */
+  const heading = 't-label border-b border-teal-800 pb-3 !text-teal-200';
   const link = 'text-teal-100 underline-offset-4 hover:text-ivory hover:underline';
   return (
     <footer className="bg-teal-950 text-teal-100">
@@ -30,7 +32,7 @@ export function Footer() {
           <a href={address.directionsUrl} target="_blank" rel="noopener noreferrer" className={`${link} mt-3 inline-flex min-h-12 items-center`}>
             {copy.actions.directions}
           </a>
-          <p className="mt-2">
+          <p className="mt-5">
             <span className="block text-ivory">{copy.visit.hours.allDay}</span>
             {copy.time.open24EveryDay}
           </p>
@@ -41,19 +43,21 @@ export function Footer() {
         </div>
         <div className="lg:col-span-3">
           <h2 className={heading}>{copy.footer.callTitle}</h2>
-          <ul className="mt-4 space-y-1">
+          {/* Number on its own line, purpose underneath. Inline labels collided
+              with the numbers and wrapped awkwardly at this column width. */}
+          <ul className="mt-4 space-y-3">
             <li>
               <a href={`tel:${contact.primary.tel}`} className={`${link} inline-flex min-h-11 items-center font-semibold text-ivory tabular-nums`}>
                 {contact.primary.display}
               </a>
-              <span className="block text-[0.9375rem]">{copy.contact.primaryLabel}</span>
+              <span className="block t-small">{copy.contact.primaryLabel}</span>
             </li>
             {contact.landlines.map((p, i) => (
               <li key={p.tel}>
                 <a href={`tel:${p.tel}`} className={`${link} inline-flex min-h-11 items-center tabular-nums`}>
                   {p.display}
                 </a>
-                <span className="ml-2 text-[0.9375rem]">{copy.contact.landlineLabels[i]}</span>
+                <span className="block t-small">{copy.contact.landlineLabels[i]}</span>
               </li>
             ))}
             <li>
@@ -82,9 +86,9 @@ export function Footer() {
         </nav>
       </Container>
       <div className="border-t border-teal-800">
-        <Container className="flex flex-col gap-3 py-6 text-[0.875rem] text-teal-200 md:flex-row md:justify-between">
+        <Container className="flex flex-col gap-3 py-6 t-meta text-teal-200 md:flex-row md:justify-between">
           <p>{copy.footer.legal(year)}</p>
-          <p className="max-w-xl md:text-right">{copy.footer.disclaimer}</p>
+          <p className="max-w-[34rem] md:text-right">{copy.footer.disclaimer}</p>
         </Container>
       </div>
     </footer>

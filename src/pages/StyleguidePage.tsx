@@ -20,7 +20,7 @@ const swatches = [
 
 export default function StyleguidePage() {
   const copy = useCopy();
-  const shapes: PhotoShape[] = ['arch', 'cradle', 'leaf', 'soft', 'circle'];
+  const shapes: PhotoShape[] = ['arch', 'cradle', 'soft', 'circle'];
   return (
     <Container className="space-y-20 py-16">
       <section>
@@ -28,9 +28,9 @@ export default function StyleguidePage() {
         <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
           {swatches.map(([name, hex]) => (
             <div key={name}>
-              <div className="h-20 rounded-2xl ring-1 ring-line" style={{ background: hex }} />
-              <p className="mt-2 text-[0.9375rem] font-semibold">{name}</p>
-              <p className="text-[0.9375rem] text-ink-muted">{hex}</p>
+              <div className="h-20 rounded-[var(--radius-md)] ring-1 ring-line" style={{ background: hex }} />
+              <p className="mt-2 t-small font-semibold">{name}</p>
+              <p className="t-small text-ink-muted">{hex}</p>
             </div>
           ))}
         </div>
@@ -45,7 +45,7 @@ export default function StyleguidePage() {
         <p className="t-lead max-w-2xl">{copy.hero.lead}</p>
         <p className="max-w-2xl">{copy.maternity.lead}</p>
         <p className="t-label text-sage-700">{copy.pregnancy.label}</p>
-        <p className="t-number text-[6rem] text-clay-600">70,000+</p>
+        <p className="t-number text-[clamp(3rem,2rem+4vw,4.5rem)] text-clay-600">70,000+</p>
       </section>
 
       <section>
@@ -56,7 +56,7 @@ export default function StyleguidePage() {
           <Button variant="emergency" icon={<Phone aria-hidden="true" />}>{copy.actions.callEmergency}</Button>
           <Button variant="quiet">{copy.maternity.more}</Button>
         </div>
-        <div className="mt-6 flex flex-wrap gap-3 rounded-[2rem] bg-teal-900 p-8">
+        <div className="mt-6 flex flex-wrap gap-3 rounded-[var(--radius-lg)] bg-teal-900 p-8">
           <Button variant="light" size="lg">{copy.ivf.whatsapp}</Button>
           <Button variant="lightOutline" size="lg">{copy.ivf.book}</Button>
         </div>
@@ -68,7 +68,7 @@ export default function StyleguidePage() {
           {shapes.map((s, i) => (
             <div key={s}>
               <Photo id={(['hero-main', 'ivf-consultation', 'maternity-labour', 'service-gynaecology', 'hero-secondary'] as const)[i]} shape={s} aspect={s === 'circle' ? 1 : 4 / 5} />
-              <p className="mt-2 text-[0.9375rem] text-ink-muted">{s}</p>
+              <p className="mt-2 t-small text-ink-muted">{s}</p>
             </div>
           ))}
         </div>

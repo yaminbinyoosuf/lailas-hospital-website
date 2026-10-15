@@ -58,7 +58,7 @@ export function MaternityPage() {
                 <div className={cn('md:col-span-6', i % 2 === 1 && 'md:order-2')}>
                   <Photo
                     id={s.imageId as ImageId}
-                    shape={i === 1 ? 'leaf' : 'soft'}
+                    shape={i === 1 ? 'cradle' : 'soft'}
                     sizes="(min-width: 768px) 45vw, 90vw"
                   />
                 </div>
@@ -82,7 +82,7 @@ export function MaternityPage() {
 
       <section aria-labelledby="extra-care-title" className="pb-20 md:pb-28">
         <Container>
-          <Reveal className="rounded-[2rem] bg-clay-50 px-7 py-10 md:px-14 md:py-14">
+          <Reveal className="rounded-[var(--radius-lg)] bg-clay-50 px-7 py-10 md:px-14 md:py-14">
             <h2 id="extra-care-title" className="t-h3 text-[clamp(1.625rem,1.3rem+1vw,2.25rem)] text-teal-950">
               {page.extraCare.title}
             </h2>

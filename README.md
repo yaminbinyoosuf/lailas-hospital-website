@@ -44,6 +44,60 @@ Every "Book" button opens one three-step form: who, which day, then name and pho
 
 Upload `dist/`. Each page has its own `index.html`, plus `404.html`. `public/_redirects` sends old URLs (`/ivf-fertility`, `/about`, ...) to the new pages on Netlify and Cloudflare Pages. Other hosts need the same four rules.
 
+## Design system
+
+Everything visual is driven by tokens in `src/styles/index.css`. If you are adding a section,
+extend these rather than inventing values.
+
+### Typography
+
+Two families, self-hosted via Fontsource:
+
+- **Fraunces** (optical-size serif) for display, section headings and figures. It is the brand's
+  voice; weight 450 at large sizes keeps it from thinning out on cream stock.
+- **Instrument Sans** for interface and body. A sharper editorial grotesque than the previous
+  Source Sans 3, and it holds up at the 14–17px sizes most of this site lives at.
+- **Noto Sans Malayalam** sits in both fallback chains so Malayalam copy renders correctly.
+
+The scale has one step per role — `t-display`, `t-h1`…`t-h4`, `t-lead`, `t-body`, `t-small`,
+`t-meta`, `t-label`, `t-number`. Use them instead of `text-[…]`; arbitrary sizes are what made the
+old pages inconsistent. Body copy is 16px on phones and 17px from 768px up.
+
+### Colour
+
+Ivory / paper / sand surfaces, deep teal as the primary, a single clay accent, sage as a secondary
+surface, and `emergency` reserved strictly for emergency use. Muted text is `ink-soft`, with
+`ink-muted` for captions. Every text pair is verified by `npm run check:contrast`.
+
+### Shape and elevation
+
+Three radius tiers only:
+
+| Token | Value | Used for |
+| --- | --- | --- |
+| `--radius-sm` | 0.625rem | buttons, inputs, chips |
+| `--radius-md` | 1.125rem | cards, media, inner blocks |
+| `--radius-lg` | 1.5rem | page-level panels, hero media |
+
+Photo shapes (`shape-arch`, `shape-cradle`, `shape-soft`) are the brand motif — an arch echoes a
+doorway, a cradle echoes a newborn. Keep them for imagery; do not apply them to controls.
+
+Shadow is reserved for things that genuinely float — the sticky header, the booking sheet, the
+mobile bar. Cards use a hairline ring instead.
+
+### Rhythm
+
+`Section` takes `space="tight" | "base" | "loose"`. A page of identically spaced sections reads as
+monotonous, so spacing is mapped deliberately across the home page: tight where two sections share
+a thought, loose where the subject or the tone changes.
+
+### A note on `cn()`
+
+`cn()` in `src/lib/format.ts` runs `tailwind-merge`, so a `className` passed to a component
+correctly overrides the component's own utilities. This matters: with a plain string join,
+`<Container className="max-w-3xl">` silently lost to the component's `max-w-[80rem]` because CSS
+order decided the winner rather than intent.
+
 ## Quality checks (October 2026)
 
 - Lighthouse mobile, all pages: performance 92 to 94, accessibility 100, best practices 100, SEO 100. CLS 0, TBT 0 ms.

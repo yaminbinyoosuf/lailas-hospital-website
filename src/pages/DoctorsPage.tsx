@@ -16,7 +16,14 @@ export function DoctorsPage() {
       <PageMeta page="doctors" />
       <PageHero title={page.title} lead={page.lead} />
       <Container>
-        <Photo id="staff-team" shape="soft" sizes="(min-width: 1280px) 76rem, 92vw" className="w-full" aspect={21 / 9} />
+        <Photo
+          id="staff-team"
+          shape="soft"
+          sizes="(min-width: 1280px) 76rem, 92vw"
+          className="w-full"
+          aspect={21 / 9}
+          omitIfMissing
+        />
       </Container>
 
       {page.groups.map((g, gi) => (
@@ -40,7 +47,7 @@ export function DoctorsPage() {
 
       <section aria-labelledby="duty-title" className="pb-20 md:pb-28">
         <Container>
-          <Reveal className="flex flex-col gap-5 rounded-[2rem] bg-sage-100 p-8 md:flex-row md:items-center md:gap-10 md:p-12">
+          <Reveal className="flex flex-col gap-5 rounded-[var(--radius-lg)] bg-sage-100 p-8 md:flex-row md:items-center md:gap-10 md:p-12">
             <span className="grid size-16 shrink-0 place-items-center rounded-full bg-paper text-teal-700">
               <Clock className="size-8" aria-hidden="true" />
             </span>

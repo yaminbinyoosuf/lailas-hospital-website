@@ -125,7 +125,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
   };
 
   const choice =
-    'flex min-h-14 w-full items-center justify-between gap-4 rounded-2xl border border-line bg-paper px-5 py-3 text-left transition-colors hover:border-teal-600 hover:bg-teal-50';
+    'flex min-h-14 w-full items-center justify-between gap-4 rounded-[var(--radius-md)] border border-line bg-paper px-5 py-3 text-left transition-colors hover:border-teal-600 hover:bg-teal-50';
 
   return (
     <dialog
@@ -133,16 +133,16 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
       aria-labelledby={`${ids}-title`}
       onClose={onClosed}
       onClick={(e) => e.target === dialogRef.current && close()}
-      className="sheet fixed inset-x-0 top-auto bottom-0 m-0 max-h-[92dvh] w-full max-w-none overflow-hidden rounded-t-[2rem] bg-ivory p-0 text-ink sm:inset-0 sm:m-auto sm:h-fit sm:max-w-xl sm:rounded-[2rem]"
+      className="sheet fixed inset-x-0 top-auto bottom-0 m-0 max-h-[92dvh] w-full max-w-none overflow-hidden rounded-t-[var(--radius-lg)] bg-ivory p-0 text-ink sm:inset-0 sm:m-auto sm:h-fit sm:max-w-xl sm:rounded-[var(--radius-lg)]"
     >
       <div className="flex max-h-[92dvh] flex-col">
         <div className="flex items-start justify-between gap-4 border-b border-line px-6 pt-5 pb-4">
           <div>
-            <p id={`${ids}-title`} className="font-serif text-2xl text-teal-950">
+            <p id={`${ids}-title`} className="t-h3 text-teal-950">
               {copy.booking.title}
             </p>
             {step !== 'done' && (
-              <p className="mt-1 text-[0.9375rem] text-ink-muted">{copy.booking.stepOf(stepIndex + 1, STEPS.length)}</p>
+              <p className="mt-1 t-small text-ink-muted">{copy.booking.stepOf(stepIndex + 1, STEPS.length)}</p>
             )}
           </div>
           <button
@@ -159,7 +159,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
           {step !== 'done' && (
             <a
               href={`tel:${contact.primary.tel}`}
-              className="mb-5 flex min-h-12 items-center gap-3 rounded-xl bg-emergency-50 px-4 py-2 text-[0.9375rem] text-emergency-700"
+              className="mb-5 flex min-h-12 items-center gap-3 rounded-[var(--radius-sm)] bg-emergency-50 px-4 py-2 t-small text-emergency-700"
             >
               <Phone className="size-4 shrink-0" aria-hidden="true" />
               <span>{copy.booking.emergency(contact.primary.display)}</span>
@@ -179,7 +179,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
                     <li key={s.id}>
                       <button type="button" className={choice} onClick={() => chooseTarget({ kind: 'service', id: s.id })}>
                         <span className="font-semibold">{copy.services.items[s.id].name}</span>
-                        <span className="text-[0.9375rem] text-ink-muted">{copy.services.items[s.id].availability}</span>
+                        <span className="t-small text-ink-muted">{copy.services.items[s.id].availability}</span>
                       </button>
                     </li>
                   ))}
@@ -191,7 +191,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
                     <button type="button" className={choice} onClick={() => chooseTarget({ kind: 'doctor', id: d.id })}>
                       <span>
                         <span className="block font-semibold">{d.name}</span>
-                        <span className="block text-[0.9375rem] text-ink-muted">{copy.doctors.profiles[d.id].focus}</span>
+                        <span className="block t-small text-ink-muted">{copy.doctors.profiles[d.id].focus}</span>
                       </span>
                     </button>
                   </li>
@@ -208,7 +208,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
               </h2>
               <p className="mt-1 text-ink-soft">{copy.booking.day.hint}</p>
               {doctor && (
-                <p className="mt-1 text-[0.9375rem] text-ink-muted">
+                <p className="mt-1 t-small text-ink-muted">
                   {copy.doctors.opd}: {formatHours(doctor.opd, copy)}
                 </p>
               )}
@@ -221,7 +221,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
                       className={cn(choice, 'flex-col items-start justify-center gap-0')}
                     >
                       <span className="font-semibold">{d.label}</span>
-                      <span className="text-[0.9375rem] text-ink-muted">{d.sub}</span>
+                      <span className="t-small text-ink-muted">{d.sub}</span>
                     </button>
                   </li>
                 ))}
@@ -231,7 +231,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
                   </button>
                 </li>
               </ul>
-              <p className="mt-3 text-[0.9375rem] text-ink-muted">{copy.booking.day.closedNote}</p>
+              <p className="mt-3 t-small text-ink-muted">{copy.booking.day.closedNote}</p>
             </div>
           )}
 
@@ -263,9 +263,9 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
                   inputMode="tel"
                 />
               </div>
-              <p className="mt-4 text-[0.9375rem] text-ink-muted">{copy.booking.details.privacy}</p>
+              <p className="mt-4 t-small text-ink-muted">{copy.booking.details.privacy}</p>
               {errors.send && (
-                <p role="alert" className="mt-4 rounded-xl bg-emergency-50 px-4 py-3 text-emergency-700">
+                <p role="alert" className="mt-4 rounded-[var(--radius-sm)] bg-emergency-50 px-4 py-3 text-emergency-700">
                   {errors.send}
                 </p>
               )}
@@ -311,7 +311,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
 
 function Summary({ label, value }: { label: string; value: string }) {
   return (
-    <p className="flex items-baseline gap-2 text-[0.9375rem]">
+    <p className="flex items-baseline gap-2 t-small">
       <span className="text-ink-muted">{label}:</span>
       <span className="font-semibold text-teal-900">{value}</span>
     </p>
@@ -338,7 +338,7 @@ function Field({ id, label, hint, value, onChange, error, autoComplete, type = '
         {label}
       </label>
       {hint && (
-        <p id={`${id}-hint`} className="text-[0.9375rem] text-ink-muted">
+        <p id={`${id}-hint`} className="t-small text-ink-muted">
           {hint}
         </p>
       )}
@@ -352,12 +352,12 @@ function Field({ id, label, hint, value, onChange, error, autoComplete, type = '
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy}
         className={cn(
-          'mt-2 block min-h-14 w-full rounded-2xl border bg-paper px-4 text-[1.0625rem] outline-none transition-colors focus:border-teal-700 focus:ring-2 focus:ring-teal-200',
+          'mt-2 block min-h-14 w-full rounded-[var(--radius-md)] border bg-paper px-4 t-body outline-none transition-colors focus:border-teal-700 focus:ring-2 focus:ring-teal-200',
           error ? 'border-emergency' : 'border-line',
         )}
       />
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-[0.9375rem] font-semibold text-emergency-700">
+        <p id={`${id}-error`} className="mt-1.5 t-small font-semibold text-emergency-700">
           {error}
         </p>
       )}

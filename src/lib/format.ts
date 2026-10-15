@@ -1,3 +1,4 @@
+import { extendTailwindMerge } from 'tailwind-merge';
 import type { Copy } from '../content/copy/en';
 import type { TimeWindow, Weekday } from '../content/site';
 
@@ -27,4 +28,29 @@ export function addDays(d: Date, n: number) {
   return out;
 }
 
-export const cn = (...parts: (string | false | null | undefined)[]) => parts.filter(Boolean).join(' ');
+/**
+ * Tailwind class merger.
+ *
+ * A plain join() leaves conflicting utilities side by side, so which one wins
+ * depends on stylesheet order rather than intent — `<Container className="max-w-3xl">
+ * silently lost to the component's own max-w-[80rem]`. This resolves conflicts
+ * properly, last-wins. It also knows about our custom type scale and radius
+ * tokens so `t-h3 ... t-h2` and `rounded-[var(--radius-md)] ...` behave.
+ */
+const merge = extendTailwindMerge({
+  extend: {
+    classGroups: {
+      'font-size': [
+        { t: ['display', 'h1', 'h2', 'h3', 'h4', 'lead', 'body', 'small', 'meta', 'label', 'number'] },
+      ],
+      rounded: [
+        {
+          'rounded-(radius)': ['[var(--radius-sm)]', '[var(--radius-md)]', '[var(--radius-lg)]'],
+        },
+      ],
+    },
+  },
+});
+
+export const cn = (...parts: (string | false | null | undefined)[]) =>
+  merge(parts.filter(Boolean).join(' '));

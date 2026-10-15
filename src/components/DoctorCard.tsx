@@ -22,11 +22,11 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
         className={cn(row ? 'w-full max-w-[20rem] shrink-0 sm:w-52 xl:w-60' : 'w-full')}
       />
       <div className={cn('flex min-w-0 flex-1 flex-col', row ? 'pt-2' : 'pt-6')}>
-        <p className="text-[0.9375rem] font-semibold text-clay-600">{profile.role}</p>
-        <h3 className="t-h3 mt-1 text-teal-950">{doctor.name}</h3>
-        <p className="text-[0.9375rem] text-ink-muted">{doctor.qualifications}</p>
+        <p className="t-label">{profile.role}</p>
+        <h3 className="t-h3 mt-2 text-teal-950">{doctor.name}</h3>
+        <p className="mt-1 t-small text-ink-muted">{doctor.qualifications}</p>
         <p className="mt-3 text-ink-soft">{row ? profile.bio : profile.focus}</p>
-        <dl className="mt-4 space-y-2 text-[0.9375rem] text-ink-soft">
+        <dl className="mt-4 space-y-2 t-small text-ink-soft">
           <div className="flex gap-2.5">
             <dt className="mt-0.5 shrink-0">
               <Clock className="size-4 text-teal-600" aria-hidden="true" />

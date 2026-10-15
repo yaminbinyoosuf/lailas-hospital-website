@@ -48,7 +48,7 @@ export function Header() {
                   end
                   className={({ isActive }) =>
                     cn(
-                      'relative inline-flex min-h-12 items-center whitespace-nowrap px-3.5 text-[1.0625rem] font-medium text-ink-soft transition-colors hover:text-teal-800',
+                      'relative inline-flex min-h-12 items-center whitespace-nowrap px-3.5 t-body font-medium text-ink-soft transition-colors hover:text-teal-800',
                       'after:absolute after:inset-x-3.5 after:bottom-2 after:h-0.5 after:origin-left after:rounded-full after:bg-clay-500 after:transition-transform after:duration-300',
                       isActive && !item.to.includes('#') ? 'text-teal-900 after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100',
                     )
@@ -116,7 +116,7 @@ function MobileMenu() {
             <ul className="divide-y divide-line border-y border-line">
               {mainNav.map((item) => (
                 <li key={item.key}>
-                  <Link to={item.to} className="flex min-h-16 items-center font-serif text-[1.75rem] text-teal-950">
+                  <Link to={item.to} className="flex min-h-16 items-center t-h3 text-teal-950">
                     {copy.nav[item.key]}
                   </Link>
                 </li>

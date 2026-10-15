@@ -6,13 +6,13 @@ export type ButtonVariant = 'primary' | 'secondary' | 'quiet' | 'emergency' | 'l
 export type ButtonSize = 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2.5 rounded-full font-semibold leading-tight text-center ' +
-  'transition-[background-color,border-color,color,transform] duration-200 ease-[var(--ease-gentle)] ' +
-  'active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-5 [&_svg]:shrink-0';
+  'inline-flex items-center justify-center gap-2.5 rounded-[var(--radius-sm)] font-semibold leading-tight text-center ' +
+  'transition-[background-color,border-color,color,box-shadow] duration-200 ease-[var(--ease-gentle)] ' +
+  'disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-5 [&_svg]:shrink-0';
 
 const sizes: Record<ButtonSize, string> = {
-  md: 'min-h-12 px-6 text-[1.0625rem]',
-  lg: 'min-h-14 px-7 text-[1.125rem]',
+  md: 'min-h-12 px-6 t-body',
+  lg: 'min-h-14 px-7 t-h4',
 };
 
 const variants: Record<ButtonVariant, string> = {

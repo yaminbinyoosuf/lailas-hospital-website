@@ -23,20 +23,20 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
 
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
             <div>
-              <h3 className="font-sans text-[0.9375rem] font-semibold text-clay-700">{copy.visit.addressTitle}</h3>
+              <h3 className="font-sans t-small font-semibold text-clay-700">{copy.visit.addressTitle}</h3>
               <address className="mt-2 not-italic">
                 {address.postalLines.map((l) => (
                   <span key={l} className="block">
                     {l}
                   </span>
                 ))}
-                <span className="mt-1 block text-[0.9375rem] text-ink-muted">
+                <span className="mt-1 block t-small text-ink-muted">
                   {copy.visit.plusCode}: {address.plusCode}
                 </span>
               </address>
             </div>
             <div>
-              <h3 className="font-sans text-[0.9375rem] font-semibold text-clay-700">{copy.visit.hoursTitle}</h3>
+              <h3 className="font-sans t-small font-semibold text-clay-700">{copy.visit.hoursTitle}</h3>
               <dl className="mt-2 space-y-3">
                 <div>
                   <dt className="text-ink-soft">{copy.visit.hours.allDay}</dt>
@@ -52,7 +52,7 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
             </div>
           </div>
 
-          <h3 className="mt-8 font-sans text-[0.9375rem] font-semibold text-clay-700">{copy.visit.accessTitle}</h3>
+          <h3 className="mt-8 font-sans t-small font-semibold text-clay-700">{copy.visit.accessTitle}</h3>
           <ul className="mt-2 space-y-2">
             {copy.visit.access.map((a, i) => {
               const Icon = accessIcons[i] ?? Car;
@@ -67,7 +67,7 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
 
           {flags.showTravelTimes && (
             <>
-              <h3 className="mt-8 font-sans text-[0.9375rem] font-semibold text-clay-700">{copy.visit.routesTitle}</h3>
+              <h3 className="mt-8 font-sans t-small font-semibold text-clay-700">{copy.visit.routesTitle}</h3>
               <ul className="mt-2 space-y-1">
                 {routes.map((r) => (
                   <li key={r.id}>
@@ -89,7 +89,7 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
         </Reveal>
 
         <Reveal className="lg:col-span-7" delay={0.08}>
-          <div className="relative h-full min-h-[22rem] overflow-hidden rounded-[2rem] bg-sand-deep ring-1 ring-line lg:min-h-[36rem]">
+          <div className="relative h-full min-h-[22rem] overflow-hidden rounded-[var(--radius-lg)] bg-sand-deep ring-1 ring-line lg:min-h-[36rem]">
             <iframe
               title={copy.visit.mapTitle}
               src={address.mapEmbedUrl}

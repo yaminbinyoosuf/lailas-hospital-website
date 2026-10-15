@@ -39,7 +39,7 @@ export function PregnancyTool() {
   }
 
   return (
-    <Section tone="sage" labelledBy={`${ids}-title`}>
+    <Section tone="sage" labelledBy={`${ids}-title`} space="tight">
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
@@ -68,7 +68,7 @@ export function PregnancyTool() {
                 aria-valuetext={`${copy.pregnancy.weekOf(week, pregnancy.maxWeek)}, ${stage.name}`}
                 style={{ ['--fill' as string]: `${fill}%` }}
               />
-              <div className="flex justify-between text-[0.9375rem] text-ink-muted" aria-hidden="true">
+              <div className="flex justify-between t-small text-ink-muted" aria-hidden="true">
                 <span>{pregnancy.minWeek}</span>
                 <span>{pregnancy.maxWeek}</span>
               </div>
@@ -80,7 +80,7 @@ export function PregnancyTool() {
                     onClick={() => setWeek(m.week)}
                     aria-pressed={week === m.week}
                     className={cn(
-                      'min-h-11 rounded-full px-4 text-[0.9375rem] font-semibold transition-colors',
+                      'min-h-11 rounded-[var(--radius-sm)] px-4 t-small font-semibold transition-colors',
                       week === m.week ? 'bg-teal-800 text-ivory' : 'bg-paper text-ink-soft ring-1 ring-sage-300 hover:ring-teal-600',
                     )}
                   >
@@ -92,12 +92,12 @@ export function PregnancyTool() {
           </Reveal>
 
           <Reveal className="lg:col-span-7" delay={0.1}>
-            <div aria-live="polite" className="rounded-[2rem] bg-paper p-7 shadow-[var(--shadow-soft)] ring-1 ring-sage-200 md:p-10">
+            <div aria-live="polite" className="rounded-[var(--radius-lg)] bg-paper p-7 shadow-[var(--shadow-soft)] ring-1 ring-sage-200 md:p-10">
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                 <h3 className="t-h3 text-teal-950">{stage.name}</h3>
                 <p className="text-ink-muted">{stage.range}</p>
               </div>
-              <p className="mt-2 text-[1.1875rem] text-clay-600">{stage.focus}</p>
+              <p className="mt-2 t-h4 text-clay-600">{stage.focus}</p>
 
               <p className="mt-8 font-semibold">{copy.pregnancy.careTitle}</p>
               <ul className="mt-3 space-y-3">
@@ -111,12 +111,12 @@ export function PregnancyTool() {
                 ))}
               </ul>
 
-              <div className="mt-8 rounded-2xl bg-clay-50 p-5">
+              <div className="mt-8 rounded-[var(--radius-md)] bg-clay-50 p-5">
                 <p className="font-semibold text-clay-700">{copy.pregnancy.dueTitle}</p>
-                <p className="mt-1 min-h-[1.6em] font-serif text-[1.375rem] text-ink">{due ?? ' '}</p>
+                <p className="mt-1 min-h-[1.6em] t-h3 text-ink">{due ?? ' '}</p>
               </div>
 
-              <p className="mt-6 flex gap-2.5 text-[0.9375rem] text-ink-muted">
+              <p className="mt-6 flex gap-2.5 t-small text-ink-muted">
                 <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
                 {copy.pregnancy.disclaimer}
               </p>
