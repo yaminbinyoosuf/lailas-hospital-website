@@ -86,16 +86,30 @@ export function Services() {
               <p className="max-w-2xl t-h3 text-ink">
                 {copy.services.groups[g].intro}
               </p>
-              {single ? (
-                <div className="mt-8">
-                  <ServiceCard service={items[0]} wide />
-                </div>
+              {/* A group of three is composed as one lead service plus a pair
+                  rather than three identical cards, so the eye has an entry
+                  point and the section does not read as a repeated grid. */}
+              {single || items.length === 3 ? (
+                <>
+                  <div className="mt-8">
+                    <ServiceCard service={items[0]} wide />
+                  </div>
+                  {items.length > 1 && (
+                    <ul className="mt-6 grid gap-6 sm:grid-cols-2">
+                      {items.slice(1).map((s) => (
+                        <li key={s.id} className="h-full">
+                          <ServiceCard service={s} />
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
               ) : (
                 <ul
                   className={cn(
                     'scroll-row -mx-5 mt-8 auto-cols-[82%] gap-4 px-5 pb-2 xs:auto-cols-[70%]',
                     'sm:mx-0 sm:grid sm:grid-flow-row sm:auto-cols-auto sm:gap-6 sm:overflow-visible sm:px-0',
-                    items.length === 3 ? 'sm:grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2',
+                    'sm:grid-cols-2',
                   )}
                 >
                   {items.map((s) => (

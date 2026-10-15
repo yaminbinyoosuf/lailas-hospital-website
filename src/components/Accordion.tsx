@@ -39,7 +39,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
         const panelId = `${base}-${item.id}-p`;
         return (
           <div key={item.id} className="border-b border-line">
-            <h3 className="font-sans">
+            <h3 className="t-h4">
               <button
                 id={triggerId}
                 type="button"

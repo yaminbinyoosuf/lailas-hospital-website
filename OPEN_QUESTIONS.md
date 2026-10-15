@@ -91,9 +91,9 @@ If you have audited figures for C-section or outcome rates, send them and we can
 
 ## Language
 
-**Q19. Malayalam.** The source code here is **older** than the compiled `lailas_hospital_2026.html`. Only that build has the Malayalam lines, the pregnancy week tool and the travel guide. Is there a newer source folder? If not, we rebuild from this one plus the facts taken from the HTML.
+**Q19. Malayalam. Resolved.** The site is English only by decision. The Malayalam source build referenced here is no longer used and `src/content/copy/ml.ts` has been removed.
 
-**Q24. Malayalam review.** All Malayalam text is in `src/content/copy/ml.ts`. Who at the hospital can review it before launch? Please also check how the doctors' names are spelled in Malayalam (used for photo descriptions).
+**Q24. Malayalam review. Resolved.** Not required, since the site is English only.
 
 ## Booking
 

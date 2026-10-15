@@ -1,6 +1,39 @@
 # Photo shot list for Lailas Hospital
 
-The website is designed around real photos. Until each one exists, the site shows a plain warm tile in its place.
+The website is designed around real photography. Until a photo exists, that position shows a
+tonal placeholder panel that carries the brand motif, so the layout stays intact and nothing
+pretends to be a finished photograph.
+
+## Current status
+
+**All 23 positions are unfilled.** Every one renders as a deliberate tonal
+placeholder, which is why the site currently shows no photographs at all.
+
+This is intentional, not an oversight. Four of these positions carry the names of
+real consultants (`doctor-laila-beegum`, `doctor-geethanjali-s`, `doctor-amith-k`,
+`doctor-jambir`) and several represent this hospital's own rooms. Those cannot be
+filled with borrowed imagery without misrepresenting a person or a place, and the
+project carries no licence to use third party stock photography.
+
+The earlier build of this site did substitute curated stock photographs, including
+portraits for the named consultants. That has been removed.
+
+To fill a position, drop the original at `photos/<id>.jpg` and run `npm run photos`.
+The placeholder is replaced for that id only, so the site can go live with some
+photographs present and the rest still waiting.
+
+### Priority order
+
+If photography has to be staged in batches, this order gives the most improvement
+per frame:
+
+1. `hero-main` and `doctor-laila-beegum` to `doctor-jambir`. The hero and the four
+   consultant portraits carry the most credibility.
+2. The four service images in the default tab (`service-maternity`,
+   `service-ivf`, `service-gynaecology`, `service-paediatrics`).
+3. `maternity-story`, `staff-team`, `visit-entrance`.
+4. The remainder.
+
 
 **Rules for every photo**
 - Real Lailas Hospital places and people only. No stock photos, no AI images.

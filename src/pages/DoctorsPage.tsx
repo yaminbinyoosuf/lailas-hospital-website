@@ -2,10 +2,10 @@ import { Clock } from 'lucide-react';
 import { Container } from '../components/Container';
 import { DoctorCard } from '../components/DoctorCard';
 import { PageMeta } from '../components/PageMeta';
-import { Photo } from '../components/Photo';
 import { Reveal } from '../components/Reveal';
 import { doctorsFor } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
+import { cn } from '../lib/format';
 import { PageHero } from '../sections/PageHero';
 
 export function DoctorsPage() {
@@ -15,16 +15,6 @@ export function DoctorsPage() {
     <>
       <PageMeta page="doctors" />
       <PageHero title={page.title} lead={page.lead} />
-      <Container>
-        <Photo
-          id="staff-team"
-          shape="soft"
-          sizes="(min-width: 1280px) 76rem, 92vw"
-          className="w-full"
-          aspect={21 / 9}
-          omitIfMissing
-        />
-      </Container>
 
       {page.groups.map((g, gi) => (
         <section key={g.title} aria-labelledby={`group-${gi}`} className="py-16 md:py-24">
@@ -34,9 +24,17 @@ export function DoctorsPage() {
                 {g.title}
               </h2>
             </Reveal>
-            <ul className="mt-10 grid gap-14 lg:grid-cols-2 lg:gap-x-16">
+            {/* Two columns when a group has a pair; a single consultant keeps
+                one column so the layout does not leave a dangling empty slot
+                beside them. */}
+            <ul
+              className={cn(
+                'mt-10 grid gap-14',
+                doctorsFor(g.serviceId).length > 1 && 'lg:grid-cols-2 lg:gap-x-16',
+              )}
+            >
               {doctorsFor(g.serviceId).map((d, i) => (
-                <Reveal as="li" key={d.id} delay={i * 0.06}>
+                <Reveal as="li" key={d.id} delay={i * 0.06} className="min-w-0">
                   <DoctorCard doctor={d} layout="row" />
                 </Reveal>
               ))}

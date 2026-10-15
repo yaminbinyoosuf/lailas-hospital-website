@@ -21,7 +21,7 @@ export function Footer() {
           <p className="mt-6 max-w-sm">{copy.footer.about}</p>
         </div>
         <div className="lg:col-span-3">
-          <h2 className={heading}>{copy.footer.visitTitle}</h2>
+          <div className={heading}>{copy.footer.visitTitle}</div>
           <address className="mt-4 not-italic">
             {address.postalLines.map((l) => (
               <span key={l} className="block">
@@ -42,7 +42,7 @@ export function Footer() {
           </p>
         </div>
         <div className="lg:col-span-3">
-          <h2 className={heading}>{copy.footer.callTitle}</h2>
+          <div className={heading}>{copy.footer.callTitle}</div>
           {/* Number on its own line, purpose underneath. Inline labels collided
               with the numbers and wrapped awkwardly at this column width. */}
           <ul className="mt-4 space-y-3">
@@ -68,7 +68,7 @@ export function Footer() {
           </ul>
         </div>
         <nav aria-label={copy.a11y.footerNav} className="lg:col-span-2">
-          <h2 className={heading}>{copy.footer.pagesTitle}</h2>
+          <div className={heading}>{copy.footer.pagesTitle}</div>
           <ul className="mt-4">
             {mainNav.map((item) => (
               <li key={item.key}>

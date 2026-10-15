@@ -46,7 +46,7 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
         >
           {doctors.map((d, i) => (
             <Reveal as="li" key={d.id} delay={i * 0.06}>
-              <DoctorCard doctor={d} layout={few ? 'row' : 'stack'} />
+              <DoctorCard doctor={d} layout="row" />
             </Reveal>
           ))}
         </ul>

@@ -63,7 +63,7 @@ export function MaternityPage() {
                   />
                 </div>
                 <div className="md:col-span-6">
-                  <h3 className="t-h3 text-[clamp(1.625rem,1.3rem+1vw,2.25rem)] text-teal-950">{s.title}</h3>
+                  <h3 className="t-h3 text-teal-950">{s.title}</h3>
                   <p className="t-lead mt-4">{s.body}</p>
                   <ul className="mt-6 space-y-3">
                     {s.points.map((p) => (
@@ -83,7 +83,7 @@ export function MaternityPage() {
       <section aria-labelledby="extra-care-title" className="pb-20 md:pb-28">
         <Container>
           <Reveal className="rounded-[var(--radius-lg)] bg-clay-50 px-7 py-10 md:px-14 md:py-14">
-            <h2 id="extra-care-title" className="t-h3 text-[clamp(1.625rem,1.3rem+1vw,2.25rem)] text-teal-950">
+            <h2 id="extra-care-title" className="t-h3 text-teal-950">
               {page.extraCare.title}
             </h2>
             <p className="t-lead mt-4 max-w-3xl">{page.extraCare.body}</p>

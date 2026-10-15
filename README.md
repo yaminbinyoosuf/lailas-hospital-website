@@ -1,6 +1,6 @@
 # Lailas Hospital & IVF Centre website
 
-React 19, Vite, Tailwind 4 and TypeScript. Every page is pre-rendered to static HTML at build time. The site works in English and Malayalam.
+React 19, Vite, Tailwind 4 and TypeScript. Every page is pre-rendered to static HTML at build time. The site is English only.
 
 ```
 npm install
@@ -18,21 +18,22 @@ You never need to touch components to change words or facts.
 |---|---|
 | Phones, address, hours, doctors, services, flags | `src/content/site.ts` |
 | Every English sentence | `src/content/copy/en.ts` |
-| Every Malayalam sentence (same structure) | `src/content/copy/ml.ts` |
 | Photo list and alt text | `src/content/images.ts` |
 | Page titles, Google data | `src/content/seo.ts` (uses `en.ts` meta) |
 
 - **Change a doctor's timings:** edit `opd` in `site.ts`. The site and Google data update together.
-- **Add a doctor:** add an entry to `doctors` in `site.ts`, add the text under `doctors.profiles` in both copy files, and add an image id in `images.ts`.
+- **Add a doctor:** add an entry to `doctors` in `site.ts`, add the text under `doctors.profiles` in `en.ts`, and add an image id in `images.ts`.
 - **Hide a section:** use `flags` in `site.ts`. Testimonials, accreditations, patient portal, articles and travel times are hidden until verified.
 - **Copy rules:** short, plain sentences. No en or em dashes, no emojis, and none of the banned words. `npm run check:copy` enforces this.
-- TypeScript stops the build if the English and Malayalam files don't match.
+- One language only. `en.ts` is the single source of copy.
 
 ## Swapping in real photos
 
 1. Save the original as `photos/<id>.jpg` (ids are in `PHOTO_SHOTLIST.md`).
 2. Run `npm run photos`. This makes AVIF and WebP sizes plus a blur preview in `src/assets/photos/`.
-3. Commit `src/assets/photos/`. The warm tile is replaced automatically.
+3. Commit `src/assets/photos/`. That position switches from the placeholder to the photograph automatically.
+
+**Photographs are never substituted with stock images.** If an id has no processed photo, `getPhoto()` returns undefined and the component renders a deliberate placeholder. Several positions are named consultants or this hospital's own rooms, and a borrowed photograph would misrepresent a real person or place. See `PHOTO_SHOTLIST.md` for the list and the rules.
 
 The logo and share image come from `brand/lailas-logo-source.jpg`. When the vector logo arrives, replace that file and run `npm run brand`.
 
@@ -51,17 +52,41 @@ extend these rather than inventing values.
 
 ### Typography
 
-Two families, self-hosted via Fontsource:
+Two families, both self-hosted via Fontsource:
 
-- **Fraunces** (optical-size serif) for display, section headings and figures. It is the brand's
-  voice; weight 450 at large sizes keeps it from thinning out on cream stock.
-- **Instrument Sans** for interface and body. A sharper editorial grotesque than the previous
-  Source Sans 3, and it holds up at the 14–17px sizes most of this site lives at.
-- **Noto Sans Malayalam** sits in both fallback chains so Malayalam copy renders correctly.
+- **DM Sans** for every heading, all figures and all interface labels. Weight 600 on headings.
+  It has a calm, even geometry that reads as clinical competence rather than fashion, and it
+  holds its shape at the small sizes used for eyebrows and table figures.
+- **Source Sans 3** for body copy only. Drawn for long-form reading, it stays comfortable at
+  16–17px and has the wide apertures that help on a phone in daylight.
 
-The scale has one step per role — `t-display`, `t-h1`…`t-h4`, `t-lead`, `t-body`, `t-small`,
-`t-meta`, `t-label`, `t-number`. Use them instead of `text-[…]`; arbitrary sizes are what made the
-old pages inconsistent. Body copy is 16px on phones and 17px from 768px up.
+They are deliberately not interchangeable: headings never fall back to the body face. That was
+the single largest source of inconsistency before, with 38 headings rendering in the body font.
+
+**The scale.** One step per role, fluid between a 400px and a 1500px viewport so no component
+needs its own media query.
+
+| Utility | Use | Phone | Desktop |
+| --- | --- | --- | --- |
+| `t-display` | home hero only | 36px | 59px |
+| `t-h1` | page title | 30px | 43px |
+| `t-h2` | section heading | 26px | 35px |
+| `t-h3` | subsection, card title | 20px | 26px |
+| `t-h4` | list item, question, column head | 17px | 20px |
+| `t-lead` | intro paragraph | 17px | 19px |
+| `t-body` | default copy | 16px | 17px |
+| `t-small` | supporting copy, descriptions | 15px | 15px |
+| `t-meta` | caption, credentials | 13px | 13px |
+| `t-label` | eyebrow, small-caps label | 12px | 12px |
+| `t-number` | statistics | context | context |
+
+**Rules**
+- Never put `t-small`, `t-meta` or `t-label` on an `<h1>`–`<h4>`. A heading uses `t-h1`–`t-h4`.
+  Headings styled as labels were the other half of the original inconsistency.
+- Never override a `t-*` size with `text-[…]`. Two such overrides existed and both inverted the
+  hierarchy, making an `<h3>` larger than its `<h2>`.
+- Body copy is capped near 65 characters per line (`max-w-[34rem]` for FAQ answers). `npm run
+  check` does not measure this; check it by hand after changing a paragraph width.
 
 ### Colour
 

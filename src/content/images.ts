@@ -135,35 +135,7 @@ export const images = {
 
 export type ImageId = keyof typeof images;
 
-/* -------------------------------------------------------------------------- */
-/* Curated authentic healthcare photography for all visual positions          */
-/* -------------------------------------------------------------------------- */
 
-const curatedPhotos: Record<ImageId, string> = {
-  'hero-main': 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9',
-  'hero-secondary': 'https://images.unsplash.com/photo-1587351021759-3e566b6af7cc',
-  'service-maternity': 'https://images.unsplash.com/photo-1516627145497-ae6968895b74',
-  'service-ivf': 'https://images.unsplash.com/photo-1579684385127-1ef15d508118',
-  'service-gynaecology': 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982',
-  'service-paediatrics': 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d',
-  'service-general': 'https://images.unsplash.com/photo-1576091160550-2173dba999ef',
-  'service-emergency': 'https://images.unsplash.com/photo-1516549655169-df83a0774514',
-  'service-laboratory': 'https://images.unsplash.com/photo-1579154204601-01588f351e67',
-  'service-pharmacy': 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf',
-  'maternity-story': 'https://images.unsplash.com/photo-1544126592-807ade215a0b',
-  'maternity-checkup': 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982',
-  'maternity-labour': 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d',
-  'maternity-newborn': 'https://images.unsplash.com/photo-1519689680058-324335c77eba',
-  'ivf-consultation': 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7',
-  'page-maternity': 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9',
-  'page-ivf': 'https://images.unsplash.com/photo-1579154204601-01588f351e67',
-  'staff-team': 'https://images.unsplash.com/photo-1582750433449-648ed127bb54',
-  'visit-entrance': 'https://images.unsplash.com/photo-1587351021759-3e566b6af7cc',
-  'doctor-laila-beegum': 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2',
-  'doctor-geethanjali-s': 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2',
-  'doctor-amith-k': 'https://images.unsplash.com/photo-1622253692010-333f2da6031d',
-  'doctor-jambir': 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d',
-};
 
 /* -------------------------------------------------------------------------- */
 /* Processed photo files & resolver                                           */
@@ -196,38 +168,32 @@ export interface ResolvedPhoto {
   fallback: string;
 }
 
-/** Returns the processed photo for an id, or high-fidelity curated photo fallback. */
-export function getPhoto(id: ImageId): ResolvedPhoto {
+/**
+ * Returns the processed photo for an id, or undefined.
+ *
+ * Returns undefined when no genuine photograph has been supplied. It does not
+ * substitute stock imagery: these positions include named consultants and this
+ * hospital's own facilities, and presenting a stranger's photograph as Dr Laila
+ * Beegum, or a stock ward as this labour room, would fabricate identities and
+ * places. The caller renders a deliberate placeholder in that case.
+ */
+export function getPhoto(id: ImageId): ResolvedPhoto | undefined {
   const local = manifest[id];
-  if (local && local.widths.length > 0) {
-    const set = (ext: 'avif' | 'webp') =>
-      local.widths
-        .map((w) => (fileUrl(id, w, ext) ? `${fileUrl(id, w, ext)} ${w}w` : null))
-        .filter(Boolean)
-        .join(', ');
-    const largest = local.widths[local.widths.length - 1];
-    return {
-      width: local.width,
-      height: local.height,
-      blur: local.blur,
-      avifSrcSet: set('avif'),
-      webpSrcSet: set('webp'),
-      fallback: fileUrl(id, largest, 'webp') || '',
-    };
-  }
+  if (!local || local.widths.length === 0) return undefined;
 
-  const base = curatedPhotos[id];
-  const entry = images[id];
-  const targetW = 1200;
-  const targetH = Math.round(targetW / (entry?.aspect || 1.33));
-  const widths = [480, 768, 1200];
+  const set = (ext: 'avif' | 'webp') =>
+    local.widths
+      .map((w) => (fileUrl(id, w, ext) ? `${fileUrl(id, w, ext)} ${w}w` : null))
+      .filter(Boolean)
+      .join(', ');
+  const largest = local.widths[local.widths.length - 1];
 
   return {
-    width: targetW,
-    height: targetH,
-    blur: `${base}?auto=format&fit=crop&w=32&q=30`,
-    avifSrcSet: widths.map((w) => `${base}?auto=format&fit=crop&w=${w}&fm=avif&q=82 ${w}w`).join(', '),
-    webpSrcSet: widths.map((w) => `${base}?auto=format&fit=crop&w=${w}&fm=webp&q=82 ${w}w`).join(', '),
-    fallback: `${base}?auto=format&fit=crop&w=1200&q=85`,
+    width: local.width,
+    height: local.height,
+    blur: local.blur,
+    avifSrcSet: set('avif'),
+    webpSrcSet: set('webp'),
+    fallback: fileUrl(id, largest, 'webp') || '',
   };
 }
