@@ -15,7 +15,7 @@ const template = await readFile(path.join(dist, 'index.html'), 'utf8');
 
 // Preload the two Latin fonts used above the fold to avoid layout shift.
 const assets = await readdir(path.join(dist, 'assets'));
-const preload = ['fraunces-latin-opsz-normal', 'source-sans-3-latin-wght-normal']
+const preload = ['fraunces-latin-opsz-normal', 'instrument-sans-latin-wght-normal']
   .map((n) => assets.find((f) => f.startsWith(n) && f.endsWith('.woff2')))
   .filter(Boolean)
   .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`)
