@@ -7,10 +7,11 @@ import { useCopy } from '../i18n/LanguageProvider';
 export function MobileBar() {
   const copy = useCopy();
   const { open } = useBooking();
-  const item = 'flex min-h-14 flex-col items-center justify-center gap-0.5 t-small font-semibold';
+  const item =
+    'flex min-h-14 min-w-0 flex-col items-center justify-center gap-0.5 px-1 text-center t-meta font-semibold leading-tight [overflow-wrap:anywhere]';
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper/97 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm lg:hidden">
-      <div className="grid grid-cols-3">
+    <div className="fixed bottom-0 left-0 z-40 w-screen max-w-full overflow-hidden border-t border-line bg-paper/97 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm lg:hidden">
+      <div className="grid min-w-0 grid-cols-[repeat(3,minmax(0,1fr))]">
         <a href={`tel:${contact.primary.tel}`} className={`${item} text-emergency`}>
           <Phone className="size-5" aria-hidden="true" />
           {copy.mobileBar.call}

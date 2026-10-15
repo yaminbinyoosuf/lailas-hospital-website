@@ -1,6 +1,6 @@
 /* Self-hosted fonts (font-display: swap is set by Fontsource). */
-@import '@fontsource-variable/fraunces/opsz.css';
-@import '@fontsource-variable/instrument-sans/index.css';
+@import '@fontsource-variable/dm-sans/index.css';
+@import '@fontsource-variable/source-sans-3/index.css';
 @import '@fontsource-variable/noto-sans-malayalam/index.css';
 @import '@fontsource/manjari/malayalam-400.css';
 @import '@fontsource/manjari/malayalam-700.css';
@@ -12,14 +12,10 @@
    Contrast (WCAG AA) is checked by `npm run check:contrast`.
    ========================================================================== */
 @theme {
-  /* Display: Fraunces is the brand's voice — an optical-size variable serif with
-     real character. Interface: Instrument Sans, a sharper editorial grotesque
-     that holds up at the 14–16px sizes where most of this site lives.
-     Noto Sans Malayalam sits in the fallback chain so Malayalam copy renders
-     correctly wherever Latin glyphs are missing. */
-  --font-serif: 'Fraunces Variable', 'Noto Sans Malayalam Variable', 'Manjari', ui-serif, Georgia, serif;
-  --font-sans: 'Instrument Sans Variable', 'Noto Sans Malayalam Variable', ui-sans-serif, system-ui,
-    -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Headings: DM Sans (weight 600) for distinctive, confident clinical authority without decoration.
+     Body, Controls & Interface: Source Sans 3 (weight 400 body, 600 buttons/nav) for supreme readability. */
+  --font-heading: 'DM Sans Variable', 'DM Sans', 'Noto Sans Malayalam Variable', 'Manjari', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: 'Source Sans 3 Variable', 'Source Sans 3', 'Noto Sans Malayalam Variable', 'Manjari', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   /* Surfaces */
   --color-ivory: #fbf7f0;
@@ -67,15 +63,13 @@
   --color-emergency-700: #8c1d17;
   --color-emergency-50: #fcedeb;
 
-  /* Three tiers, each with one job:
-       sm   controls — buttons, inputs, chips, small tiles
-       md   content surfaces — service tiles, media, inner blocks
-       lg   major surfaces — page-level panels, hero media
-     Nothing else. A single arbitrary radius is what makes a page feel
-     assembled rather than designed. */
-  --radius-sm: 0.625rem;
-  --radius-md: 1.125rem;
-  --radius-lg: 1.5rem;
+  /* Restrained radii scale:
+       sm (6px)   controls — buttons, inputs, chips, small badges
+       md (12px)  content surfaces — cards, tiles, media panels
+       lg (16px)  major architectural surfaces — hero media, modal containers */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
 
   /* Reserve shadow for things that genuinely float above the page: the sticky
      header, the booking sheet, the mobile bar. Cards use a hairline ring. */
@@ -83,22 +77,6 @@
   --shadow-lift: 0 2px 6px rgb(31 42 39 / 0.05), 0 20px 44px -22px rgb(31 42 39 / 0.20);
 
   --ease-gentle: cubic-bezier(0.22, 1, 0.36, 1);
-
-  /* ------------------------------------------------------------------
-     Premium surface details. Both are tokenised so they stay consistent
-     and can be tuned in one place rather than sprinkled through markup.
-     ------------------------------------------------------------------ */
-  /* Paper grain: a very low-opacity fractal noise, large tile, so cream
-     surfaces read as stock rather than flat screen white. */
-  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  --grain-opacity: 0.028;
-
-  /* Soft radial glow: a warm bloom behind hero and closing bands. */
-  --glow-teal: radial-gradient(60% 70% at 50% 0%, rgb(62 128 115 / 0.14) 0%, transparent 70%);
-  --glow-clay: radial-gradient(55% 65% at 80% 20%, rgb(209 139 99 / 0.12) 0%, transparent 72%);
-
-  /* Hairline: the border weight that replaces shadows on cards. */
-  --hairline: 1px;
 
   --breakpoint-xs: 26rem;
 }
@@ -111,6 +89,11 @@
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
+    /* Guard: a single unbreakable Malayalam word can set an intrinsic width a
+       few pixels wider than a 320px viewport. clip contains that at the root
+       without creating a scroll container, so position: sticky and the inner
+       horizontal scrollers keep working. */
+    overflow-x: clip;
   }
   body {
     background: var(--color-ivory);
@@ -128,13 +111,11 @@
     }
   }
   h1, h2, h3, h4 {
-    font-family: var(--font-serif);
-    /* Slightly above the variable font's default so large settings keep their
-       colour on cream stock instead of thinning out. */
-    font-weight: 450;
+    font-family: var(--font-heading);
+    font-weight: 600;
     color: var(--color-ink);
     text-wrap: balance;
-    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
   }
   p, li {
     text-wrap: pretty;
@@ -151,195 +132,101 @@
   [id] {
     scroll-margin-top: 6rem;
   }
-
-  /* Malayalam: roomier lines, no negative tracking. */
-  :lang(ml) body {
-    line-height: 1.85;
-  }
-  :lang(ml) h1, :lang(ml) h2, :lang(ml) h3, :lang(ml) h4 {
-    letter-spacing: 0 !important;
-    line-height: 1.4 !important;
-  }
 }
 
 /* ==========================================================================
-   Type scale
-   --------------------------------------------------------------------------
-   One step per role. Sizes are fluid between a 375px and a 1440px viewport so
-   headings never need a breakpoint of their own, and the small end of each
-   clamp is deliberately modest — an oversized headline on a phone is the most
-   common way a good design starts to look generic.
-
-     t-display  hero only          40 → 72px
-     t-h1       page titles        32 → 48px
-     t-h2       section headings   28 → 40px
-     t-h3       card / sub heads   20 → 26px
-     t-h4       list-item heads    17 → 19px
-     t-lead     intro paragraphs   17 → 20px
-     t-body     default copy       16 → 17px  (set on body)
-     t-small    descriptions       15px
-     t-meta     captions, labels   13px
+   Type scale: DM Sans 600 Headings + Source Sans 3 (400/600) Body & Controls
    ========================================================================== */
 @utility t-display {
-  font-family: var(--font-serif);
-  font-weight: 450;
-  font-size: clamp(2.5rem, 1.9rem + 2.6vw, 4.5rem);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-}
-@utility t-h1 {
-  font-family: var(--font-serif);
-  font-weight: 450;
-  font-size: clamp(2rem, 1.6rem + 1.7vw, 3rem);
-  line-height: 1.08;
-  letter-spacing: -0.018em;
-}
-@utility t-h2 {
-  font-family: var(--font-serif);
-  font-weight: 450;
-  font-size: clamp(1.75rem, 1.45rem + 1.25vw, 2.5rem);
-  line-height: 1.12;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(2rem, 1.6rem + 1.8vw, 3.25rem);
+  line-height: 1.15;
   letter-spacing: -0.015em;
 }
-@utility t-h3 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(1.25rem, 1.1rem + 0.62vw, 1.75rem);
-  line-height: 1.26;
+@utility t-h1 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.375rem);
+  line-height: 1.2;
   letter-spacing: -0.012em;
+}
+@utility t-h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.875rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+@utility t-h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.125rem, 1.02rem + 0.3vw, 1.35rem);
+  line-height: 1.35;
+  letter-spacing: -0.005em;
 }
 @utility t-h4 {
   font-family: var(--font-sans);
-  font-weight: 650;
-  font-size: clamp(1.0625rem, 1.02rem + 0.18vw, 1.1875rem);
-  line-height: 1.35;
-  letter-spacing: -0.006em;
+  font-weight: 600;
+  font-size: clamp(1rem, 0.96rem + 0.1vw, 1.0625rem);
+  line-height: 1.45;
 }
 @utility t-lead {
-  font-size: clamp(1.0625rem, 1.02rem + 0.22vw, 1.25rem);
-  line-height: 1.6;
-  letter-spacing: -0.004em;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(1.0625rem, 1.02rem + 0.15vw, 1.1875rem);
+  line-height: 1.65;
+  letter-spacing: -0.002em;
   color: var(--color-ink-soft);
 }
 @utility t-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
   font-size: 1rem;
   line-height: 1.65;
 }
 /* Supporting copy inside cards and lists — one step down from body, still
    comfortably readable rather than shrinking to a caption. */
 @utility t-small {
+  font-family: var(--font-sans);
+  font-weight: 400;
   font-size: 0.9375rem;
   line-height: 1.6;
   color: var(--color-ink-soft);
 }
 @utility t-meta {
   font-family: var(--font-sans);
+  font-weight: 400;
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--color-ink-muted);
 }
-/* Eyebrow above a section heading. Sentence-free, wide-tracked, small — it
-   labels the section without competing with the heading itself. */
+/* Eyebrow above a section heading. Clean-tracked, crisp metadata */
 @utility t-label {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-teal-700);
 }
-/* Oversized figures. Weight is raised as the size drops so numerals never look
-   anaemic, and tabular figures keep multi-number rows aligned. */
+/* Oversized figures. Tabular figures keep multi-number rows aligned. */
 @utility t-number {
-  font-family: var(--font-serif);
-  font-weight: 450;
-  line-height: 0.92;
-  letter-spacing: -0.025em;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.015em;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
-:lang(ml) .t-display {
-  font-size: clamp(1.875rem, 1.5rem + 1.8vw, 3.125rem);
-}
-:lang(ml) .t-h1 {
-  font-size: clamp(1.75rem, 1.45rem + 1.3vw, 2.5rem);
-}
-:lang(ml) .t-h2 {
-  font-size: clamp(1.5rem, 1.3rem + 1vw, 2.125rem);
-}
-:lang(ml) .t-h3 {
-  font-size: clamp(1.1875rem, 1.1rem + 0.4vw, 1.5rem);
-}
-:lang(ml) .t-h4,
-:lang(ml) .t-label,
-:lang(ml) .t-number,
-:lang(ml) .t-meta {
-  letter-spacing: 0;
-}
-:lang(ml) .t-label {
-  letter-spacing: 0;
-  text-transform: none;
-}
-
 /* ==========================================================================
-   Surfaces
-   ========================================================================== */
-
-/* Cream stock with a whisper of grain. Applied to band-level sections, never
-   to cards, so the texture reads as paper rather than noise. */
-@utility surface-grain {
-  position: relative;
-}
-.surface-grain::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: var(--texture-grain);
-  background-size: 240px 240px;
-  opacity: var(--grain-opacity);
-  pointer-events: none;
-  mix-blend-mode: multiply;
-}
-
-/* Warm bloom behind hero and closing bands. */
-@utility surface-glow {
-  background-image: var(--glow-teal);
-}
-@utility surface-glow-clay {
-  background-image: var(--glow-clay);
-}
-
-/* Hairline rules. Thin dividers carry hierarchy; shadows only signal float. */
-@utility rule-y {
-  border-block: var(--hairline) solid var(--color-line);
-}
-@utility rule-top {
-  border-top: var(--hairline) solid var(--color-line);
-}
-
-/* Refined inline link: a hairline underline that thickens on hover rather
-   than the browser default or a colour-only change. */
-@utility link-quiet {
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.28em;
-  text-decoration-color: color-mix(in oklab, var(--color-teal-600) 45%, transparent);
-  transition: text-decoration-color 0.2s var(--ease-gentle),
-    text-decoration-thickness 0.2s var(--ease-gentle);
-}
-.link-quiet:hover {
-  text-decoration-thickness: 2px;
-  text-decoration-color: var(--color-teal-700);
-}
-
-/* ==========================================================================
-   Shapes: arches and soft masks echo a doorway and a cradle
+   Shapes: Clean contemporary architectural curves
    ========================================================================== */
 @utility shape-arch {
-  border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+  border-radius: var(--radius-lg);
 }
 @utility shape-cradle {
-  border-radius: var(--radius-xl) var(--radius-xl) 999px 999px;
+  border-radius: var(--radius-lg);
 }
 @utility shape-soft {
   border-radius: var(--radius-lg);

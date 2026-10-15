@@ -25,7 +25,7 @@ function SkipLink() {
   return (
     <a
       href="#main"
-      className="fixed top-3 left-3 z-[60] -translate-y-24 rounded-full bg-teal-900 px-5 py-3 font-semibold text-ivory transition-transform focus:translate-y-0"
+      className="fixed top-3 left-3 z-[60] max-w-[calc(100vw-1.5rem)] -translate-y-24 rounded-[var(--radius-sm)] bg-teal-900 px-5 py-3 font-semibold text-ivory transition-transform focus:translate-y-0"
     >
       {copy.a11y.skip}
     </a>

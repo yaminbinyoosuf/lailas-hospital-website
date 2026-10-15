@@ -7,7 +7,6 @@ import { cn } from '../lib/format';
 import { useBooking } from '../booking/BookingProvider';
 import { Button, ButtonAnchor } from './Button';
 import { Container } from './Container';
-import { LanguageToggle } from './LanguageToggle';
 import { Logo } from './Logo';
 import { mainNav } from './navItems';
 
@@ -32,14 +31,14 @@ export function Header() {
       <Container
         className={cn(
           'flex items-center justify-between gap-6 transition-[padding] duration-300',
-          scrolled ? 'py-2' : 'py-3 lg:py-4',
+          scrolled ? 'py-2' : 'py-3 xl:py-4',
         )}
       >
         <Link to="/" aria-label={copy.a11y.home} className="shrink-0 rounded-md">
-          <Logo className={cn('transition-[height] duration-300', scrolled ? 'h-10 lg:h-12' : 'h-11 lg:h-16')} />
+          <Logo className={cn('transition-[height] duration-300', scrolled ? 'h-10 xl:h-12' : 'h-11 xl:h-16')} />
         </Link>
 
-        <nav aria-label={copy.a11y.mainNav} className="hidden lg:block">
+        <nav aria-label={copy.a11y.mainNav} className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
               <li key={item.key}>
@@ -48,8 +47,8 @@ export function Header() {
                   end
                   className={({ isActive }) =>
                     cn(
-                      'relative inline-flex min-h-12 items-center whitespace-nowrap px-3.5 t-body font-medium text-ink-soft transition-colors hover:text-teal-800',
-                      'after:absolute after:inset-x-3.5 after:bottom-2 after:h-0.5 after:origin-left after:rounded-full after:bg-clay-500 after:transition-transform after:duration-300',
+                      'relative inline-flex min-h-12 items-center whitespace-nowrap px-3 t-body font-semibold text-ink-soft transition-colors hover:text-teal-900',
+                      'after:absolute after:inset-x-3 after:bottom-2 after:h-0.5 after:origin-left after:rounded-full after:bg-clay-500 after:transition-transform after:duration-300',
                       isActive && !item.to.includes('#') ? 'text-teal-900 after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100',
                     )
                   }
@@ -62,7 +61,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <Button icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
               {copy.actions.book}
             </Button>
@@ -88,7 +87,7 @@ function MobileMenu() {
       <button
         type="button"
         onClick={() => ref.current?.showModal()}
-        className="grid size-12 place-items-center rounded-full border border-ink/15 text-ink lg:hidden"
+        className="grid size-12 place-items-center rounded-full border border-ink/15 text-ink xl:hidden"
         aria-label={copy.a11y.openMenu}
         aria-haspopup="dialog"
       >
@@ -122,7 +121,6 @@ function MobileMenu() {
                 </li>
               ))}
             </ul>
-            <LanguageToggle tone="light" className="mt-8" />
           </nav>
           <div className="border-t border-line p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
             <ButtonAnchor
