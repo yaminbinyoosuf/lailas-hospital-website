@@ -9,7 +9,7 @@ import manifestJson from '../assets/photos/manifest.json';
 export type Tone = 'sand' | 'sage' | 'clay' | 'teal';
 
 export interface ImageEntry {
-  alt: { en: string };
+  alt: string;
   /** width / height */
   aspect: number;
   tone: Tone;
@@ -17,117 +17,117 @@ export interface ImageEntry {
 
 export const images = {
   'hero-main': {
-    alt: { en: 'A mother gently cradling her newborn baby in private maternity suite at Lailas Hospital' },
+    alt: 'A mother gently cradling her newborn baby in private maternity suite at Lailas Hospital',
     aspect: 4 / 5,
     tone: 'clay',
   },
   'hero-secondary': {
-    alt: { en: 'The clean modern facade and entrance of Lailas Hospital in Chemmad' },
+    alt: 'The clean modern facade and entrance of Lailas Hospital in Chemmad',
     aspect: 1,
     tone: 'sage',
   },
   'service-maternity': {
-    alt: { en: 'A caring midwife and nurse checking on mother and newborn' },
+    alt: 'A caring midwife and nurse checking on mother and newborn',
     aspect: 4 / 3,
     tone: 'clay',
   },
   'service-ivf': {
-    alt: { en: 'Advanced fertility consultation and reproductive medicine' },
+    alt: 'Advanced fertility consultation and reproductive medicine',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'service-gynaecology': {
-    alt: { en: 'Specialist gynaecology consultation and patient wellness' },
+    alt: 'Specialist gynaecology consultation and patient wellness',
     aspect: 4 / 3,
     tone: 'sand',
   },
   'service-paediatrics': {
-    alt: { en: 'Senior paediatrician providing gentle developmental examination' },
+    alt: 'Senior paediatrician providing gentle developmental examination',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'service-general': {
-    alt: { en: 'Comprehensive family medicine and diagnostic consultation' },
+    alt: 'Comprehensive family medicine and diagnostic consultation',
     aspect: 4 / 3,
     tone: 'sand',
   },
   'service-emergency': {
-    alt: { en: '24/7 round-the-clock emergency and trauma resuscitation unit' },
+    alt: '24/7 round-the-clock emergency and trauma resuscitation unit',
     aspect: 4 / 3,
     tone: 'teal',
   },
   'service-laboratory': {
-    alt: { en: 'Fully automated clinical diagnostic laboratory' },
+    alt: 'Fully automated clinical diagnostic laboratory',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'service-pharmacy': {
-    alt: { en: 'Hospital pharmacy dispensary stocked with genuine medications' },
+    alt: 'Hospital pharmacy dispensary stocked with genuine medications',
     aspect: 4 / 3,
     tone: 'sand',
   },
   'maternity-story': {
-    alt: { en: 'A peaceful newborn infant resting comfortably in nursery bassinet' },
+    alt: 'A peaceful newborn infant resting comfortably in nursery bassinet',
     aspect: 4 / 5,
     tone: 'clay',
   },
   'maternity-checkup': {
-    alt: { en: 'Antenatal sonography and obstetric checkup consultation' },
+    alt: 'Antenatal sonography and obstetric checkup consultation',
     aspect: 4 / 3,
     tone: 'sand',
   },
   'maternity-labour': {
-    alt: { en: 'Modern private labour and birthing delivery suite' },
+    alt: 'Modern private labour and birthing delivery suite',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'maternity-newborn': {
-    alt: { en: 'Comprehensive newborn assessment and APGAR screening' },
+    alt: 'Comprehensive newborn assessment and APGAR screening',
     aspect: 4 / 3,
     tone: 'clay',
   },
   'ivf-consultation': {
-    alt: { en: 'Private confidential fertility and embryology counselling' },
+    alt: 'Private confidential fertility and embryology counselling',
     aspect: 4 / 5,
     tone: 'teal',
   },
   'page-maternity': {
-    alt: { en: 'Mother and healthy baby in private postpartum recovery room' },
+    alt: 'Mother and healthy baby in private postpartum recovery room',
     aspect: 4 / 5,
     tone: 'clay',
   },
   'page-ivf': {
-    alt: { en: 'State-of-the-art fertility lab and cleanroom facilities' },
+    alt: 'State-of-the-art fertility lab and cleanroom facilities',
     aspect: 4 / 5,
     tone: 'sage',
   },
   'staff-team': {
-    alt: { en: 'The multidisciplinary clinical team of Lailas Hospital' },
+    alt: 'The multidisciplinary clinical team of Lailas Hospital',
     aspect: 16 / 9,
     tone: 'sand',
   },
   'visit-entrance': {
-    alt: { en: 'The main entrance and patient drop-off at Lailas Hospital' },
+    alt: 'The main entrance and patient drop-off at Lailas Hospital',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'doctor-laila-beegum': {
-    alt: { en: 'Portrait of Dr. Laila Beegum N, Chief Consultant Obstetrician & Gynaecologist' },
+    alt: 'Portrait of Dr. Laila Beegum N, Chief Consultant Obstetrician & Gynaecologist',
     aspect: 4 / 5,
     tone: 'clay',
   },
   'doctor-geethanjali-s': {
-    alt: { en: 'Portrait of Dr. Geethanjali S, Consultant Gynaecologist & Obstetrician' },
+    alt: 'Portrait of Dr. Geethanjali S, Consultant Gynaecologist & Obstetrician',
     aspect: 4 / 5,
     tone: 'sage',
   },
   'doctor-amith-k': {
-    alt: { en: 'Portrait of Dr. Amith K, Consultant Paediatrician' },
+    alt: 'Portrait of Dr. Amith K, Consultant Paediatrician',
     aspect: 4 / 5,
     tone: 'sand',
   },
   'doctor-jambir': {
-    alt: { en: 'Portrait of Dr. Jambir, Consultant Physician' },
+    alt: 'Portrait of Dr. Jambir, Consultant Physician',
     aspect: 4 / 5,
     tone: 'teal',
   },

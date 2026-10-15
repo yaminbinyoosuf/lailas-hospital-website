@@ -2,7 +2,6 @@ import { Clock, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { address, contact, whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { Container } from './Container';
-import { LanguageToggle } from './LanguageToggle';
 
 /**
  * Top strip: emergency hotline, care hours, location and a WhatsApp shortcut.
@@ -54,7 +53,6 @@ export function TopStrip() {
             <span className="hidden xs:inline">{copy.actions.whatsapp}</span>
           </a>
 
-          <LanguageToggle />
         </div>
       </Container>
     </div>

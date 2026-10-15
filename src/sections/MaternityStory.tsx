@@ -28,7 +28,7 @@ export function MaternityStory() {
           </Reveal>
 
           <Reveal className="mt-12 border-t border-ink/15 pt-8" delay={0.1}>
-            <p className="t-number text-[clamp(4.5rem,2.5rem+8vw,9rem)] text-clay-600">
+            <p className="t-number text-[clamp(3.25rem,2.2rem+3.4vw,5rem)] text-teal-800">
               <CountUp value={births.value} suffix={births.suffix} />
             </p>
             <p className="mt-3 t-h4 text-ink">{births.label}</p>
@@ -38,7 +38,7 @@ export function MaternityStory() {
             <div className="mt-10 grid grid-cols-[repeat(2,minmax(0,1fr))] gap-6 sm:gap-8">
               {[founded, ultrasound].map((s) => (
                 <div key={s.label} className="min-w-0">
-                  <p className="t-number text-[clamp(2.75rem,2rem+3vw,4.25rem)] text-teal-800">
+                  <p className="t-number text-[clamp(2rem,1.5rem+1.8vw,2.75rem)] text-teal-700">
                     <CountUp value={s.value} grouping={false} />
                   </p>
                   <p className="mt-2 min-w-0 t-small [overflow-wrap:anywhere]">{s.label}</p>

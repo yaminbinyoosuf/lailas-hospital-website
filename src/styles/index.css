@@ -1,9 +1,6 @@
 /* Self-hosted fonts (font-display: swap is set by Fontsource). */
 @import '@fontsource-variable/dm-sans/index.css';
 @import '@fontsource-variable/source-sans-3/index.css';
-@import '@fontsource-variable/noto-sans-malayalam/index.css';
-@import '@fontsource/manjari/malayalam-400.css';
-@import '@fontsource/manjari/malayalam-700.css';
 
 @import 'tailwindcss';
 
@@ -14,8 +11,8 @@
 @theme {
   /* Headings: DM Sans (weight 600) for distinctive, confident clinical authority without decoration.
      Body, Controls & Interface: Source Sans 3 (weight 400 body, 600 buttons/nav) for supreme readability. */
-  --font-heading: 'DM Sans Variable', 'DM Sans', 'Noto Sans Malayalam Variable', 'Manjari', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-sans: 'Source Sans 3 Variable', 'Source Sans 3', 'Noto Sans Malayalam Variable', 'Manjari', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: 'Source Sans 3 Variable', 'Source Sans 3', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   /* Surfaces */
   --color-ivory: #fbf7f0;
@@ -89,8 +86,8 @@
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
-    /* Guard: a single unbreakable Malayalam word can set an intrinsic width a
-       few pixels wider than a 320px viewport. clip contains that at the root
+    /* Guard: a single long unbreakable word can set an intrinsic width a few
+       pixels wider than a small viewport. clip contains that at the root
        without creating a scroll container, so position: sticky and the inner
        horizontal scrollers keep working. */
     overflow-x: clip;

@@ -16,8 +16,6 @@ const hour12 = (hhmm: string) => {
 };
 
 export const en = {
-  lang: 'en' as const,
-  langName: 'English',
   locale: 'en-IN',
 
   a11y: {
@@ -25,7 +23,6 @@ export const en = {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     close: 'Close',
-    language: 'Language',
     mainNav: 'Main',
     footerNav: 'Footer',
     home: 'Lailas Hospital, home',
@@ -552,5 +549,5 @@ export const en = {
   },
 };
 
-/** Shape every language must follow. */
-export type Copy = Omit<typeof en, 'lang'> & { lang: 'en' | 'ml' };
+/** The site copy shape. */
+export type Copy = typeof en;

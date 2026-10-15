@@ -106,7 +106,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
         const res = await fetch(booking.endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...details, language: copy.lang, page: window.location.pathname }),
+          body: JSON.stringify({ ...details, language: 'en', page: window.location.pathname }),
         });
         if (!res.ok) throw new Error(String(res.status));
         setSentVia('form');

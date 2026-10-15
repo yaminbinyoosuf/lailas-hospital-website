@@ -7,22 +7,22 @@ export type ButtonSize = 'md' | 'lg';
 
 const base =
   'inline-flex items-center justify-center gap-2.5 rounded-lg font-sans font-semibold leading-tight text-center ' +
-  'transition-all duration-200 ease-[var(--ease-gentle)] ' +
+  'transition-colors duration-200 ease-[var(--ease-gentle)] ' +
   'disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4.5 [&_svg]:shrink-0';
 
 const sizes: Record<ButtonSize, string> = {
-  md: 'min-h-12 px-6 text-[0.9375rem]',
-  lg: 'min-h-13 px-7 text-base',
+  md: 'min-h-12 px-6 t-small',
+  lg: 'min-h-[3.25rem] px-7 t-h4',
 };
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-teal-800 text-ivory shadow-xs hover:bg-teal-900 active:scale-[0.99]',
-  secondary: 'border border-line bg-paper text-ink shadow-2xs hover:border-teal-700 hover:text-teal-950 hover:bg-white active:scale-[0.99]',
+  primary: 'bg-teal-800 text-ivory hover:bg-teal-900',
+  secondary: 'border border-line bg-paper text-ink hover:border-teal-700 hover:text-teal-950 hover:bg-white',
   quiet:
     '!min-h-11 !px-0 rounded-none text-teal-800 underline decoration-teal-300 decoration-2 underline-offset-[6px] hover:decoration-teal-700 hover:text-teal-950',
-  emergency: 'bg-emergency text-white shadow-xs hover:bg-emergency-700 active:scale-[0.99]',
-  light: 'bg-ivory text-teal-950 font-semibold shadow-xs hover:bg-white active:scale-[0.99]',
-  lightOutline: 'border border-ivory/50 text-ivory hover:border-ivory hover:bg-ivory/10 active:scale-[0.99]',
+  emergency: 'bg-emergency text-white hover:bg-emergency-700',
+  light: 'bg-ivory text-teal-950 hover:bg-white',
+  lightOutline: 'border border-ivory/50 text-ivory hover:border-ivory hover:bg-ivory/10',
 };
 
 interface StyleProps {

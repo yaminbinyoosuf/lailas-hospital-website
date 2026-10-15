@@ -1,4 +1,3 @@
-import { Heart } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { getPhoto, images, type ImageId, type Tone } from '../content/images';
 import { cn } from '../lib/format';
@@ -75,39 +74,38 @@ export function Photo({
 
   if (!photo) {
     if (omitIfMissing) return null;
+    /* Tonal panel carrying the brand's circle-and-bud motif. No icon, no
+       uppercase alt block: the panel is decoration, and repeating the alt text
+       as visible type made every missing image look like a mock-up. */
     return (
       <div
         aria-hidden="true"
-        className={cn(
-          frame,
-          'flex flex-col items-center justify-center p-6 text-center select-none',
-          onDark ? darkTiles[entry.tone] : tiles[entry.tone],
-        )}
+        className={cn(frame, onDark ? darkTiles[entry.tone] : tiles[entry.tone])}
         style={{ aspectRatio: ratio }}
       >
-        <div className={cn(
-          'relative grid size-12 place-items-center rounded-full mb-3 shadow-sm',
-          onDark ? 'bg-teal-800/80 text-teal-200 ring-1 ring-teal-600/40' : 'bg-white/90 text-teal-700 ring-1 ring-black/5'
-        )}>
-          <Heart className="size-5 fill-current opacity-70" />
-        </div>
-        <p className={cn(
-          'text-xs font-semibold tracking-wide uppercase max-w-[80%]',
-          onDark ? 'text-teal-200/90' : 'text-teal-900/80'
-        )}>
-          {entry.alt.en}
-        </p>
-        <span className={cn(
-          'mt-1.5 text-[11px] tracking-wider uppercase font-medium',
-          onDark ? 'text-teal-400/60' : 'text-ink-muted'
-        )}>
-          Lailas Hospital & IVF Centre
-        </span>
-
-        {/* Ambient watermark pattern */}
-        <svg className="pointer-events-none absolute -right-[15%] -bottom-[20%] h-[75%] w-auto opacity-15" viewBox="0 0 100 100" fill="none">
-          <circle cx="50" cy="50" r="46" stroke="currentColor" strokeWidth="1.2" />
-          <circle cx="66" cy="34" r="9" stroke="currentColor" strokeWidth="1.2" />
+        <svg
+          className="absolute inset-0 h-full w-full opacity-[0.45]"
+          viewBox="0 0 100 100"
+          fill="none"
+          aria-hidden="true"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <circle
+            cx="52"
+            cy="56"
+            r="24"
+            stroke="currentColor"
+            strokeWidth="1.1"
+            vectorEffect="non-scaling-stroke"
+          />
+          <circle
+            cx="52"
+            cy="56"
+            r="9"
+            stroke="currentColor"
+            strokeWidth="1.1"
+            vectorEffect="non-scaling-stroke"
+          />
         </svg>
       </div>
     );
@@ -129,7 +127,7 @@ export function Photo({
         <img
           ref={imgRef}
           src={photo.fallback}
-          alt={entry.alt.en}
+          alt={entry.alt}
           width={photo.width}
           height={photo.height}
           loading={priority ? 'eager' : 'lazy'}

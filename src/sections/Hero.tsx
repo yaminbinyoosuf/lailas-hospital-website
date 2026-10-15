@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, MessageCircle, Shield } from 'lucide-react';
+import { CalendarDays, MessageCircle, Phone } from 'lucide-react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button, ButtonAnchor } from '../components/Button';
 import { Container } from '../components/Container';
@@ -6,96 +6,101 @@ import { Photo } from '../components/Photo';
 import { contact, whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 
+/**
+ * Hero.
+ *
+ * Three zones, in descending order of weight: the claim (eyebrow, headline,
+ * lead, actions), the photograph, and a trust band of three figures.
+ *
+ * The tagline sits inside the headline block as an italic accent rather than as
+ * a second coloured line beneath it, which was competing with the headline for
+ * attention. The trust band and the emergency note are driven by copy, so no
+ * string is hardcoded here.
+ */
 export function Hero() {
   const copy = useCopy();
   const { open } = useBooking();
 
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-ivory">
-      <Container className="grid items-center gap-10 pt-10 pb-14 md:pt-14 lg:grid-cols-12 lg:gap-14 lg:pt-16 lg:pb-18">
-        {/* Left Column: Clear, Focused Value Proposition */}
+      <Container className="grid items-center gap-12 pt-12 pb-14 md:pt-16 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16">
+        {/* Claim --------------------------------------------------------- */}
         <div className="lg:col-span-7">
-          <p className="t-label text-teal-800">
-            Chemmad, Malappuram · Established 1994
-          </p>
+          <p className="t-label">{copy.hero.tagline}</p>
 
-          <h1 id="hero-title" className="t-display mt-3 text-teal-950 max-w-[38rem]">
+          <h1 id="hero-title" className="t-display mt-5 max-w-[36rem] text-teal-950">
             {copy.hero.title}
           </h1>
 
-          <p className="mt-2 text-base font-medium text-clay-700 tracking-wide sm:text-lg">
-            {copy.hero.tagline}
-          </p>
+          <p className="t-lead mt-6 max-w-[34rem]">{copy.hero.lead}</p>
 
-          <p className="t-lead mt-5 max-w-[35rem] text-ink-soft leading-relaxed">
-            {copy.hero.lead}
-          </p>
-
-          {/* Action CTAs */}
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
             <Button size="lg" icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
               {copy.actions.book}
             </Button>
             <ButtonAnchor
               href={whatsappLink(copy.booking.whatsappGeneral)}
-              variant="secondary"
+              variant="quiet"
               size="lg"
-              icon={<MessageCircle className="text-emerald-700" aria-hidden="true" />}
+              icon={<MessageCircle aria-hidden="true" />}
             >
               {copy.actions.chatWhatsapp}
             </ButtonAnchor>
           </div>
 
-          {/* Quiet, verified 24/7 Emergency Helpline */}
-          <div className="mt-8 flex flex-wrap items-baseline gap-x-2 gap-y-1 border-t border-line/70 pt-4 text-xs text-ink-soft">
-            <span className="font-semibold text-teal-950">24/7 Casualty & Labour Room:</span>
-            <a
-              href={`tel:${contact.primary.tel}`}
-              className="font-bold text-emergency hover:underline tabular-nums"
-            >
-              {contact.primary.display}
-            </a>
-            <span className="text-ink-muted">· On-duty medical officer & emergency pharmacy open at all hours</span>
-          </div>
+          {/* Emergency line: present but quiet, so it never competes with the
+              primary action. */}
+          <p className="mt-8 flex max-w-[34rem] items-start gap-2.5 border-t border-line pt-5 t-small">
+            <Phone className="mt-[0.3rem] size-4 shrink-0 text-emergency" aria-hidden="true" />
+            <span>
+              {copy.hero.emergency(
+                <a
+                  key="tel"
+                  href={`tel:${contact.primary.tel}`}
+                  className="font-semibold tabular-nums text-ink underline decoration-emergency/40 underline-offset-4 transition-colors hover:decoration-emergency"
+                >
+                  {contact.primary.display}
+                </a>,
+              )}
+            </span>
+          </p>
         </div>
 
-        {/* Right Column: Pristine Authentic Hospital Photography */}
-        <div className="relative lg:col-span-5">
-          <div className="relative overflow-hidden rounded-xl shadow-soft ring-1 ring-line/80">
-            <Photo id="hero-main" shape="soft" priority sizes="(min-width: 1024px) 40vw, 90vw" />
-          </div>
+        {/* Photograph ---------------------------------------------------- */}
+        <div className="lg:col-span-5">
+          <Photo
+            id="hero-main"
+            shape="soft"
+            priority
+            aspect={4 / 5}
+            sizes="(min-width: 1024px) 38vw, 90vw"
+            className="mx-auto max-w-[32rem]"
+          />
         </div>
       </Container>
 
-      {/* Structured Editorial Hospital Information & Stats Band */}
+      {/* Trust band ------------------------------------------------------ */}
       <div className="border-t border-line bg-paper">
-        <Container className="py-8 lg:py-10">
-          <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            <div className="border-l-2 border-clay-400 pl-4">
-              <dd className="t-number text-2xl font-bold text-teal-950 sm:text-3xl tabular-nums">70,000+</dd>
-              <dt className="text-xs text-ink-muted mt-1 font-medium">Safe deliveries in Chemmad since 1994</dt>
-            </div>
-
-            <div className="border-l-2 border-teal-600 pl-4">
-              <dd className="t-number text-2xl font-bold text-teal-950 sm:text-3xl tabular-nums">30+ Years</dd>
-              <dt className="text-xs text-ink-muted mt-1 font-medium">Continuous obstetric and family care</dt>
-            </div>
-
-            <div className="border-l-2 border-teal-700 pl-4">
-              <dd className="flex items-center gap-1.5 text-sm font-semibold text-teal-950 sm:text-base">
-                <Clock className="size-4 text-teal-700 shrink-0" aria-hidden="true" />
-                <span>Specialist OPD</span>
-              </dd>
-              <dt className="text-xs text-ink-muted mt-1 font-medium">Mon to Sat: 9:00 AM to 1:00 PM & 4:00 PM to 7:00 PM</dt>
-            </div>
-
-            <div className="border-l-2 border-emergency pl-4">
-              <dd className="flex items-center gap-1.5 text-sm font-semibold text-teal-950 sm:text-base">
-                <Shield className="size-4 text-emerald-700 shrink-0" aria-hidden="true" />
-                <span>24/7 Casualty</span>
-              </dd>
-              <dt className="text-xs text-ink-muted mt-1 font-medium">Labour room, casualty & diagnostics open continuously</dt>
-            </div>
+        <Container>
+          <dl className="grid grid-cols-1 gap-y-8 py-10 sm:grid-cols-3">
+            {copy.hero.trust.map((t, i) => (
+              <div
+                key={t.label}
+                className={[
+                  'sm:px-10',
+                  i > 0 ? 'sm:border-l sm:border-line' : '',
+                  i === 0 ? 'sm:pl-0' : '',
+                  i === copy.hero.trust.length - 1 ? 'sm:pr-0' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              >
+                <dd className="t-number text-[2.25rem] text-teal-900 tabular-nums md:text-[2.75rem]">
+                  {t.value}
+                </dd>
+                <dt className="mt-2.5 max-w-[17rem] t-small">{t.label}</dt>
+              </div>
+            ))}
           </dl>
         </Container>
       </div>
