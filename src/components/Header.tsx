@@ -13,9 +13,11 @@ import { mainNav } from './navItems';
 export function Header() {
   const copy = useCopy();
   const { open } = useBooking();
+  // Scrolling only adds a shadow. The header never changes height, so the
+  // content below it never moves.
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -24,24 +26,17 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 border-b backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300',
-        scrolled
-          ? 'border-white/80 bg-ivory/85 shadow-[0_8px_30px_rgb(11_36_31/0.08)]'
-          : 'border-white/60 bg-ivory/70 shadow-[0_2px_12px_rgb(11_36_31/0.03)]',
+        'glass-bar sticky top-0 z-40 border-b border-line transition-shadow duration-150',
+        scrolled && 'shadow-[var(--shadow-soft)]',
       )}
     >
-      <Container
-        className={cn(
-          'flex items-center justify-between gap-6 transition-[padding] duration-300',
-          scrolled ? 'py-2.5' : 'py-3.5 xl:py-4',
-        )}
-      >
+      <Container className="flex h-16 items-center justify-between gap-6 xl:h-[4.5rem]">
         <Link to="/" aria-label={copy.a11y.home} className="shrink-0 rounded-md">
-          <Logo className={cn('transition-[height] duration-300', scrolled ? 'h-10 xl:h-12' : 'h-11 xl:h-16')} />
+          <Logo className="h-11 xl:h-12" />
         </Link>
 
         <nav aria-label={copy.a11y.mainNav} className="hidden xl:block">
-          <ul className="flex items-center gap-1.5 p-1 rounded-full glass-card border border-white/80 shadow-xs">
+          <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
               <li key={item.key}>
                 <NavLink
@@ -51,8 +46,8 @@ export function Header() {
                     cn(
                       'relative inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-4 t-ui transition-colors duration-150',
                       isActive && !item.to.includes('#')
-                        ? 'bg-teal-800 text-ivory shadow-xs'
-                        : 'text-ink-soft hover:bg-teal-900/5 hover:text-teal-900',
+                        ? 'bg-teal-800 text-ivory'
+                        : 'text-ink-soft hover:bg-teal-50 hover:text-teal-900',
                     )
                   }
                 >
