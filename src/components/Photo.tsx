@@ -21,9 +21,9 @@ const tiles: Record<Tone, string> = {
 };
 
 const darkTiles: Record<Tone, string> = {
-  sand: 'bg-gradient-to-br from-teal-900 via-teal-850 to-teal-950 text-teal-300',
+  sand: 'bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 text-teal-300',
   sage: 'bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 text-teal-200',
-  clay: 'bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 text-clay-300',
+  clay: 'bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 text-clay-200',
   teal: 'bg-gradient-to-br from-teal-950 via-teal-900 to-teal-800 text-teal-300',
 };
 
@@ -65,8 +65,12 @@ export function Photo({
   const ratio = aspect ?? entry.aspect;
   const imgRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
+  // The fade-in only applies after hydration, so the prerendered image is
+  // visible even if JavaScript never runs.
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    setHydrated(true);
     if (imgRef.current?.complete) setLoaded(true);
   }, []);
 
@@ -76,10 +80,10 @@ const doctorInitials: Record<string, string> = {
   'doctor-laila-beegum': 'LB',
   'doctor-geethanjali-s': 'GS',
   'doctor-amith-k': 'AK',
-  'doctor-jambir': 'JB',
+  'doctor-jambir': 'J', // Q9, Q31: full name not confirmed
   'doctor-v-j-sonia': 'VS',
   'doctor-jitha-vineeth': 'JV',
-  'doctor-sumiya': 'DS',
+  'doctor-sumiya': 'S',
 };
 
   if (!photo) {
@@ -179,7 +183,7 @@ const doctorInitials: Record<string, string> = {
           onLoad={() => setLoaded(true)}
           className={cn(
             'absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.03]',
-            loaded || priority ? 'opacity-100' : 'opacity-0',
+            loaded || priority || !hydrated ? 'opacity-100' : 'opacity-0',
           )}
         />
       </picture>

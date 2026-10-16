@@ -23,7 +23,7 @@ const tones: Record<Tone, string> = {
   paper: 'bg-paper',
   sand: 'bg-sand',
   sage: 'bg-sage-50',
-  teal: 'bg-teal-900 text-ivory',
+  teal: 'on-dark bg-teal-900 text-ivory',
 };
 
 interface SectionProps {

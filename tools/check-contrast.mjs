@@ -56,6 +56,10 @@ const pairs = [
   ['teal-900', 'ivory', 4.5, 'light button text'],
   ['teal-600', 'ivory', 3, 'focus ring (non-text)'],
   ['teal-600', 'paper', 3, 'check icons (non-text)'],
+  // .on-dark sets --focus-ring to teal-200 on these surfaces
+  ['teal-200', 'teal-800', 3, 'focus ring on dark (CTA band, contact card)'],
+  ['teal-200', 'teal-900', 3, 'focus ring on dark (IVF section)'],
+  ['teal-200', 'teal-950', 3, 'focus ring on dark (footer, top strip)'],
 ];
 
 let failed = 0;

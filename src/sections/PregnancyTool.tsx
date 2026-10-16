@@ -94,8 +94,13 @@ export function PregnancyTool() {
           </Reveal>
 
           <Reveal className="lg:col-span-7" delay={0.1}>
+            {/* Announce only the stage when it changes. The slider's
+                aria-valuetext already gives the week, and a live region
+                on the whole card re-read every list on each step. */}
+            <p className="sr-only" aria-live="polite">
+              {stage.name}
+            </p>
             <div
-              aria-live="polite"
               className="glass-card rounded-[var(--radius-lg)] p-8 md:p-10 shadow-[var(--shadow-lift)] ring-1 ring-white/80"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">

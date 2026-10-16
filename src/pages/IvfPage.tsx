@@ -108,7 +108,7 @@ export function IvfPage() {
             </ul>
             <p className="mt-6 text-ink-muted">{page.bringNote}</p>
           </Reveal>
-          <Reveal className="rounded-[var(--radius-lg)] bg-teal-900 p-8 text-ivory md:p-12" delay={0.08}>
+          <Reveal className="on-dark rounded-[var(--radius-lg)] bg-teal-900 p-8 text-ivory md:p-12" delay={0.08}>
             <h2 className="t-h3 text-ivory">{page.promiseTitle}</h2>
             <p className="mt-6 t-h3 italic">{copy.ivf.promise}</p>
           </Reveal>

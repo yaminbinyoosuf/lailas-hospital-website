@@ -6,14 +6,14 @@ import { Container } from './Container';
 /**
  * Top strip: emergency hotline, care hours, location and a WhatsApp shortcut.
  *
- * Every string resolves through the copy layer so Malayalam is complete. The
- * location is composed from the address record rather than hardcoded, which
- * keeps it correct in both languages and in sync with the footer.
+ * Every string resolves through the copy layer. The location is composed from
+ * the address record rather than hardcoded, which keeps it in sync with the
+ * footer.
  */
 export function TopStrip() {
   const copy = useCopy();
   return (
-    <div className="border-b border-white/10 bg-teal-950/95 backdrop-blur-md text-ivory">
+    <div className="on-dark border-b border-white/10 bg-teal-950/95 backdrop-blur-md text-ivory">
       <Container className="flex min-h-11 items-center justify-between gap-4 py-1">
         <div className="flex items-center gap-6">
           <a
@@ -24,7 +24,8 @@ export function TopStrip() {
               <Phone className="size-3 text-white" aria-hidden="true" />
             </span>
             <span className="hidden text-teal-100 sm:inline">{copy.strip.emergency}</span>
-            <span className="font-semibold tabular-nums underline-offset-4 group-hover:underline">
+            {/* text-ivory: the link's t-small would otherwise set ink-soft (2.8:1 here). */}
+            <span className="font-semibold tabular-nums text-ivory underline-offset-4 group-hover:underline">
               {contact.primary.display}
             </span>
           </a>
@@ -50,7 +51,8 @@ export function TopStrip() {
             className="inline-flex min-h-11 items-center gap-1.5 t-small font-medium text-teal-100 transition-colors hover:text-white"
           >
             <MessageCircle className="size-3.5 shrink-0 text-teal-300" aria-hidden="true" />
-            <span className="hidden xs:inline">{copy.actions.whatsapp}</span>
+            {/* Visible from xs; below that it stays as the link's accessible name. */}
+            <span className="sr-only xs:not-sr-only">{copy.actions.whatsapp}</span>
           </a>
 
         </div>

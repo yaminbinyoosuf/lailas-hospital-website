@@ -56,7 +56,7 @@ export default function StyleguidePage() {
           <Button variant="emergency" icon={<Phone aria-hidden="true" />}>{copy.actions.callEmergency}</Button>
           <Button variant="quiet">{copy.maternity.more}</Button>
         </div>
-        <div className="mt-6 flex flex-wrap gap-3 rounded-[var(--radius-lg)] bg-teal-900 p-8">
+        <div className="mt-6 flex flex-wrap gap-3 on-dark rounded-[var(--radius-lg)] bg-teal-900 p-8">
           <Button variant="light" size="lg">{copy.ivf.whatsapp}</Button>
           <Button variant="lightOutline" size="lg">{copy.ivf.book}</Button>
         </div>

@@ -97,14 +97,15 @@ export function Hero() {
         <Container className="py-8 md:py-10">
           <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
             {copy.hero.trust.map((t) => (
+              // <dt> must come before <dd>; flex-col-reverse keeps the figure on top.
               <div
                 key={t.label}
-                className="glass-card glass-card-hover rounded-[var(--radius-md)] p-6 md:p-8"
+                className="glass-card glass-card-hover flex flex-col-reverse rounded-[var(--radius-md)] p-6 md:p-8"
               >
+                <dt className="mt-2 max-w-[17rem] t-small text-ink-soft">{t.label}</dt>
                 <dd className="t-number text-[2.25rem] text-teal-900 tabular-nums md:text-[2.75rem] font-bold">
                   {t.value}
                 </dd>
-                <dt className="mt-2 max-w-[17rem] t-small text-ink-soft">{t.label}</dt>
               </div>
             ))}
           </dl>

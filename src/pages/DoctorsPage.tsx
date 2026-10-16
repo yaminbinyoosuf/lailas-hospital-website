@@ -39,9 +39,14 @@ export function DoctorsPage() {
 
         {/* Interactive Department Filter Bar */}
         <Container className="pt-2 pb-8">
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-[var(--radius-md)] glass-card border border-white/80 shadow-xs">
+          <div
+            role="group"
+            aria-label={copy.doctors.filterLabel}
+            className="flex flex-wrap items-center gap-2 p-1.5 rounded-[var(--radius-md)] glass-card border border-white/80 shadow-xs"
+          >
             <button
               type="button"
+              aria-pressed={selectedGroupIndex === null}
               onClick={() => setSelectedGroupIndex(null)}
               className={cn(
                 'min-h-11 rounded-[var(--radius-sm)] px-4.5 py-2 t-small font-semibold transition-all duration-300',
@@ -50,12 +55,13 @@ export function DoctorsPage() {
                   : 'text-ink-soft hover:bg-sand/60 hover:text-ink',
               )}
             >
-              {copy.doctors.seeAll}
+              {copy.doctors.allFilter}
             </button>
             {page.groups.map((g, idx) => (
               <button
                 key={g.title}
                 type="button"
+                aria-pressed={selectedGroupIndex === idx}
                 onClick={() => setSelectedGroupIndex(idx)}
                 className={cn(
                   'min-h-11 rounded-[var(--radius-sm)] px-4.5 py-2 t-small font-semibold transition-all duration-300',
@@ -71,15 +77,17 @@ export function DoctorsPage() {
         </Container>
       </div>
 
-      <section className="py-12 md:py-16">
+      <section aria-labelledby="doctors-list-title" className="py-12 md:py-16">
         <Container>
+          <h2 id="doctors-list-title" className="sr-only">
+            {copy.doctors.listTitle}
+          </h2>
           {/* Founder Spotlight Card when showing all or maternity/gynaecology group */}
           {showFounderSpotlight && founderDoctor && (
             <div className="mb-8">
+              {/* The "Founder & Chief Consultant" label was removed until the
+                  hospital confirms the title. Q6 */}
               <Reveal>
-                <div className="mb-4">
-                  <span className="t-label text-clay-700">Founder &amp; Chief Consultant</span>
-                </div>
                 <DoctorCard doctor={founderDoctor} layout="row" />
               </Reveal>
             </div>
@@ -99,7 +107,7 @@ export function DoctorsPage() {
       {/* 24/7 Duty Doctors High-Impact Glass Banner */}
       <section aria-labelledby="duty-title" className="pt-6 pb-20 md:pb-28">
         <Container>
-          <Reveal className="relative overflow-hidden rounded-[var(--radius-lg)] bg-teal-950 text-ivory p-8 md:p-12 shadow-[var(--shadow-lift)] border border-teal-800/40 glass-dark">
+          <Reveal className="on-dark relative overflow-hidden rounded-[var(--radius-lg)] bg-teal-950 text-ivory p-8 md:p-12 shadow-[var(--shadow-lift)] border border-teal-800/40 glass-dark">
             {/* Ambient Background Glow */}
             <div
               className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full bg-teal-500/15 blur-3xl"
@@ -118,15 +126,15 @@ export function DoctorsPage() {
                 <div>
                   <div className="flex items-center gap-2.5">
                     <span className="relative flex size-3">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex size-3 rounded-full bg-emerald-500" />
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-300 opacity-75" aria-hidden="true" />
+                      <span className="relative inline-flex size-3 rounded-full bg-teal-300" aria-hidden="true" />
                     </span>
-                    <span className="t-label text-teal-300">24/7 Availability</span>
+                    <span className="t-label text-teal-300">{copy.doctors.duty.label}</span>
                   </div>
                   <h2 id="duty-title" className="t-h3 mt-2 text-ivory">
                     {copy.doctors.duty.title}
                   </h2>
-                  <p className="mt-2.5 max-w-2xl t-small text-teal-100/90 leading-relaxed">
+                  <p className="mt-2.5 max-w-2xl t-small !text-teal-100/90 leading-relaxed">
                     {copy.doctors.duty.body}
                   </p>
                 </div>

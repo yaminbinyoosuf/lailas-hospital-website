@@ -117,8 +117,16 @@
     background: var(--color-teal-200);
     color: var(--color-teal-950);
   }
+  /* --focus-ring is teal-600 on light surfaces (5.8:1 on ivory). Dark
+     surfaces set .on-dark, where teal-600 falls below the 3:1 minimum. */
+  :root {
+    --focus-ring: var(--color-teal-600);
+  }
+  .on-dark {
+    --focus-ring: var(--color-teal-200);
+  }
   :focus-visible {
-    outline: 3px solid var(--color-teal-600);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -268,6 +276,13 @@
   border-radius: var(--radius-lg);
 }
 
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Scroll rows: snap, hidden scrollbar, keep focus rings visible */
 @utility scroll-row {
   display: grid;
@@ -381,20 +396,23 @@ dialog.sheet[open]::backdrop {
   outline: none;
 }
 .week-range:focus-visible::-webkit-slider-thumb {
-  outline: 3px solid var(--color-teal-600);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 .week-range:focus-visible::-moz-range-thumb {
-  outline: 3px solid var(--color-teal-600);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: auto !important;
   }
   *, *::before, *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    /* Without this, infinite animations (animate-ping) keep cycling. */
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
 }

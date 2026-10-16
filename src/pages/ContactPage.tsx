@@ -59,7 +59,7 @@ export function ContactPage() {
               </span>
             </a>
           </Reveal>
-          <Reveal className="flex flex-col justify-center rounded-[var(--radius-lg)] bg-teal-800 p-8 text-ivory md:p-10 lg:col-span-5" delay={0.08}>
+          <Reveal className="on-dark flex flex-col justify-center rounded-[var(--radius-lg)] bg-teal-800 p-8 text-ivory md:p-10 lg:col-span-5" delay={0.08}>
             <h2 className="t-h3 text-ivory">{page.bookTitle}</h2>
             <p className="mt-3 text-teal-100">{page.bookBody}</p>
             <Button variant="light" size="lg" className="mt-8 self-start" icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
