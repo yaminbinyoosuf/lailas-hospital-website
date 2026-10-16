@@ -19,7 +19,7 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
           <Heading id="visit-title" className="t-h2 text-teal-950">
             {copy.visit.title}
           </Heading>
-          <p className="t-lead mt-5">{copy.visit.lead}</p>
+          <p className="t-lead mt-5 text-ink-soft">{copy.visit.lead}</p>
 
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
             <div>

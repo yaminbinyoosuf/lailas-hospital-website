@@ -47,7 +47,7 @@ export function PregnancyTool() {
             <h2 id={`${ids}-title`} className="t-h2 mt-5 text-teal-950">
               {copy.pregnancy.title}
             </h2>
-            <p className="t-lead mt-6">{copy.pregnancy.lead}</p>
+            <p className="t-lead mt-6 text-ink-soft">{copy.pregnancy.lead}</p>
 
             <div className="mt-10">
               <p className="t-number text-[clamp(3.5rem,2.5rem+4vw,5.5rem)] text-teal-800" aria-hidden="true">
@@ -80,7 +80,7 @@ export function PregnancyTool() {
                     onClick={() => setWeek(m.week)}
                     aria-pressed={week === m.week}
                     className={cn(
-                      'min-h-11 rounded-[var(--radius-sm)] px-4 t-small font-semibold transition-all duration-200',
+                      'min-h-11 rounded-[var(--radius-sm)] px-4 t-ui transition-colors duration-150',
                       week === m.week
                         ? 'bg-teal-800 text-ivory shadow-xs'
                         : 'glass-pill text-ink-soft hover:bg-sand/60 hover:text-ink',
@@ -107,7 +107,7 @@ export function PregnancyTool() {
                 <h3 className="t-h3 text-teal-950 font-semibold">{stage.name}</h3>
                 <p className="text-ink-muted">{stage.range}</p>
               </div>
-              <p className="mt-2 t-h4 text-clay-600 font-medium">{stage.focus}</p>
+              <p className="mt-2 t-h4 text-clay-600">{stage.focus}</p>
 
               <p className="mt-8 font-semibold text-ink">{copy.pregnancy.careTitle}</p>
               <ul className="mt-3.5 space-y-3">
@@ -123,7 +123,7 @@ export function PregnancyTool() {
 
               <div className="mt-8 rounded-[var(--radius-md)] bg-clay-50/80 p-5 ring-1 ring-clay-200/60">
                 <p className="font-semibold text-clay-700">{copy.pregnancy.dueTitle}</p>
-                <p className="mt-1 min-h-[1.6em] t-h3 text-ink font-bold">{due ?? ' '}</p>
+                <p className="mt-1 min-h-[1.6em] t-h3 text-ink">{due ?? ' '}</p>
               </div>
 
               <p className="mt-6 flex gap-2.5 t-small text-ink-muted">

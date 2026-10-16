@@ -53,7 +53,7 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
           {service.bookable ? (
             <Button
               variant="quiet"
-              className="mt-3 !px-0"
+              className="mt-3"
               iconAfter={<ArrowRight aria-hidden="true" />}
               onClick={() => open({ kind: 'service', id: service.id })}
             >

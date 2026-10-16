@@ -25,7 +25,7 @@ export function PageHero({ title, lead, imageId, actions }: Props) {
           <h1 id="page-title" className="t-h1 text-teal-950">
             {title}
           </h1>
-          <p className="t-lead mt-6 max-w-[36rem]">{lead}</p>
+          <p className="t-lead mt-6 max-w-[36rem] text-ink-soft">{lead}</p>
           {actions && <div className="mt-9 flex flex-col gap-3 sm:flex-row">{actions}</div>}
         </div>
         {imageId && (

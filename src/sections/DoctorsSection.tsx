@@ -28,7 +28,7 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
             <h2 id="doctors-title" className="t-h2 text-teal-950">
               {title ?? copy.doctors.title}
             </h2>
-            {(lead ?? copy.doctors.lead) && <p className="t-lead mt-5">{lead ?? copy.doctors.lead}</p>}
+            {(lead ?? copy.doctors.lead) && <p className="t-lead mt-5 text-ink-soft">{lead ?? copy.doctors.lead}</p>}
           </div>
           {showAllLink && (
             <ButtonLink to="/doctors" variant="quiet" className="shrink-0 self-start md:self-auto" iconAfter={<ArrowRight aria-hidden="true" />}>

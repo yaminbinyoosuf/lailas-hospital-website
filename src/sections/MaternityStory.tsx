@@ -24,7 +24,7 @@ export function MaternityStory() {
             <h2 id="maternity-title" className="t-h2 text-teal-950">
               {copy.maternity.title}
             </h2>
-            <p className="t-lead mt-6 max-w-[38rem]">{copy.maternity.lead}</p>
+            <p className="t-lead mt-6 max-w-[38rem] text-ink-soft">{copy.maternity.lead}</p>
           </Reveal>
 
           <Reveal className="mt-12 border-t border-ink/15 pt-8" delay={0.1}>
@@ -41,7 +41,7 @@ export function MaternityStory() {
                   <p className="t-number text-[clamp(2rem,1.5rem+1.8vw,2.75rem)] text-teal-700">
                     <CountUp value={s.value} grouping={false} />
                   </p>
-                  <p className="mt-2 min-w-0 t-small [overflow-wrap:anywhere]">{s.label}</p>
+                  <p className="mt-2 min-w-0 t-small text-ink-soft [overflow-wrap:anywhere]">{s.label}</p>
                 </div>
               ))}
             </div>

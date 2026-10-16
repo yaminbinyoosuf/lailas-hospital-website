@@ -11,7 +11,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   /* Column headings get a hairline so four same-sized columns still read as
      distinct groups rather than one block of text. */
-  const heading = 't-label border-b border-teal-800 pb-3 !text-teal-200';
+  const heading = 't-label border-b border-teal-800 pb-3 text-teal-200';
   const link = 'text-teal-100 underline-offset-4 hover:text-ivory hover:underline';
   return (
     <footer className="on-dark bg-teal-950 text-teal-100">
@@ -50,15 +50,14 @@ export function Footer() {
               <a href={`tel:${contact.primary.tel}`} className={`${link} inline-flex min-h-11 items-center font-semibold text-ivory tabular-nums`}>
                 {contact.primary.display}
               </a>
-              {/* t-small carries ink-soft (2.2:1 on teal-950); override it here. */}
-              <span className="block t-small !text-teal-200">{copy.contact.primaryLabel}</span>
+              <span className="block t-small text-teal-200">{copy.contact.primaryLabel}</span>
             </li>
             {contact.landlines.map((p, i) => (
               <li key={p.tel}>
                 <a href={`tel:${p.tel}`} className={`${link} inline-flex min-h-11 items-center tabular-nums`}>
                   {p.display}
                 </a>
-                <span className="block t-small !text-teal-200">{copy.contact.landlineLabels[i]}</span>
+                <span className="block t-small text-teal-200">{copy.contact.landlineLabels[i]}</span>
               </li>
             ))}
             <li>

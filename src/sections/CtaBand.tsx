@@ -12,7 +12,7 @@ export function CtaBand({ title, body, actions }: { title: string; body: string;
             <h2 id="cta-title" className="t-h2 text-ivory">
               {title}
             </h2>
-            <p className="t-lead mt-4 !text-teal-100">{body}</p>
+            <p className="t-lead mt-4 text-teal-100">{body}</p>
           </div>
           <div className="flex flex-col gap-3 md:col-span-5 md:items-end">{actions}</div>
         </Reveal>

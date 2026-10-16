@@ -34,7 +34,7 @@ export function Services() {
           <h2 id="services-title" className="t-h2 text-teal-950 lg:col-span-7">
             {copy.services.title}
           </h2>
-          <p className="t-lead lg:col-span-5">{copy.services.lead}</p>
+          <p className="t-lead text-ink-soft lg:col-span-5">{copy.services.lead}</p>
         </Reveal>
 
         <div className="mt-12 overflow-x-auto pb-2 scrollbar-none">
@@ -58,7 +58,7 @@ export function Services() {
                   onClick={() => setActive(g)}
                   onKeyDown={onKeyDown}
                   className={cn(
-                    'min-h-11 rounded-[var(--radius-sm)] px-5 t-small font-semibold whitespace-nowrap transition-all duration-300',
+                    'min-h-11 rounded-[var(--radius-sm)] px-5 t-ui whitespace-nowrap transition-colors duration-150',
                     selected
                       ? g === 'emergency'
                         ? 'bg-emergency text-white shadow-xs'

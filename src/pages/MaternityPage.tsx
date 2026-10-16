@@ -64,7 +64,7 @@ export function MaternityPage() {
                 </div>
                 <div className="md:col-span-6">
                   <h3 className="t-h3 text-teal-950">{s.title}</h3>
-                  <p className="t-lead mt-4">{s.body}</p>
+                  <p className="t-lead mt-4 text-ink-soft">{s.body}</p>
                   <ul className="mt-6 space-y-3">
                     {s.points.map((p) => (
                       <li key={p} className="flex gap-3">
@@ -86,7 +86,7 @@ export function MaternityPage() {
             <h2 id="extra-care-title" className="t-h3 text-teal-950">
               {page.extraCare.title}
             </h2>
-            <p className="t-lead mt-4 max-w-3xl">{page.extraCare.body}</p>
+            <p className="t-lead mt-4 max-w-3xl text-ink-soft">{page.extraCare.body}</p>
           </Reveal>
         </Container>
       </section>

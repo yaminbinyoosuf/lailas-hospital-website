@@ -8,13 +8,9 @@ import { Section } from '../components/Section';
 import { whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 
-/** The 4 step path as a timeline. Horizontal on desktop, vertical on phones. */
 /**
- * The four step fertility journey.
- *
- * Numbers in Fraunces rather than icon tiles: a journey is sequential, and
- * typographic numerals carry that better than four interchangeable glyphs. The
- * connector is a single hairline that runs behind the markers.
+ * The four step fertility path: four columns on desktop, stacked on phones.
+ * Numbered markers rather than icon tiles, because the steps are sequential.
  */
 export function IvfTimeline({ onDark = true }: { onDark?: boolean }) {
   const copy = useCopy();
@@ -41,7 +37,7 @@ export function IvfTimeline({ onDark = true }: { onDark?: boolean }) {
         >
           <div className="flex items-center gap-3">
             <span
-              className={`t-number relative grid size-10 place-items-center rounded-full text-[1.0625rem] font-bold ${marker}`}
+              className={`t-number relative grid size-10 place-items-center rounded-full text-[1.0625rem] ${marker}`}
             >
               {i + 1}
             </span>
@@ -72,7 +68,7 @@ export function IvfPath() {
           <h2 id="ivf-title" className="t-h2 mt-5 text-ivory">
             {copy.ivf.title}
           </h2>
-          <p className="t-lead mt-6 max-w-[36rem] !text-teal-100">{copy.ivf.lead}</p>
+          <p className="t-lead mt-6 max-w-[36rem] text-teal-100">{copy.ivf.lead}</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <ButtonAnchor
               href={whatsappLink(copy.ivf.whatsappMessage)}
@@ -100,14 +96,14 @@ export function IvfPath() {
       <Container className="mt-20 md:mt-24">
         <IvfTimeline />
         <Reveal className="mt-16 grid gap-8 border-t border-teal-700 pt-10 md:grid-cols-12">
-          <p className="t-h3 text-ivory italic md:col-span-8">
+          <p className="t-h3 text-ivory md:col-span-8">
             {copy.ivf.promise}
           </p>
           <div className="md:col-span-4 md:text-right">
             <ButtonLink
               to="/ivf"
               variant="quiet"
-              className="!text-ivory !decoration-teal-500 hover:!decoration-ivory"
+              className="text-ivory decoration-teal-500 hover:text-ivory hover:decoration-ivory"
               iconAfter={<ArrowRight aria-hidden="true" />}
             >
               {copy.ivf.more}

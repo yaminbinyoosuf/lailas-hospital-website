@@ -13,7 +13,7 @@ export function NotFoundPage() {
       <section className="py-24 md:py-36">
         <Container className="max-w-2xl text-center">
           <h1 className="t-h1 text-teal-950">{page.title}</h1>
-          <p className="t-lead mt-5">{page.body}</p>
+          <p className="t-lead mt-5 text-ink-soft">{page.body}</p>
           <ButtonLink to="/" size="lg" className="mt-10" icon={<ArrowLeft aria-hidden="true" />}>
             {page.back}
           </ButtonLink>

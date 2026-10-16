@@ -12,8 +12,8 @@ import { useCopy } from '../i18n/LanguageProvider';
  * Three zones, in descending order of weight: the claim (eyebrow, headline,
  * lead, actions), the photograph, and a trust band of three figures.
  *
- * The tagline sits inside the headline block as an italic accent rather than as
- * a second coloured line beneath it, which was competing with the headline for
+ * The tagline sits above the headline as a small label rather than as a
+ * second coloured line beneath it, which was competing with the headline for
  * attention. The trust band and the emergency note are driven by copy, so no
  * string is hardcoded here.
  */
@@ -40,11 +40,11 @@ export function Hero() {
             {copy.hero.tagline}
           </span>
 
-          <h1 id="hero-title" className="t-display mt-5 max-w-[36rem] text-teal-950 font-bold">
+          <h1 id="hero-title" className="t-display mt-5 max-w-[36rem] text-teal-950">
             {copy.hero.title}
           </h1>
 
-          <p className="t-lead mt-6 max-w-[34rem]">{copy.hero.lead}</p>
+          <p className="t-lead mt-6 max-w-[34rem] text-ink-soft">{copy.hero.lead}</p>
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
             <Button size="lg" icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
@@ -61,7 +61,7 @@ export function Hero() {
           </div>
 
           {/* Emergency line: present but quiet */}
-          <p className="mt-8 flex max-w-[34rem] items-start gap-2.5 border-t border-line/60 pt-5 t-small">
+          <p className="mt-8 flex max-w-[34rem] items-start gap-2.5 border-t border-line pt-5 t-small text-ink-soft">
             <Phone className="mt-[0.3rem] size-4 shrink-0 text-emergency" aria-hidden="true" />
             <span>
               {copy.hero.emergency(
@@ -103,7 +103,7 @@ export function Hero() {
                 className="glass-card glass-card-hover flex flex-col-reverse rounded-[var(--radius-md)] p-6 md:p-8"
               >
                 <dt className="mt-2 max-w-[17rem] t-small text-ink-soft">{t.label}</dt>
-                <dd className="t-number text-[2.25rem] text-teal-900 tabular-nums md:text-[2.75rem] font-bold">
+                <dd className="t-number text-[2.25rem] text-teal-900 md:text-[2.75rem]">
                   {t.value}
                 </dd>
               </div>

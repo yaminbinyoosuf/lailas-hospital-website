@@ -49,7 +49,7 @@ export function DoctorsPage() {
               aria-pressed={selectedGroupIndex === null}
               onClick={() => setSelectedGroupIndex(null)}
               className={cn(
-                'min-h-11 rounded-[var(--radius-sm)] px-4.5 py-2 t-small font-semibold transition-all duration-300',
+                'min-h-11 rounded-[var(--radius-sm)] px-4.5 py-2 t-ui transition-colors duration-150',
                 selectedGroupIndex === null
                   ? 'bg-teal-800 text-ivory shadow-xs'
                   : 'text-ink-soft hover:bg-sand/60 hover:text-ink',
@@ -64,7 +64,7 @@ export function DoctorsPage() {
                 aria-pressed={selectedGroupIndex === idx}
                 onClick={() => setSelectedGroupIndex(idx)}
                 className={cn(
-                  'min-h-11 rounded-[var(--radius-sm)] px-4.5 py-2 t-small font-semibold transition-all duration-300',
+                  'min-h-11 rounded-[var(--radius-sm)] px-4.5 py-2 t-ui transition-colors duration-150',
                   selectedGroupIndex === idx
                     ? 'bg-teal-800 text-ivory shadow-xs'
                     : 'text-ink-soft hover:bg-sand/60 hover:text-ink',
@@ -134,7 +134,7 @@ export function DoctorsPage() {
                   <h2 id="duty-title" className="t-h3 mt-2 text-ivory">
                     {copy.doctors.duty.title}
                   </h2>
-                  <p className="mt-2.5 max-w-2xl t-small !text-teal-100/90 leading-relaxed">
+                  <p className="mt-2.5 max-w-2xl t-small text-teal-100">
                     {copy.doctors.duty.body}
                   </p>
                 </div>

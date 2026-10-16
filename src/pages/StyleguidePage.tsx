@@ -42,7 +42,7 @@ export default function StyleguidePage() {
         <p className="t-h1 text-teal-950">{copy.pages.ivf.title}</p>
         <p className="t-h2 text-teal-950">{copy.services.title}</p>
         <p className="t-h3 text-teal-950">{copy.pregnancy.title}</p>
-        <p className="t-lead max-w-2xl">{copy.hero.lead}</p>
+        <p className="t-lead max-w-2xl text-ink-soft">{copy.hero.lead}</p>
         <p className="max-w-2xl">{copy.maternity.lead}</p>
         <p className="t-label text-sage-700">{copy.pregnancy.label}</p>
         <p className="t-number text-[clamp(3rem,2rem+4vw,4.5rem)] text-clay-600">70,000+</p>

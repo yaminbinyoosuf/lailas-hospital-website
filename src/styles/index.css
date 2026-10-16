@@ -9,10 +9,11 @@
    Contrast (WCAG AA) is checked by `npm run check:contrast`.
    ========================================================================== */
 @theme {
-  /* Headings: Outfit / Plus Jakarta Sans for refined, modern luxury clinical authority.
-     Body, Controls & Interface: Plus Jakarta Sans for supreme readability and geometric precision. */
-  --font-heading: 'Outfit', 'Plus Jakarta Sans', 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-sans: 'Plus Jakarta Sans', 'Source Sans 3 Variable', 'Source Sans 3', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* Two bundled families (Fontsource, see the imports above), nothing else.
+     DM Sans: headings, figures and interface labels. Source Sans 3: reading text.
+     Neither has an italic face loaded, so do not use italic. */
+  --font-heading: 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Source Sans 3 Variable', ui-sans-serif, system-ui, sans-serif;
 
   /* Surfaces */
   --color-ivory: #fbf7f0;
@@ -106,7 +107,8 @@
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 600;
-    color: var(--color-ink);
+    /* No colour here: headings inherit from their surface (ink on light,
+       ivory on .on-dark sections) unless a utility sets one. */
     text-wrap: balance;
     letter-spacing: -0.015em;
   }
@@ -136,21 +138,24 @@
 }
 
 /* ==========================================================================
-   Type scale: Outfit / Plus Jakarta Sans Headings + Plus Jakarta Sans Body & UI
+   Type scale
+   Size, weight, family and line height only. These utilities never set a
+   colour: colour comes from the element or its surface, so the same style
+   works on ivory and on dark teal without !important overrides.
    ========================================================================== */
 @utility t-display {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(2.25rem, 1.7045rem + 2.1818vw, 3.75rem);
-  line-height: 1.12;
+  line-height: 1.1;
   letter-spacing: -0.025em;
 }
 @utility t-h1 {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(1.875rem, 1.5568rem + 1.2727vw, 2.75rem);
-  line-height: 1.18;
-  letter-spacing: -0.025em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 @utility t-h2 {
   font-family: var(--font-heading);
@@ -170,16 +175,14 @@
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: clamp(1.0625rem, 0.9943rem + 0.2727vw, 1.25rem);
-  line-height: 1.38;
+  line-height: 1.35;
   letter-spacing: -0.01em;
 }
 @utility t-lead {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: clamp(1.0625rem, 1.02rem + 0.15vw, 1.1875rem);
-  line-height: 1.65;
-  letter-spacing: -0.005em;
-  color: var(--color-ink-soft);
+  line-height: 1.6;
 }
 @utility t-body {
   font-family: var(--font-sans);
@@ -192,26 +195,37 @@
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--color-ink-soft);
+  line-height: 1.55;
 }
 @utility t-meta {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 0.8125rem;
   line-height: 1.5;
-  color: var(--color-ink-muted);
 }
-/* Eyebrow above a section heading. Refined uppercase pill-like tracking */
+/* Eyebrow above a section heading, role labels */
 @utility t-label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-family: var(--font-heading);
   font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-teal-700);
 }
-/* Oversized figures with tabular numerals */
+/* Interface text: buttons, tabs, filters, navigation */
+@utility t-ui {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+}
+@utility t-ui-lg {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.25;
+}
+/* Figures with tabular numerals. Size is set where used. */
 @utility t-number {
   font-family: var(--font-heading);
   font-weight: 600;

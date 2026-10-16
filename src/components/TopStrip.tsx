@@ -24,8 +24,7 @@ export function TopStrip() {
               <Phone className="size-3 text-white" aria-hidden="true" />
             </span>
             <span className="hidden text-teal-100 sm:inline">{copy.strip.emergency}</span>
-            {/* text-ivory: the link's t-small would otherwise set ink-soft (2.8:1 here). */}
-            <span className="font-semibold tabular-nums text-ivory underline-offset-4 group-hover:underline">
+            <span className="font-semibold tabular-nums underline-offset-4 group-hover:underline">
               {contact.primary.display}
             </span>
           </a>
