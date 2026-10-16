@@ -9,7 +9,44 @@ import { pathToFileURL } from 'node:url';
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
 const ssrDir = path.join(root, 'dist-ssr');
-const { render, pages, renderHead, siteUrl } = await import(pathToFileURL(path.join(ssrDir, 'entry-server.js')).href);
+
+/**
+ * Locate the SSR entry.
+ *
+ * Vite emits `dist-ssr/entry-server.js` on its own, but when a plugin changes
+ * the output (Cloudflare's Vite plugin does, because it enables chunking) the
+ * entry becomes `dist-ssr/assets/entry-server-<hash>.js`. Both are valid, so
+ * find whichever exists rather than assuming one path.
+ */
+async function findSsrEntry(dir) {
+  const direct = path.join(dir, 'entry-server.js');
+  const found = [];
+  const walk = async (d) => {
+    for (const e of await readdir(d, { withFileTypes: true })) {
+      const full = path.join(d, e.name);
+      if (e.isDirectory()) await walk(full);
+      else if (/^entry-server.*\.js$/.test(e.name)) found.push(full);
+    }
+  };
+  try {
+    await readdir(dir);
+  } catch {
+    throw new Error(
+      `SSR build output not found at ${dir}. Did \`vite build --ssr\` run before prerender?`,
+    );
+  }
+  await walk(dir);
+  if (found.length === 0) {
+    throw new Error(`No entry-server*.js found in ${dir}. Contents could not be prerendered.`);
+  }
+  // Prefer a top-level entry over a hashed chunk when both are present.
+  found.sort((a, b) => a.length - b.length);
+  return found[0];
+}
+
+const ssrEntry = await findSsrEntry(ssrDir);
+console.log(`prerender: using SSR entry ${path.relative(root, ssrEntry)}`);
+const { render, pages, renderHead, siteUrl } = await import(pathToFileURL(ssrEntry).href);
 
 const template = await readFile(path.join(dist, 'index.html'), 'utf8');
 
