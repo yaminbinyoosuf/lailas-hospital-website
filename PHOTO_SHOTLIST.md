@@ -1,14 +1,15 @@
 # Photo shot list for Lailas Hospital
 
-The website is designed around real photography. Until a photo exists, that position shows a
-tonal placeholder panel that carries the brand motif, so the layout stays intact and nothing
-pretends to be a finished photograph.
+The website is designed around real photography. Until a photo exists, the section around that
+position uses a layout that does not need it (for example, the home hero shows visiting hours, and
+service cards are text only), and doctor portraits show initials. Nothing pretends to be a
+finished photograph.
 
 ## Current status
 
 **All 26 positions are unfilled** (`src/assets/photos/manifest.json` is empty).
-Every one renders as a deliberate tonal placeholder, or initials for doctors,
-which is why the site currently shows no photographs at all.
+Every one currently uses its no-photo layout, or initials for doctors, which is
+why the site shows no photographs at all.
 
 23 of the 26 positions appear on the site today. Three (`hero-secondary`,
 `staff-team`, `visit-entrance`) are registered in `src/content/images.ts` but
@@ -51,33 +52,33 @@ per frame:
 - After adding a photo, check its alt text in `src/content/images.ts` against what the
   photo actually shows. The current alt text describes the brief below, not a real photo.
 
-| id | What to shoot | Shape on site | Orientation |
+| id | What to shoot | Shown as | Orientation |
 |---|---|---|---|
-| `hero-main` | A mother holding her newborn in a recovery room. Soft window light, faces relaxed. The most important photo. | Tall arch | Portrait 4:5 |
-| `hero-secondary` | *Not used on any page yet.* The front entrance or building exterior at golden hour (late afternoon), Lailas sign visible | Circle | Square |
-| `visit-entrance` | *Not used on any page yet.* Entrance plus parking area, with the wheelchair ramp visible | Rounded | Landscape 4:3 |
-| `staff-team` | *Not used on any page yet.* Whole team (doctors, nurses, lab, pharmacy, reception) together outside or in the lobby | Wide | 16:9 (shoot wider) |
-| `maternity-story` | Newborn resting in the nursery, a nurse's hands nearby | Tall arch | Portrait 4:5 |
-| `maternity-checkup` | An antenatal check-up: doctor talking with a pregnant woman | Rounded | Landscape 4:3 |
-| `maternity-labour` | A clean, empty labour room, softly lit | Leaf | Landscape 4:3 |
-| `maternity-newborn` | Paediatrician gently checking a newborn | Rounded | Landscape 4:3 |
-| `page-maternity` | Mother and newborn, different moment from `hero-main` | Tall arch | Portrait 4:5 |
-| `ivf-consultation` | The private fertility consultation room. A couple seen from behind or out of focus (privacy matters) | Cradle | Portrait 4:5 |
-| `page-ivf` | Fertility consultation room, empty and calm | Tall arch | Portrait 4:5 |
-| `service-maternity` | Nurse with a mother after birth | Card | Landscape 3:2 |
-| `service-ivf` | Fertility consultation room detail | Card | Landscape 3:2 |
-| `service-gynaecology` | Gynaecologist in a consultation | Card | Landscape 3:2 |
-| `service-paediatrics` | Paediatrician with a young child | Card | Landscape 3:2 |
-| `service-general` | Family doctor with an older patient | Card | Landscape 3:2 |
-| `service-emergency` | Emergency entrance at dusk, lights on | Wide card | Landscape 4:3 |
-| `service-laboratory` | Laboratory with a technician at work | Card | Landscape 3:2 |
-| `service-pharmacy` | Pharmacy counter with the pharmacist | Card | Landscape 3:2 |
-| `doctor-laila-beegum` | Portrait of Dr. Laila Beegum N | Tall arch | Portrait 4:5 |
-| `doctor-geethanjali-s` | Portrait of Dr. Geethanjali S | Tall arch | Portrait 4:5 |
-| `doctor-amith-k` | Portrait of Dr. Amith K | Tall arch | Portrait 4:5 |
-| `doctor-jambir` | Portrait of Dr. Jambir (spelling to be confirmed, Q31) | Tall arch | Portrait 4:5 |
-| `doctor-v-j-sonia` | Portrait of Dr. V. J. Sonia | Tall arch | Portrait 4:5 |
-| `doctor-jitha-vineeth` | Portrait of Dr. Jitha Vineeth | Tall arch | Portrait 4:5 |
-| `doctor-sumiya` | Portrait of Dr. Sumiya | Tall arch | Portrait 4:5 |
+| `hero-main` | A mother holding her newborn in a recovery room. Soft window light, faces relaxed. The most important photo. | Rounded corners | Portrait 4:5 |
+| `hero-secondary` | *Not used on any page yet.* The front entrance or building exterior at golden hour (late afternoon), Lailas sign visible | Rounded corners | Square |
+| `visit-entrance` | *Not used on any page yet.* Entrance plus parking area, with the wheelchair ramp visible | Rounded corners | Landscape 4:3 |
+| `staff-team` | *Not used on any page yet.* Whole team (doctors, nurses, lab, pharmacy, reception) together outside or in the lobby | Rounded corners | 16:9 (shoot wider) |
+| `maternity-story` | Newborn resting in the nursery, a nurse's hands nearby | Rounded corners | Portrait 4:5 |
+| `maternity-checkup` | An antenatal check-up: doctor talking with a pregnant woman | Rounded corners | Landscape 4:3 |
+| `maternity-labour` | A clean, empty labour room, softly lit | Rounded corners | Landscape 4:3 |
+| `maternity-newborn` | Paediatrician gently checking a newborn | Rounded corners | Landscape 4:3 |
+| `page-maternity` | Mother and newborn, different moment from `hero-main` | Rounded corners | Portrait 4:5 |
+| `ivf-consultation` | The private fertility consultation room. A couple seen from behind or out of focus (privacy matters) | Rounded corners | Portrait 4:5 |
+| `page-ivf` | Fertility consultation room, empty and calm | Rounded corners | Portrait 4:5 |
+| `service-maternity` | Nurse with a mother after birth | Rounded corners | Landscape 3:2 |
+| `service-ivf` | Fertility consultation room detail | Rounded corners | Landscape 3:2 |
+| `service-gynaecology` | Gynaecologist in a consultation | Rounded corners | Landscape 3:2 |
+| `service-paediatrics` | Paediatrician with a young child | Rounded corners | Landscape 3:2 |
+| `service-general` | Family doctor with an older patient | Rounded corners | Landscape 3:2 |
+| `service-emergency` | Emergency entrance at dusk, lights on | Rounded corners | Landscape 4:3 |
+| `service-laboratory` | Laboratory with a technician at work | Rounded corners | Landscape 3:2 |
+| `service-pharmacy` | Pharmacy counter with the pharmacist | Rounded corners | Landscape 3:2 |
+| `doctor-laila-beegum` | Portrait of Dr. Laila Beegum N | Rounded corners | Portrait 4:5 |
+| `doctor-geethanjali-s` | Portrait of Dr. Geethanjali S | Rounded corners | Portrait 4:5 |
+| `doctor-amith-k` | Portrait of Dr. Amith K | Rounded corners | Portrait 4:5 |
+| `doctor-jambir` | Portrait of Dr. Jambir (spelling to be confirmed, Q31) | Rounded corners | Portrait 4:5 |
+| `doctor-v-j-sonia` | Portrait of Dr. V. J. Sonia | Rounded corners | Portrait 4:5 |
+| `doctor-jitha-vineeth` | Portrait of Dr. Jitha Vineeth | Rounded corners | Portrait 4:5 |
+| `doctor-sumiya` | Portrait of Dr. Sumiya | Rounded corners | Portrait 4:5 |
 
-**Doctor portraits:** same background and the same light for all seven (a plain warm wall works well). Chest-up, looking at the camera, relaxed smile, usual work clothes. Leave space above the head, because the arch crops the top.
+**Doctor portraits:** same background and the same light for all seven (a plain warm wall works well). Chest-up, looking at the camera, relaxed smile, usual work clothes. Frame with a little space around the head and shoulders; portraits are shown small, at 4:5 with rounded corners.
