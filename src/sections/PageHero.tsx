@@ -30,7 +30,9 @@ export function PageHero({ title, lead, imageId, actions }: Props) {
         </div>
         {imageId && (
           <div className="lg:col-span-5">
-            <Photo id={imageId} shape="arch" priority sizes="(min-width: 1024px) 34vw, 90vw" className="mx-auto max-w-[28rem]" />
+            <div className="p-2 sm:p-2.5 glass-card rounded-[calc(var(--radius-lg)+0.5rem)] shadow-[var(--shadow-lift)] mx-auto max-w-[28rem]">
+              <Photo id={imageId} shape="none" priority sizes="(min-width: 1024px) 34vw, 90vw" className="rounded-[var(--radius-lg)]" />
+            </div>
           </div>
         )}
       </Container>

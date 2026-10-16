@@ -23,6 +23,10 @@ const preload = ['dm-sans-latin-wght-normal', 'source-sans-3-latin-wght-normal']
 
 const page = (url) =>
   template
+    .replace(/<title>.*?<\/title>\s*/, '')
+    .replace(/<meta name="description".*?\/>\s*/, '')
+    .replace(/<meta property="og:title".*?\/>\s*/, '')
+    .replace(/<meta property="og:description".*?\/>\s*/, '')
     .replace('<!--app-head-->', `${renderHead(url)}\n    ${preload}`)
     .replace('<!--app-html-->', render(url));
 

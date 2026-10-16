@@ -19,7 +19,6 @@ import { useCopy } from '../i18n/LanguageProvider';
 export function IvfTimeline({ onDark = true }: { onDark?: boolean }) {
   const copy = useCopy();
 
-  const line = onDark ? 'bg-teal-700' : 'bg-line';
   const marker = onDark
     ? 'bg-teal-900 text-clay-200 ring-1 ring-teal-700'
     : 'bg-paper text-clay-600 ring-1 ring-line';
@@ -27,33 +26,33 @@ export function IvfTimeline({ onDark = true }: { onDark?: boolean }) {
   const title = onDark ? 'text-ivory' : 'text-teal-950';
   const body = onDark ? 'text-teal-100' : 'text-ink-soft';
 
-  return (
-    <ol className="relative grid gap-12 md:grid-cols-4 md:gap-8">
-      {/* Hairline connector: vertical on phones, horizontal from md up. */}
-      <span
-        aria-hidden="true"
-        className={`absolute left-[1.4rem] top-4 bottom-4 w-px md:left-4 md:right-4 md:top-[1.4rem] md:bottom-auto md:h-px md:w-auto ${line}`}
-      />
+  const cardClass = onDark
+    ? 'glass-dark rounded-[var(--radius-md)] p-6 relative border border-white/10 shadow-sm'
+    : 'glass-card rounded-[var(--radius-md)] p-6 relative border border-white/80 shadow-sm';
 
+  return (
+    <ol className="relative grid gap-6 md:grid-cols-4 md:gap-6">
       {copy.ivf.steps.map((s, i) => (
         <Reveal
           as="li"
           key={s.title}
-          delay={i * 0.1}
-          className="relative grid grid-cols-[2.8rem_1fr] gap-5 md:block"
+          delay={i * 0.08}
+          className={cardClass}
         >
-          <span
-            className={`t-number relative grid size-11 place-items-center rounded-full text-[1.0625rem] ${marker}`}
-          >
-            {i + 1}
-          </span>
-
-          <div className="md:mt-7">
+          <div className="flex items-center gap-3">
+            <span
+              className={`t-number relative grid size-10 place-items-center rounded-full text-[1.0625rem] font-bold ${marker}`}
+            >
+              {i + 1}
+            </span>
             <p className={`t-label ${stepWord}`}>
               {copy.ivf.stepWord} {i + 1}
             </p>
-            <h3 className={`t-h3 mt-2 ${title}`}>{s.title}</h3>
-            <p className={`mt-2.5 t-small ${body}`}>{s.body}</p>
+          </div>
+
+          <div className="mt-4">
+            <h3 className={`t-h3 ${title} font-semibold`}>{s.title}</h3>
+            <p className={`mt-2 t-small ${body} leading-relaxed`}>{s.body}</p>
           </div>
         </Reveal>
       ))}

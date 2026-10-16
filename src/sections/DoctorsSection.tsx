@@ -38,15 +38,15 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
         </Reveal>
         <ul
           className={cn(
-            'mt-12',
+            'mt-12 grid gap-6',
             few
-              ? 'grid gap-12 lg:grid-cols-2'
-              : 'scroll-row -mx-5 auto-cols-[74%] gap-5 px-5 pb-2 xs:auto-cols-[60%] sm:auto-cols-[44%] lg:mx-0 lg:grid lg:grid-flow-row lg:grid-cols-4 lg:gap-8 lg:overflow-visible lg:px-0',
+              ? 'sm:grid-cols-2'
+              : 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
           )}
         >
           {doctors.map((d, i) => (
-            <Reveal as="li" key={d.id} delay={i * 0.06}>
-              <DoctorCard doctor={d} layout="row" />
+            <Reveal as="li" key={d.id} delay={i * 0.05} className="h-full">
+              <DoctorCard doctor={d} layout="stack" />
             </Reveal>
           ))}
         </ul>

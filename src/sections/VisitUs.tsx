@@ -89,14 +89,16 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
         </Reveal>
 
         <Reveal className="lg:col-span-7" delay={0.08}>
-          <div className="relative h-full min-h-[22rem] overflow-hidden rounded-[var(--radius-lg)] bg-sand-deep ring-1 ring-line lg:min-h-[36rem]">
-            <iframe
-              title={copy.visit.mapTitle}
-              src={address.mapEmbedUrl}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 h-full w-full border-0 grayscale-[30%]"
-            />
+          <div className="glass-card p-2 sm:p-2.5 rounded-[var(--radius-lg)] shadow-[var(--shadow-lift)] h-full min-h-[22rem] lg:min-h-[36rem]">
+            <div className="relative h-full min-h-[20rem] overflow-hidden rounded-[var(--radius-md)] ring-1 ring-black/5 lg:min-h-[34rem]">
+              <iframe
+                title={copy.visit.mapTitle}
+                src={address.mapEmbedUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 h-full w-full border-0 grayscale-[20%]"
+              />
+            </div>
           </div>
         </Reveal>
       </Container>

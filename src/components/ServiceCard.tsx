@@ -15,12 +15,12 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
   return (
     <article
       className={cn(
-        'group flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] bg-paper ring-1 ring-line transition-[transform,box-shadow] duration-500 ease-[var(--ease-gentle)] hover:-translate-y-0.5 hover:ring-teal-200 hover:shadow-[var(--shadow-soft)]',
-        wide && 'md:flex-row',
+        'group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] glass-card glass-card-hover p-2.5 sm:p-3',
+        wide && 'md:flex-row md:items-stretch',
         className,
       )}
     >
-      <div className={cn('overflow-hidden', wide && 'md:w-1/2')}>
+      <div className={cn('overflow-hidden rounded-[var(--radius-md)] ring-1 ring-black/5 shrink-0', wide && 'md:w-1/2')}>
         <Photo
           id={service.imageId as ImageId}
           shape="none"
@@ -29,26 +29,31 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
           className={cn(wide && 'md:h-full')}
         />
       </div>
-      <div className={cn('flex flex-1 flex-col p-6 md:p-7', wide && 'md:w-1/2 md:p-10')}>
-        <h3 className={cn('t-h3 text-teal-950')}>{text.name}</h3>
-        <p className="mt-3 t-small">{text.summary}</p>
+
+      <div className={cn('flex flex-1 flex-col p-5 sm:p-6 md:p-7', wide && 'md:w-1/2 md:p-8')}>
+        <h3 className="t-h3 text-teal-950 font-semibold">{text.name}</h3>
+        <p className="mt-2.5 t-small text-ink-soft leading-relaxed">{text.summary}</p>
+
         <ul className="mt-5 space-y-2.5">
           {text.offerings.map((o) => (
-            <li key={o} className="flex gap-3">
-              <Check className="mt-1 size-4 shrink-0 text-teal-600" aria-hidden="true" />
-              <span>{o}</span>
+            <li key={o} className="flex items-start gap-2.5 t-small">
+              <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-teal-50 text-teal-700 ring-1 ring-teal-600/20">
+                <Check className="size-3" aria-hidden="true" />
+              </span>
+              <span className="text-ink">{o}</span>
             </li>
           ))}
         </ul>
+
         <div className="mt-auto pt-6">
           <p className="flex items-center gap-2 t-small text-ink-muted">
-            <Clock className="size-4 shrink-0" aria-hidden="true" />
+            <Clock className="size-4 shrink-0 text-teal-600" aria-hidden="true" />
             {text.availability}
           </p>
           {service.bookable ? (
             <Button
               variant="quiet"
-              className="mt-2"
+              className="mt-3 !px-0"
               iconAfter={<ArrowRight aria-hidden="true" />}
               onClick={() => open({ kind: 'service', id: service.id })}
             >
@@ -64,7 +69,7 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
               {contact.primary.display}
             </ButtonAnchor>
           ) : (
-            <p className="mt-2 flex min-h-12 items-center font-semibold text-teal-800">{copy.services.walkIn}</p>
+            <p className="mt-3 flex min-h-11 items-center font-semibold text-teal-800">{copy.services.walkIn}</p>
           )}
         </div>
       </div>

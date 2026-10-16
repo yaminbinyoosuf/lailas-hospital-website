@@ -53,11 +53,16 @@ export function MaternityStory() {
         <Reveal>
           <h3 className="t-h3 text-teal-950">{copy.maternity.expectTitle}</h3>
         </Reveal>
-        <ol className="mt-8 grid gap-10 md:grid-cols-3 md:gap-8">
+        <ol className="mt-8 grid gap-6 md:grid-cols-3 md:gap-6">
           {copy.maternity.expect.map((e, i) => (
-            <Reveal as="li" key={e.title} delay={i * 0.08} className="border-t-2 border-clay-400 pt-5">
-              <p className="t-h3 text-ink">{e.title}</p>
-              <p className="mt-2 text-ink-soft">{e.body}</p>
+            <Reveal
+              as="li"
+              key={e.title}
+              delay={i * 0.08}
+              className="glass-card glass-card-hover rounded-[var(--radius-md)] p-6 border-t-2 border-t-clay-400 shadow-sm"
+            >
+              <h4 className="t-h3 text-ink font-semibold">{e.title}</h4>
+              <p className="mt-2.5 text-ink-soft leading-relaxed">{e.body}</p>
             </Reveal>
           ))}
         </ol>

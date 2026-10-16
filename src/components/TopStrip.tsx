@@ -13,7 +13,7 @@ import { Container } from './Container';
 export function TopStrip() {
   const copy = useCopy();
   return (
-    <div className="border-b border-teal-900/60 bg-teal-950 text-ivory">
+    <div className="border-b border-white/10 bg-teal-950/95 backdrop-blur-md text-ivory">
       <Container className="flex min-h-11 items-center justify-between gap-4 py-1">
         <div className="flex items-center gap-6">
           <a

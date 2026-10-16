@@ -4,6 +4,11 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+    allowedHosts: true,
+  },
   build: {
     // Images are the heaviest asset on this site; keep separate hashed files
     // so browsers can cache them independently of the JS/CSS bundles.

@@ -72,8 +72,51 @@ export function Photo({
 
   const frame = cn('relative isolate overflow-hidden ring-1 ring-black/[0.04]', shapes[shape], className);
 
+const doctorInitials: Record<string, string> = {
+  'doctor-laila-beegum': 'LB',
+  'doctor-geethanjali-s': 'GS',
+  'doctor-amith-k': 'AK',
+  'doctor-jambir': 'JB',
+  'doctor-v-j-sonia': 'VS',
+  'doctor-jitha-vineeth': 'JV',
+  'doctor-sumiya': 'DS',
+};
+
   if (!photo) {
     if (omitIfMissing) return null;
+
+    if (id.startsWith('doctor-')) {
+      const initials = doctorInitials[id] || id.replace('doctor-', '').slice(0, 2).toUpperCase();
+      return (
+        <div
+          aria-hidden="true"
+          className={cn(
+            frame,
+            'flex flex-col items-center justify-center bg-gradient-to-br from-teal-50/90 via-[#f7f1e7] to-teal-100/70 text-teal-900 border border-white/80 shadow-xs relative select-none',
+          )}
+          style={{ aspectRatio: ratio }}
+        >
+          {/* Subtle medical emblem watermark */}
+          <svg
+            className="absolute inset-0 h-full w-full opacity-[0.14] text-teal-800"
+            viewBox="0 0 100 100"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
+            <path d="M50 24v52M24 50h52" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <circle cx="50" cy="50" r="16" stroke="currentColor" strokeWidth="0.8" />
+          </svg>
+          <div className="relative z-10 flex flex-col items-center">
+            <span className="font-heading font-semibold text-teal-900 text-xl sm:text-2xl tracking-tight drop-shadow-xs">
+              {initials}
+            </span>
+          </div>
+          <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent pointer-events-none" />
+        </div>
+      );
+    }
+
     /* Tonal panel carrying the brand's circle-and-bud motif. No icon, no
        uppercase alt block: the panel is decoration, and repeating the alt text
        as visible type made every missing image look like a mock-up. */

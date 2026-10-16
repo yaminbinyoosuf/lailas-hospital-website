@@ -22,13 +22,25 @@ export function Hero() {
   const { open } = useBooking();
 
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-ivory">
-      <Container className="grid items-center gap-12 pt-12 pb-14 md:pt-16 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16">
+    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-ivory ambient-mesh">
+      {/* Decorative ambient light orbs */}
+      <div
+        className="pointer-events-none absolute -left-20 top-1/4 size-96 rounded-full bg-teal-200/20 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute right-0 top-10 size-96 rounded-full bg-clay-200/25 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <Container className="grid items-center gap-12 pt-12 pb-14 md:pt-16 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16 relative z-10">
         {/* Claim --------------------------------------------------------- */}
         <div className="lg:col-span-7">
-          <p className="t-label">{copy.hero.tagline}</p>
+          <span className="inline-flex items-center rounded-full bg-teal-50/90 px-3 py-1 t-label text-teal-800 ring-1 ring-teal-600/15">
+            {copy.hero.tagline}
+          </span>
 
-          <h1 id="hero-title" className="t-display mt-5 max-w-[36rem] text-teal-950">
+          <h1 id="hero-title" className="t-display mt-5 max-w-[36rem] text-teal-950 font-bold">
             {copy.hero.title}
           </h1>
 
@@ -48,9 +60,8 @@ export function Hero() {
             </ButtonAnchor>
           </div>
 
-          {/* Emergency line: present but quiet, so it never competes with the
-              primary action. */}
-          <p className="mt-8 flex max-w-[34rem] items-start gap-2.5 border-t border-line pt-5 t-small">
+          {/* Emergency line: present but quiet */}
+          <p className="mt-8 flex max-w-[34rem] items-start gap-2.5 border-t border-line/60 pt-5 t-small">
             <Phone className="mt-[0.3rem] size-4 shrink-0 text-emergency" aria-hidden="true" />
             <span>
               {copy.hero.emergency(
@@ -66,39 +77,34 @@ export function Hero() {
           </p>
         </div>
 
-        {/* Photograph ---------------------------------------------------- */}
+        {/* Photograph inside layered glassmorphic architectural frame ----- */}
         <div className="lg:col-span-5">
-          <Photo
-            id="hero-main"
-            shape="soft"
-            priority
-            aspect={4 / 5}
-            sizes="(min-width: 1024px) 38vw, 90vw"
-            className="mx-auto max-w-[32rem]"
-          />
+          <div className="p-2.5 sm:p-3 glass-card rounded-[calc(var(--radius-lg)+0.5rem)] shadow-[var(--shadow-lift)]">
+            <Photo
+              id="hero-main"
+              shape="soft"
+              priority
+              aspect={4 / 5}
+              sizes="(min-width: 1024px) 38vw, 90vw"
+              className="mx-auto max-w-[32rem] rounded-[var(--radius-lg)]"
+            />
+          </div>
         </div>
       </Container>
 
-      {/* Trust band ------------------------------------------------------ */}
-      <div className="border-t border-line bg-paper">
-        <Container>
-          <dl className="grid grid-cols-1 gap-y-8 py-10 sm:grid-cols-3">
-            {copy.hero.trust.map((t, i) => (
+      {/* Floating Glass Stat Tiles ---------------------------------------- */}
+      <div className="border-t border-line/50 bg-paper/60 backdrop-blur-md">
+        <Container className="py-8 md:py-10">
+          <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
+            {copy.hero.trust.map((t) => (
               <div
                 key={t.label}
-                className={[
-                  'sm:px-10',
-                  i > 0 ? 'sm:border-l sm:border-line' : '',
-                  i === 0 ? 'sm:pl-0' : '',
-                  i === copy.hero.trust.length - 1 ? 'sm:pr-0' : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
+                className="glass-card glass-card-hover rounded-[var(--radius-md)] p-6 md:p-8"
               >
-                <dd className="t-number text-[2.25rem] text-teal-900 tabular-nums md:text-[2.75rem]">
+                <dd className="t-number text-[2.25rem] text-teal-900 tabular-nums md:text-[2.75rem] font-bold">
                   {t.value}
                 </dd>
-                <dt className="mt-2.5 max-w-[17rem] t-small">{t.label}</dt>
+                <dt className="mt-2 max-w-[17rem] t-small text-ink-soft">{t.label}</dt>
               </div>
             ))}
           </dl>

@@ -1,4 +1,8 @@
 {
   "name": "Lailas Hospital & IVF Centre",
-  "description": "Official website for Lailas Hospital and IVF Centre in Chemmad, Malappuram, Kerala. Dedicated care for women's healthcare, maternity, and fertility consultations."
+  "description": "Official website for Lailas Hospital and IVF Centre in Chemmad, Malappuram, Kerala. Dedicated care for women's healthcare, maternity, and fertility consultations.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

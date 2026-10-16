@@ -32,13 +32,19 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
   };
 
   return (
-    <div ref={listRef} className="border-t border-line">
+    <div ref={listRef} className="space-y-3.5">
       {items.map((item) => {
         const isOpen = open === item.id;
         const triggerId = `${base}-${item.id}-t`;
         const panelId = `${base}-${item.id}-p`;
         return (
-          <div key={item.id} className="border-b border-line">
+          <div
+            key={item.id}
+            className={cn(
+              'glass-card rounded-[var(--radius-md)] px-6 md:px-8 border border-white/80 shadow-xs transition-all duration-300',
+              isOpen && 'shadow-md border-teal-600/30 bg-paper/90',
+            )}
+          >
             <h3 className="t-h4">
               <button
                 id={triggerId}
@@ -48,17 +54,17 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? null : item.id)}
                 onKeyDown={onKeyDown}
-                className="flex min-h-16 w-full items-center justify-between gap-6 py-5 text-left t-h4 font-semibold text-ink transition-colors hover:text-teal-800 md:t-h4"
+                className="flex min-h-16 w-full items-center justify-between gap-6 py-5 text-left t-h4 font-semibold text-ink transition-colors hover:text-teal-800"
               >
                 <span>{item.title}</span>
                 <span
                   className={cn(
-                    'grid size-10 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color] duration-300',
-                    isOpen ? 'rotate-45 border-teal-700 bg-teal-700 text-ivory' : 'border-ink/20 text-teal-800',
+                    'grid size-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color] duration-300',
+                    isOpen ? 'rotate-45 border-teal-700 bg-teal-700 text-ivory' : 'border-line bg-ivory text-teal-800',
                   )}
                   aria-hidden="true"
                 >
-                  <Plus className="size-5" />
+                  <Plus className="size-4" />
                 </span>
               </button>
             </h3>
@@ -73,7 +79,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
               )}
             >
               <div className="overflow-hidden">
-                <p className="max-w-[34rem] pb-6 text-ink-soft">{item.body}</p>
+                <p className="max-w-[34rem] pb-6 text-ink-soft leading-relaxed">{item.body}</p>
               </div>
             </div>
           </div>

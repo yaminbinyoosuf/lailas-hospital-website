@@ -37,38 +37,40 @@ export function Services() {
           <p className="t-lead lg:col-span-5">{copy.services.lead}</p>
         </Reveal>
 
-        <div
-          ref={tabsRef}
-          role="tablist"
-          aria-label={copy.services.groupsLabel}
-          className="scroll-row -mx-5 mt-12 auto-cols-max gap-2 px-5 sm:mx-0 sm:flex sm:flex-wrap sm:px-0"
-        >
-          {serviceGroups.map((g) => {
-            const selected = g === active;
-            return (
-              <button
-                key={g}
-                id={`${base}-tab-${g}`}
-                role="tab"
-                type="button"
-                aria-selected={selected}
-                aria-controls={`${base}-panel-${g}`}
-                tabIndex={selected ? 0 : -1}
-                onClick={() => setActive(g)}
-                onKeyDown={onKeyDown}
-                className={cn(
-                  'min-h-11 rounded-[var(--radius-sm)] px-4 t-small font-semibold whitespace-nowrap transition-colors',
-                  selected
-                    ? g === 'emergency'
-                      ? 'bg-emergency text-white'
-                      : 'bg-teal-800 text-ivory'
-                    : 'bg-sand text-ink-soft hover:bg-sand-deep hover:text-ink',
-                )}
-              >
-                {copy.services.groups[g].name}
-              </button>
-            );
-          })}
+        <div className="mt-12 overflow-x-auto pb-2 scrollbar-none">
+          <div
+            ref={tabsRef}
+            role="tablist"
+            aria-label={copy.services.groupsLabel}
+            className="inline-flex p-1.5 rounded-[var(--radius-md)] glass-card border border-white/80 shadow-xs gap-1.5"
+          >
+            {serviceGroups.map((g) => {
+              const selected = g === active;
+              return (
+                <button
+                  key={g}
+                  id={`${base}-tab-${g}`}
+                  role="tab"
+                  type="button"
+                  aria-selected={selected}
+                  aria-controls={`${base}-panel-${g}`}
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => setActive(g)}
+                  onKeyDown={onKeyDown}
+                  className={cn(
+                    'min-h-11 rounded-[var(--radius-sm)] px-5 t-small font-semibold whitespace-nowrap transition-all duration-300',
+                    selected
+                      ? g === 'emergency'
+                        ? 'bg-emergency text-white shadow-xs'
+                        : 'bg-teal-800 text-ivory shadow-xs'
+                      : 'text-ink-soft hover:bg-sand/60 hover:text-ink',
+                  )}
+                >
+                  {copy.services.groups[g].name}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {serviceGroups.map((g) => {

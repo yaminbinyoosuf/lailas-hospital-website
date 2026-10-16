@@ -24,14 +24,16 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-300',
-        scrolled ? 'border-line bg-ivory/95 shadow-[0_8px_24px_-20px_rgb(31_42_39/0.35)] backdrop-blur-sm' : 'border-transparent bg-ivory',
+        'sticky top-0 z-40 border-b backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300',
+        scrolled
+          ? 'border-white/80 bg-ivory/85 shadow-[0_8px_30px_rgb(11_36_31/0.08)]'
+          : 'border-white/60 bg-ivory/70 shadow-[0_2px_12px_rgb(11_36_31/0.03)]',
       )}
     >
       <Container
         className={cn(
           'flex items-center justify-between gap-6 transition-[padding] duration-300',
-          scrolled ? 'py-2' : 'py-3 xl:py-4',
+          scrolled ? 'py-2.5' : 'py-3.5 xl:py-4',
         )}
       >
         <Link to="/" aria-label={copy.a11y.home} className="shrink-0 rounded-md">
@@ -39,7 +41,7 @@ export function Header() {
         </Link>
 
         <nav aria-label={copy.a11y.mainNav} className="hidden xl:block">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-1.5 p-1 rounded-full glass-card border border-white/80 shadow-xs">
             {mainNav.map((item) => (
               <li key={item.key}>
                 <NavLink
@@ -47,9 +49,10 @@ export function Header() {
                   end
                   className={({ isActive }) =>
                     cn(
-                      'relative inline-flex min-h-12 items-center whitespace-nowrap px-3 t-body font-semibold text-ink-soft transition-colors hover:text-teal-900',
-                      'after:absolute after:inset-x-3 after:bottom-2 after:h-0.5 after:origin-left after:rounded-full after:bg-clay-500 after:transition-transform after:duration-300',
-                      isActive && !item.to.includes('#') ? 'text-teal-900 after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100',
+                      'relative inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-4 t-body font-semibold transition-all duration-200',
+                      isActive && !item.to.includes('#')
+                        ? 'bg-teal-800 text-ivory shadow-xs'
+                        : 'text-ink-soft hover:bg-teal-900/5 hover:text-teal-900',
                     )
                   }
                 >
