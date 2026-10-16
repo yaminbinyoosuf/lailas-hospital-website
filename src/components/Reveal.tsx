@@ -11,6 +11,9 @@ interface RevealProps {
 }
 
 const ease = [0.22, 1, 0.36, 1] as const;
+/** Short and quiet: 400ms, 12px. Staggered groups never wait more than 120ms. */
+const DURATION = 0.4;
+const MAX_DELAY = 0.12;
 
 /**
  * Soft fade and rise when content scrolls into view. Runs once.
@@ -20,7 +23,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
  * motion features fail to load, nothing is left invisible. Content already on
  * screen at load never animates, and reduced motion turns the effect off.
  */
-export function Reveal({ children, className, delay = 0, y = 20, as = 'div' }: RevealProps) {
+export function Reveal({ children, className, delay = 0, y = 12, as = 'div' }: RevealProps) {
   const Comp = as === 'li' ? m.li : m.div;
   const ref = useRef<HTMLDivElement & HTMLLIElement>(null);
   const reduce = useReducedMotion();
@@ -40,7 +43,7 @@ export function Reveal({ children, className, delay = 0, y = 20, as = 'div' }: R
       className={className}
       initial={false}
       animate={hidden ? { opacity: 0, y } : { opacity: 1, y: 0 }}
-      transition={hidden ? { duration: 0 } : { duration: 0.8, ease, delay }}
+      transition={hidden ? { duration: 0 } : { duration: DURATION, ease, delay: Math.min(delay, MAX_DELAY) }}
     >
       {children}
     </Comp>

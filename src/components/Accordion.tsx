@@ -59,7 +59,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
                 <span>{item.title}</span>
                 <span
                   className={cn(
-                    'grid size-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color] duration-300',
+                    'grid size-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color] duration-200',
                     isOpen ? 'rotate-45 border-teal-700 bg-teal-700 text-ivory' : 'border-line bg-ivory text-teal-800',
                   )}
                   aria-hidden="true"
@@ -74,7 +74,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
               aria-labelledby={triggerId}
               inert={!isOpen}
               className={cn(
-                'grid transition-[grid-template-rows,opacity] duration-400 ease-[var(--ease-gentle)]',
+                'grid transition-[grid-template-rows,opacity] duration-250 ease-[var(--ease-gentle)]',
                 isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
               )}
             >
