@@ -33,7 +33,7 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <Container className="relative z-10 grid items-center gap-12 pt-10 pb-14 md:pt-16 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16">
+      <Container className="relative z-10 grid items-center gap-9 pt-10 pb-14 md:grid-cols-2 md:gap-8 md:pt-14 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16">
         {/* Claim --------------------------------------------------------- */}
         <div className="hero-enter lg:col-span-7">
           <span className="inline-flex items-center gap-2 rounded-full bg-paper/80 px-3.5 py-2 t-label text-teal-800 ring-1 ring-teal-600/15 shadow-[0_8px_24px_rgb(11_36_31/0.06)] backdrop-blur-sm">

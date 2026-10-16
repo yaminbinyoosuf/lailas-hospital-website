@@ -283,6 +283,11 @@
 }
 @media (min-width: 768px) {
   .hero-composition {
+    min-height: 26rem;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-composition {
     min-height: 34rem;
   }
 }
