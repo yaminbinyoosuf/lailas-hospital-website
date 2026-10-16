@@ -34,7 +34,7 @@ export function DoctorsPage() {
   return (
     <>
       <PageMeta page="doctors" />
-      <div className="relative overflow-hidden bg-ivory ambient-mesh">
+      <div>
         <PageHero title={page.title} lead={page.lead} />
 
         {/* Interactive Department Filter Bar */}
@@ -42,7 +42,7 @@ export function DoctorsPage() {
           <div
             role="group"
             aria-label={copy.doctors.filterLabel}
-            className="flex flex-wrap items-center gap-2 p-1.5 rounded-[var(--radius-md)] glass-card border border-white/80 shadow-xs"
+            className="flex flex-wrap items-center gap-2 rounded-[var(--radius-md)] border border-line bg-paper p-1.5"
           >
             <button
               type="button"
@@ -104,31 +104,19 @@ export function DoctorsPage() {
         </Container>
       </section>
 
-      {/* 24/7 Duty Doctors High-Impact Glass Banner */}
+      {/* Duty doctors banner */}
       <section aria-labelledby="duty-title" className="pt-6 pb-20 md:pb-28">
         <Container>
-          <Reveal className="on-dark relative overflow-hidden rounded-[var(--radius-lg)] bg-teal-950 text-ivory p-8 md:p-12 shadow-[var(--shadow-lift)] border border-teal-800/40 glass-dark">
-            {/* Ambient Background Glow */}
-            <div
-              className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full bg-teal-500/15 blur-3xl"
-              aria-hidden="true"
-            />
-            <div
-              className="pointer-events-none absolute -left-20 -bottom-20 size-72 rounded-full bg-clay-500/10 blur-3xl"
-              aria-hidden="true"
-            />
-
-            <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <Reveal className="on-dark rounded-[var(--radius-lg)] bg-teal-950 p-8 text-ivory md:p-12">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="flex items-start gap-5">
-                <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-teal-900/90 text-teal-300 ring-1 ring-white/10 shadow-xs">
+                <div className="grid size-14 shrink-0 place-items-center rounded-[var(--radius-md)] bg-teal-900 text-teal-300">
                   <Clock className="size-7" aria-hidden="true" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2.5">
-                    <span className="relative flex size-3">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-300 opacity-75" aria-hidden="true" />
-                      <span className="relative inline-flex size-3 rounded-full bg-teal-300" aria-hidden="true" />
-                    </span>
+                    {/* Static dot: the endless ping animation was decoration only. */}
+                    <span className="size-2.5 rounded-full bg-teal-300" aria-hidden="true" />
                     <span className="t-label text-teal-300">{copy.doctors.duty.label}</span>
                   </div>
                   <h2 id="duty-title" className="t-h3 mt-2 text-ivory">

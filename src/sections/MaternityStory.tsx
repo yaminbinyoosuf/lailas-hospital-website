@@ -59,8 +59,9 @@ export function MaternityStory() {
               as="li"
               key={e.title}
               delay={i * 0.08}
-              className="glass-card glass-card-hover rounded-[var(--radius-md)] p-6 border-t-2 border-t-clay-400 shadow-sm"
+              className="rounded-[var(--radius-md)] border border-line bg-paper p-6"
             >
+              <span className="mb-4 block h-0.5 w-8 rounded-full bg-clay-400" aria-hidden="true" />
               <h4 className="t-h3 text-ink font-semibold">{e.title}</h4>
               <p className="mt-2.5 text-ink-soft leading-relaxed">{e.body}</p>
             </Reveal>

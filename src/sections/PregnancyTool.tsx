@@ -82,8 +82,8 @@ export function PregnancyTool() {
                     className={cn(
                       'min-h-11 rounded-[var(--radius-sm)] px-4 t-ui transition-colors duration-150',
                       week === m.week
-                        ? 'bg-teal-800 text-ivory shadow-xs'
-                        : 'glass-pill text-ink-soft hover:bg-sand/60 hover:text-ink',
+                        ? 'border border-teal-800 bg-teal-800 text-ivory'
+                        : 'border border-line bg-paper text-ink-soft hover:border-teal-600 hover:text-ink',
                     )}
                   >
                     {copy.pregnancy.milestones[m.id]} <span className="font-normal opacity-80">({m.week})</span>
@@ -101,7 +101,7 @@ export function PregnancyTool() {
               {stage.name}
             </p>
             <div
-              className="glass-card rounded-[var(--radius-lg)] p-8 md:p-10 shadow-[var(--shadow-lift)] ring-1 ring-white/80"
+              className="rounded-[var(--radius-lg)] border border-line bg-paper p-6 sm:p-8 md:p-10"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                 <h3 className="t-h3 text-teal-950 font-semibold">{stage.name}</h3>

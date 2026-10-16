@@ -23,8 +23,8 @@ export function IvfTimeline({ onDark = true }: { onDark?: boolean }) {
   const body = onDark ? 'text-teal-100' : 'text-ink-soft';
 
   const cardClass = onDark
-    ? 'glass-dark rounded-[var(--radius-md)] p-6 relative border border-white/10 shadow-sm'
-    : 'glass-card rounded-[var(--radius-md)] p-6 relative border border-white/80 shadow-sm';
+    ? 'rounded-[var(--radius-md)] border border-white/10 bg-teal-800 p-6'
+    : 'rounded-[var(--radius-md)] border border-line bg-paper p-6';
 
   return (
     <ol className="relative grid gap-6 md:grid-cols-4 md:gap-6">

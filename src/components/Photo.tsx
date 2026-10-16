@@ -4,27 +4,42 @@ import { cn } from '../lib/format';
 
 export type PhotoShape = 'arch' | 'cradle' | 'soft' | 'circle' | 'none';
 
+/* arch, cradle and soft were three names for the same radius; kept as
+   aliases so callers do not change. */
 const shapes: Record<PhotoShape, string> = {
-  arch: 'shape-arch',
-  cradle: 'shape-cradle',
-  soft: 'shape-soft',
+  arch: 'rounded-[var(--radius-lg)]',
+  cradle: 'rounded-[var(--radius-lg)]',
+  soft: 'rounded-[var(--radius-lg)]',
   circle: 'rounded-full',
   none: '',
 };
 
-/* Rich, subtle modern hospital gradients for when a photo slot is unpopulated */
+/* Flat tonal panels for positions still waiting for a photograph. */
 const tiles: Record<Tone, string> = {
-  sand: 'bg-gradient-to-br from-sand via-[#f7f0e6] to-sand-deep text-clay-600',
-  sage: 'bg-gradient-to-br from-sage-50 via-sage-100 to-sage-200 text-teal-700',
-  clay: 'bg-gradient-to-br from-clay-50 via-[#fcf5ef] to-clay-100 text-clay-700',
-  teal: 'bg-gradient-to-br from-teal-50 via-teal-100/70 to-teal-100 text-teal-800',
+  sand: 'bg-sand text-clay-600',
+  sage: 'bg-sage-100 text-teal-700',
+  clay: 'bg-clay-50 text-clay-600',
+  teal: 'bg-teal-50 text-teal-700',
 };
 
+/* On teal-900 sections. */
 const darkTiles: Record<Tone, string> = {
-  sand: 'bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 text-teal-300',
-  sage: 'bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 text-teal-200',
-  clay: 'bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 text-clay-200',
-  teal: 'bg-gradient-to-br from-teal-950 via-teal-900 to-teal-800 text-teal-300',
+  sand: 'bg-teal-800 text-teal-300',
+  sage: 'bg-teal-800 text-teal-200',
+  clay: 'bg-teal-800 text-clay-200',
+  teal: 'bg-teal-800 text-teal-300',
+};
+
+/* Shown instead of a portrait until one is supplied. "J" and "S": only the
+   names as given are used (Dr. Jambir's full name is unconfirmed, Q9/Q31). */
+const doctorInitials: Record<string, string> = {
+  'doctor-laila-beegum': 'LB',
+  'doctor-geethanjali-s': 'GS',
+  'doctor-amith-k': 'AK',
+  'doctor-jambir': 'J',
+  'doctor-v-j-sonia': 'VS',
+  'doctor-jitha-vineeth': 'JV',
+  'doctor-sumiya': 'S',
 };
 
 interface PhotoProps {
@@ -47,8 +62,8 @@ interface PhotoProps {
 }
 
 /**
- * A responsive photo with blur-up, or a sophisticated clinical placeholder
- * when the photo is being shot. Clean, dignified and accessible.
+ * A responsive photo with blur-up, or a flat placeholder while the photo is
+ * still to be taken. Placeholders are decorative and hidden from assistive tech.
  */
 export function Photo({
   id,
@@ -74,17 +89,7 @@ export function Photo({
     if (imgRef.current?.complete) setLoaded(true);
   }, []);
 
-  const frame = cn('relative isolate overflow-hidden ring-1 ring-black/[0.04]', shapes[shape], className);
-
-const doctorInitials: Record<string, string> = {
-  'doctor-laila-beegum': 'LB',
-  'doctor-geethanjali-s': 'GS',
-  'doctor-amith-k': 'AK',
-  'doctor-jambir': 'J', // Q9, Q31: full name not confirmed
-  'doctor-v-j-sonia': 'VS',
-  'doctor-jitha-vineeth': 'JV',
-  'doctor-sumiya': 'S',
-};
+  const frame = cn('relative isolate overflow-hidden', shapes[shape], className);
 
   if (!photo) {
     if (omitIfMissing) return null;
@@ -94,29 +99,10 @@ const doctorInitials: Record<string, string> = {
       return (
         <div
           aria-hidden="true"
-          className={cn(
-            frame,
-            'flex flex-col items-center justify-center bg-gradient-to-br from-teal-50/90 via-[#f7f1e7] to-teal-100/70 text-teal-900 border border-white/80 shadow-xs relative select-none',
-          )}
+          className={cn(frame, 'flex select-none items-center justify-center bg-teal-50 text-teal-800')}
           style={{ aspectRatio: ratio }}
         >
-          {/* Subtle medical emblem watermark */}
-          <svg
-            className="absolute inset-0 h-full w-full opacity-[0.14] text-teal-800"
-            viewBox="0 0 100 100"
-            fill="none"
-            aria-hidden="true"
-          >
-            <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
-            <path d="M50 24v52M24 50h52" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="50" cy="50" r="16" stroke="currentColor" strokeWidth="0.8" />
-          </svg>
-          <div className="relative z-10 flex flex-col items-center">
-            <span className="font-heading font-semibold text-teal-900 text-xl sm:text-2xl tracking-tight drop-shadow-xs">
-              {initials}
-            </span>
-          </div>
-          <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent pointer-events-none" />
+          <span className="font-heading text-xl font-semibold tracking-tight sm:text-2xl">{initials}</span>
         </div>
       );
     }
@@ -182,7 +168,7 @@ const doctorInitials: Record<string, string> = {
           decoding="async"
           onLoad={() => setLoaded(true)}
           className={cn(
-            'absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.03]',
+            'absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-out',
             loaded || priority || !hydrated ? 'opacity-100' : 'opacity-0',
           )}
         />

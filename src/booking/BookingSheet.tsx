@@ -141,7 +141,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
   };
 
   const choice =
-    'flex min-h-14 w-full items-center justify-between gap-4 rounded-[var(--radius-md)] glass-card border border-white/80 px-5 py-3.5 text-left transition-all duration-200 hover:border-teal-600 hover:bg-teal-50/80 shadow-xs';
+    'flex min-h-14 w-full items-center justify-between gap-4 rounded-[var(--radius-md)] border border-line bg-paper px-5 py-3.5 text-left transition-colors duration-150 hover:border-teal-600 hover:bg-teal-50';
 
   return (
     <dialog
@@ -149,7 +149,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
       aria-labelledby={`${ids}-title`}
       onClose={onClosed}
       onClick={(e) => e.target === dialogRef.current && close()}
-      className="sheet fixed inset-x-0 top-auto bottom-0 m-0 max-h-[92dvh] w-full max-w-none overflow-hidden rounded-t-[var(--radius-lg)] bg-ivory/95 backdrop-blur-2xl ring-1 ring-white/80 shadow-[var(--shadow-lift)] p-0 text-ink sm:inset-0 sm:m-auto sm:h-fit sm:max-w-xl sm:rounded-[var(--radius-lg)]"
+      className="sheet fixed inset-x-0 top-auto bottom-0 m-0 max-h-[92dvh] w-full max-w-none overflow-hidden rounded-t-[var(--radius-lg)] bg-ivory shadow-[var(--shadow-lift)] p-0 text-ink sm:inset-0 sm:m-auto sm:h-fit sm:max-w-xl sm:rounded-[var(--radius-lg)]"
     >
       <div className="flex max-h-[92dvh] flex-col">
         <div className="flex items-start justify-between gap-4 border-b border-line/60 px-6 pt-5 pb-4">

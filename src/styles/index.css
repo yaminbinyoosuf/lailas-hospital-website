@@ -61,12 +61,12 @@
   --color-emergency-700: #8c1d17;
   --color-emergency-50: #fcedeb;
 
-  /* Refined Glassmorphism Radii Scale */
+  /* Three radius tiers: controls, cards and media, page-level panels */
   --radius-sm: 0.625rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
 
-  /* Multi-layered Glassmorphic Shadows */
+  /* Shadows are for floating things only: soft for the bars, lift for dialogs */
   --shadow-soft: 0 4px 24px -4px rgb(11 36 31 / 0.06), 0 1px 2px rgb(11 36 31 / 0.04);
   --shadow-lift: 0 20px 48px -12px rgb(11 36 31 / 0.14), 0 4px 12px -2px rgb(11 36 31 / 0.06);
 
@@ -235,59 +235,20 @@
 }
 
 /* ==========================================================================
-   Glassmorphism UI System
+   Surfaces
+   Cards are plain utilities: `border border-line bg-paper` (light) or
+   `border border-white/10 bg-teal-800` (on teal-900). No card is translucent.
+   Translucency is kept only for the two bars that float over content (sticky
+   header, mobile action bar): 12px blur at most, with a solid fallback, and
+   nothing translucent inside them.
    ========================================================================== */
-@utility glass-card {
-  background: rgb(255 253 249 / 0.76);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgb(255 255 255 / 0.85);
-  box-shadow: var(--shadow-soft), inset 0 1px 0 0 rgb(255 255 255 / 0.9);
-}
-
-@utility glass-card-hover {
-  transition: transform 0.35s var(--ease-gentle), box-shadow 0.35s var(--ease-gentle), border-color 0.35s var(--ease-gentle);
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lift);
-    border-color: rgb(43 107 96 / 0.28);
-  }
-}
-
-@utility glass-pill {
-  background: rgb(255 253 249 / 0.65);
-  backdrop-filter: blur(12px);
+@utility glass-bar {
+  background: rgb(251 247 240 / 0.88);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgb(226 216 200 / 0.8);
-  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.8);
-}
-
-@utility glass-dark {
-  background: rgb(18 54 47 / 0.65);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgb(255 255 255 / 0.14);
-  box-shadow: 0 16px 40px -12px rgb(0 0 0 / 0.25), inset 0 1px 0 0 rgb(255 255 255 / 0.12);
-}
-
-@utility ambient-mesh {
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(220, 235, 230, 0.5) 0px, transparent 55%),
-    radial-gradient(at 100% 0%, rgba(246, 230, 218, 0.45) 0px, transparent 50%),
-    radial-gradient(at 50% 100%, rgba(230, 236, 225, 0.4) 0px, transparent 55%);
-}
-
-/* ==========================================================================
-   Shapes: Clean contemporary architectural curves
-   ========================================================================== */
-@utility shape-arch {
-  border-radius: var(--radius-lg);
-}
-@utility shape-cradle {
-  border-radius: var(--radius-lg);
-}
-@utility shape-soft {
-  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    background: var(--color-ivory);
+  }
 }
 
 @utility scrollbar-none {

@@ -196,6 +196,10 @@ export interface ResolvedPhoto {
  * Beegum, or a stock ward as this labour room, would fabricate identities and
  * places. The caller renders a deliberate placeholder in that case.
  */
+/** True once a real photograph has been processed for this id. Layouts use
+ *  it to choose a composition that does not depend on the image. */
+export const hasPhoto = (id: ImageId) => getPhoto(id) !== undefined;
+
 export function getPhoto(id: ImageId): ResolvedPhoto | undefined {
   const local = manifest[id];
   if (!local || local.widths.length === 0) return undefined;

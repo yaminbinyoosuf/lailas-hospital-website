@@ -42,7 +42,7 @@ export function Services() {
             ref={tabsRef}
             role="tablist"
             aria-label={copy.services.groupsLabel}
-            className="inline-flex p-1.5 rounded-[var(--radius-md)] glass-card border border-white/80 shadow-xs gap-1.5"
+            className="inline-flex gap-1.5 rounded-[var(--radius-md)] border border-line bg-paper p-1.5"
           >
             {serviceGroups.map((g) => {
               const selected = g === active;
@@ -61,8 +61,8 @@ export function Services() {
                     'min-h-11 rounded-[var(--radius-sm)] px-5 t-ui whitespace-nowrap transition-colors duration-150',
                     selected
                       ? g === 'emergency'
-                        ? 'bg-emergency text-white shadow-xs'
-                        : 'bg-teal-800 text-ivory shadow-xs'
+                        ? 'bg-emergency text-white'
+                        : 'bg-teal-800 text-ivory'
                       : 'text-ink-soft hover:bg-sand/60 hover:text-ink',
                   )}
                 >

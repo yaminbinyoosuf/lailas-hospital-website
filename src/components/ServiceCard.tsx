@@ -15,12 +15,12 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
   return (
     <article
       className={cn(
-        'group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] glass-card glass-card-hover p-2.5 sm:p-3',
+        'relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] border border-line bg-paper p-2.5 sm:p-3',
         wide && 'md:flex-row md:items-stretch',
         className,
       )}
     >
-      <div className={cn('overflow-hidden rounded-[var(--radius-md)] ring-1 ring-black/5 shrink-0', wide && 'md:w-1/2')}>
+      <div className={cn('shrink-0 overflow-hidden rounded-[var(--radius-md)]', wide && 'md:w-1/2')}>
         <Photo
           id={service.imageId as ImageId}
           shape="none"

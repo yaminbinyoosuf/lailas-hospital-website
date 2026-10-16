@@ -1,42 +1,34 @@
-import { CalendarDays, MessageCircle, Phone } from 'lucide-react';
+import { CalendarDays, MessageCircle, Navigation, Phone } from 'lucide-react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button, ButtonAnchor } from '../components/Button';
 import { Container } from '../components/Container';
 import { Photo } from '../components/Photo';
-import { contact, whatsappLink } from '../content/site';
+import { hasPhoto } from '../content/images';
+import { address, contact, hours, whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
+import { formatDays, formatHours } from '../lib/format';
 
 /**
  * Hero.
  *
  * Three zones, in descending order of weight: the claim (eyebrow, headline,
- * lead, actions), the photograph, and a trust band of three figures.
+ * lead, actions), the photograph, and a band of three figures.
  *
- * The tagline sits above the headline as a small label rather than as a
- * second coloured line beneath it, which was competing with the headline for
- * attention. The trust band and the emergency note are driven by copy, so no
- * string is hardcoded here.
+ * Until the hero photograph exists, the right-hand column shows the visiting
+ * information instead (hours and address, the same facts as the Visit
+ * section), on large screens only. On phones the claim is followed directly by
+ * the figures, so the first screen is not spent on an empty panel.
  */
 export function Hero() {
   const copy = useCopy();
   const { open } = useBooking();
+  const withPhoto = hasPhoto('hero-main');
 
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-ivory ambient-mesh">
-      {/* Decorative ambient light orbs */}
-      <div
-        className="pointer-events-none absolute -left-20 top-1/4 size-96 rounded-full bg-teal-200/20 blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute right-0 top-10 size-96 rounded-full bg-clay-200/25 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <Container className="grid items-center gap-12 pt-12 pb-14 md:pt-16 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16 relative z-10">
-        {/* Claim --------------------------------------------------------- */}
+    <section aria-labelledby="hero-title" className="bg-ivory">
+      <Container className="grid items-center gap-12 pt-10 pb-12 md:pt-16 md:pb-14 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16">
         <div className="lg:col-span-7">
-          <span className="inline-flex items-center rounded-full bg-teal-50/90 px-3 py-1 t-label text-teal-800 ring-1 ring-teal-600/15">
+          <span className="inline-flex items-center rounded-full bg-teal-50 px-3 py-1 t-label text-teal-800">
             {copy.hero.tagline}
           </span>
 
@@ -46,7 +38,7 @@ export function Hero() {
 
           <p className="t-lead mt-6 max-w-[34rem] text-ink-soft">{copy.hero.lead}</p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
             <Button size="lg" icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
               {copy.actions.book}
             </Button>
@@ -68,7 +60,7 @@ export function Hero() {
                 <a
                   key="tel"
                   href={`tel:${contact.primary.tel}`}
-                  className="font-semibold tabular-nums text-ink underline decoration-emergency/40 underline-offset-4 transition-colors hover:decoration-emergency"
+                  className="font-semibold tabular-nums text-ink underline decoration-emergency/40 underline-offset-4 transition-colors duration-150 hover:decoration-emergency"
                 >
                   {contact.primary.display}
                 </a>,
@@ -77,35 +69,72 @@ export function Hero() {
           </p>
         </div>
 
-        {/* Photograph inside layered glassmorphic architectural frame ----- */}
-        <div className="lg:col-span-5">
-          <div className="p-2.5 sm:p-3 glass-card rounded-[calc(var(--radius-lg)+0.5rem)] shadow-[var(--shadow-lift)]">
+        {withPhoto ? (
+          <div className="lg:col-span-5">
             <Photo
               id="hero-main"
               shape="soft"
               priority
               aspect={4 / 5}
               sizes="(min-width: 1024px) 38vw, 90vw"
-              className="mx-auto max-w-[32rem] rounded-[var(--radius-lg)]"
+              className="mx-auto max-w-[32rem]"
             />
           </div>
-        </div>
+        ) : (
+          <aside
+            aria-labelledby="hero-visit-title"
+            className="hidden rounded-[var(--radius-lg)] border border-line bg-paper p-8 lg:col-span-5 lg:block xl:p-10"
+          >
+            <h2 id="hero-visit-title" className="t-h4 text-teal-950">
+              {copy.visit.hoursTitle}
+            </h2>
+            <dl className="mt-6 space-y-5">
+              <div>
+                <dt className="t-small text-ink-soft">{copy.visit.hours.allDay}</dt>
+                <dd className="mt-0.5 font-semibold text-ink">{copy.time.open24EveryDay}</dd>
+              </div>
+              <div className="border-t border-line pt-5">
+                <dt className="t-small text-ink-soft">{copy.visit.hours.opd}</dt>
+                <dd className="mt-0.5 font-semibold text-ink">
+                  {formatDays(hours.opd.days, copy)}, {formatHours(hours.opd, copy)}
+                </dd>
+              </div>
+              <div className="border-t border-line pt-5">
+                <dt className="t-small text-ink-soft">{copy.visit.addressTitle}</dt>
+                <dd className="mt-0.5 text-ink">
+                  {address.postalLines.map((l) => (
+                    <span key={l} className="block">
+                      {l}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            </dl>
+            <ButtonAnchor
+              href={address.directionsUrl}
+              variant="secondary"
+              className="mt-7"
+              icon={<Navigation aria-hidden="true" />}
+            >
+              {copy.actions.directions}
+            </ButtonAnchor>
+          </aside>
+        )}
       </Container>
 
-      {/* Floating Glass Stat Tiles ---------------------------------------- */}
-      <div className="border-t border-line/50 bg-paper/60 backdrop-blur-md">
-        <Container className="py-8 md:py-10">
-          <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
+      {/* Three figures. On phones each is one compact row (figure, then
+          label); from sm they sit side by side. <dt> comes first in the DOM,
+          and order-first puts the figure in front visually. */}
+      <div className="border-t border-line bg-paper">
+        <Container className="py-6 md:py-8">
+          <dl className="grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {copy.hero.trust.map((t) => (
-              // <dt> must come before <dd>; flex-col-reverse keeps the figure on top.
               <div
                 key={t.label}
-                className="glass-card glass-card-hover flex flex-col-reverse rounded-[var(--radius-md)] p-6 md:p-8"
+                className="grid grid-cols-[minmax(6.5rem,auto)_1fr] items-baseline gap-x-4 py-3 first:pt-0 last:pb-0 sm:grid-cols-1 sm:px-6 sm:py-0 sm:first:pl-0 sm:last:pr-0"
               >
-                <dt className="mt-2 max-w-[17rem] t-small text-ink-soft">{t.label}</dt>
-                <dd className="t-number text-[2.25rem] text-teal-900 md:text-[2.75rem]">
-                  {t.value}
-                </dd>
+                <dt className="t-small text-ink-soft sm:mt-2">{t.label}</dt>
+                <dd className="order-first t-number text-[1.75rem] text-teal-900 md:text-[2.5rem]">{t.value}</dd>
               </div>
             ))}
           </dl>

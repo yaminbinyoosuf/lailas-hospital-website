@@ -41,8 +41,8 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
           <div
             key={item.id}
             className={cn(
-              'glass-card rounded-[var(--radius-md)] px-6 md:px-8 border border-white/80 shadow-xs transition-all duration-300',
-              isOpen && 'shadow-md border-teal-600/30 bg-paper/90',
+              'rounded-[var(--radius-md)] border bg-paper px-6 transition-colors duration-200 md:px-8',
+              isOpen ? 'border-teal-600/40' : 'border-line',
             )}
           >
             <h3 className="t-h4">
