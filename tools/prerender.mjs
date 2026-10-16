@@ -46,7 +46,25 @@ async function findSsrEntry(dir) {
 
 const ssrEntry = await findSsrEntry(ssrDir);
 console.log(`prerender: using SSR entry ${path.relative(root, ssrEntry)}`);
-const { render, pages, renderHead, siteUrl } = await import(pathToFileURL(ssrEntry).href);
+/**
+ * Accept either export shape.
+ *
+ * Vite emits the entry with named exports. When a plugin changes the output
+ * format (Cloudflare's Vite plugin does) the same values arrive wrapped in
+ * `default`, which made `pages` undefined and failed with "pages is not
+ * iterable". Normalise rather than assume.
+ */
+const ssrModule = await import(pathToFileURL(ssrEntry).href);
+const ssr = typeof ssrModule.render === 'function' ? ssrModule : ssrModule.default;
+
+if (!ssr || typeof ssr.render !== 'function' || !Array.isArray(ssr.pages)) {
+  throw new Error(
+    `SSR entry at ${path.relative(root, ssrEntry)} did not expose render() and pages[]. ` +
+      `Found keys: ${Object.keys(ssrModule).join(', ') || 'none'}`,
+  );
+}
+
+const { render, pages, renderHead, siteUrl } = ssr;
 
 const template = await readFile(path.join(dist, 'index.html'), 'utf8');
 
