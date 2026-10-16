@@ -41,6 +41,8 @@ The logo and share image come from `brand/lailas-logo-source.jpg`. When the vect
 
 Every "Book" button opens one three-step form: who, which day, then name and phone. By default it opens WhatsApp to +91 8606 800 999 with the details filled in. To send to a form service instead, set `VITE_BOOKING_ENDPOINT` in `.env`. It receives a JSON POST of `{ name, phone, who, day, language, page }`.
 
+If the endpoint fails or takes longer than 15 seconds (`booking.timeoutMs` in `site.ts`), the form shows an error with Call and WhatsApp links, with the patient's details already filled in. After the WhatsApp step the form always offers the same two links, because the browser cannot report whether WhatsApp actually opened. If the booking form itself cannot load, a small dialog offers Call and WhatsApp instead, and the rest of the page keeps working.
+
 ## Hosting
 
 Upload `dist/`. Each page has its own `index.html`, plus `404.html`. `public/_redirects` sends old URLs (`/ivf-fertility`, `/about`, ...) to the new pages on Netlify and Cloudflare Pages. Other hosts need the same four rules.
@@ -126,6 +128,7 @@ order decided the winner rather than intent.
 ## Quality checks (October 2026)
 
 - Lighthouse mobile, all pages: performance 92 to 94, accessibility 100, best practices 100, SEO 100. CLS 0, TBT 0 ms.
+  **Not re-measured** since the later AI Studio changes (Google Fonts, glass surfaces). Treat these figures as out of date until Lighthouse is run again.
 - Every colour pair meets WCAG AA (`npm run check:contrast`).
 - `npm run screenshots` captures 390, 768 and 1440 px and flags sideways overflow.
 

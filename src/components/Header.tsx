@@ -64,7 +64,8 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="hidden xl:block">
+          {/* From lg the mobile bar is hidden, so Book must be here from lg too. */}
+          <div className="hidden lg:block">
             <Button icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
               {copy.actions.book}
             </Button>
@@ -78,6 +79,7 @@ export function Header() {
 
 function MobileMenu() {
   const copy = useCopy();
+  const { open } = useBooking();
   const ref = useRef<HTMLDialogElement>(null);
   const location = useLocation();
 
@@ -125,7 +127,18 @@ function MobileMenu() {
               ))}
             </ul>
           </nav>
-          <div className="border-t border-line p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
+          <div className="grid gap-3 border-t border-line p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
+            <Button
+              size="lg"
+              className="w-full"
+              icon={<CalendarDays aria-hidden="true" />}
+              onClick={() => {
+                ref.current?.close();
+                open();
+              }}
+            >
+              {copy.actions.book}
+            </Button>
             <ButtonAnchor
               href={`tel:${contact.primary.tel}`}
               variant="emergency"
