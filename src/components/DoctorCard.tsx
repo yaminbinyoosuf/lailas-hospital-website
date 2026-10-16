@@ -90,8 +90,14 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
                 <span className="sr-only">{copy.doctors.opd}</span>
               </dt>
               <dd className="min-w-0">
-                <span className="block font-medium text-ink">{formatDays(doctor.opd.days, copy)}</span>
-                <span className="block tabular-nums text-ink-muted">{formatHours(doctor.opd, copy)}</span>
+                {doctor.hasOwnOpdHours ? (
+                  <>
+                    <span className="block font-medium text-ink">{formatDays(doctor.opd.days, copy)}</span>
+                    <span className="block tabular-nums text-ink-muted">{formatHours(doctor.opd, copy)}</span>
+                  </>
+                ) : (
+                  <span className="block font-medium text-ink">{copy.doctors.opdUnconfirmed}</span>
+                )}
               </dd>
             </div>
             <div className="flex items-start gap-2.5 border-t border-line/40 pt-2">

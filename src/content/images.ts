@@ -1,8 +1,12 @@
 /**
  * Image registry. Every photo on the site is referenced by id from here.
  *
- * Provides real, authentic healthcare photography for all hospital sections,
- * clinical services, patient suites, and senior medical consultants.
+ * No photographs have been supplied yet (src/assets/photos/manifest.json is
+ * empty), so every id currently renders a placeholder. See PHOTO_SHOTLIST.md.
+ *
+ * Alt text describes what PHOTO_SHOTLIST.md asks to be photographed, in plain
+ * words and without claims about equipment or services. When a real photo is
+ * added, check its alt text against what the photo actually shows.
  */
 import manifestJson from '../assets/photos/manifest.json';
 
@@ -17,132 +21,132 @@ export interface ImageEntry {
 
 export const images = {
   'hero-main': {
-    alt: 'A mother gently cradling her newborn baby in private maternity suite at Lailas Hospital',
+    alt: 'A mother holding her newborn baby in a recovery room at Lailas Hospital',
     aspect: 4 / 5,
     tone: 'clay',
   },
   'hero-secondary': {
-    alt: 'The clean modern facade and entrance of Lailas Hospital in Chemmad',
+    alt: 'The front entrance of Lailas Hospital in Chemmad',
     aspect: 1,
     tone: 'sage',
   },
   'service-maternity': {
-    alt: 'A caring midwife and nurse checking on mother and newborn',
+    alt: 'A nurse with a mother after the birth of her baby',
     aspect: 4 / 3,
     tone: 'clay',
   },
   'service-ivf': {
-    alt: 'Advanced fertility consultation and reproductive medicine',
+    alt: 'A corner of the fertility consultation room at Lailas Hospital',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'service-gynaecology': {
-    alt: 'Specialist gynaecology consultation and patient wellness',
+    alt: 'A gynaecologist talking with a patient during a consultation',
     aspect: 4 / 3,
     tone: 'sand',
   },
   'service-paediatrics': {
-    alt: 'Senior paediatrician providing gentle developmental examination',
+    alt: 'A paediatrician with a young child',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'service-general': {
-    alt: 'Comprehensive family medicine and diagnostic consultation',
+    alt: 'A family doctor with an older patient',
     aspect: 4 / 3,
     tone: 'sand',
   },
   'service-emergency': {
-    alt: '24/7 round-the-clock emergency and trauma resuscitation unit',
+    alt: 'The emergency entrance of Lailas Hospital at dusk',
     aspect: 4 / 3,
     tone: 'teal',
   },
   'service-laboratory': {
-    alt: 'Fully automated clinical diagnostic laboratory',
+    alt: 'A technician at work in the hospital laboratory',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'service-pharmacy': {
-    alt: 'Hospital pharmacy dispensary stocked with genuine medications',
+    alt: 'The pharmacist at the hospital pharmacy counter',
     aspect: 4 / 3,
     tone: 'sand',
   },
   'maternity-story': {
-    alt: 'A peaceful newborn infant resting comfortably in nursery bassinet',
+    alt: 'A newborn baby resting in the nursery, with a nurse’s hands nearby',
     aspect: 4 / 5,
     tone: 'clay',
   },
   'maternity-checkup': {
-    alt: 'Antenatal sonography and obstetric checkup consultation',
+    alt: 'A doctor talking with a pregnant woman during an antenatal check-up',
     aspect: 4 / 3,
     tone: 'sand',
   },
   'maternity-labour': {
-    alt: 'Modern private labour and birthing delivery suite',
+    alt: 'An empty labour room at Lailas Hospital',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'maternity-newborn': {
-    alt: 'Comprehensive newborn assessment and APGAR screening',
+    alt: 'A paediatrician gently checking a newborn baby',
     aspect: 4 / 3,
     tone: 'clay',
   },
   'ivf-consultation': {
-    alt: 'Private confidential fertility and embryology counselling',
+    alt: 'A couple, seen from behind, in a private fertility consultation',
     aspect: 4 / 5,
     tone: 'teal',
   },
   'page-maternity': {
-    alt: 'Mother and healthy baby in private postpartum recovery room',
+    alt: 'A mother with her newborn baby',
     aspect: 4 / 5,
     tone: 'clay',
   },
   'page-ivf': {
-    alt: 'State-of-the-art fertility lab and cleanroom facilities',
+    alt: 'The fertility consultation room at Lailas Hospital',
     aspect: 4 / 5,
     tone: 'sage',
   },
   'staff-team': {
-    alt: 'The multidisciplinary clinical team of Lailas Hospital',
+    alt: 'Doctors, nurses and staff of Lailas Hospital together',
     aspect: 16 / 9,
     tone: 'sand',
   },
   'visit-entrance': {
-    alt: 'The main entrance and patient drop-off at Lailas Hospital',
+    alt: 'The hospital entrance and parking area, with the wheelchair ramp',
     aspect: 4 / 3,
     tone: 'sage',
   },
   'doctor-laila-beegum': {
-    alt: 'Portrait of Dr. Laila Beegum N, Chief Consultant Obstetrician & Gynaecologist',
+    alt: 'Portrait of Dr. Laila Beegum N',
     aspect: 4 / 5,
     tone: 'clay',
   },
   'doctor-geethanjali-s': {
-    alt: 'Portrait of Dr. Geethanjali S, Consultant Gynaecologist & Obstetrician',
+    alt: 'Portrait of Dr. Geethanjali S',
     aspect: 4 / 5,
     tone: 'sage',
   },
   'doctor-amith-k': {
-    alt: 'Portrait of Dr. Amith K, Consultant Paediatrician',
+    alt: 'Portrait of Dr. Amith K',
     aspect: 4 / 5,
     tone: 'sand',
   },
   'doctor-jambir': {
-    alt: 'Portrait of Dr. Jambir, Consultant Physician',
+    alt: 'Portrait of Dr. Jambir',
     aspect: 4 / 5,
     tone: 'teal',
   },
   'doctor-v-j-sonia': {
-    alt: 'Dr. V. J. Sonia, consultant obstetrician and gynaecologist at Lailas Hospital',
+    alt: 'Portrait of Dr. V. J. Sonia',
     aspect: 4 / 5,
     tone: 'sage',
   },
   'doctor-jitha-vineeth': {
-    alt: 'Dr. Jitha Vineeth, consultant gynaecologist and fertility specialist at Lailas Hospital',
+    alt: 'Portrait of Dr. Jitha Vineeth',
     aspect: 4 / 5,
     tone: 'clay',
   },
   'doctor-sumiya': {
-    alt: 'Dr. Sumiya, consultant radiologist and fetal medicine specialist at Lailas Hospital',
+    alt: 'Portrait of Dr. Sumiya',
     aspect: 4 / 5,
     tone: 'teal',
   },

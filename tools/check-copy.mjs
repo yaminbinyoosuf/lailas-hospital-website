@@ -33,9 +33,16 @@ try {
   /* no build yet */
 }
 
+// Alt text is visible to screen readers and search engines, so it follows the
+// same rules. Only the alt strings are checked, not the code comments.
+const altTargets = [path.join(root, 'src/content/images.ts')];
+
 let issues = 0;
-for (const file of targets) {
+for (const file of [...targets, ...altTargets]) {
   let text = await readFile(file, 'utf8');
+  if (altTargets.includes(file)) {
+    text = [...text.matchAll(/alt:\s*'([^']*)'/g)].map((m) => m[1]).join('\n');
+  }
   if (file.endsWith('.html')) {
     // Visible text only: drop scripts, styles, tags and the © line exception.
     text = text

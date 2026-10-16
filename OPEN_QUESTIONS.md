@@ -1,7 +1,58 @@
 # Open questions for Lailas Hospital
 
 Things that don't match across the current site, or that need the hospital to confirm before launch.
-None of these are shown on the website. Each `Q` number matches a `// Qn` comment in `src/content/site.ts`.
+Each `Q` number matches a `// Qn` comment in `src/content/site.ts`.
+
+## Verification register (updated 16 October 2026)
+
+Nothing on the site has been confirmed by the hospital in writing yet. This register says what
+the site does with each unconfirmed item today, so nothing is presented as fact by accident.
+
+### Still shown, awaiting confirmation
+
+These are shown because they come from the previous site or agree across the dataset sources.
+They are still unconfirmed.
+
+| Item | Where it appears | Q |
+|---|---|---|
+| Founded 1994; "over 30 years" | Hero, maternity, footer, meta | Q4 |
+| 70,000+ babies born | Hero, maternity, meta | dataset |
+| Ultrasound since 1996 (no longer called "the first in our area") | Maternity figures, lab card | Q5 |
+| Legal name "Lailas Health Care Limited" | Footer, privacy | Q7 |
+| Email `info@lailashospital.com` (now used everywhere, including Privacy) | Footer, contact, privacy, structured data | Q30 |
+| Domain `lailashospital.com` | Canonical links, sitemap, share tags, structured data | Q15 |
+| Phone numbers and landline labels | Everywhere | Q2, Q3 |
+| OPD window Mon to Sat, 9:00 AM to 7:00 PM | Hours, booking days | Q1, Q32 |
+| Own OPD hours for Dr. Laila Beegum N, Dr. Geethanjali S, Dr. Amith K, Dr. Jambir (from the previous site) | Doctor cards, booking, structured data | Q11 |
+| Doctor names, qualifications and languages, including "Dr. Jambir" and "BCCPM" | Doctor cards, structured data | Q9, Q10, Q31, Q33 |
+| Doctor roles. Dr. Laila Beegum N is now shown as "Consultant Obstetrician and Gynaecologist" (from her MBBS, DGO), not "Chief Consultant and Founder" | Doctor cards | Q6, Q8 |
+| Services named in copy: IUI, labour room with baby heart monitoring, PCOS care, vaccinations, high-risk pregnancy care | Service cards, IVF page, pregnancy guide | Q13 |
+| Dr. Jitha Vineeth's bio (IUI and IVF focus) and Dr. V. J. Sonia's bio (gynaecological surgery) | Doctor cards | Q36 |
+| Parking and wheelchair access, ground-floor casualty, lab and pharmacy | Visit section, FAQ | none yet |
+| 24-hour casualty, labour room, laboratory and pharmacy | Throughout | dataset |
+
+### Removed or hidden in Phase 1 (restore only after written confirmation)
+
+| Item | What the site does now | Q |
+|---|---|---|
+| "Chief Consultant and Founder" and the "Founder & Chief Consultant" label | Removed | Q6 |
+| "IVF and ICSI" as a listed offering | Shown as "Advice on IVF and ICSI" | Q13 |
+| Keyhole (laparoscopic) surgery, menopause care (as offerings) | Removed from the women's health card and from Dr. V. J. Sonia's bio | Q13 |
+| Palliative care | Removed from family medicine and Dr. Jambir's bio | Q13 |
+| "The first ultrasound in our area" | Removed; the year 1996 stays | Q5 |
+| 3D and 4D ultrasound, Doppler studies | Removed from Dr. Sumiya's bio | Q13 |
+| "Over 15 years of experience" (Dr. Jitha Vineeth) | Removed (no source found) | Q36 |
+| Ultrasound scans "day and night" | Now only the lab and pharmacy are described as 24 hours | Q13 |
+| OPD hours for Dr. V. J. Sonia, Dr. Jitha Vineeth, Dr. Sumiya (they were only the hospital window) | Cards show "Please call to confirm OPD timings"; left out of structured data | Q34 |
+| Plus Code and map coordinates (the two sources disagree, see Q16) | Hidden on the page and left out of structured data (`flags.showMapPin`) | Q16 |
+| Image alt text naming equipment and services ("state of the art", "fully automated", "embryology") | Rewritten to describe the photo brief plainly | Q20 |
+
+### Still to decide
+
+- Q35: which group each consultant sits in on the doctors page.
+- Q37: whether fetal medicine and cosmetic gynaecology become services of their own.
+- Q27: whether bookings go to a form endpoint (`VITE_BOOKING_ENDPOINT`) as well as WhatsApp.
+- Q29: hosting. `public/_redirects` only works on Netlify and Cloudflare Pages.
 
 Sources checked: `src/data/hospitalData.ts`, every page in `src/pages`, `CONTENT.md`, `README.md`, `index.html`, and the newer compiled build `lailas_hospital_2026.html`.
 
@@ -20,7 +71,7 @@ What is each number for, and should 2953377 be published?
 
 **Q15. Domain and email.** Does the hospital own `lailashospital.com`, and is `care@lailashospital.com` checked daily?
 
-**Q16. Map pin.** The structured data uses latitude 11.0421, longitude 75.9221. Please confirm these match Plus Code 2WV6+7JH and the real entrance.
+**Q16. Map pin.** The sources disagree. An earlier note here gave latitude 11.0421, longitude 75.9221 and Plus Code 2WV6+7JH. `site.ts` now holds Plus Code 7J3Q2WV6+9G at latitude 11.0434, longitude 75.91134. Neither is shown on the site or sent to search engines until the hospital confirms the real entrance (`flags.showMapPin`). The embedded map searches by name and address, not by coordinates.
 
 **Q17. Travel times** (hidden on the site until confirmed, see `flags.showTravelTimes`). The 2026 build lists the airport as about 22 km and a 35 minute drive. Please check the distance and times for all four starting points (Tirurangadi 2 km, NH 66 Thalappara 4 km, Parappanangadi station 8 km, Calicut airport 22 km).
 
@@ -121,8 +172,9 @@ This is also the address used in the `mailto:` link in the footer and on the con
 ways in the same document. The site currently reads "Dr. Jambir". A misspelled consultant name
 is not acceptable to publish.
 
-**Q32. OPD window. Resolved, both 10:00 to 19:00.** The dataset says 10:00 AM to 7:00 PM, and the
-site already used `09:00` to `19:00` in IST. Q1 can be closed.
+**Q32. OPD window. Not resolved.** The dataset says 10:00 AM to 7:00 PM. The site uses
+9:00 AM to 7:00 PM (`hours.opd` in `site.ts`), and the old Contact page said 5:00 PM (Q1). The closing time
+agrees, but the opening time does not. Please confirm the opening time.
 
 **Q33. Dr. Geethanjali S: is she currently practising?** The dataset lists only "MBBS, OBG",
 which is not a qualification format used for any other consultant here. Either the credential

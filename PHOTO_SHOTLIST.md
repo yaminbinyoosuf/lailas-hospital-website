@@ -6,12 +6,18 @@ pretends to be a finished photograph.
 
 ## Current status
 
-**All 23 positions are unfilled.** Every one renders as a deliberate tonal
-placeholder, which is why the site currently shows no photographs at all.
+**All 26 positions are unfilled** (`src/assets/photos/manifest.json` is empty).
+Every one renders as a deliberate tonal placeholder, or initials for doctors,
+which is why the site currently shows no photographs at all.
 
-This is intentional, not an oversight. Four of these positions carry the names of
+23 of the 26 positions appear on the site today. Three (`hero-secondary`,
+`staff-team`, `visit-entrance`) are registered in `src/content/images.ts` but
+**not used on any page yet**; only shoot them if those sections are planned.
+
+This is intentional, not an oversight. Seven of these positions carry the names of
 real consultants (`doctor-laila-beegum`, `doctor-geethanjali-s`, `doctor-amith-k`,
-`doctor-jambir`) and several represent this hospital's own rooms. Those cannot be
+`doctor-jambir`, `doctor-v-j-sonia`, `doctor-jitha-vineeth`, `doctor-sumiya`) and
+several represent this hospital's own rooms. Those cannot be
 filled with borrowed imagery without misrepresenting a person or a place, and the
 project carries no licence to use third party stock photography.
 
@@ -27,11 +33,11 @@ photographs present and the rest still waiting.
 If photography has to be staged in batches, this order gives the most improvement
 per frame:
 
-1. `hero-main` and `doctor-laila-beegum` to `doctor-jambir`. The hero and the four
-   consultant portraits carry the most credibility.
-2. The four service images in the default tab (`service-maternity`,
-   `service-ivf`, `service-gynaecology`, `service-paediatrics`).
-3. `maternity-story`, `staff-team`, `visit-entrance`.
+1. `hero-main` and the seven `doctor-*` portraits. The hero and the consultant
+   portraits carry the most credibility.
+2. The three service images in the default Women tab (`service-maternity`,
+   `service-ivf`, `service-gynaecology`), then `service-paediatrics`.
+3. `maternity-story`, `page-maternity`, `page-ivf`, `ivf-consultation`.
 4. The remainder.
 
 
@@ -42,13 +48,15 @@ per frame:
 - Natural daylight where possible. Warm, calm and uncluttered. Avoid showing medical equipment up close.
 - Shoot at least 2400 px on the long side, as JPG or HEIC.
 - Save each photo as `photos/<id>.jpg` and run `npm run photos`.
+- After adding a photo, check its alt text in `src/content/images.ts` against what the
+  photo actually shows. The current alt text describes the brief below, not a real photo.
 
 | id | What to shoot | Shape on site | Orientation |
 |---|---|---|---|
 | `hero-main` | A mother holding her newborn in a recovery room. Soft window light, faces relaxed. The most important photo. | Tall arch | Portrait 4:5 |
-| `hero-secondary` | The front entrance or building exterior at golden hour (late afternoon), Lailas sign visible | Circle | Square |
-| `visit-entrance` | Entrance plus parking area, with the wheelchair ramp visible | Rounded | Landscape 4:3 |
-| `staff-team` | Whole team (doctors, nurses, lab, pharmacy, reception) together outside or in the lobby | Wide | 21:9 (shoot wide) |
+| `hero-secondary` | *Not used on any page yet.* The front entrance or building exterior at golden hour (late afternoon), Lailas sign visible | Circle | Square |
+| `visit-entrance` | *Not used on any page yet.* Entrance plus parking area, with the wheelchair ramp visible | Rounded | Landscape 4:3 |
+| `staff-team` | *Not used on any page yet.* Whole team (doctors, nurses, lab, pharmacy, reception) together outside or in the lobby | Wide | 16:9 (shoot wider) |
 | `maternity-story` | Newborn resting in the nursery, a nurse's hands nearby | Tall arch | Portrait 4:5 |
 | `maternity-checkup` | An antenatal check-up: doctor talking with a pregnant woman | Rounded | Landscape 4:3 |
 | `maternity-labour` | A clean, empty labour room, softly lit | Leaf | Landscape 4:3 |
@@ -67,6 +75,9 @@ per frame:
 | `doctor-laila-beegum` | Portrait of Dr. Laila Beegum N | Tall arch | Portrait 4:5 |
 | `doctor-geethanjali-s` | Portrait of Dr. Geethanjali S | Tall arch | Portrait 4:5 |
 | `doctor-amith-k` | Portrait of Dr. Amith K | Tall arch | Portrait 4:5 |
-| `doctor-jambir` | Portrait of Dr. Jambir | Tall arch | Portrait 4:5 |
+| `doctor-jambir` | Portrait of Dr. Jambir (spelling to be confirmed, Q31) | Tall arch | Portrait 4:5 |
+| `doctor-v-j-sonia` | Portrait of Dr. V. J. Sonia | Tall arch | Portrait 4:5 |
+| `doctor-jitha-vineeth` | Portrait of Dr. Jitha Vineeth | Tall arch | Portrait 4:5 |
+| `doctor-sumiya` | Portrait of Dr. Sumiya | Tall arch | Portrait 4:5 |
 
-**Doctor portraits:** same background and the same light for all four (a plain warm wall works well). Chest-up, looking at the camera, relaxed smile, usual work clothes. Leave space above the head, because the arch crops the top.
+**Doctor portraits:** same background and the same light for all seven (a plain warm wall works well). Chest-up, looking at the camera, relaxed smile, usual work clothes. Leave space above the head, because the arch crops the top.

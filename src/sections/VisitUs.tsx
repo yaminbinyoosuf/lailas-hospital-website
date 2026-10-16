@@ -30,9 +30,11 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
                     {l}
                   </span>
                 ))}
-                <span className="mt-1 block t-small text-ink-muted">
-                  {copy.visit.plusCode}: {address.plusCode}
-                </span>
+                {flags.showMapPin && (
+                  <span className="mt-1 block t-small text-ink-muted">
+                    {copy.visit.plusCode}: {address.plusCode}
+                  </span>
+                )}
               </address>
             </div>
             <div>
