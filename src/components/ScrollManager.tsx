@@ -8,8 +8,7 @@ export function ScrollManager() {
     if (hash) {
       const el = document.getElementById(hash.slice(1));
       if (el) {
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
       }
     }

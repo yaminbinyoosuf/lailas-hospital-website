@@ -5,23 +5,20 @@ import { Container } from './Container';
 
 /**
  * Top strip: emergency hotline, care hours, location and a WhatsApp shortcut.
- * Below lg only the emergency number shows: the mobile bar already carries
- * Call, WhatsApp and Book, so repeating them here would only add height.
- * Items never wrap; lower-priority items drop out at smaller widths instead.
  *
- * Every string resolves through the copy layer. The location is composed from
- * the address record rather than hardcoded, which keeps it in sync with the
- * footer.
+ * Every string resolves through the copy layer so Malayalam is complete. The
+ * location is composed from the address record rather than hardcoded, which
+ * keeps it correct in both languages and in sync with the footer.
  */
 export function TopStrip() {
   const copy = useCopy();
   return (
-    <div className="on-dark border-b border-white/10 bg-teal-950 text-ivory">
+    <div className="border-b border-white/10 bg-teal-950/95 backdrop-blur-md text-ivory">
       <Container className="flex min-h-11 items-center justify-between gap-4 py-1">
         <div className="flex items-center gap-6">
           <a
             href={`tel:${contact.primary.tel}`}
-            className="group inline-flex min-h-11 items-center gap-2.5 whitespace-nowrap t-small transition-colors duration-150 hover:text-white"
+            className="group inline-flex min-h-11 items-center gap-2.5 t-small font-medium transition-colors hover:text-white"
           >
             <span className="grid size-6 shrink-0 place-items-center rounded-full bg-emergency">
               <Phone className="size-3 text-white" aria-hidden="true" />
@@ -32,16 +29,14 @@ export function TopStrip() {
             </span>
           </a>
 
-          <div className="hidden items-center gap-1.5 whitespace-nowrap t-meta text-teal-200 xl:flex">
+          <div className="hidden items-center gap-1.5 t-meta text-teal-200 md:flex">
             <Clock className="size-3.5 shrink-0 text-teal-300" aria-hidden="true" />
-            <span>
-              {copy.visit.hours.allDay}: {copy.time.open24}
-            </span>
+            <span>{copy.visit.hours.allDay}</span>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="hidden items-center gap-1.5 whitespace-nowrap t-meta text-teal-200 lg:flex">
+          <div className="hidden items-center gap-1.5 t-meta text-teal-200 lg:flex">
             <MapPin className="size-3.5 shrink-0 text-teal-300" aria-hidden="true" />
             <span>
               {address.locality}, {address.district}
@@ -52,10 +47,10 @@ export function TopStrip() {
             href={whatsappLink(copy.booking.whatsappGeneral)}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden min-h-11 items-center gap-1.5 whitespace-nowrap t-small text-teal-100 transition-colors duration-150 hover:text-white lg:inline-flex"
+            className="inline-flex min-h-11 items-center gap-1.5 t-small font-medium text-teal-100 transition-colors hover:text-white"
           >
             <MessageCircle className="size-3.5 shrink-0 text-teal-300" aria-hidden="true" />
-            <span>{copy.actions.whatsapp}</span>
+            <span className="hidden xs:inline">{copy.actions.whatsapp}</span>
           </a>
 
         </div>

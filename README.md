@@ -31,9 +31,9 @@ You never need to touch components to change words or facts.
 
 1. Save the original as `photos/<id>.jpg` (ids are in `PHOTO_SHOTLIST.md`).
 2. Run `npm run photos`. This makes AVIF and WebP sizes plus a blur preview in `src/assets/photos/`.
-3. Commit `src/assets/photos/`. That position switches from its no-photo layout to the photograph automatically.
+3. Commit `src/assets/photos/`. That position switches from the placeholder to the photograph automatically.
 
-**Photographs are never substituted with stock images.** If an id has no processed photo, `getPhoto()` returns undefined: image-led layouts switch to a composition without the image (see Design system), and the remaining small positions, such as doctor portraits, show a flat placeholder or initials. Several positions are named consultants or this hospital's own rooms, and a borrowed photograph would misrepresent a real person or place. See `PHOTO_SHOTLIST.md` for the list and the rules.
+**Photographs are never substituted with stock images.** If an id has no processed photo, `getPhoto()` returns undefined and the component renders a deliberate placeholder. Several positions are named consultants or this hospital's own rooms, and a borrowed photograph would misrepresent a real person or place. See `PHOTO_SHOTLIST.md` for the list and the rules.
 
 The logo and share image come from `brand/lailas-logo-source.jpg`. When the vector logo arrives, replace that file and run `npm run brand`.
 
@@ -41,134 +41,94 @@ The logo and share image come from `brand/lailas-logo-source.jpg`. When the vect
 
 Every "Book" button opens one three-step form: who, which day, then name and phone. By default it opens WhatsApp to +91 8606 800 999 with the details filled in. To send to a form service instead, set `VITE_BOOKING_ENDPOINT` in `.env`. It receives a JSON POST of `{ name, phone, who, day, language, page }`.
 
-If the endpoint fails or takes longer than 15 seconds (`booking.timeoutMs` in `site.ts`), the form shows an error with Call and WhatsApp links, with the patient's details already filled in. After the WhatsApp step the form always offers the same two links, because the browser cannot report whether WhatsApp actually opened. If the booking form itself cannot load, a small dialog offers Call and WhatsApp instead, and the rest of the page keeps working.
-
 ## Hosting
 
 Upload `dist/`. Each page has its own `index.html`, plus `404.html`. `public/_redirects` sends old URLs (`/ivf-fertility`, `/about`, ...) to the new pages on Netlify and Cloudflare Pages. Other hosts need the same four rules.
 
 ## Design system
 
-Everything visual is driven by tokens and utilities in `src/styles/index.css`. When adding a
-section, use these rather than inventing values. `/styleguide` (dev server only) shows them.
+Everything visual is driven by tokens in `src/styles/index.css`. If you are adding a section,
+extend these rather than inventing values.
 
 ### Typography
 
-Two families, both bundled with Fontsource (`@fontsource-variable/*`). There is no Google Fonts
-or other external font request.
+Two families, loaded from Google Fonts with self-hosted DM Sans and Source Sans 3 kept as
+fallbacks so the site still sets correctly if the CDN is unreachable:
 
-- **DM Sans Variable** (`--font-heading`): headings, figures, labels, buttons, tabs, navigation.
-- **Source Sans 3 Variable** (`--font-sans`): reading text.
+- **Outfit** for every heading and figure. Weight 600 to 800. A geometric sans with a tall
+  x-height that gives the headline its confident, contemporary edge.
+  It has a calm, even geometry that reads as clinical competence rather than fashion, and it
+  holds its shape at the small sizes used for eyebrows and table figures.
+- **Plus Jakarta Sans** for body copy and interface. Drawn for reading, it stays comfortable at
+  16–17px and has the wide apertures that help on a phone in daylight.
 
-Only the upright faces are imported, so **never use `italic`**: the browser would fake it. The
-prerender step (`tools/prerender.mjs`) preloads the two Latin files these families use; if you
-change a family, change the `@import` lines, the `--font-*` stacks and the preload list together.
+They are deliberately not interchangeable: headings never fall back to the body face. That was
+the single largest source of inconsistency before, with 38 headings rendering in the body font.
 
-**The scale.** Fluid between a 400px and a 1500px viewport. Headings are weight 600 throughout.
+**The scale.** One step per role, fluid between a 400px and a 1500px viewport so no component
+needs its own media query.
 
 | Utility | Use | Phone | Desktop |
 | --- | --- | --- | --- |
-| `t-display` | home hero only | 36px | 60px |
-| `t-h1` | page title | 30px | 44px |
-| `t-h2` | section heading | 26px | 36px |
+| `t-display` | home hero only | 36px | 59px |
+| `t-h1` | page title | 30px | 43px |
+| `t-h2` | section heading | 26px | 35px |
 | `t-h3` | subsection, card title | 20px | 26px |
 | `t-h4` | list item, question, column head | 17px | 20px |
 | `t-lead` | intro paragraph | 17px | 19px |
-| `t-body` | default copy | 16px | 16px |
-| `t-small` | supporting copy | 15px | 15px |
-| `t-meta` | captions, chips | 13px | 13px |
-| `t-label` | eyebrow, role label (DM Sans, uppercase) | 13px | 13px |
-| `t-ui` / `t-ui-lg` | buttons, tabs, filters, nav (DM Sans 600) | 15 / 17px | 15 / 17px |
-| `t-number` | figures (tabular); size set where used | context | context |
+| `t-body` | default copy | 16px | 17px |
+| `t-small` | supporting copy, descriptions | 15px | 15px |
+| `t-meta` | caption, credentials | 13px | 13px |
+| `t-label` | eyebrow, small-caps label | 12px | 12px |
+| `t-number` | statistics | context | context |
 
 **Rules**
-- `t-*` utilities set family, size, weight and line height. **They never set a colour.** Give the
-  element its own colour (`text-ink-soft` for leads and supporting copy on light surfaces,
-  `text-teal-100`/`text-teal-200` on dark ones), or let it inherit. This is what removed every
-  `!text-*` override, and the grey-on-teal text that came from the old built-in colours.
-- Headings inherit colour from their surface; most set `text-teal-950` (light) or `text-ivory`
-  (dark) explicitly.
-- A heading uses `t-h1` to `t-h4`, never `t-small`/`t-meta`/`t-label`. Don't override a `t-*` size
-  with `text-[…]`, except `t-number`, which has no size by design.
-- Keep body copy near 65 characters per line (`max-w-[34rem]` to `max-w-[38rem]`).
+- Never put `t-small`, `t-meta` or `t-label` on an `<h1>`–`<h4>`. A heading uses `t-h1`–`t-h4`.
+  Headings styled as labels were the other half of the original inconsistency.
+- Never override a `t-*` size with `text-[…]`. Two such overrides existed and both inverted the
+  hierarchy, making an `<h3>` larger than its `<h2>`.
+- Body copy is capped near 65 characters per line (`max-w-[34rem]` for FAQ answers). `npm run
+  check` does not measure this; check it by hand after changing a paragraph width.
 
 ### Colour
 
-Retained palette: ivory, paper, sand and sage surfaces; ink, ink-soft and ink-muted text; deep teal
-for primary actions (`teal-800`) and dark sections (`teal-900`, `teal-950`); clay for small accents
-only (for example doctor role labels, step numerals, the short rule on maternity cards); `emergency` red only for
-emergency actions and notes. No other hues and no decorative gradients.
+Ivory / paper / sand surfaces, deep teal as the primary, a single clay accent, sage as a secondary
+surface, and `emergency` reserved strictly for emergency use. Muted text is `ink-soft`, with
+`ink-muted` for captions. Every text pair is verified by `npm run check:contrast`.
 
-Dark surfaces carry the `on-dark` class. It switches the focus ring (`--focus-ring`) from
-`teal-600` to `teal-200`, which keeps it above 3:1 on teal-800/900/950. `npm run check:contrast`
-checks the text and background pairs the site uses (listed in `tools/check-contrast.mjs`) and
-both focus rings; add a pair there when you introduce a new combination.
+### Shape and elevation
 
-### Surfaces, shape and elevation
+Three radius tiers only:
 
-- **Cards** are plain utilities: `border border-line bg-paper` on light sections,
-  `border border-white/10 bg-teal-800` on the teal IVF section. No card is translucent, and cards
-  that are not links do not react to hover.
-- **Translucency** is limited to `glass-bar`: the sticky header and the mobile action bar. It is
-  92% ivory with a 12px blur, and falls back to solid ivory where `backdrop-filter` is not
-  supported. Nothing translucent is placed inside it. The booking sheet and menu are solid; their
-  backdrop is a plain dim.
-- **Shadows** are for floating things only: `--shadow-soft` (header once scrolled, mobile bar) and
-  `--shadow-lift` (dialogs).
-- **Radius**, three tiers: `--radius-sm` 10px for buttons, inputs, tabs and chips; `--radius-md`
-  16px for cards, panels inside cards and portraits; `--radius-lg` 24px for page-level panels and
-  photographs. `rounded-full` only for round icon buttons, dots and the hero tagline.
+| Token | Value | Used for |
+| --- | --- | --- |
+| `--radius-sm` | 0.625rem | buttons, inputs, chips |
+| `--radius-md` | 1.125rem | cards, media, inner blocks |
+| `--radius-lg` | 1.5rem | page-level panels, hero media |
 
-Why plain utilities for cards: a custom `@utility` that sets `border` or `background` has no
-reliable order against Tailwind's own `border-*`/`bg-*` utilities, and `tailwind-merge` cannot
-resolve it either. Keep custom utilities for things that need extra CSS (`glass-bar` needs
-`@supports`), and use core utilities for everything else.
+Photo shapes (`shape-arch`, `shape-cradle`, `shape-soft`) are the brand motif — an arch echoes a
+doorway, a cradle echoes a newborn. Keep them for imagery; do not apply them to controls.
 
-### Layout and rhythm
+Shadow is reserved for things that genuinely float — the sticky header, the booking sheet, the
+mobile bar. Cards use a hairline ring instead.
 
-- `Container`: 80rem wide, 20 / 32 / 48px side padding.
-- `Section`: every full-width band uses it. `space="tight" | "base" | "loose"` (56/80, 80/112,
-  96/144px top and bottom, phone/desktop); `className="pt-0 md:pt-0"` when a band continues the one
-  above it. `tone` sets the surface; `tone="teal"` also adds `on-dark`.
-- Header: a constant 64px (72px from xl). Scrolling only adds a shadow. Below lg the mobile bar
-  (exactly 56px plus its border and the safe area) carries Call, WhatsApp and Book, and `App`
-  reserves that height at the bottom of the page. From lg the header carries Book.
-- **Without photographs**: every image-led layout checks `hasPhoto(id)` (`src/content/images.ts`)
-  and has a composition that does not need the image: the hero shows visiting hours, page heroes
-  are text-only, service cards drop the image band, the maternity and IVF sections move their
-  figures or promise into the photo's column, and the maternity stages become numbered rows. Adding
-  a photo switches that position back automatically.
+### Rhythm
 
-### Motion
-
-- 150ms for colour and hover changes, 200 to 250ms for interface state (accordion, its icon),
-  300ms for the booking sheet and menu.
-- `Reveal`: 400ms fade and 12px rise, stagger capped at 120ms. It only hides content that starts
-  **below the first screen**, and only after hydration, so the prerendered HTML is always fully
-  visible and a JavaScript or motion failure never leaves content invisible.
-- No looping animations, no count-up figures, no image zoom, no header resizing.
-- Hover styles use Tailwind's `hover:` variant, which Tailwind 4 already limits to
-  `@media (hover: hover)`, so taps on phones never leave a hover state behind.
-- `prefers-reduced-motion`: transitions and animations are cut to a single near-instant run,
-  smooth scrolling is off in CSS and in `ScrollManager`, and `Reveal` does nothing.
+`Section` takes `space="tight" | "base" | "loose"`. A page of identically spaced sections reads as
+monotonous, so spacing is mapped deliberately across the home page: tight where two sections share
+a thought, loose where the subject or the tone changes.
 
 ### A note on `cn()`
 
 `cn()` in `src/lib/format.ts` runs `tailwind-merge`, so a `className` passed to a component
-correctly overrides the component's own utilities (it knows the `t-*` scale and the radius tokens).
-With a plain string join, `<Container className="max-w-3xl">` silently lost to the component's
-`max-w-[80rem]` because CSS order decided the winner rather than intent. It cannot order a custom
-`@utility` against a core utility for the same property, which is one more reason the `t-*` scale
-sets no colour.
+correctly overrides the component's own utilities. This matters: with a plain string join,
+`<Container className="max-w-3xl">` silently lost to the component's `max-w-[80rem]` because CSS
+order decided the winner rather than intent.
 
-## Quality checks
+## Quality checks (October 2026)
 
-- `npm run check`: typecheck, every colour pair against WCAG AA, and the copy rules (including alt
-  text).
-- `npm run screenshots -- http://localhost:4173 / /maternity ...`: full-page screenshots and a
-  sideways-overflow check. It needs Google Chrome (or `CHROME_PATH`).
-- Lighthouse has **not** been run since the October 2026 AI Studio changes and the redesign that
-  followed. Earlier figures (performance 92 to 94, accessibility 100) are out of date. Run it on
-  the deployed site, on a mid-range Android phone profile, before launch.
+- Lighthouse mobile, all pages: performance 92 to 94, accessibility 100, best practices 100, SEO 100. CLS 0, TBT 0 ms.
+- Every colour pair meets WCAG AA (`npm run check:contrast`).
+- `npm run screenshots` captures 390, 768 and 1440 px and flags sideways overflow.
 
 Open questions for the hospital: `OPEN_QUESTIONS.md`.

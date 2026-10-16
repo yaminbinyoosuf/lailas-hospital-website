@@ -41,8 +41,8 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
           <div
             key={item.id}
             className={cn(
-              'rounded-[var(--radius-md)] border bg-paper px-6 transition-colors duration-200 md:px-8',
-              isOpen ? 'border-teal-600/40' : 'border-line',
+              'glass-card rounded-[var(--radius-md)] px-6 md:px-8 border border-white/80 shadow-xs transition-all duration-300',
+              isOpen && 'shadow-md border-teal-600/30 bg-paper/90',
             )}
           >
             <h3 className="t-h4">
@@ -59,7 +59,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
                 <span>{item.title}</span>
                 <span
                   className={cn(
-                    'grid size-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color] duration-200',
+                    'grid size-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color] duration-300',
                     isOpen ? 'rotate-45 border-teal-700 bg-teal-700 text-ivory' : 'border-line bg-ivory text-teal-800',
                   )}
                   aria-hidden="true"
@@ -74,7 +74,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
               aria-labelledby={triggerId}
               inert={!isOpen}
               className={cn(
-                'grid transition-[grid-template-rows,opacity] duration-250 ease-[var(--ease-gentle)]',
+                'grid transition-[grid-template-rows,opacity] duration-400 ease-[var(--ease-gentle)]',
                 isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
               )}
             >

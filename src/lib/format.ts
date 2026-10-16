@@ -41,7 +41,7 @@ const merge = extendTailwindMerge({
   extend: {
     classGroups: {
       'font-size': [
-        { t: ['display', 'h1', 'h2', 'h3', 'h4', 'lead', 'body', 'small', 'meta', 'label', 'ui', 'ui-lg', 'number'] },
+        { t: ['display', 'h1', 'h2', 'h3', 'h4', 'lead', 'body', 'small', 'meta', 'label', 'number'] },
       ],
       rounded: [
         {

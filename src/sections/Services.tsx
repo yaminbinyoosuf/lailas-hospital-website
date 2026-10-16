@@ -34,17 +34,15 @@ export function Services() {
           <h2 id="services-title" className="t-h2 text-teal-950 lg:col-span-7">
             {copy.services.title}
           </h2>
-          <p className="t-lead text-ink-soft lg:col-span-5">{copy.services.lead}</p>
+          <p className="t-lead lg:col-span-5">{copy.services.lead}</p>
         </Reveal>
 
-        {/* 2 x 2 on phones, so every tab is visible without sideways scrolling;
-            one row from sm. */}
-        <div className="mt-12">
+        <div className="mt-12 overflow-x-auto pb-2 scrollbar-none">
           <div
             ref={tabsRef}
             role="tablist"
             aria-label={copy.services.groupsLabel}
-            className="grid grid-cols-2 gap-1.5 rounded-[var(--radius-md)] border border-line bg-paper p-1.5 sm:inline-flex"
+            className="inline-flex p-1.5 rounded-[var(--radius-md)] glass-card border border-white/80 shadow-xs gap-1.5"
           >
             {serviceGroups.map((g) => {
               const selected = g === active;
@@ -60,11 +58,11 @@ export function Services() {
                   onClick={() => setActive(g)}
                   onKeyDown={onKeyDown}
                   className={cn(
-                    'min-h-11 rounded-[var(--radius-sm)] px-3 py-2 text-center t-ui transition-colors duration-150 sm:px-5 sm:whitespace-nowrap',
+                    'min-h-11 rounded-[var(--radius-sm)] px-5 t-small font-semibold whitespace-nowrap transition-all duration-300',
                     selected
                       ? g === 'emergency'
-                        ? 'bg-emergency text-white'
-                        : 'bg-teal-800 text-ivory'
+                        ? 'bg-emergency text-white shadow-xs'
+                        : 'bg-teal-800 text-ivory shadow-xs'
                       : 'text-ink-soft hover:bg-sand/60 hover:text-ink',
                   )}
                 >

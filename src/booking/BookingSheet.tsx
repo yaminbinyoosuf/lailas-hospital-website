@@ -1,6 +1,6 @@
 import { ArrowLeft, Check, MessageCircle, Phone, Send, X } from 'lucide-react';
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'react';
-import { Button, ButtonAnchor } from '../components/Button';
+import { Button } from '../components/Button';
 import { booking, contact, doctors, hours, services, whatsappLink, type Weekday } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { addDays, cn, formatDate, formatHours } from '../lib/format';
@@ -32,8 +32,6 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
   const [errors, setErrors] = useState<{ name?: string; phone?: string; send?: string }>({});
   const [sending, setSending] = useState(false);
   const [sentVia, setSentVia] = useState<'whatsapp' | 'form'>('whatsapp');
-  /** The filled-in booking message, kept so the fallback links can reuse it. */
-  const [message, setMessage] = useState(copy.booking.whatsappGeneral);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -59,22 +57,18 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
     : '';
 
   const openDays: Weekday[] = doctor ? doctor.opd.days : hours.opd.days;
-  const closesAt = doctor?.hasOwnOpdHours ? doctor.opd.close : hours.opd.close;
   const dayOptions = useMemo(() => {
     const today = new Date();
-    const now = `${String(today.getHours()).padStart(2, '0')}:${String(today.getMinutes()).padStart(2, '0')}`;
     const out: { key: string; label: string; sub: string }[] = [];
     for (let i = 0; out.length < booking.daysAhead && i < 14; i++) {
       const d = addDays(today, i);
       if (!openDays.includes(d.getDay() as Weekday)) continue;
-      // Do not offer today once OPD has closed for the day.
-      if (i === 0 && now >= closesAt) continue;
       const date = formatDate(d, copy, { day: 'numeric', month: 'long' });
       const label = i === 0 ? copy.time.today : i === 1 ? copy.time.tomorrow : copy.time.days[d.getDay()];
       out.push({ key: d.toDateString(), label, sub: date });
     }
     return out;
-  }, [openDays, closesAt, copy]);
+  }, [openDays, copy]);
 
   const stepIndex = STEPS.indexOf(step);
 
@@ -98,50 +92,40 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
     const digits = phone.replace(/\D/g, '').replace(/^91(?=\d{10}$)/, '').replace(/^0(?=\d{10}$)/, '');
     const next: typeof errors = {};
     if (name.trim().length < 2) next.name = copy.booking.errors.name;
-    // Indian mobile numbers are 10 digits starting with 6, 7, 8 or 9.
-    if (!/^[6-9]\d{9}$/.test(digits)) next.phone = copy.booking.errors.phone;
+    if (!/^\d{10}$/.test(digits)) next.phone = copy.booking.errors.phone;
     setErrors(next);
     if (next.name || next.phone) {
       document.getElementById(next.name ? `${ids}-name` : `${ids}-phone`)?.focus();
       return;
     }
     const details = { name: name.trim(), phone: digits, who: whoLabel, day: day ?? copy.booking.day.anyDay };
-    const text = copy.booking.message(details);
-    setMessage(text);
 
     if (booking.endpoint) {
       setSending(true);
-      const controller = new AbortController();
-      const timer = window.setTimeout(() => controller.abort(), booking.timeoutMs);
       try {
         const res = await fetch(booking.endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ...details, language: 'en', page: window.location.pathname }),
-          signal: controller.signal,
         });
         if (!res.ok) throw new Error(String(res.status));
         setSentVia('form');
         setStep('done');
       } catch {
-        setErrors({ send: controller.signal.aborted ? copy.booking.errors.timeout : copy.booking.errors.send });
+        setErrors({ send: copy.booking.errors.send });
       } finally {
-        window.clearTimeout(timer);
         setSending(false);
       }
       return;
     }
 
-    // window.open cannot report whether WhatsApp actually opened (it returns
-    // null with noopener, and in-app browsers may ignore it), so the done step
-    // always offers direct WhatsApp and phone links as well.
-    window.open(whatsappLink(text), '_blank', 'noopener');
+    window.open(whatsappLink(copy.booking.message(details)), '_blank', 'noopener');
     setSentVia('whatsapp');
     setStep('done');
   };
 
   const choice =
-    'flex min-h-14 w-full items-center justify-between gap-4 rounded-[var(--radius-md)] border border-line bg-paper px-5 py-3.5 text-left transition-colors duration-150 hover:border-teal-600 hover:bg-teal-50';
+    'flex min-h-14 w-full items-center justify-between gap-4 rounded-[var(--radius-md)] glass-card border border-white/80 px-5 py-3.5 text-left transition-all duration-200 hover:border-teal-600 hover:bg-teal-50/80 shadow-xs';
 
   return (
     <dialog
@@ -149,7 +133,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
       aria-labelledby={`${ids}-title`}
       onClose={onClosed}
       onClick={(e) => e.target === dialogRef.current && close()}
-      className="sheet fixed inset-x-0 top-auto bottom-0 m-0 max-h-[92dvh] w-full max-w-none overflow-hidden rounded-t-[var(--radius-lg)] bg-ivory shadow-[var(--shadow-lift)] p-0 text-ink sm:inset-0 sm:m-auto sm:h-fit sm:max-w-xl sm:rounded-[var(--radius-lg)]"
+      className="sheet fixed inset-x-0 top-auto bottom-0 m-0 max-h-[92dvh] w-full max-w-none overflow-hidden rounded-t-[var(--radius-lg)] bg-ivory/95 backdrop-blur-2xl ring-1 ring-white/80 shadow-[var(--shadow-lift)] p-0 text-ink sm:inset-0 sm:m-auto sm:h-fit sm:max-w-xl sm:rounded-[var(--radius-lg)]"
     >
       <div className="flex max-h-[92dvh] flex-col">
         <div className="flex items-start justify-between gap-4 border-b border-line/60 px-6 pt-5 pb-4">
@@ -225,9 +209,7 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
               <p className="mt-1 text-ink-soft">{copy.booking.day.hint}</p>
               {doctor && (
                 <p className="mt-1 t-small text-ink-muted">
-                  {doctor.hasOwnOpdHours
-                    ? `${copy.doctors.opd}: ${formatHours(doctor.opd, copy)}`
-                    : copy.doctors.opdUnconfirmed}
+                  {copy.doctors.opd}: {formatHours(doctor.opd, copy)}
                 </p>
               )}
               <ul className="mt-5 grid grid-cols-2 gap-2">
@@ -283,12 +265,9 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
               </div>
               <p className="mt-4 t-small text-ink-muted">{copy.booking.details.privacy}</p>
               {errors.send && (
-                <div className="mt-4">
-                  <p role="alert" className="rounded-[var(--radius-sm)] bg-emergency-50 px-4 py-3 text-emergency-700">
-                    {errors.send}
-                  </p>
-                  <Fallback message={message} />
-                </div>
+                <p role="alert" className="mt-4 rounded-[var(--radius-sm)] bg-emergency-50 px-4 py-3 text-emergency-700">
+                  {errors.send}
+                </p>
               )}
               <Button
                 type="submit"
@@ -307,18 +286,12 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
               <span className="mx-auto grid size-16 place-items-center rounded-full bg-teal-100 text-teal-800">
                 <Check className="size-8" aria-hidden="true" />
               </span>
-              <h2 ref={headingRef} tabIndex={-1} className="t-h3 mt-5 outline-none">
+              <h2 ref={headingRef} tabIndex={-1} className="t-h3 mt-5 outline-none" role="status">
                 {sentVia === 'form' ? copy.booking.done.formTitle : copy.booking.done.whatsappTitle}
               </h2>
               <p className="mx-auto mt-3 max-w-sm text-ink-soft">
                 {sentVia === 'form' ? copy.booking.done.formBody : copy.booking.done.whatsappBody}
               </p>
-              {sentVia === 'whatsapp' && (
-                <div className="mx-auto mt-6 max-w-sm text-left">
-                  <p className="t-small text-ink-muted">{copy.booking.fallback.intro}</p>
-                  <Fallback message={message} />
-                </div>
-              )}
               <Button variant="secondary" className="mt-6" onClick={close}>
                 {copy.booking.done.close}
               </Button>
@@ -333,21 +306,6 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
         </div>
       </div>
     </dialog>
-  );
-}
-
-/** Direct WhatsApp and phone links for when the automatic step fails. */
-function Fallback({ message }: { message: string }) {
-  const copy = useCopy();
-  return (
-    <div className="mt-3 flex flex-col gap-3">
-      <ButtonAnchor href={whatsappLink(message)} variant="secondary" icon={<MessageCircle aria-hidden="true" />}>
-        {copy.booking.fallback.whatsapp}
-      </ButtonAnchor>
-      <ButtonAnchor href={`tel:${contact.primary.tel}`} variant="secondary" icon={<Phone aria-hidden="true" />}>
-        {copy.booking.fallback.call(contact.primary.display)}
-      </ButtonAnchor>
-    </div>
   );
 }
 

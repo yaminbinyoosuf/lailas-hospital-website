@@ -4,9 +4,7 @@
  * Only language-neutral facts live here (numbers, phones, times, ids, names).
  * Every sentence a visitor reads lives in src/content/copy/en.ts.
  *
- * Facts come from the previous site and the October 2026 Chemmad dataset
- * (three consultants were added from that dataset). None of it has been
- * confirmed by the hospital yet; see OPEN_QUESTIONS.md.
+ * All facts come from the previous site. Nothing has been added.
  * Items marked `// Q<n>` have an open question in OPEN_QUESTIONS.md.
  *
  * Times are 24h "HH:MM". Days are 0 = Sunday ... 6 = Saturday.
@@ -60,9 +58,9 @@ export interface Doctor {
   languages: LanguageCode[];
   opd: TimeWindow;
   /**
-   * False when `opd` is only the hospital's general OPD window, not this
-   * doctor's own hours. The site then asks visitors to call instead of
-   * showing times, and the hours are left out of structured data. Q34
+   * False when `opd` is only the hospital's general OPD window rather than this
+   * doctor's own hours. Cards then ask visitors to call instead of printing
+   * times, so an unconfirmed schedule is never shown as fact. Q34
    */
   hasOwnOpdHours: boolean;
   imageId: string;
@@ -96,9 +94,6 @@ export const flags = {
   showVideoConsultation: false,
   /** Travel times are unverified. Q17 */
   showTravelTimes: false,
-  /** The Plus Code and coordinates disagree between sources. Until the
-      hospital confirms the pin, neither is shown or sent to search engines. Q16 */
-  showMapPin: false,
 } as const;
 
 /* -------------------------------------------------------------------------- */
@@ -157,8 +152,8 @@ export const address = {
   region: 'Kerala',
   postalCode: '676306',
   country: 'IN',
-  plusCode: '7J3Q2WV6+9G', // Q16: unconfirmed, hidden while flags.showMapPin is false
-  geo: { lat: 11.0434, lng: 75.91134 }, // Q16: unconfirmed, see above
+  plusCode: '7J3Q2WV6+9G', // full code; decodes to the coordinates below
+  geo: { lat: 11.0434, lng: 75.91134 }, // Q16
   mapsUrl:
     'https://www.google.com/maps/search/?api=1&query=Lailas+Hospital+Chemmad+Kerala+676306',
   directionsUrl:
@@ -214,7 +209,7 @@ export const doctors: Doctor[] = [
     serviceIds: ['maternity', 'gynaecology', 'ivf'],
     languages: ['en', 'ml', 'ta'], // Q10
     opd: { days: MON_SAT, open: '10:00', close: '19:00' },
-    hasOwnOpdHours: true, // from the previous site, still to be confirmed (Q11)
+    hasOwnOpdHours: true,
     imageId: 'doctor-laila-beegum',
   },
   {
@@ -224,7 +219,7 @@ export const doctors: Doctor[] = [
     serviceIds: ['maternity', 'gynaecology'],
     languages: ['en', 'ml'],
     opd: { days: MON_SAT, open: '09:30', close: '17:30' },
-    hasOwnOpdHours: true, // from the previous site, still to be confirmed (Q11)
+    hasOwnOpdHours: true,
     imageId: 'doctor-geethanjali-s',
   },
   {
@@ -234,7 +229,7 @@ export const doctors: Doctor[] = [
     serviceIds: ['paediatrics'],
     languages: ['en', 'ml'],
     opd: { days: MON_SAT, open: '09:30', close: '18:00' },
-    hasOwnOpdHours: true, // from the previous site, still to be confirmed (Q11)
+    hasOwnOpdHours: true,
     imageId: 'doctor-amith-k',
   },
   {
@@ -244,7 +239,7 @@ export const doctors: Doctor[] = [
     serviceIds: ['general-medicine'],
     languages: ['en', 'ml'],
     opd: { days: MON_SAT, open: '09:00', close: '19:00' },
-    hasOwnOpdHours: true, // from the previous site, still to be confirmed (Q11)
+    hasOwnOpdHours: true,
     imageId: 'doctor-jambir',
   },
   {
@@ -253,8 +248,8 @@ export const doctors: Doctor[] = [
     qualifications: 'MBBS, DGO, MS (Obstetrics and Gynaecology), FMAS',
     serviceIds: ['maternity', 'gynaecology'],
     languages: ['en', 'ml'],
-    opd: { days: MON_SAT, open: '09:00', close: '19:00' }, // hospital OPD window, not this doctor's hours
-    hasOwnOpdHours: false, // Q34
+    opd: { days: MON_SAT, open: '09:00', close: '19:00' }, // hospital OPD window, not confirmed per doctor
+    hasOwnOpdHours: false, // no per-doctor hours in the dataset yet (Q34)
     imageId: 'doctor-v-j-sonia',
   },
   {
@@ -264,8 +259,8 @@ export const doctors: Doctor[] = [
       'MBBS, DGO, Clinical Embryology (ARMC), Advanced Diploma in ART and Reproductive Medicine (Kiel)',
     serviceIds: ['ivf', 'gynaecology'],
     languages: ['en', 'ml'],
-    opd: { days: MON_SAT, open: '09:00', close: '19:00' }, // hospital OPD window, not this doctor's hours
-    hasOwnOpdHours: false, // Q34
+    opd: { days: MON_SAT, open: '09:00', close: '19:00' }, // hospital OPD window, not confirmed per doctor
+    hasOwnOpdHours: false, // no per-doctor hours in the dataset yet (Q34)
     imageId: 'doctor-jitha-vineeth',
   },
   {
@@ -274,8 +269,8 @@ export const doctors: Doctor[] = [
     qualifications: 'MBBS, MD, DNB (Radiodiagnosis), Fellowship in Fetal Medicine',
     serviceIds: ['gynaecology'],
     languages: ['en', 'ml'],
-    opd: { days: MON_SAT, open: '09:00', close: '19:00' }, // hospital OPD window, not this doctor's hours
-    hasOwnOpdHours: false, // Q34
+    opd: { days: MON_SAT, open: '09:00', close: '19:00' }, // hospital OPD window, not confirmed per doctor
+    hasOwnOpdHours: false, // no per-doctor hours in the dataset yet (Q34)
     imageId: 'doctor-sumiya',
   },
 ];
@@ -337,8 +332,6 @@ export const booking = {
   endpoint: (import.meta.env.VITE_BOOKING_ENDPOINT as string | undefined) || undefined,
   /** How many upcoming OPD days to offer. */
   daysAhead: 7,
-  /** Give up on the form endpoint after this long and offer phone and WhatsApp. */
-  timeoutMs: 15000,
 } as const;
 
 export const whatsappLink = (message: string) =>

@@ -9,11 +9,10 @@
    Contrast (WCAG AA) is checked by `npm run check:contrast`.
    ========================================================================== */
 @theme {
-  /* Two bundled families (Fontsource, see the imports above), nothing else.
-     DM Sans: headings, figures and interface labels. Source Sans 3: reading text.
-     Neither has an italic face loaded, so do not use italic. */
-  --font-heading: 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'Source Sans 3 Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Headings: Outfit / Plus Jakarta Sans for refined, modern luxury clinical authority.
+     Body, Controls & Interface: Plus Jakarta Sans for supreme readability and geometric precision. */
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Source Sans 3 Variable', 'Source Sans 3', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   /* Surfaces */
   --color-ivory: #fbf7f0;
@@ -61,12 +60,12 @@
   --color-emergency-700: #8c1d17;
   --color-emergency-50: #fcedeb;
 
-  /* Three radius tiers: controls, cards and media, page-level panels */
+  /* Refined Glassmorphism Radii Scale */
   --radius-sm: 0.625rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
 
-  /* Shadows are for floating things only: soft for the bars, lift for dialogs */
+  /* Multi-layered Glassmorphic Shadows */
   --shadow-soft: 0 4px 24px -4px rgb(11 36 31 / 0.06), 0 1px 2px rgb(11 36 31 / 0.04);
   --shadow-lift: 0 20px 48px -12px rgb(11 36 31 / 0.14), 0 4px 12px -2px rgb(11 36 31 / 0.06);
 
@@ -107,8 +106,7 @@
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 600;
-    /* No colour here: headings inherit from their surface (ink on light,
-       ivory on .on-dark sections) unless a utility sets one. */
+    color: var(--color-ink);
     text-wrap: balance;
     letter-spacing: -0.015em;
   }
@@ -119,16 +117,8 @@
     background: var(--color-teal-200);
     color: var(--color-teal-950);
   }
-  /* --focus-ring is teal-600 on light surfaces (5.8:1 on ivory). Dark
-     surfaces set .on-dark, where teal-600 falls below the 3:1 minimum. */
-  :root {
-    --focus-ring: var(--color-teal-600);
-  }
-  .on-dark {
-    --focus-ring: var(--color-teal-200);
-  }
   :focus-visible {
-    outline: 3px solid var(--focus-ring);
+    outline: 3px solid var(--color-teal-600);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -138,24 +128,21 @@
 }
 
 /* ==========================================================================
-   Type scale
-   Size, weight, family and line height only. These utilities never set a
-   colour: colour comes from the element or its surface, so the same style
-   works on ivory and on dark teal without !important overrides.
+   Type scale: Outfit / Plus Jakarta Sans Headings + Plus Jakarta Sans Body & UI
    ========================================================================== */
 @utility t-display {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(2.25rem, 1.7045rem + 2.1818vw, 3.75rem);
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: -0.025em;
 }
 @utility t-h1 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(1.875rem, 1.5568rem + 1.2727vw, 2.75rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
 }
 @utility t-h2 {
   font-family: var(--font-heading);
@@ -175,14 +162,16 @@
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: clamp(1.0625rem, 0.9943rem + 0.2727vw, 1.25rem);
-  line-height: 1.35;
+  line-height: 1.38;
   letter-spacing: -0.01em;
 }
 @utility t-lead {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: clamp(1.0625rem, 1.02rem + 0.15vw, 1.1875rem);
-  line-height: 1.6;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  color: var(--color-ink-soft);
 }
 @utility t-body {
   font-family: var(--font-sans);
@@ -195,37 +184,26 @@
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 0.9375rem;
-  line-height: 1.55;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
 }
 @utility t-meta {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 0.8125rem;
   line-height: 1.5;
+  color: var(--color-ink-muted);
 }
-/* Eyebrow above a section heading, role labels */
+/* Eyebrow above a section heading. Refined uppercase pill-like tracking */
 @utility t-label {
-  font-family: var(--font-heading);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
   font-weight: 600;
-  font-size: 0.8125rem;
-  line-height: 1.3;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--color-teal-700);
 }
-/* Interface text: buttons, tabs, filters, navigation */
-@utility t-ui {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.9375rem;
-  line-height: 1.25;
-}
-@utility t-ui-lg {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 1.0625rem;
-  line-height: 1.25;
-}
-/* Figures with tabular numerals. Size is set where used. */
+/* Oversized figures with tabular numerals */
 @utility t-number {
   font-family: var(--font-heading);
   font-weight: 600;
@@ -235,20 +213,59 @@
 }
 
 /* ==========================================================================
-   Surfaces
-   Cards are plain utilities: `border border-line bg-paper` (light) or
-   `border border-white/10 bg-teal-800` (on teal-900). No card is translucent.
-   Translucency is kept only for the two bars that float over content (sticky
-   header, mobile action bar): 12px blur at most, with a solid fallback, and
-   nothing translucent inside them.
+   Glassmorphism UI System
    ========================================================================== */
-@utility glass-bar {
-  background: rgb(251 247 240 / 0.92);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    background: var(--color-ivory);
+@utility glass-card {
+  background: rgb(255 253 249 / 0.76);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgb(255 255 255 / 0.85);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 0 rgb(255 255 255 / 0.9);
+}
+
+@utility glass-card-hover {
+  transition: transform 0.35s var(--ease-gentle), box-shadow 0.35s var(--ease-gentle), border-color 0.35s var(--ease-gentle);
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
+    border-color: rgb(43 107 96 / 0.28);
   }
+}
+
+@utility glass-pill {
+  background: rgb(255 253 249 / 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgb(226 216 200 / 0.8);
+  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.8);
+}
+
+@utility glass-dark {
+  background: rgb(18 54 47 / 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  box-shadow: 0 16px 40px -12px rgb(0 0 0 / 0.25), inset 0 1px 0 0 rgb(255 255 255 / 0.12);
+}
+
+@utility ambient-mesh {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(220, 235, 230, 0.5) 0px, transparent 55%),
+    radial-gradient(at 100% 0%, rgba(246, 230, 218, 0.45) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(230, 236, 225, 0.4) 0px, transparent 55%);
+}
+
+/* ==========================================================================
+   Shapes: Clean contemporary architectural curves
+   ========================================================================== */
+@utility shape-arch {
+  border-radius: var(--radius-lg);
+}
+@utility shape-cradle {
+  border-radius: var(--radius-lg);
+}
+@utility shape-soft {
+  border-radius: var(--radius-lg);
 }
 
 /* Scroll rows: snap, hidden scrollbar, keep focus rings visible */
@@ -268,16 +285,26 @@
   }
 }
 
-/* Native <dialog> sheet: 300ms in. (Closing unmounts the sheet, so there is
-   no exit animation.) */
+/* Hero entrance: pure CSS so the hero never waits for JavaScript */
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+.hero-enter {
+  animation: hero-enter 1s var(--ease-gentle) both;
+}
+
+/* Native <dialog> sheet animation */
 dialog.sheet {
   opacity: 0;
-  translate: 0 1.5rem;
+  translate: 0 2rem;
   transition:
     opacity 0.3s var(--ease-gentle),
-    translate 0.3s var(--ease-gentle),
-    overlay 0.3s allow-discrete,
-    display 0.3s allow-discrete;
+    translate 0.4s var(--ease-gentle),
+    overlay 0.4s allow-discrete,
+    display 0.4s allow-discrete;
 }
 dialog.sheet[open] {
   opacity: 1;
@@ -286,7 +313,7 @@ dialog.sheet[open] {
 @starting-style {
   dialog.sheet[open] {
     opacity: 0;
-    translate: 0 1.5rem;
+    translate: 0 2rem;
   }
 }
 dialog.sheet::backdrop {
@@ -354,23 +381,20 @@ dialog.sheet[open]::backdrop {
   outline: none;
 }
 .week-range:focus-visible::-webkit-slider-thumb {
-  outline: 3px solid var(--focus-ring);
+  outline: 3px solid var(--color-teal-600);
   outline-offset: 3px;
 }
 .week-range:focus-visible::-moz-range-thumb {
-  outline: 3px solid var(--focus-ring);
+  outline: 3px solid var(--color-teal-600);
   outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto !important;
+    scroll-behavior: auto;
   }
   *, *::before, *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
-    /* Without this, infinite animations (animate-ping) keep cycling. */
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
   }
 }

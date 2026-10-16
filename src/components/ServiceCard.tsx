@@ -1,5 +1,5 @@
 import { ArrowRight, Check, Clock, Phone } from 'lucide-react';
-import { hasPhoto, type ImageId } from '../content/images';
+import type { ImageId } from '../content/images';
 import { contact, type Service } from '../content/site';
 import { useBooking } from '../booking/BookingProvider';
 import { useCopy } from '../i18n/LanguageProvider';
@@ -11,45 +11,30 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
   const copy = useCopy();
   const { open } = useBooking();
   const text = copy.services.items[service.id];
-  // Without a photograph the card is text only: an empty image band would
-  // take half the card and add nothing.
-  const withPhoto = hasPhoto(service.imageId as ImageId);
-  const split = wide && withPhoto;
 
   return (
     <article
       className={cn(
-        'relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] border border-line bg-paper',
-        withPhoto && 'p-2.5 sm:p-3',
-        split && 'md:flex-row md:items-stretch',
+        'group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] glass-card glass-card-hover p-2.5 sm:p-3',
+        wide && 'md:flex-row md:items-stretch',
         className,
       )}
     >
-      {withPhoto && (
-        <div className={cn('shrink-0 overflow-hidden rounded-[var(--radius-md)]', split && 'md:w-1/2')}>
-          <Photo
-            id={service.imageId as ImageId}
-            shape="none"
-            aspect={wide ? 4 / 3 : 3 / 2}
-            sizes={wide ? '(min-width: 768px) 40vw, 90vw' : '(min-width: 1024px) 26vw, (min-width: 640px) 45vw, 85vw'}
-            className={cn(split && 'md:h-full')}
-          />
-        </div>
-      )}
+      <div className={cn('overflow-hidden rounded-[var(--radius-md)] ring-1 ring-black/5 shrink-0', wide && 'md:w-1/2')}>
+        <Photo
+          id={service.imageId as ImageId}
+          shape="none"
+          aspect={wide ? 4 / 3 : 3 / 2}
+          sizes={wide ? '(min-width: 768px) 40vw, 90vw' : '(min-width: 1024px) 26vw, (min-width: 640px) 45vw, 85vw'}
+          className={cn(wide && 'md:h-full')}
+        />
+      </div>
 
-      <div
-        className={cn(
-          'flex flex-1 flex-col p-6 md:p-7',
-          split && 'md:w-1/2 md:p-8',
-          wide && !withPhoto && 'md:p-8 lg:grid lg:grid-cols-12 lg:gap-x-10',
-        )}
-      >
-        <div className={cn(wide && !withPhoto && 'lg:col-span-5')}>
-          <h3 className="t-h3 text-teal-950">{text.name}</h3>
-          <p className="mt-2.5 t-small text-ink-soft">{text.summary}</p>
-        </div>
+      <div className={cn('flex flex-1 flex-col p-5 sm:p-6 md:p-7', wide && 'md:w-1/2 md:p-8')}>
+        <h3 className="t-h3 text-teal-950 font-semibold">{text.name}</h3>
+        <p className="mt-2.5 t-small text-ink-soft leading-relaxed">{text.summary}</p>
 
-        <ul className={cn('mt-5 space-y-2.5', wide && !withPhoto && 'lg:col-span-4 lg:mt-1')}>
+        <ul className="mt-5 space-y-2.5">
           {text.offerings.map((o) => (
             <li key={o} className="flex items-start gap-2.5 t-small">
               <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-teal-50 text-teal-700 ring-1 ring-teal-600/20">
@@ -60,7 +45,7 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
           ))}
         </ul>
 
-        <div className={cn('mt-auto pt-6', wide && !withPhoto && 'lg:col-span-3 lg:mt-0 lg:self-end lg:pt-0')}>
+        <div className="mt-auto pt-6">
           <p className="flex items-center gap-2 t-small text-ink-muted">
             <Clock className="size-4 shrink-0 text-teal-600" aria-hidden="true" />
             {text.availability}
@@ -68,7 +53,7 @@ export function ServiceCard({ service, wide, className }: { service: Service; wi
           {service.bookable ? (
             <Button
               variant="quiet"
-              className="mt-3"
+              className="mt-3 !px-0"
               iconAfter={<ArrowRight aria-hidden="true" />}
               onClick={() => open({ kind: 'service', id: service.id })}
             >

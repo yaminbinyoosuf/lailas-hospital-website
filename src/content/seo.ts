@@ -3,7 +3,7 @@
  * Used by tools/prerender.mjs through src/entry-server.tsx.
  */
 import { en } from './copy/en';
-import { address, contact, doctors, faqs, flags, hospital, pageFaqs, type FaqId } from './site';
+import { address, contact, doctors, faqs, hospital, pageFaqs, type FaqId } from './site';
 
 export const siteUrl = hospital.website;
 
@@ -52,10 +52,7 @@ function hospitalLd() {
     email: contact.email,
     foundingDate: String(hospital.founded),
     address: postalAddress,
-    // Coordinates stay out until the hospital confirms the pin. Q16
-    ...(flags.showMapPin
-      ? { geo: { '@type': 'GeoCoordinates', latitude: address.geo.lat, longitude: address.geo.lng } }
-      : {}),
+    geo: { '@type': 'GeoCoordinates', latitude: address.geo.lat, longitude: address.geo.lng },
     hasMap: address.mapsUrl,
     isAcceptingNewPatients: true,
     medicalSpecialty: ['Obstetric', 'Gynecologic', 'Pediatric', 'Emergency'],
@@ -89,17 +86,12 @@ function physiciansLd() {
     hospitalAffiliation: { '@id': hospitalId },
     telephone: contact.primary.tel,
     address: postalAddress,
-    // Only a doctor's own hours are published, never the general OPD window. Q34
-    ...(d.hasOwnOpdHours
-      ? {
-          openingHoursSpecification: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: d.opd.days.map((n) => dayNames[n]),
-            opens: d.opd.open,
-            closes: d.opd.close,
-          },
-        }
-      : {}),
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: d.opd.days.map((n) => dayNames[n]),
+      opens: d.opd.open,
+      closes: d.opd.close,
+    },
     url: `${siteUrl}/doctors`,
   }));
 }
@@ -134,6 +126,7 @@ export function renderHead(path: string) {
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="${esc(en.meta.siteName)}" />`,
     `<meta property="og:locale" content="en_IN" />`,
+    `<meta property="og:locale:alternate" content="ml_IN" />`,
     `<meta property="og:title" content="${esc(meta.title)}" />`,
     `<meta property="og:description" content="${esc(meta.description)}" />`,
     `<meta property="og:url" content="${url}" />`,

@@ -2,7 +2,6 @@ import { CalendarDays, Mail, Phone } from 'lucide-react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button } from '../components/Button';
 import { Container } from '../components/Container';
-import { Section } from '../components/Section';
 import { PageMeta } from '../components/PageMeta';
 import { Reveal } from '../components/Reveal';
 import { contact } from '../content/site';
@@ -19,7 +18,7 @@ export function ContactPage() {
     <>
       <PageMeta page="contact" />
       <PageHero title={page.title} lead={page.lead} />
-      <Section labelledBy="phones-title" className="pt-0 md:pt-0">
+      <section aria-labelledby="phones-title" className="pb-20 md:pb-24">
         <Container className="grid gap-8 lg:grid-cols-12">
           <Reveal className="lg:col-span-7">
             <h2 id="phones-title" className="sr-only">
@@ -60,7 +59,7 @@ export function ContactPage() {
               </span>
             </a>
           </Reveal>
-          <Reveal className="on-dark flex flex-col justify-center rounded-[var(--radius-lg)] bg-teal-800 p-8 text-ivory md:p-10 lg:col-span-5" delay={0.08}>
+          <Reveal className="flex flex-col justify-center rounded-[var(--radius-lg)] bg-teal-800 p-8 text-ivory md:p-10 lg:col-span-5" delay={0.08}>
             <h2 className="t-h3 text-ivory">{page.bookTitle}</h2>
             <p className="mt-3 text-teal-100">{page.bookBody}</p>
             <Button variant="light" size="lg" className="mt-8 self-start" icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
@@ -68,7 +67,7 @@ export function ContactPage() {
             </Button>
           </Reveal>
         </Container>
-      </Section>
+      </section>
       <VisitUs />
     </>
   );

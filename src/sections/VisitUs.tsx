@@ -19,7 +19,7 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
           <Heading id="visit-title" className="t-h2 text-teal-950">
             {copy.visit.title}
           </Heading>
-          <p className="t-lead mt-5 text-ink-soft">{copy.visit.lead}</p>
+          <p className="t-lead mt-5">{copy.visit.lead}</p>
 
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
             <div>
@@ -30,11 +30,9 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
                     {l}
                   </span>
                 ))}
-                {flags.showMapPin && (
-                  <span className="mt-1 block t-small text-ink-muted">
-                    {copy.visit.plusCode}: {address.plusCode}
-                  </span>
-                )}
+                <span className="mt-1 block t-small text-ink-muted">
+                  {copy.visit.plusCode}: {address.plusCode}
+                </span>
               </address>
             </div>
             <div>
@@ -91,14 +89,16 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
         </Reveal>
 
         <Reveal className="lg:col-span-7" delay={0.08}>
-          <div className="relative h-full min-h-[22rem] overflow-hidden rounded-[var(--radius-lg)] border border-line bg-sand-deep lg:min-h-[36rem]">
-            <iframe
-              title={copy.visit.mapTitle}
-              src={address.mapEmbedUrl}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 h-full w-full border-0"
-            />
+          <div className="glass-card p-2 sm:p-2.5 rounded-[var(--radius-lg)] shadow-[var(--shadow-lift)] h-full min-h-[22rem] lg:min-h-[36rem]">
+            <div className="relative h-full min-h-[20rem] overflow-hidden rounded-[var(--radius-md)] ring-1 ring-black/5 lg:min-h-[34rem]">
+              <iframe
+                title={copy.visit.mapTitle}
+                src={address.mapEmbedUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 h-full w-full border-0 grayscale-[20%]"
+              />
+            </div>
           </div>
         </Reveal>
       </Container>

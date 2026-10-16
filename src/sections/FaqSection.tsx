@@ -19,7 +19,7 @@ export function FaqSection({ ids, title }: { ids?: FaqId[]; title?: string }) {
           <h2 id="faq-title" className="t-h2 text-teal-950">
             {title ?? copy.faq.title}
           </h2>
-          <p className="t-lead mt-5 text-ink-soft">{copy.faq.lead}</p>
+          <p className="t-lead mt-5">{copy.faq.lead}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
             <ButtonAnchor href={`tel:${contact.primary.tel}`} variant="secondary" icon={<Phone aria-hidden="true" />}>
               {copy.actions.call}

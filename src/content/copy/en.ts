@@ -1,13 +1,11 @@
 /**
- * English copy. Every sentence on the site lives here. The site is English only.
+ * English copy. Every sentence on the site lives here.
  * Rules: short, warm sentences. No en or em dashes. No emojis.
  * Run `npm run check:copy` after editing.
  */
-import { hospital, type DoctorId, type FaqId, type LanguageCode, type MilestoneId, type PregnancyStageId, type ServiceGroup, type ServiceId } from '../site';
+import type { DoctorId, FaqId, LanguageCode, MilestoneId, PregnancyStageId, ServiceGroup, ServiceId } from '../site';
 
 const PHONE = '+91 8606 800 999';
-/** Single source for the email address. Q30 */
-const EMAIL = hospital.email;
 
 const hour12 = (hhmm: string) => {
   const [h, m] = hhmm.split(':').map(Number);
@@ -88,7 +86,7 @@ export const en = {
       women: { name: 'Women', intro: 'Pregnancy, birth, fertility and women’s health at every age.' },
       family: { name: 'Children and family', intro: 'Newborn care, vaccines and everyday medicine for all ages.' },
       emergency: { name: 'Emergency', intro: 'Our casualty and labour room never close, not even on Sundays or holidays.' },
-      diagnostics: { name: 'Lab, scans and pharmacy', intro: 'Tests, scans and medicines. The laboratory and pharmacy are open 24 hours.' },
+      diagnostics: { name: 'Lab, scans and pharmacy', intro: 'Tests, scans and medicines, all open 24 hours.' },
     } satisfies Record<ServiceGroup, { name: string; intro: string }>,
     items: {
       maternity: {
@@ -105,7 +103,7 @@ export const en = {
       },
       gynaecology: {
         name: 'Women’s health',
-        summary: 'Check-ups and advice for period problems, PCOS, fibroids, cysts and menopause.',
+        summary: 'Check-ups and treatment for periods, PCOS, fibroids, cysts and menopause.',
         offerings: ['Period problems and PCOS', 'Women’s health check-ups'],
         availability: 'OPD, Monday to Saturday',
       },
@@ -118,7 +116,7 @@ export const en = {
       'general-medicine': {
         name: 'Family medicine',
         summary: 'Care for fever, diabetes, blood pressure and everyday illness.',
-        offerings: ['Fever and infections', 'Diabetes and blood pressure', 'Health check-ups'],
+        offerings: ['Fever and infections', 'Diabetes and blood pressure', 'Health check-ups and palliative care'],
         availability: 'OPD, Monday to Saturday',
       },
       emergency: {
@@ -129,7 +127,7 @@ export const en = {
       },
       laboratory: {
         name: 'Laboratory and scans',
-        summary: 'Blood tests day and night, and ultrasound scans. We have offered ultrasound scans since 1996.',
+        summary: 'Blood tests and ultrasound scans, day and night. In 1996 we opened the first ultrasound facility in our area.',
         offerings: ['Blood and urine tests', 'Hormone and thyroid tests', 'Pregnancy and fertility scans'],
         availability: 'Open 24 hours',
       },
@@ -226,7 +224,7 @@ export const en = {
     lead: 'Our consultants see patients Monday to Saturday. Book directly with the doctor you want.',
     profiles: {
       'laila-beegum': {
-        role: 'Consultant Obstetrician and Gynaecologist',
+        role: 'Chief Consultant and Founder',
         focus: 'Pregnancy, women’s health and fertility',
         bio: 'Has cared for mothers in Chemmad for over 30 years, with a special focus on safe normal births and high-risk pregnancies.',
       },
@@ -243,36 +241,31 @@ export const en = {
       jambir: {
         role: 'Senior General Practitioner',
         focus: 'Family medicine',
-        bio: 'Treats fever and everyday illness, and helps manage diabetes and blood pressure.',
+        bio: 'Treats fever and everyday illness, helps manage diabetes and blood pressure, and gives palliative care.',
       },
       'v-j-sonia': {
         role: 'Consultant Obstetrician and Gynaecologist',
         focus: 'Pregnancy, childbirth and women’s surgery',
-        bio: 'Looks after antenatal and postnatal care, normal and high-risk deliveries, and gynaecological surgery.',
+        bio: 'Looks after antenatal and postnatal care, normal and high-risk deliveries, and women’s health surgery.',
       },
       'jitha-vineeth': {
         role: 'Consultant Gynaecologist and Fertility Specialist',
         focus: 'Fertility treatment and women’s health',
-        bio: 'Works with couples trying to conceive, with a focus on fertility assessment, ovulation support, IUI and IVF, and PCOS care.',
+        bio: 'Works with couples trying to conceive, with a focus on fertility assessment, ovulation support, IUI and IVF, and PCOS care. Over 15 years of experience.',
       },
       sumiya: {
         role: 'Consultant Radiologist and Fetal Medicine Specialist',
         focus: 'Ultrasound scanning and fetal medicine',
-        bio: 'Carries out pregnancy ultrasound scans, including anomaly scans, and follows the baby’s growth through each stage of pregnancy.',
+        bio: 'Carries out 3D and 4D ultrasound scanning, fetal anomaly scans and Doppler studies, and follows the baby’s growth through each stage of pregnancy.',
       },
     } satisfies Record<DoctorId, { role: string; focus: string; bio: string }>,
     speaks: 'Speaks',
     opd: 'OPD',
-    /** Shown instead of times when a doctor’s OPD hours are not confirmed. */
     opdUnconfirmed: 'Please call to confirm OPD timings',
-    allFilter: 'All doctors',
-    filterLabel: 'Show doctors for',
-    listTitle: 'Our consultants',
     bookWith: (name: string) => `Book with ${name}`,
     languageNames: { en: 'English', ml: 'Malayalam', ta: 'Tamil' } satisfies Record<LanguageCode, string>,
     duty: {
       title: 'Doctors on duty, every hour',
-      label: '24/7 availability',
       body: 'Duty doctors, nurses, lab staff and pharmacists are here every hour of every day, including Sundays and holidays.',
     },
     seeAll: 'See all doctors',
@@ -387,9 +380,8 @@ export const en = {
     errors: {
       who: 'Please choose a department or a doctor.',
       name: 'Please enter your name.',
-      phone: 'Please enter a 10 digit mobile number.',
+      phone: 'Please enter a 10 digit phone number.',
       send: 'Sorry, we could not send your request. Please call us or use WhatsApp.',
-      timeout: 'This is taking too long, so your request may not have been sent. Please call us or use WhatsApp.',
     },
     next: 'Continue',
     back: 'Back',
@@ -398,17 +390,10 @@ export const en = {
     sending: 'Sending',
     done: {
       whatsappTitle: 'Almost done',
-      whatsappBody: 'WhatsApp should now be open with your details. Press send, and our team will reply to confirm your visit.',
+      whatsappBody: 'WhatsApp has opened with your details. Press send, and our team will reply to confirm your visit.',
       formTitle: 'Thank you',
       formBody: 'We have your request. Our team will call you soon to confirm your visit.',
       close: 'Close',
-    },
-    fallback: {
-      intro: 'If WhatsApp did not open, use one of these instead.',
-      whatsapp: 'Open WhatsApp',
-      call: (phone: string) => `Call ${phone}`,
-      /** Shown if the booking form itself fails to load. */
-      unavailable: 'The booking form could not load. Please call or message us on WhatsApp instead.',
     },
     message: (d: { name: string; phone: string; who: string; day: string }) =>
       [
@@ -483,7 +468,7 @@ export const en = {
       ],
       bringNote: 'Bringing old reports can save you from repeating tests.',
       promiseTitle: 'Our promise to you',
-      doctorsTitle: 'Your fertility doctors',
+      doctorsTitle: 'Your fertility doctor',
       faqTitle: 'Common questions about fertility',
       cta: {
         title: 'Start with a private conversation',
@@ -492,7 +477,7 @@ export const en = {
     },
     doctors: {
       title: 'Our doctors',
-      lead: 'Our consultants see patients Monday to Saturday. Duty doctors are in the hospital every hour of the day. Please call to confirm a doctor’s timings before you travel.',
+      lead: 'Our consultants see patients Monday to Saturday. Duty doctors are in the hospital every hour of the day.',
       groups: [
         { title: 'Pregnancy and women’s health', serviceIds: ['maternity', 'gynaecology'] as ServiceId[] },
         { title: 'Babies and children', serviceIds: ['paediatrics'] as ServiceId[] },
@@ -536,7 +521,7 @@ export const en = {
         },
         {
           title: 'Questions',
-          body: [`Questions about your details? Email ${EMAIL} or call reception on 0494 2463377.`],
+          body: ['Questions about your details? Email care@lailashospital.com or call reception on 0494 2463377.'],
         },
       ],
     },
@@ -559,7 +544,7 @@ export const en = {
     },
     ivf: {
       title: 'Fertility and IVF Care in Chemmad | Lailas IVF Centre',
-      description: 'Private, honest fertility care in Chemmad, Malappuram. Fertility tests, ovulation support and IUI, advice on IVF and ICSI, and pregnancy care with the same team.',
+      description: 'Private, honest fertility care in Chemmad, Malappuram. Fertility tests, ovulation support, IUI, advice on IVF and ICSI, and pregnancy care with the same team.',
     },
     doctors: {
       title: 'Our Doctors and OPD Timings | Lailas Hospital, Chemmad',

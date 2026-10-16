@@ -6,20 +6,20 @@ export type ButtonVariant = 'primary' | 'secondary' | 'quiet' | 'emergency' | 'l
 export type ButtonSize = 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2.5 rounded-[var(--radius-sm)] text-center ' +
-  'transition-colors duration-150 ease-out ' +
+  'inline-flex items-center justify-center gap-2.5 rounded-lg font-sans font-semibold leading-tight text-center ' +
+  'transition-colors duration-200 ease-[var(--ease-gentle)] ' +
   'disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4.5 [&_svg]:shrink-0';
 
 const sizes: Record<ButtonSize, string> = {
-  md: 'min-h-12 px-6 t-ui',
-  lg: 'min-h-[3.25rem] px-7 t-ui-lg',
+  md: 'min-h-12 px-6 t-small',
+  lg: 'min-h-[3.25rem] px-7 t-h4',
 };
 
 const variants: Record<ButtonVariant, string> = {
   primary: 'bg-teal-800 text-ivory hover:bg-teal-900',
   secondary: 'border border-line bg-paper text-ink hover:border-teal-700 hover:text-teal-950 hover:bg-white',
   quiet:
-    'min-h-11 px-0 rounded-none text-teal-800 underline decoration-teal-300 decoration-2 underline-offset-[6px] hover:decoration-teal-700 hover:text-teal-950',
+    '!min-h-11 !px-0 rounded-none text-teal-800 underline decoration-teal-300 decoration-2 underline-offset-[6px] hover:decoration-teal-700 hover:text-teal-950',
   emergency: 'bg-emergency text-white hover:bg-emergency-700',
   light: 'bg-ivory text-teal-950 hover:bg-white',
   lightOutline: 'border border-ivory/50 text-ivory hover:border-ivory hover:bg-ivory/10',

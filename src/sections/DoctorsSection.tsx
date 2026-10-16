@@ -16,7 +16,7 @@ interface Props {
   tone?: 'ivory' | 'paper';
 }
 
-/** Doctor cards: one column on phones, two from sm, at most three from lg. */
+/** Portrait cards. A swipeable row on phones, a grid on larger screens. */
 export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink = true, tone = 'ivory' }: Props) {
   const copy = useCopy();
   const few = doctors.length < 3;
@@ -28,7 +28,7 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
             <h2 id="doctors-title" className="t-h2 text-teal-950">
               {title ?? copy.doctors.title}
             </h2>
-            {(lead ?? copy.doctors.lead) && <p className="t-lead mt-5 text-ink-soft">{lead ?? copy.doctors.lead}</p>}
+            {(lead ?? copy.doctors.lead) && <p className="t-lead mt-5">{lead ?? copy.doctors.lead}</p>}
           </div>
           {showAllLink && (
             <ButtonLink to="/doctors" variant="quiet" className="shrink-0 self-start md:self-auto" iconAfter={<ArrowRight aria-hidden="true" />}>
@@ -41,7 +41,7 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
             'mt-12 grid gap-6',
             few
               ? 'sm:grid-cols-2'
-              : 'sm:grid-cols-2 lg:grid-cols-3',
+              : 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
           )}
         >
           {doctors.map((d, i) => (

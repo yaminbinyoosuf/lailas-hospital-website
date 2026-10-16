@@ -7,15 +7,12 @@ import { useCopy } from '../i18n/LanguageProvider';
 export function MobileBar() {
   const copy = useCopy();
   const { open } = useBooking();
-  // The bar is exactly 3.5rem tall (plus its 1px border and the safe area),
-  // which is what App reserves at the bottom of the page. The Book button is
-  // inset by its margin rather than adding height.
   const item =
-    'flex min-w-0 flex-col items-center justify-center gap-0.5 px-1 text-center t-meta font-semibold leading-tight [overflow-wrap:anywhere]';
+    'flex min-h-14 min-w-0 flex-col items-center justify-center gap-0.5 px-1 text-center t-meta font-semibold leading-tight [overflow-wrap:anywhere]';
   return (
-    <div className="glass-bar fixed bottom-0 left-0 z-40 w-screen max-w-full overflow-hidden border-t border-line pb-[env(safe-area-inset-bottom)] shadow-[var(--shadow-soft)] lg:hidden">
+    <div className="fixed bottom-0 left-0 z-40 w-screen max-w-full overflow-hidden border-t border-white/80 bg-paper/85 backdrop-blur-xl pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgb(11_36_31/0.08)] lg:hidden">
       <div className="grid min-w-0 grid-cols-[repeat(3,minmax(0,1fr))]">
-        <a href={`tel:${contact.primary.tel}`} className={`${item} h-14 text-emergency`}>
+        <a href={`tel:${contact.primary.tel}`} className={`${item} text-emergency`}>
           <Phone className="size-5" aria-hidden="true" />
           {copy.mobileBar.call}
         </a>
@@ -23,12 +20,12 @@ export function MobileBar() {
           href={whatsappLink(copy.booking.whatsappGeneral)}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${item} h-14 text-teal-800`}
+          className={`${item} text-teal-800`}
         >
           <MessageCircle className="size-5" aria-hidden="true" />
           {copy.mobileBar.whatsapp}
         </a>
-        <button type="button" onClick={() => open()} className={`${item} m-1.5 h-11 rounded-[var(--radius-md)] bg-teal-800 text-ivory`}>
+        <button type="button" onClick={() => open()} className={`${item} m-1.5 rounded-[var(--radius-md)] bg-teal-700 text-ivory`}>
           <CalendarDays className="size-5" aria-hidden="true" />
           {copy.mobileBar.book}
         </button>

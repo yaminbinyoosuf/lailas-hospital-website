@@ -8,8 +8,10 @@ import { Button } from './Button';
 import { Photo } from './Photo';
 
 /**
- * Doctor card: portrait (or initials), role, name, qualification chips, then
- * OPD timings and languages in an inset panel, and a Book button.
+ * Premium Glassmorphic Doctor Card.
+ *
+ * Combines specular borders, frosted backdrop, structured qualification badges,
+ * and an inset frosted well for OPD schedule and spoken languages.
  */
 export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layout?: 'stack' | 'row' }) {
   const copy = useCopy();
@@ -26,19 +28,22 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
   return (
     <article
       className={cn(
-        'relative flex h-full flex-col justify-between rounded-[var(--radius-lg)] border border-line bg-paper p-6 md:p-7',
-        row && 'lg:p-8',
+        'group relative flex h-full flex-col justify-between overflow-hidden rounded-[var(--radius-lg)] glass-card glass-card-hover p-6 md:p-7',
+        row && 'lg:flex-row lg:items-start lg:gap-8 lg:p-8',
       )}
     >
-      {/* Row layout (the spotlight card on the doctors page): identity in four
-          columns, bio and timings in eight, Book aligned right underneath.
-          It used flex-row with a full-width footer, which squeezed the bio
-          to one word per line. */}
-      <div className={cn('flex flex-1 flex-col', row && 'lg:grid lg:grid-cols-12 lg:gap-10')}>
-        <div className={cn('flex items-start gap-4 sm:gap-5', row && 'lg:col-span-4 lg:flex-col lg:gap-4')}>
+      {/* Specular Top Glow */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-teal-600/30 to-transparent transition-opacity duration-300 group-hover:opacity-100"
+        aria-hidden="true"
+      />
+
+      <div className={cn('flex flex-1 flex-col', row && 'lg:flex-row lg:items-start lg:gap-8')}>
+        {/* Header Section: Avatar Frame + Identity */}
+        <div className={cn('flex items-start gap-4 sm:gap-5', row ? 'lg:flex-col lg:items-start lg:gap-4' : '')}>
           <div
             className={cn(
-              'shrink-0 overflow-hidden rounded-[var(--radius-md)]',
+              'shrink-0 overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-xs transition-transform duration-500 ease-[var(--ease-gentle)] group-hover:scale-[1.02]',
               row ? 'w-24 sm:w-28 lg:w-36' : 'w-20 sm:w-24',
             )}
           >
@@ -52,17 +57,18 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
           </div>
 
           <div className="min-w-0 flex-1">
-            {/* Plain label, not a pill: long roles wrap cleanly. */}
-            <p className="t-label text-clay-700">{profile.role}</p>
+            <span className="inline-flex items-center rounded-full bg-teal-50/90 px-3 py-1 t-label text-teal-800 ring-1 ring-teal-600/15">
+              {profile.role}
+            </span>
 
-            <h3 className="t-h3 mt-1.5 text-teal-950 [overflow-wrap:anywhere]">{doctor.name}</h3>
+            <h3 className="t-h3 mt-2 text-teal-950 font-semibold">{doctor.name}</h3>
 
             {/* Micro-chips for qualifications */}
             <div className="mt-2.5 flex flex-wrap gap-1.5">
               {qualificationBadges.map((qual) => (
                 <span
                   key={qual}
-                  className="rounded-[var(--radius-sm)] bg-sand px-2.5 py-0.5 t-meta text-ink-soft"
+                  className="rounded-md bg-sand/70 px-2.5 py-0.5 t-meta font-medium text-ink-soft ring-1 ring-line/60"
                 >
                   {qual}
                 </span>
@@ -71,13 +77,13 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
           </div>
         </div>
 
-        {/* Bio (row) or focus (stack), then OPD timings and languages */}
-        <div className={cn('mt-5 flex min-w-0 flex-1 flex-col', row && 'lg:col-span-8 lg:mt-0')}>
-          <p className={cn('text-ink-soft', row ? 't-lead max-w-[38rem]' : 't-small')}>
+        {/* Clinical Bio / Focus & Frosted Metadata Well */}
+        <div className={cn('mt-5 flex min-w-0 flex-1 flex-col', row && 'lg:mt-0')}>
+          <p className="t-small text-ink-soft leading-relaxed">
             {row ? profile.bio : profile.focus}
           </p>
 
-          <dl className={cn('mt-5 space-y-2.5 rounded-[var(--radius-md)] border border-line bg-ivory p-3.5 t-small', row && 'lg:max-w-md')}>
+          <dl className="mt-5 space-y-2.5 rounded-[var(--radius-md)] bg-ivory/80 p-3.5 ring-1 ring-line/60 t-small">
             <div className="flex items-start gap-2.5">
               <dt className="mt-0.5 shrink-0">
                 <Clock className="size-4 text-teal-700" aria-hidden="true" />
@@ -94,7 +100,7 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
                 )}
               </dd>
             </div>
-            <div className="flex items-start gap-2.5 border-t border-line pt-2.5">
+            <div className="flex items-start gap-2.5 border-t border-line/40 pt-2">
               <dt className="mt-0.5 shrink-0">
                 <Languages className="size-4 text-teal-700" aria-hidden="true" />
                 <span className="sr-only">{copy.doctors.speaks}</span>
@@ -107,10 +113,11 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
         </div>
       </div>
 
-      <div className={cn('mt-6 pt-2', row && 'lg:flex lg:justify-end')}>
+      {/* Full-width Book Action Footer */}
+      <div className={cn('mt-6 pt-2', row && 'lg:mt-6 lg:w-full')}>
         <Button
           variant="secondary"
-          className={cn('w-full', row && 'lg:w-auto lg:min-w-48')}
+          className="w-full justify-center shadow-xs transition-all hover:border-teal-700"
           icon={<CalendarDays className="size-4" aria-hidden="true" />}
           aria-label={copy.doctors.bookWith(doctor.name)}
           onClick={() => open({ kind: 'doctor', id: doctor.id })}
