@@ -3,7 +3,7 @@ import { Container } from '../components/Container';
 import { DoctorCard } from '../components/DoctorCard';
 import { PageMeta } from '../components/PageMeta';
 import { Reveal } from '../components/Reveal';
-import { doctorsFor } from '../content/site';
+import { doctorsForAny } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { cn } from '../lib/format';
 import { PageHero } from '../sections/PageHero';
@@ -30,10 +30,10 @@ export function DoctorsPage() {
             <ul
               className={cn(
                 'mt-10 grid gap-14',
-                doctorsFor(g.serviceId).length > 1 && 'lg:grid-cols-2 lg:gap-x-16',
+                doctorsForAny(g.serviceIds).length > 1 && 'lg:grid-cols-2 lg:gap-x-16',
               )}
             >
-              {doctorsFor(g.serviceId).map((d, i) => (
+              {doctorsForAny(g.serviceIds).map((d, i) => (
                 <Reveal as="li" key={d.id} delay={i * 0.06} className="min-w-0">
                   <DoctorCard doctor={d} layout="row" />
                 </Reveal>

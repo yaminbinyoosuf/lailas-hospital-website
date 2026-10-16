@@ -131,6 +131,21 @@ export const images = {
     aspect: 4 / 5,
     tone: 'teal',
   },
+  'doctor-v-j-sonia': {
+    alt: 'Dr. V. J. Sonia, consultant obstetrician and gynaecologist at Lailas Hospital',
+    aspect: 4 / 5,
+    tone: 'sage',
+  },
+  'doctor-jitha-vineeth': {
+    alt: 'Dr. Jitha Vineeth, consultant gynaecologist and fertility specialist at Lailas Hospital',
+    aspect: 4 / 5,
+    tone: 'clay',
+  },
+  'doctor-sumiya': {
+    alt: 'Dr. Sumiya, consultant radiologist and fetal medicine specialist at Lailas Hospital',
+    aspect: 4 / 5,
+    tone: 'teal',
+  },
 } satisfies Record<string, ImageEntry>;
 
 export type ImageId = keyof typeof images;

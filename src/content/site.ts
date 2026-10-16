@@ -40,7 +40,14 @@ export interface Service {
   imageId: string;
 }
 
-export type DoctorId = 'laila-beegum' | 'geethanjali-s' | 'amith-k' | 'jambir';
+export type DoctorId =
+  | 'laila-beegum'
+  | 'geethanjali-s'
+  | 'amith-k'
+  | 'jambir'
+  | 'v-j-sonia'
+  | 'jitha-vineeth'
+  | 'sumiya';
 export type LanguageCode = 'en' | 'ml' | 'ta';
 
 export interface Doctor {
@@ -95,7 +102,7 @@ export const hospital = {
   founded: 1994, // Q4
   firstUltrasoundYear: 1996, // Q5
   website: 'https://lailashospital.com', // Q15
-  email: 'care@lailashospital.com', // Q15
+  email: 'info@lailashospital.com', // Q15
 } as const;
 
 /** The only headline figures allowed on the site. */
@@ -139,8 +146,8 @@ export const address = {
   region: 'Kerala',
   postalCode: '676306',
   country: 'IN',
-  plusCode: '2WV6+7JH',
-  geo: { lat: 11.0421, lng: 75.9221 }, // Q16
+  plusCode: '7J3Q2WV6+9G', // full code; decodes to the coordinates below
+  geo: { lat: 11.0434, lng: 75.91134 }, // Q16
   mapsUrl:
     'https://www.google.com/maps/search/?api=1&query=Lailas+Hospital+Chemmad+Kerala+676306',
   directionsUrl:
@@ -225,6 +232,34 @@ export const doctors: Doctor[] = [
     opd: { days: MON_SAT, open: '09:00', close: '19:00' },
     imageId: 'doctor-jambir',
   },
+  {
+    id: 'v-j-sonia',
+    name: 'Dr. V. J. Sonia',
+    qualifications: 'MBBS, DGO, MS (Obstetrics and Gynaecology), FMAS',
+    serviceIds: ['maternity', 'gynaecology'],
+    languages: ['en', 'ml'],
+    opd: { days: MON_SAT, open: '09:00', close: '19:00' }, // hospital OPD window, not confirmed per doctor
+    imageId: 'doctor-v-j-sonia',
+  },
+  {
+    id: 'jitha-vineeth',
+    name: 'Dr. Jitha Vineeth',
+    qualifications:
+      'MBBS, DGO, Clinical Embryology (ARMC), Advanced Diploma in ART and Reproductive Medicine (Kiel)',
+    serviceIds: ['ivf', 'gynaecology'],
+    languages: ['en', 'ml'],
+    opd: { days: MON_SAT, open: '09:00', close: '19:00' }, // hospital OPD window, not confirmed per doctor
+    imageId: 'doctor-jitha-vineeth',
+  },
+  {
+    id: 'sumiya',
+    name: 'Dr. Sumiya',
+    qualifications: 'MBBS, MD, DNB (Radiodiagnosis), Fellowship in Fetal Medicine',
+    serviceIds: ['gynaecology'],
+    languages: ['en', 'ml'],
+    opd: { days: MON_SAT, open: '09:00', close: '19:00' }, // hospital OPD window, not confirmed per doctor
+    imageId: 'doctor-sumiya',
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -293,3 +328,7 @@ export const getService = (id: ServiceId) => services.find((s) => s.id === id)!;
 export const getDoctor = (id: DoctorId) => doctors.find((d) => d.id === id)!;
 export const doctorsFor = (serviceId: ServiceId) =>
   doctors.filter((d) => d.serviceIds.includes(serviceId));
+
+/** A doctors-page group may span more than one service. */
+export const doctorsForAny = (serviceIds: ServiceId[]) =>
+  doctors.filter((d) => d.serviceIds.some((s) => serviceIds.includes(s)));

@@ -243,6 +243,21 @@ export const en = {
         focus: 'Family medicine',
         bio: 'Treats fever and everyday illness, helps manage diabetes and blood pressure, and gives palliative care.',
       },
+      'v-j-sonia': {
+        role: 'Consultant Obstetrician and Gynaecologist',
+        focus: 'Pregnancy, childbirth and women’s surgery',
+        bio: 'Looks after antenatal and postnatal care, normal and high-risk deliveries, and laparoscopic gynaecological surgery.',
+      },
+      'jitha-vineeth': {
+        role: 'Consultant Gynaecologist and Fertility Specialist',
+        focus: 'Fertility treatment and women’s health',
+        bio: 'Works with couples trying to conceive, with a focus on fertility assessment, ovulation support, IUI and IVF, and PCOS care. Over 15 years of experience.',
+      },
+      sumiya: {
+        role: 'Consultant Radiologist and Fetal Medicine Specialist',
+        focus: 'Ultrasound scanning and fetal medicine',
+        bio: 'Carries out 3D and 4D ultrasound scanning, fetal anomaly scans and Doppler studies, and follows the baby’s growth through each stage of pregnancy.',
+      },
     } satisfies Record<DoctorId, { role: string; focus: string; bio: string }>,
     speaks: 'Speaks',
     opd: 'OPD',
@@ -461,11 +476,11 @@ export const en = {
     },
     doctors: {
       title: 'Our doctors',
-      lead: 'Four consultants see patients Monday to Saturday. Duty doctors are in the hospital every hour of the day.',
+      lead: 'Our consultants see patients Monday to Saturday. Duty doctors are in the hospital every hour of the day.',
       groups: [
-        { title: 'Pregnancy and women’s health', serviceId: 'maternity' as ServiceId },
-        { title: 'Babies and children', serviceId: 'paediatrics' as ServiceId },
-        { title: 'Family medicine', serviceId: 'general-medicine' as ServiceId },
+        { title: 'Pregnancy and women’s health', serviceIds: ['maternity', 'gynaecology'] as ServiceId[] },
+        { title: 'Babies and children', serviceIds: ['paediatrics'] as ServiceId[] },
+        { title: 'Family medicine', serviceIds: ['general-medicine'] as ServiceId[] },
       ],
     },
     contact: {

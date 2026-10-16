@@ -104,3 +104,56 @@ If you have audited figures for C-section or outcome rates, send them and we can
 **Q28. Old URLs.** The current sitemap lists `/about`, `/obstetrics-gynaecology`, `/departments` and `/privacy`. The new site has fewer pages. Should these old URLs redirect, and is the current site live and indexed by Google?
 
 **Q29. Hosting.** Where is lailashospital.com hosted today, and who can deploy? The new site is a static `dist/` folder.
+
+## Added after the Chemmad dataset review (October 2026)
+
+A master dataset for the hospital was supplied, drawn from Instagram, Facebook, Justdial,
+Quickerala, Mapcarta and two news articles. It agreed with the site on the name, motto, founding
+year, 70,000+ births, website, all four phone numbers, the address and 24 hour services. Those
+were applied. The items below still need the hospital's own confirmation.
+
+**Q30. Email address. Needs confirmation.** The site now shows `info@lailashospital.com`, taken
+from the Quickerala directory. It previously showed `care@lailashospital.com`. Only one can be
+right, and a wrong address on a hospital site loses enquiries. Which one is monitored?
+This is also the address used in the `mailto:` link in the footer and on the contact page.
+
+**Q31. Dr. Jambir or Dr. Jabir? Needs confirmation.** The dataset spells this consultant both
+ways in the same document. The site currently reads "Dr. Jambir". A misspelled consultant name
+is not acceptable to publish.
+
+**Q32. OPD window. Resolved, both 10:00 to 19:00.** The dataset says 10:00 AM to 7:00 PM, and the
+site already used `09:00` to `19:00` in IST. Q1 can be closed.
+
+**Q33. Dr. Geethanjali S: is she currently practising?** The dataset lists only "MBBS, OBG",
+which is not a qualification format used for any other consultant here. Either the credential
+is incomplete or she is no longer with the hospital.
+
+**Q34. Consultation hours for the three newly added consultants.** The dataset does not give
+per-doctor OP times for Dr. V. J. Sonia, Dr. Jitha Vineeth or Dr. Sumiya. The site currently
+shows them on the hospital's general OPD window, 9:00 AM to 7:00 PM, marked in `site.ts` as
+"not confirmed per doctor". Please supply their actual hours.
+
+**Q35. Which group should each consultant sit in on the doctors page?** The page groups
+consultants by service. Dr. Sumiya is a radiologist and fetal medicine specialist and is
+currently listed under "Pregnancy and women's health", which is not a precise fit. Dr. Jitha
+Vineeth is also a fertility specialist and should probably appear on the IVF page.
+
+**Q36. Clinical and reputational claims withheld.** These appeared in the dataset and were not
+published, because they are third party or promotional and your own content rules require
+verification:
+- "Gynaec of the poor" and low caesarean rates, attributed to news coverage
+- 452 twin births and 4 triplets in the Kodinhi region
+- "recognized for low neonatal mortality rates"
+- Justdial ratings of 4.0/5 (92 reviews) and 4.4/5 for Dr. Laila
+- The nine procedures listed for Dr. Jitha Vineeth, including CO2 laser vaginal rejuvenation,
+  HIFEM pelvic floor therapy, Botox and PRP regenerative therapy
+- The late Dr. Abdurahiman Ambadi tribute, and the names of Dr. Laila's family members
+
+If the hospital wants any of these on the site, please confirm in writing which are accurate and
+current. Ratings in particular are a poor fit for a hospital's own website: they change, and they
+belong to the directory rather than the hospital.
+
+**Q37. Departments not yet on the site.** The dataset describes cosmetic gynaecology and
+intimate wellness, and fetal medicine and diagnostic radiology, as distinct departments. The
+service list currently has no entry for either, so consultants in those areas sit under existing
+services. Should these become services of their own?
