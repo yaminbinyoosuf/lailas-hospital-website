@@ -33,20 +33,21 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <Container className="grid items-center gap-12 pt-12 pb-14 md:pt-16 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16 relative z-10">
+      <Container className="relative z-10 grid items-center gap-12 pt-10 pb-14 md:pt-16 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16">
         {/* Claim --------------------------------------------------------- */}
-        <div className="lg:col-span-7">
-          <span className="inline-flex items-center rounded-full bg-teal-50/90 px-3 py-1 t-label text-teal-800 ring-1 ring-teal-600/15">
+        <div className="hero-enter lg:col-span-7">
+          <span className="inline-flex items-center gap-2 rounded-full bg-paper/80 px-3.5 py-2 t-label text-teal-800 ring-1 ring-teal-600/15 shadow-[0_8px_24px_rgb(11_36_31/0.06)] backdrop-blur-sm">
+            <span className="size-1.5 rounded-full bg-clay-500" aria-hidden="true" />
             {copy.hero.tagline}
           </span>
 
-          <h1 id="hero-title" className="t-display mt-5 max-w-[36rem] text-teal-950 font-bold">
+          <h1 id="hero-title" className="t-display mt-5 max-w-[39rem] text-teal-950 font-bold">
             {copy.hero.title}
           </h1>
 
-          <p className="t-lead mt-6 max-w-[34rem]">{copy.hero.lead}</p>
+          <p className="t-lead mt-6 max-w-[35rem]">{copy.hero.lead}</p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <Button size="lg" icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
               {copy.actions.book}
             </Button>
@@ -60,8 +61,13 @@ export function Hero() {
             </ButtonAnchor>
           </div>
 
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 t-meta text-ink-soft">
+            <span className="inline-flex items-center gap-2"><span className="size-2 rounded-full bg-teal-500" aria-hidden="true" />30+ years of care</span>
+            <span className="inline-flex items-center gap-2"><span className="size-2 rounded-full bg-clay-400" aria-hidden="true" />70,000+ families</span>
+          </div>
+
           {/* Emergency line: present but quiet */}
-          <p className="mt-8 flex max-w-[34rem] items-start gap-2.5 border-t border-line/60 pt-5 t-small">
+          <p className="mt-7 flex max-w-[34rem] items-start gap-2.5 border-t border-line/60 pt-5 t-small">
             <Phone className="mt-[0.3rem] size-4 shrink-0 text-emergency" aria-hidden="true" />
             <span>
               {copy.hero.emergency(

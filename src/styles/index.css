@@ -259,9 +259,32 @@
 /* A quiet, code-native art direction. This takes the place of generic stock
    imagery while the hospital's genuine photography library is being prepared. */
 .hero-composition {
+  isolation: isolate;
   background:
     radial-gradient(circle at 50% 34%, rgb(255 253 249 / 0.16), transparent 22%),
     linear-gradient(145deg, #0b241f 2%, #18473f 58%, #2b6b60 100%);
+}
+.hero-composition::after {
+  z-index: -1;
+}
+@media (max-width: 767px) {
+  .hero-composition {
+    min-height: 25rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 44px -24px rgb(11 36 31 / 0.42);
+  }
+  .hero-composition .care-form {
+    transform: scale(0.8);
+  }
+  .hero-composition::before {
+    width: 17rem;
+    height: 17rem;
+  }
+}
+@media (min-width: 768px) {
+  .hero-composition {
+    min-height: 34rem;
+  }
 }
 .hero-composition::before,
 .hero-composition::after {
