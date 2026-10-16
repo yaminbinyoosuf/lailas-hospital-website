@@ -2,6 +2,7 @@ import { CalendarDays, Check, FileText, MessageCircle } from 'lucide-react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button, ButtonAnchor } from '../components/Button';
 import { Container } from '../components/Container';
+import { Section } from '../components/Section';
 import { PageMeta } from '../components/PageMeta';
 import { Reveal } from '../components/Reveal';
 import { doctorsFor, pageFaqs, whatsappLink } from '../content/site';
@@ -45,7 +46,7 @@ export function IvfPage() {
         }
       />
 
-      <section aria-labelledby="when-title" className="bg-sage-50 py-20 md:py-28">
+      <Section tone="sage" labelledBy="when-title">
         <Container className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
             <h2 id="when-title" className="t-h2 text-teal-950">
@@ -77,9 +78,9 @@ export function IvfPage() {
             </ol>
           </Reveal>
         </Container>
-      </section>
+      </Section>
 
-      <section aria-labelledby="path-title" className="py-20 md:py-28">
+      <Section labelledBy="path-title">
         <Container>
           <Reveal>
             <h2 id="path-title" className="t-h2 max-w-2xl text-teal-950">
@@ -90,9 +91,9 @@ export function IvfPage() {
             <IvfTimeline onDark={false} />
           </div>
         </Container>
-      </section>
+      </Section>
 
-      <section aria-labelledby="bring-title" className="pb-20 md:pb-28">
+      <Section labelledBy="bring-title" className="pt-0 md:pt-0">
         <Container className="grid gap-8 lg:grid-cols-2">
           <Reveal className="rounded-[var(--radius-lg)] bg-paper p-8 ring-1 ring-line md:p-12">
             <h2 id="bring-title" className="t-h3 text-teal-950">
@@ -113,7 +114,7 @@ export function IvfPage() {
             <p className="mt-6 t-h3">{copy.ivf.promise}</p>
           </Reveal>
         </Container>
-      </section>
+      </Section>
 
       <DoctorsSection title={page.doctorsTitle} lead="" doctors={doctorsFor('ivf')} showAllLink={false} tone="paper" />
       <FaqSection title={page.faqTitle} ids={pageFaqs.ivf} />

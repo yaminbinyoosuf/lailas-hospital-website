@@ -5,6 +5,7 @@ import { Container } from '../components/Container';
 import { Photo } from '../components/Photo';
 import { Reveal } from '../components/Reveal';
 import { Section } from '../components/Section';
+import { hasPhoto } from '../content/images';
 import { whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 
@@ -59,6 +60,9 @@ export function IvfTimeline({ onDark = true }: { onDark?: boolean }) {
 export function IvfPath() {
   const copy = useCopy();
   const { open } = useBooking();
+  // Without the consultation photo, the promise takes the photo's column
+  // instead of repeating at the foot of the section.
+  const withPhoto = hasPhoto('ivf-consultation');
 
   return (
     <Section tone="teal" labelledBy="ivf-title" space="loose">
@@ -89,17 +93,23 @@ export function IvfPath() {
           </div>
         </Reveal>
         <Reveal className="lg:col-span-5" delay={0.1}>
-          <Photo id="ivf-consultation" shape="cradle" onDark sizes="(min-width: 1024px) 32vw, 90vw" className="mx-auto max-w-[26rem]" />
+          {withPhoto ? (
+            <Photo id="ivf-consultation" shape="cradle" onDark sizes="(min-width: 1024px) 32vw, 90vw" className="mx-auto max-w-[26rem]" />
+          ) : (
+            <p className="t-h3 border-l-2 border-clay-200 pl-6 text-ivory md:pl-8">{copy.ivf.promise}</p>
+          )}
         </Reveal>
       </Container>
 
       <Container className="mt-20 md:mt-24">
         <IvfTimeline />
-        <Reveal className="mt-16 grid gap-8 border-t border-teal-700 pt-10 md:grid-cols-12">
-          <p className="t-h3 text-ivory md:col-span-8">
-            {copy.ivf.promise}
-          </p>
-          <div className="md:col-span-4 md:text-right">
+        <Reveal
+          className={
+            withPhoto ? 'mt-16 grid gap-8 border-t border-teal-700 pt-10 md:grid-cols-12' : 'mt-10 md:text-right'
+          }
+        >
+          {withPhoto && <p className="t-h3 text-ivory md:col-span-8">{copy.ivf.promise}</p>}
+          <div className={withPhoto ? 'md:col-span-4 md:text-right' : undefined}>
             <ButtonLink
               to="/ivf"
               variant="quiet"

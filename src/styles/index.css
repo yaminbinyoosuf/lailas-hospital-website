@@ -243,18 +243,11 @@
    nothing translucent inside them.
    ========================================================================== */
 @utility glass-bar {
-  background: rgb(251 247 240 / 0.88);
+  background: rgb(251 247 240 / 0.92);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     background: var(--color-ivory);
-  }
-}
-
-@utility scrollbar-none {
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
   }
 }
 

@@ -16,7 +16,7 @@ interface Props {
   tone?: 'ivory' | 'paper';
 }
 
-/** Portrait cards. A swipeable row on phones, a grid on larger screens. */
+/** Doctor cards: one column on phones, two from sm, at most three from lg. */
 export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink = true, tone = 'ivory' }: Props) {
   const copy = useCopy();
   const few = doctors.length < 3;
@@ -41,7 +41,7 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
             'mt-12 grid gap-6',
             few
               ? 'sm:grid-cols-2'
-              : 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+              : 'sm:grid-cols-2 lg:grid-cols-3',
           )}
         >
           {doctors.map((d, i) => (

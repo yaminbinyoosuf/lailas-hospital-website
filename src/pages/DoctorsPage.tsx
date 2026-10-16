@@ -2,6 +2,7 @@ import { Clock, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { ButtonAnchor } from '../components/Button';
 import { Container } from '../components/Container';
+import { Section } from '../components/Section';
 import { DoctorCard } from '../components/DoctorCard';
 import { PageMeta } from '../components/PageMeta';
 import { Reveal } from '../components/Reveal';
@@ -77,7 +78,7 @@ export function DoctorsPage() {
         </Container>
       </div>
 
-      <section aria-labelledby="doctors-list-title" className="py-12 md:py-16">
+      <Section labelledBy="doctors-list-title" space="tight" className="pt-0 md:pt-0">
         <Container>
           <h2 id="doctors-list-title" className="sr-only">
             {copy.doctors.listTitle}
@@ -102,10 +103,10 @@ export function DoctorsPage() {
             ))}
           </ul>
         </Container>
-      </section>
+      </Section>
 
       {/* Duty doctors banner */}
-      <section aria-labelledby="duty-title" className="pt-6 pb-20 md:pb-28">
+      <Section labelledBy="duty-title" className="pt-0 md:pt-0">
         <Container>
           <Reveal className="on-dark rounded-[var(--radius-lg)] bg-teal-950 p-8 text-ivory md:p-12">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -142,7 +143,7 @@ export function DoctorsPage() {
             </div>
           </Reveal>
         </Container>
-      </section>
+      </Section>
     </>
   );
 }

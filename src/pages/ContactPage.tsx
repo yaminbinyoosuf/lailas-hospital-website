@@ -2,6 +2,7 @@ import { CalendarDays, Mail, Phone } from 'lucide-react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button } from '../components/Button';
 import { Container } from '../components/Container';
+import { Section } from '../components/Section';
 import { PageMeta } from '../components/PageMeta';
 import { Reveal } from '../components/Reveal';
 import { contact } from '../content/site';
@@ -18,7 +19,7 @@ export function ContactPage() {
     <>
       <PageMeta page="contact" />
       <PageHero title={page.title} lead={page.lead} />
-      <section aria-labelledby="phones-title" className="pb-20 md:pb-24">
+      <Section labelledBy="phones-title" className="pt-0 md:pt-0">
         <Container className="grid gap-8 lg:grid-cols-12">
           <Reveal className="lg:col-span-7">
             <h2 id="phones-title" className="sr-only">
@@ -67,7 +68,7 @@ export function ContactPage() {
             </Button>
           </Reveal>
         </Container>
-      </section>
+      </Section>
       <VisitUs />
     </>
   );

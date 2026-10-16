@@ -27,12 +27,15 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
     <article
       className={cn(
         'relative flex h-full flex-col justify-between rounded-[var(--radius-lg)] border border-line bg-paper p-6 md:p-7',
-        row && 'lg:flex-row lg:items-start lg:gap-8 lg:p-8',
+        row && 'lg:p-8',
       )}
     >
-      <div className={cn('flex flex-1 flex-col', row && 'lg:flex-row lg:items-start lg:gap-8')}>
-        {/* Header Section: Avatar Frame + Identity */}
-        <div className={cn('flex items-start gap-4 sm:gap-5', row ? 'lg:flex-col lg:items-start lg:gap-4' : '')}>
+      {/* Row layout (the spotlight card on the doctors page): identity in four
+          columns, bio and timings in eight, Book aligned right underneath.
+          It used flex-row with a full-width footer, which squeezed the bio
+          to one word per line. */}
+      <div className={cn('flex flex-1 flex-col', row && 'lg:grid lg:grid-cols-12 lg:gap-10')}>
+        <div className={cn('flex items-start gap-4 sm:gap-5', row && 'lg:col-span-4 lg:flex-col lg:gap-4')}>
           <div
             className={cn(
               'shrink-0 overflow-hidden rounded-[var(--radius-md)]',
@@ -52,7 +55,7 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
             {/* Plain label, not a pill: long roles wrap cleanly. */}
             <p className="t-label text-clay-700">{profile.role}</p>
 
-            <h3 className="t-h3 mt-1.5 text-teal-950">{doctor.name}</h3>
+            <h3 className="t-h3 mt-1.5 text-teal-950 [overflow-wrap:anywhere]">{doctor.name}</h3>
 
             {/* Micro-chips for qualifications */}
             <div className="mt-2.5 flex flex-wrap gap-1.5">
@@ -68,13 +71,13 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
           </div>
         </div>
 
-        {/* Clinical Bio / Focus & Frosted Metadata Well */}
-        <div className={cn('mt-5 flex min-w-0 flex-1 flex-col', row && 'lg:mt-0')}>
-          <p className="t-small text-ink-soft">
+        {/* Bio (row) or focus (stack), then OPD timings and languages */}
+        <div className={cn('mt-5 flex min-w-0 flex-1 flex-col', row && 'lg:col-span-8 lg:mt-0')}>
+          <p className={cn('text-ink-soft', row ? 't-lead max-w-[38rem]' : 't-small')}>
             {row ? profile.bio : profile.focus}
           </p>
 
-          <dl className="mt-5 space-y-2.5 rounded-[var(--radius-md)] border border-line bg-ivory p-3.5 t-small">
+          <dl className={cn('mt-5 space-y-2.5 rounded-[var(--radius-md)] border border-line bg-ivory p-3.5 t-small', row && 'lg:max-w-md')}>
             <div className="flex items-start gap-2.5">
               <dt className="mt-0.5 shrink-0">
                 <Clock className="size-4 text-teal-700" aria-hidden="true" />
@@ -104,11 +107,10 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
         </div>
       </div>
 
-      {/* Full-width Book Action Footer */}
-      <div className={cn('mt-6 pt-2', row && 'lg:mt-6 lg:w-full')}>
+      <div className={cn('mt-6 pt-2', row && 'lg:flex lg:justify-end')}>
         <Button
           variant="secondary"
-          className="w-full"
+          className={cn('w-full', row && 'lg:w-auto lg:min-w-48')}
           icon={<CalendarDays className="size-4" aria-hidden="true" />}
           aria-label={copy.doctors.bookWith(doctor.name)}
           onClick={() => open({ kind: 'doctor', id: doctor.id })}

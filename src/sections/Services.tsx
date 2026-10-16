@@ -37,12 +37,14 @@ export function Services() {
           <p className="t-lead text-ink-soft lg:col-span-5">{copy.services.lead}</p>
         </Reveal>
 
-        <div className="mt-12 overflow-x-auto pb-2 scrollbar-none">
+        {/* 2 x 2 on phones, so every tab is visible without sideways scrolling;
+            one row from sm. */}
+        <div className="mt-12">
           <div
             ref={tabsRef}
             role="tablist"
             aria-label={copy.services.groupsLabel}
-            className="inline-flex gap-1.5 rounded-[var(--radius-md)] border border-line bg-paper p-1.5"
+            className="grid grid-cols-2 gap-1.5 rounded-[var(--radius-md)] border border-line bg-paper p-1.5 sm:inline-flex"
           >
             {serviceGroups.map((g) => {
               const selected = g === active;
@@ -58,7 +60,7 @@ export function Services() {
                   onClick={() => setActive(g)}
                   onKeyDown={onKeyDown}
                   className={cn(
-                    'min-h-11 rounded-[var(--radius-sm)] px-5 t-ui whitespace-nowrap transition-colors duration-150',
+                    'min-h-11 rounded-[var(--radius-sm)] px-3 py-2 text-center t-ui transition-colors duration-150 sm:px-5 sm:whitespace-nowrap',
                     selected
                       ? g === 'emergency'
                         ? 'bg-emergency text-white'
