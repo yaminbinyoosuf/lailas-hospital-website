@@ -2,8 +2,7 @@ import { CalendarDays, MessageCircle, Phone } from 'lucide-react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button, ButtonAnchor } from '../components/Button';
 import { Container } from '../components/Container';
-import { Photo } from '../components/Photo';
-import { hasPhoto } from '../content/images';
+import { CareForm } from '../components/CareForm';
 import { address, contact, hours, whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { formatDays, formatHours } from '../lib/format';
@@ -12,7 +11,7 @@ import { formatDays, formatHours } from '../lib/format';
  * Hero.
  *
  * Three zones, in descending order of weight: the claim (eyebrow, headline,
- * lead, actions), the photograph, and a trust band of three figures.
+ * lead, actions), an abstract brand composition, and a trust band of three figures.
  *
  * The tagline sits inside the headline block as an italic accent rather than as
  * a second coloured line beneath it, which was competing with the headline for
@@ -22,8 +21,6 @@ import { formatDays, formatHours } from '../lib/format';
 export function Hero() {
   const copy = useCopy();
   const { open } = useBooking();
-  const withPhoto = hasPhoto('hero-main');
-
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-ivory ambient-mesh">
       {/* Decorative ambient light orbs */}
@@ -80,42 +77,28 @@ export function Hero() {
           </p>
         </div>
 
-        {/* Until the hero photograph exists, this column shows the visiting
-            information instead, so the first screen carries real facts rather
-            than an empty panel. Large screens only. */}
-        {withPhoto ? (
-          <div className="lg:col-span-5">
-            <div className="p-2.5 sm:p-3 glass-card rounded-[calc(var(--radius-lg)+0.5rem)] shadow-[var(--shadow-lift)]">
-              <Photo
-                id="hero-main"
-                shape="soft"
-                priority
-                aspect={4 / 5}
-                sizes="(min-width: 1024px) 38vw, 90vw"
-                className="mx-auto max-w-[32rem] rounded-[var(--radius-lg)]"
-              />
-            </div>
-          </div>
-        ) : (
-          <aside
-            aria-labelledby="hero-visit-title"
-            className="hidden rounded-[var(--radius-lg)] border border-line bg-paper p-8 lg:col-span-5 lg:block xl:p-10"
-          >
+        <div className="lg:col-span-5">
+          <div className="hero-composition relative mx-auto min-h-[16rem] max-w-[32rem] overflow-hidden rounded-[var(--radius-lg)] bg-teal-950 p-2 shadow-[var(--shadow-lift)] md:min-h-[31rem]">
+            <CareForm />
+            <aside
+              aria-labelledby="hero-visit-title"
+              className="absolute inset-x-4 bottom-4 rounded-[var(--radius-md)] bg-paper/95 p-5 shadow-[0_12px_32px_rgb(11_36_31/0.26)] backdrop-blur-md md:inset-x-5 md:bottom-5"
+            >
             <h2 id="hero-visit-title" className="t-h4 text-teal-950">
               {copy.visit.hoursTitle}
             </h2>
-            <dl className="mt-6 space-y-5">
+            <dl className="mt-4 grid grid-cols-2 gap-x-5 gap-y-4">
               <div>
                 <dt className="t-small text-ink-soft">{copy.visit.hours.allDay}</dt>
                 <dd className="mt-0.5 font-semibold text-ink">{copy.time.open24EveryDay}</dd>
               </div>
-              <div className="border-t border-line pt-5">
+              <div>
                 <dt className="t-small text-ink-soft">{copy.visit.hours.opd}</dt>
                 <dd className="mt-0.5 font-semibold text-ink">
                   {formatDays(hours.opd.days, copy)}, {formatHours(hours.opd, copy)}
                 </dd>
               </div>
-              <div className="border-t border-line pt-5">
+              <div className="col-span-2 border-t border-line pt-4">
                 <dt className="t-small text-ink-soft">{copy.visit.addressTitle}</dt>
                 <dd className="mt-0.5 text-ink">
                   {address.postalLines.map((l) => (
@@ -126,21 +109,22 @@ export function Hero() {
                 </dd>
               </div>
             </dl>
-            <ButtonAnchor href={address.directionsUrl} variant="secondary" size="md" className="mt-7">
+            <ButtonAnchor href={address.directionsUrl} variant="quiet" size="md" className="mt-4">
               {copy.actions.directions}
             </ButtonAnchor>
-          </aside>
-        )}
+            </aside>
+          </div>
+        </div>
       </Container>
 
       {/* Floating Glass Stat Tiles ---------------------------------------- */}
       <div className="border-t border-line/50 bg-paper/60 backdrop-blur-md">
         <Container className="py-8 md:py-10">
-          <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
+          <dl className="grid grid-cols-1 divide-y divide-line/70 border-y border-line/70 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {copy.hero.trust.map((t) => (
               <div
                 key={t.label}
-                className="glass-card glass-card-hover rounded-[var(--radius-md)] p-6 md:p-8"
+                className="px-1 py-5 sm:px-7 md:px-9 md:py-7"
               >
                 <dd className="t-number text-[2.25rem] text-teal-900 tabular-nums md:text-[2.75rem] font-bold">
                   {t.value}

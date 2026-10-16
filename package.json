@@ -15,7 +15,8 @@
     "check:copy": "node tools/check-copy.mjs",
     "check:contrast": "node tools/check-contrast.mjs",
     "screenshots": "node tools/screenshot.mjs",
-    "check": "npm run typecheck && npm run check:contrast && npm run check:copy"
+    "check": "npm run typecheck && npm run check:contrast && npm run check:copy && npm run check:fonts",
+    "check:fonts": "node tools/check-fonts.mjs"
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",

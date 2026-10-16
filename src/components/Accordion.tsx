@@ -32,7 +32,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
   };
 
   return (
-    <div ref={listRef} className="space-y-3.5">
+    <div ref={listRef} className="divide-y divide-line border-y border-line">
       {items.map((item) => {
         const isOpen = open === item.id;
         const triggerId = `${base}-${item.id}-t`;
@@ -41,8 +41,8 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
           <div
             key={item.id}
             className={cn(
-              'glass-card rounded-[var(--radius-md)] px-6 md:px-8 border border-white/80 shadow-xs transition-all duration-300',
-              isOpen && 'shadow-md border-teal-600/30 bg-paper/90',
+              'px-1 transition-colors duration-300',
+              isOpen && 'bg-sand/35',
             )}
           >
             <h3 className="t-h4">
@@ -60,7 +60,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
                 <span
                   className={cn(
                     'grid size-9 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color] duration-300',
-                    isOpen ? 'rotate-45 border-teal-700 bg-teal-700 text-ivory' : 'border-line bg-ivory text-teal-800',
+                    isOpen ? 'rotate-45 border-teal-700 bg-teal-700 text-ivory' : 'border-line bg-paper text-teal-800',
                   )}
                   aria-hidden="true"
                 >

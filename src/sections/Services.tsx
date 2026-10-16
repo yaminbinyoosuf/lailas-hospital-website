@@ -42,7 +42,7 @@ export function Services() {
             ref={tabsRef}
             role="tablist"
             aria-label={copy.services.groupsLabel}
-            className="inline-flex p-1.5 rounded-[var(--radius-md)] glass-card border border-white/80 shadow-xs gap-1.5"
+            className="inline-flex gap-1 border-b border-line"
           >
             {serviceGroups.map((g) => {
               const selected = g === active;
@@ -58,12 +58,12 @@ export function Services() {
                   onClick={() => setActive(g)}
                   onKeyDown={onKeyDown}
                   className={cn(
-                    'min-h-11 rounded-[var(--radius-sm)] px-5 t-small font-semibold whitespace-nowrap transition-all duration-300',
+                    'min-h-11 border-b-2 border-transparent px-4 t-small font-semibold whitespace-nowrap transition-colors duration-300',
                     selected
                       ? g === 'emergency'
-                        ? 'bg-emergency text-white shadow-xs'
-                        : 'bg-teal-800 text-ivory shadow-xs'
-                      : 'text-ink-soft hover:bg-sand/60 hover:text-ink',
+                        ? 'border-emergency text-emergency'
+                        : 'border-teal-700 text-teal-900'
+                      : 'text-ink-soft hover:border-teal-300 hover:text-ink',
                   )}
                 >
                   {copy.services.groups[g].name}

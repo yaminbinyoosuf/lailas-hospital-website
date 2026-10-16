@@ -9,10 +9,11 @@
    Contrast (WCAG AA) is checked by `npm run check:contrast`.
    ========================================================================== */
 @theme {
-  /* Headings: Outfit / Plus Jakarta Sans for refined, modern luxury clinical authority.
-     Body, Controls & Interface: Plus Jakarta Sans for supreme readability and geometric precision. */
-  --font-heading: 'Outfit', 'Plus Jakarta Sans', 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-sans: 'Plus Jakarta Sans', 'Source Sans 3 Variable', 'Source Sans 3', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* The two locally bundled variable families intentionally do different jobs:
+     DM Sans gives headings a confident, contemporary voice; Source Sans 3
+     remains exceptionally clear in dense clinical information and controls. */
+  --font-heading: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: 'Source Sans 3 Variable', 'Source Sans 3', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   /* Surfaces */
   --color-ivory: #fbf7f0;
@@ -61,13 +62,13 @@
   --color-emergency-50: #fcedeb;
 
   /* Refined Glassmorphism Radii Scale */
-  --radius-sm: 0.625rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
 
   /* Multi-layered Glassmorphic Shadows */
-  --shadow-soft: 0 4px 24px -4px rgb(11 36 31 / 0.06), 0 1px 2px rgb(11 36 31 / 0.04);
-  --shadow-lift: 0 20px 48px -12px rgb(11 36 31 / 0.14), 0 4px 12px -2px rgb(11 36 31 / 0.06);
+  --shadow-soft: 0 8px 28px -18px rgb(11 36 31 / 0.22);
+  --shadow-lift: 0 24px 56px -24px rgb(11 36 31 / 0.28), 0 6px 16px -8px rgb(11 36 31 / 0.16);
 
   --ease-gentle: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -128,35 +129,35 @@
 }
 
 /* ==========================================================================
-   Type scale: Outfit / Plus Jakarta Sans Headings + Plus Jakarta Sans Body & UI
+   Type scale: DM Sans headings + Source Sans 3 body and UI
    ========================================================================== */
 @utility t-display {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(2.25rem, 1.7045rem + 2.1818vw, 3.75rem);
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  font-weight: 650;
+  font-size: clamp(2.5rem, 1.55rem + 3.6vw, 4.75rem);
+  line-height: 1.03;
+  letter-spacing: -0.045em;
 }
 @utility t-h1 {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(1.875rem, 1.5568rem + 1.2727vw, 2.75rem);
-  line-height: 1.18;
-  letter-spacing: -0.025em;
+  font-weight: 650;
+  font-size: clamp(2rem, 1.5rem + 2.1vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
 }
 @utility t-h2 {
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: clamp(1.625rem, 1.3977rem + 0.9091vw, 2.25rem);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-weight: 650;
+  font-size: clamp(1.75rem, 1.35rem + 1.35vw, 2.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
 }
 @utility t-h3 {
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: clamp(1.25rem, 1.1136rem + 0.5455vw, 1.625rem);
-  line-height: 1.28;
-  letter-spacing: -0.015em;
+  font-weight: 650;
+  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.7rem);
+  line-height: 1.22;
+  letter-spacing: -0.025em;
 }
 @utility t-h4 {
   font-family: var(--font-heading);
@@ -199,7 +200,7 @@
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-teal-700);
 }
@@ -254,6 +255,98 @@
     radial-gradient(at 100% 0%, rgba(246, 230, 218, 0.45) 0px, transparent 50%),
     radial-gradient(at 50% 100%, rgba(230, 236, 225, 0.4) 0px, transparent 55%);
 }
+
+/* A quiet, code-native art direction. This takes the place of generic stock
+   imagery while the hospital's genuine photography library is being prepared. */
+.hero-composition {
+  background:
+    radial-gradient(circle at 50% 34%, rgb(255 253 249 / 0.16), transparent 22%),
+    linear-gradient(145deg, #0b241f 2%, #18473f 58%, #2b6b60 100%);
+}
+.hero-composition::before,
+.hero-composition::after {
+  content: '';
+  position: absolute;
+  border: 1px solid rgb(255 253 249 / 0.26);
+  border-radius: 999px;
+  pointer-events: none;
+}
+.hero-composition::before { width: 22rem; height: 22rem; left: -8rem; top: -7rem; }
+.hero-composition::after { width: 32rem; height: 32rem; right: -16rem; bottom: -19rem; }
+
+/* The site's one signature three-dimensional detail. All layers are static
+   geometry first; the very slow movement is only a progressive enhancement. */
+.care-form {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  perspective: 52rem;
+  transform-style: preserve-3d;
+}
+.care-form__ring,
+.care-form__core,
+.care-form__plane {
+  position: absolute;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+.care-form__ring--outer {
+  width: 17rem;
+  height: 17rem;
+  border: 1px solid rgb(255 253 249 / 0.65);
+  background: radial-gradient(circle, rgb(255 253 249 / 0.18), transparent 63%);
+  box-shadow: inset 0 0 2.5rem rgb(255 253 249 / 0.12), 0 1.5rem 3.25rem rgb(0 0 0 / 0.22);
+  transform: rotateX(63deg) rotateZ(-18deg) translateZ(1.3rem);
+}
+.care-form__ring--inner {
+  width: 10.5rem;
+  height: 10.5rem;
+  border: 1px solid rgb(209 139 99 / 0.9);
+  background: rgb(209 139 99 / 0.14);
+  box-shadow: inset 0 0 1.5rem rgb(255 253 249 / 0.2);
+  transform: rotateX(63deg) rotateZ(28deg) translateZ(3rem);
+}
+.care-form__core {
+  width: 5.25rem;
+  height: 5.25rem;
+  background: radial-gradient(circle at 32% 26%, #fffdf9 0 7%, #f3ece0 31%, #d3ddcb 100%);
+  box-shadow: 0 1.5rem 2.75rem rgb(0 0 0 / 0.3), inset -0.6rem -0.7rem 1rem rgb(31 90 81 / 0.16);
+  transform: translateZ(5rem);
+}
+.care-form__plane--back {
+  width: 20rem;
+  height: 8rem;
+  border-radius: 50%;
+  background: rgb(211 221 203 / 0.16);
+  filter: blur(0.2rem);
+  transform: rotateX(63deg) translateZ(-1.5rem);
+}
+.care-form__plane--front {
+  width: 19rem;
+  height: 19rem;
+  border: 1px solid rgb(255 253 249 / 0.18);
+  transform: rotateY(52deg) rotateX(60deg) translateZ(0.2rem);
+}
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .care-form { animation: care-form-float 12s ease-in-out infinite alternate; }
+}
+@keyframes care-form-float {
+  from { transform: rotateZ(-2deg) translate3d(-0.25rem, 0.35rem, 0); }
+  to { transform: rotateZ(2deg) translate3d(0.25rem, -0.35rem, 0); }
+}
+.maternity-mark, .ivf-mark {
+  min-height: 23rem;
+  border: 1px solid rgb(31 42 39 / 0.14);
+  border-radius: 999px 999px 0 0;
+  align-items: end;
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+.maternity-mark { background: linear-gradient(160deg, rgb(255 253 249 / 0.72), rgb(237 205 182 / 0.5)); color: var(--color-clay-600); }
+.ivf-mark { background: radial-gradient(circle at center, rgb(255 253 249 / 0.14) 0 12%, transparent 12.5%), linear-gradient(160deg, rgb(31 90 81 / 0.8), rgb(11 36 31 / 0.5)); color: var(--color-clay-200); }
+.maternity-mark span, .ivf-mark span { font: 650 clamp(3rem, 6vw, 6rem)/1 var(--font-heading); letter-spacing: -0.06em; }
+.page-hero { border-bottom: 1px solid var(--color-line); background: linear-gradient(110deg, var(--color-ivory), var(--color-paper)); }
 
 /* ==========================================================================
    Shapes: Clean contemporary architectural curves

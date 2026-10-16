@@ -2,7 +2,6 @@ import { ArrowRight, CalendarDays, MessageCircle } from 'lucide-react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button, ButtonAnchor, ButtonLink } from '../components/Button';
 import { Container } from '../components/Container';
-import { Photo } from '../components/Photo';
 import { Reveal } from '../components/Reveal';
 import { Section } from '../components/Section';
 import { whatsappLink } from '../content/site';
@@ -67,7 +66,7 @@ export function IvfPath() {
   return (
     <Section tone="teal" labelledBy="ivf-title" space="loose">
       <Container className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-        <Reveal className="lg:col-span-7">
+        <Reveal className="lg:col-span-8">
           <p className="t-label text-teal-200">{copy.ivf.label}</p>
           <h2 id="ivf-title" className="t-h2 mt-5 text-ivory">
             {copy.ivf.title}
@@ -92,8 +91,8 @@ export function IvfPath() {
             </Button>
           </div>
         </Reveal>
-        <Reveal className="lg:col-span-5" delay={0.1}>
-          <Photo id="ivf-consultation" shape="cradle" onDark sizes="(min-width: 1024px) 32vw, 90vw" className="mx-auto max-w-[26rem]" />
+        <Reveal className="ivf-mark hidden lg:col-span-4 lg:grid" delay={0.1} aria-hidden="true">
+          <span>01</span>
         </Reveal>
       </Container>
 

@@ -41,7 +41,7 @@ export function Header() {
         </Link>
 
         <nav aria-label={copy.a11y.mainNav} className="hidden xl:block">
-          <ul className="flex items-center gap-1.5 p-1 rounded-full glass-card border border-white/80 shadow-xs">
+          <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
               <li key={item.key}>
                 <NavLink
@@ -49,10 +49,10 @@ export function Header() {
                   end
                   className={({ isActive }) =>
                     cn(
-                      'relative inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-4 t-body font-semibold transition-all duration-200',
+                      'relative inline-flex min-h-10 items-center whitespace-nowrap border-b-2 border-transparent px-3 t-small font-semibold transition-colors duration-200',
                       isActive && !item.to.includes('#')
-                        ? 'bg-teal-800 text-ivory shadow-xs'
-                        : 'text-ink-soft hover:bg-teal-900/5 hover:text-teal-900',
+                        ? 'border-teal-700 text-teal-950'
+                        : 'text-ink-soft hover:border-teal-300 hover:text-teal-900',
                     )
                   }
                 >

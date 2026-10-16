@@ -6,8 +6,7 @@
  */
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
-// Stripped native dependency for AI Studio environment:
-// import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer-core';
 
 const args = process.argv.slice(2);
 const flag = (name, def) => args.find((a) => a.startsWith(`--${name}=`))?.split('=')[1] ?? def;
