@@ -1,0 +1,27 @@
+{
+  // Committing this file stops Wrangler's auto-config. Without it every deploy
+  // installs @cloudflare/vite-plugin, rewrites the package.json scripts, runs
+  // the build a second time, and changes the SSR output shape (hashed entry,
+  // default-wrapped exports) which broke tools/prerender.mjs twice.
+  //
+  // The build already produces a complete static site in dist/, so this is an
+  // assets-only Worker. No Worker script is needed.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lailas-hospital-website",
+  "compatibility_date": "2026-10-12",
+  "observability": { "enabled": true },
+
+  "assets": {
+    "directory": "./dist",
+
+    // dist/ holds maternity.html and doctors.html, plus a maternity/ and
+    // doctors/ directory for the same route. auto-trailing-slash resolves both
+    // forms without a redirect, matching how the prerenderer writes them.
+    "html_handling": "auto-trailing-slash",
+
+    // Serve the generated 404.html with a real 404 status. The default,
+    // "single-page-application", answers every unknown URL with index.html and
+    // a 200, which search engines treat as a soft 404.
+    "not_found_handling": "404-page"
+  }
+}

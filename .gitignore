@@ -11,3 +11,6 @@ photos/*
 !photos/README.md
 screenshots/
 .lighthouse/
+
+# Wrangler local cache and build output
+.wrangler/
