@@ -49,7 +49,7 @@ export function Header() {
                   end
                   className={({ isActive }) =>
                     cn(
-                      'relative inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-3.5 t-small font-semibold transition-colors duration-200',
+                      'relative inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-3.5 t-small font-medium transition-colors duration-200',
                       isActive && !item.to.includes('#')
                         ? 'bg-teal-900 text-ivory shadow-sm'
                         : 'text-ink-soft hover:bg-teal-50 hover:text-teal-900',

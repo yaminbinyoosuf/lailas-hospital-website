@@ -61,7 +61,7 @@ export function Services() {
                   onClick={() => setActive(g)}
                   onKeyDown={onKeyDown}
                   className={cn(
-                    'min-h-11 border-b-2 border-transparent px-4 t-small font-semibold whitespace-nowrap transition-colors duration-300',
+                    'min-h-11 border-b-2 border-transparent px-4 t-small font-medium whitespace-nowrap transition-colors duration-300',
                     selected
                       ? g === 'emergency'
                         ? 'border-emergency text-clay-200'

@@ -46,8 +46,13 @@ narrow with a small x-height, DM Sans is geometric with a large one, so body tex
 lighter and smaller than the headings beside it. Hierarchy now comes from weight, size, spacing and
 colour within one typeface, which is also how Swiss clinical typography has always done it.
 
-It is one family, not one weight. Headings run at 650 and are tracked tight; body sits at 400 with
-normal spacing. The contrast is in the treatment, not the typeface.
+It is one family, not one weight. Headings run at **600** and are tracked tight; body sits at 400
+with normal spacing; navigation and tabs at 500. The contrast is in the treatment, not the typeface.
+
+The whole scale was briefly set to 650, which flattened it: a 76px headline and a 27px card title
+at the same weight stop feeling related and just feel uniformly heavy. Large type looks better
+lighter, so the weight curve now steps down as size steps up, and h2 was pulled from 41px to 36px
+so sections do not compete with page titles.
 
 ### Scale
 
@@ -55,10 +60,10 @@ One step per role. Sizes are fluid so no component needs its own media query.
 
 | Utility | Role | 390px | 768px | 1440px | Weight | Line height | Tracking |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `t-display` | home hero only | 40.0 | 52.4 | 76.0 | 650 | 1.03 | -0.045em |
-| `t-h1` | page title | 32.2 | 40.1 | 52.0 | 650 | 1.08 | -0.04em |
-| `t-h2` | section heading | 28.0 | 32.0 | 41.0 | 650 | 1.12 | -0.035em |
-| `t-h3` | subsection, card title | 20.3 | 23.0 | 27.2 | 650 | 1.22 | -0.025em |
+| `t-display` | home hero only | 40.0 | 52.4 | 76.0 | 600 | 1.03 | -0.045em |
+| `t-h1` | page title | 32.2 | 40.1 | 52.0 | 600 | 1.08 | -0.04em |
+| `t-h2` | section heading | 26.0 | 30.0 | 36.0 | 600 | 1.12 | -0.035em |
+| `t-h3` | subsection, card title | 19.0 | 22.0 | 24.0 | 600 | 1.22 | -0.025em |
 | `t-h4` | list item, question, column head | 17.0 | 18.0 | 19.8 | 600 | 1.38 | -0.01em |
 | `t-lead` | intro paragraph | 17.0 | 17.5 | 18.5 | 400 | 1.65 | -0.005em |
 | `t-body` | default copy | 16.0 | 16.0 | 16.0 | 400 | 1.65 | normal |
