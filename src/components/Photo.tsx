@@ -74,9 +74,8 @@ export function Photo({
 
 const doctorInitials: Record<string, string> = {
   'doctor-laila-beegum': 'LB',
-  'doctor-geethanjali-s': 'GS',
   'doctor-amith-k': 'AK',
-  'doctor-jambir': 'JB',
+  'doctor-jabir': 'JB',
   'doctor-v-j-sonia': 'VS',
   'doctor-jitha-vineeth': 'JV',
   'doctor-sumiya': 'DS',

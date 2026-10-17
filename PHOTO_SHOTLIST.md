@@ -6,14 +6,15 @@ pretends to be a finished photograph.
 
 ## Current status
 
-**26 of 27 positions are unfilled.** `hero-editorial` is the one real photograph, and it is served
+**25 of 26 positions are unfilled.** `hero-editorial` is the one real photograph, and it is served
 as responsive AVIF and WebP. The rest render a deliberate placeholder.
 
-This is intentional, not an oversight. Four of these positions carry the names of
-real consultants (`doctor-laila-beegum`, `doctor-geethanjali-s`, `doctor-amith-k`,
-`doctor-jambir`) and several represent this hospital's own rooms. Those cannot be
-filled with borrowed imagery without misrepresenting a person or a place, and the
-project carries no licence to use third party stock photography.
+This is intentional, not an oversight. Six of these positions carry the names of
+real consultants (`doctor-laila-beegum`, `doctor-amith-k`, `doctor-jabir`,
+`doctor-v-j-sonia`, `doctor-jitha-vineeth`, `doctor-sumiya`) and several represent
+this hospital's own rooms. Those cannot be filled with borrowed imagery without
+misrepresenting a person or a place, and the project carries no licence to use
+third party stock photography.
 
 The earlier build of this site did substitute curated stock photographs, including
 portraits for the named consultants. That has been removed.
@@ -66,9 +67,8 @@ per frame:
 | `service-laboratory` | Laboratory with a technician at work | Card | Landscape 3:2 |
 | `service-pharmacy` | Pharmacy counter with the pharmacist | Card | Landscape 3:2 |
 | `doctor-laila-beegum` | Portrait of Dr. Laila Beegum N | Tall arch | Portrait 4:5 |
-| `doctor-geethanjali-s` | Portrait of Dr. Geethanjali S | Tall arch | Portrait 4:5 |
 | `doctor-amith-k` | Portrait of Dr. Amith K | Tall arch | Portrait 4:5 |
-| `doctor-jambir` | Portrait of Dr. Jambir | Tall arch | Portrait 4:5 |
+| `doctor-jabir` | Portrait of Dr. Jabir | Tall arch | Portrait 4:5 |
 | `doctor-v-j-sonia` | Portrait of Dr. V. J. Sonia | Tall arch | Portrait 4:5 |
 | `doctor-jitha-vineeth` | Portrait of Dr. Jitha Vineeth | Tall arch | Portrait 4:5 |
 | `doctor-sumiya` | Portrait of Dr. Sumiya | Tall arch | Portrait 4:5 |

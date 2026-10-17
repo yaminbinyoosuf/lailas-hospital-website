@@ -40,7 +40,7 @@ What is each number for, and should 2953377 be published?
 
 **Q8. Dr. Laila Beegum N, IVF.** CONTENT.md calls her an "IVF Specialist", but her listed qualifications are MBBS, DGO. Who leads the IVF centre, and what title can we use?
 
-**Q9. Dr. Jambir.** Is this the full name? The avatar used "DJ" in one build and "J" in another. Is "BCCPM" correct?
+**Q9. Dr. Jabir.** Resolved to "Jabir" on instruction. Is this the full name, is the spelling final, and is "BCCPM" correct?
 
 **Q10. Languages.** Only Dr. Laila Beegum N lists Tamil. Please confirm each doctor's languages, and whether anyone speaks Arabic or Hindi.
 
@@ -117,16 +117,16 @@ from the Quickerala directory. It previously showed `care@lailashospital.com`. O
 right, and a wrong address on a hospital site loses enquiries. Which one is monitored?
 This is also the address used in the `mailto:` link in the footer and on the contact page.
 
-**Q31. Dr. Jambir or Dr. Jabir? Needs confirmation.** The dataset spells this consultant both
-ways in the same document. The site currently reads "Dr. Jambir". A misspelled consultant name
-is not acceptable to publish.
+**Q31. Dr. Jabir spelling. Changed on instruction.** The site now reads "Dr. Jabir". The dataset
+spelled it both ways, and its reel credit read "Dr. Jabir, MBBS, BCCPM", which is why that spelling
+is used. This is still worth one confirmation from the hospital, because a misspelled consultant
+name is published to search engines and cannot be quietly corrected later.
 
 **Q32. OPD window. Resolved, both 10:00 to 19:00.** The dataset says 10:00 AM to 7:00 PM, and the
 site already used `09:00` to `19:00` in IST. Q1 can be closed.
 
-**Q33. Dr. Geethanjali S: is she currently practising?** The dataset lists only "MBBS, OBG",
-which is not a qualification format used for any other consultant here. Either the credential
-is incomplete or she is no longer with the hospital.
+**Q33. Dr. Geethanjali S: removed on instruction.** Her card, profile, image slot and initials
+entry are gone. If she is in fact still consulting, the entry needs restoring from git history.
 
 **Q34. Consultation hours for the three newly added consultants.** The dataset does not give
 per-doctor OP times for Dr. V. J. Sonia, Dr. Jitha Vineeth or Dr. Sumiya. The site currently

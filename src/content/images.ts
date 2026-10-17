@@ -121,18 +121,13 @@ export const images = {
     aspect: 4 / 5,
     tone: 'clay',
   },
-  'doctor-geethanjali-s': {
-    alt: 'Portrait of Dr. Geethanjali S, Consultant Gynaecologist & Obstetrician',
-    aspect: 4 / 5,
-    tone: 'sage',
-  },
   'doctor-amith-k': {
     alt: 'Portrait of Dr. Amith K, Consultant Paediatrician',
     aspect: 4 / 5,
     tone: 'sand',
   },
-  'doctor-jambir': {
-    alt: 'Portrait of Dr. Jambir, Consultant Physician',
+  'doctor-jabir': {
+    alt: 'Portrait of Dr. Jabir, Consultant Physician',
     aspect: 4 / 5,
     tone: 'teal',
   },

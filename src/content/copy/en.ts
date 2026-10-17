@@ -245,17 +245,12 @@ export const en = {
         focus: 'Pregnancy, women’s health and fertility',
         bio: 'Has cared for mothers in Chemmad for over 30 years, with a special focus on safe normal births and high-risk pregnancies.',
       },
-      'geethanjali-s': {
-        role: 'Senior Consultant',
-        focus: 'Pregnancy and women’s health',
-        bio: 'Looks after pregnant women, PCOS and period problems, women’s surgery and the labour room.',
-      },
       'amith-k': {
         role: 'Consultant Paediatrician',
         focus: 'Babies and children',
         bio: 'Cares for newborns and children, with help on feeding, vaccines, breathing problems and growth.',
       },
-      jambir: {
+      jabir: {
         role: 'Senior General Practitioner',
         focus: 'Family medicine',
         bio: 'Treats fever and everyday illness, helps manage diabetes and blood pressure, and gives palliative care.',

@@ -42,9 +42,8 @@ export interface Service {
 
 export type DoctorId =
   | 'laila-beegum'
-  | 'geethanjali-s'
   | 'amith-k'
-  | 'jambir'
+  | 'jabir'
   | 'v-j-sonia'
   | 'jitha-vineeth'
   | 'sumiya';
@@ -213,16 +212,6 @@ export const doctors: Doctor[] = [
     imageId: 'doctor-laila-beegum',
   },
   {
-    id: 'geethanjali-s',
-    name: 'Dr. Geethanjali S',
-    qualifications: 'MBBS, DGO',
-    serviceIds: ['maternity', 'gynaecology'],
-    languages: ['en', 'ml'],
-    opd: { days: MON_SAT, open: '09:30', close: '17:30' },
-    hasOwnOpdHours: true,
-    imageId: 'doctor-geethanjali-s',
-  },
-  {
     id: 'amith-k',
     name: 'Dr. Amith K',
     qualifications: 'MBBS, MD (Paediatrics)',
@@ -233,14 +222,14 @@ export const doctors: Doctor[] = [
     imageId: 'doctor-amith-k',
   },
   {
-    id: 'jambir',
-    name: 'Dr. Jambir', // Q9
+    id: 'jabir',
+    name: 'Dr. Jabir', // Q9
     qualifications: 'MBBS, BCCPM', // Q9
     serviceIds: ['general-medicine'],
     languages: ['en', 'ml'],
     opd: { days: MON_SAT, open: '09:00', close: '19:00' },
     hasOwnOpdHours: true,
-    imageId: 'doctor-jambir',
+    imageId: 'doctor-jabir',
   },
   {
     id: 'v-j-sonia',
