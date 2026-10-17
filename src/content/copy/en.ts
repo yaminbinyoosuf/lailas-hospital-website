@@ -95,6 +95,18 @@ export const en = {
     },
   },
 
+  /** The founder section on the home page. Only facts already established
+      elsewhere on the site are stated here; no quotation is attributed to her. */
+  founder: {
+    label: 'The founder',
+    title: 'The doctor who began it all in 1994, and still leads it today.',
+    facts: [
+      { value: '1994', label: 'the year she opened the hospital' },
+      { value: '70,000+', label: 'babies born here since' },
+      { value: '30+ years', label: 'in practice in Chemmad' },
+    ],
+  },
+
   services: {
     title: 'Care for the whole family, under one roof',
     lead: 'From pregnancy and birth to your child’s vaccines and your parents’ check-ups.',

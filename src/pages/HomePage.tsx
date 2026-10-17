@@ -1,6 +1,7 @@
 import { PageMeta } from '../components/PageMeta';
 import { DoctorsSection } from '../sections/DoctorsSection';
 import { FaqSection } from '../sections/FaqSection';
+import { FounderSection } from '../sections/FounderSection';
 import { Hero } from '../sections/Hero';
 import { IvfPath } from '../sections/IvfPath';
 import { MaternityStory } from '../sections/MaternityStory';
@@ -17,6 +18,7 @@ export function HomePage() {
       <MaternityStory />
       <IvfPath />
       <PregnancyTool />
+      <FounderSection />
       <DoctorsSection />
       <FaqSection />
       <VisitUs />
