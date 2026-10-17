@@ -8,5 +8,62 @@
       800,
       1200
     ]
+  },
+  "doctor-jabir": {
+    "width": 1600,
+    "height": 2000,
+    "blur": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAQBQCdASoYAB4APu1iqE4ppaOiMAgBMB2JYgCdMoACs5ki6wV/4YcrXdKeVgVQ8q9AAP7D8m3G+OCq/xXC/+15HNHYvMy2338Fb9CXrY8fjRq8hhECBug5njY2f/wdDEAn8i/XkUbUaZ2Jr39b7B4MmvDlKJ1x8G3MhvNKSJaaxe8QAAA=",
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "doctor-laila-beegum": {
+    "width": 1600,
+    "height": 2000,
+    "blur": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAADQBQCdASoYAB4APuliqk2pJaQiMBgMASAdCWgAsR80PgBtJUEy+87jwU5b3LTo1jqEvuIkNsgAAP7erRCXoeUgOoakXp4M3nLqeFWdBvj8JHvMUJeVJmg3lbX5bcMrJtv4xb1PZOKoZ/ZpWZdM+K3sy+7Hm1CPLZx5YYbtoHa7bWzCUUNwdt3i+noShUAA",
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "doctor-sumiya": {
+    "width": 1600,
+    "height": 2000,
+    "blur": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAAAwBQCdASoYAB4APt1Wp02opKOiN/qoARAbiWwAd64ERJfoLPxj8Vzkn4f4BnZyZB8kAAD+3oYuX7HwTb0NRZTnpweC0PTXH3ufMT/NVuHtmgHPffxJrbVIIFmzj66Gb61CgexI9m82moP6PG9suJshOdY0TAamK8Ypp1COC8QIHX8KYf7odONa5a3BOuixgDf3PxE2mAgAAA==",
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "doctor-amith-k": {
+    "width": 1122,
+    "height": 1402,
+    "blur": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBgCdASoYAB4APu1ipU4ppSMiMBgMATAdiWMAuwAN0sLcHWLlgf67GRiMd6eiRQeJekvHHGFS44AA/tOddq/jno9nio4iVvYn0M2LSWt3/WTrYX/s6LtthYVlMr4t6Ginzu+5PofKzkuJNr7Vd/o3ox3/Hst5UBw63XltSnE1c3IA",
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "doctor-jitha-vineeth": {
+    "width": 1122,
+    "height": 1402,
+    "blur": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAACQBQCdASoYAB4APu1kqE2ppaOiMBgMATAdiUAWnQHsD3SZZdXXc9pGZam2arRV3pwlOgS6AAD+04r1cMQKOK33jI/QzlGjaYK4jgA6nMjCJ5/rBr/OGweYv9qt8UCCz6m3FjzS+mZSXZgp43+XX7w5HknEZz3lD4QqzotFcEulW2ehnPd3xuWe+2CHJ+7Gd0AAAA==",
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "doctor-v-j-sonia": {
+    "width": 1122,
+    "height": 1402,
+    "blur": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACwBQCdASoYAB4APu1kqU2ppaOiMAgBMB2JYwCdACFw2Qa+uM6tRtP+uYuGnsYzQ0mS8GGbfAAA/tM38F2oGDhlKo3P32JuLjAy6lbpQLkk3+UfrXWaIbkjdsKWJxlWi/SkgYWjjgag3Z7v+ts0DYCGomLF0AfkTmLQQ528hom8chLTA02n4vXxA0JhGfpgrz8wYYAA",
+    "widths": [
+      480,
+      800
+    ]
   }
 }
