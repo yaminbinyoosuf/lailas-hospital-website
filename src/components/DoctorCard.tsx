@@ -1,9 +1,11 @@
 import { CalendarDays, Clock, Languages } from 'lucide-react';
+import { hasPhoto, type ImageId } from '../content/images';
 import type { Doctor } from '../content/site';
 import { useBooking } from '../booking/BookingProvider';
 import { useCopy } from '../i18n/LanguageProvider';
 import { cn, formatDays, formatHours } from '../lib/format';
 import { Button } from './Button';
+import { Photo } from './Photo';
 
 /**
  * A consultant profile.
@@ -53,17 +55,27 @@ export function DoctorCard({
 
       {/* Identity ------------------------------------------------------- */}
       <div className="flex items-start gap-4">
-        <div
-          aria-hidden="true"
-          className={cn(
-            'grid shrink-0 place-items-center rounded-full ring-1',
-            featured
-              ? 'size-20 bg-clay-50 text-clay-700 ring-clay-200'
-              : 'size-14 bg-sand text-teal-800 ring-line md:size-16',
-          )}
-        >
-          <span className={cn('t-number', featured ? 'text-2xl' : 'text-lg')}>{initials}</span>
-        </div>
+        {hasPhoto(doctor.imageId as ImageId) ? (
+          <Photo
+            id={doctor.imageId as ImageId}
+            shape="circle"
+            aspect={1}
+            sizes={featured ? '80px' : '(min-width: 768px) 64px, 56px'}
+            className={cn('shrink-0 ring-1 ring-line', featured ? 'size-20' : 'size-14 md:size-16')}
+          />
+        ) : (
+          <div
+            aria-hidden="true"
+            className={cn(
+              'grid shrink-0 place-items-center rounded-full ring-1',
+              featured
+                ? 'size-20 bg-clay-50 text-clay-700 ring-clay-200'
+                : 'size-14 bg-sand text-teal-800 ring-line md:size-16',
+            )}
+          >
+            <span className={cn('t-number', featured ? 'text-2xl' : 'text-lg')}>{initials}</span>
+          </div>
+        )}
 
         <div className="min-w-0 flex-1">
           <h3 className={cn('text-teal-950', featured ? 't-h2' : 't-h3')}>{doctor.name}</h3>
