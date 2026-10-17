@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, Languages } from 'lucide-react';
+import { CalendarDays, Clock } from 'lucide-react';
 import { hasPhoto, type ImageId } from '../content/images';
 import type { Doctor } from '../content/site';
 import { useBooking } from '../booking/BookingProvider';
@@ -41,8 +41,9 @@ export function DoctorCard({
     <article
       className={cn(
         'group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] border bg-paper transition-[border-color,box-shadow] duration-300',
+        featured && 'lg:grid lg:grid-cols-12 lg:gap-x-10',
         featured
-          ? 'border-teal-700/25 p-6 md:p-8'
+          ? 'border-clay-200 bg-sand/45 p-6 md:p-10'
           : 'border-line p-5 hover:border-teal-600/40 hover:shadow-[var(--shadow-soft)] md:p-6',
       )}
     >
@@ -54,14 +55,14 @@ export function DoctorCard({
       )}
 
       {/* Identity ------------------------------------------------------- */}
-      <div className="flex items-start gap-4">
+      <div className={cn('flex items-start gap-4', featured && 'lg:col-span-5')}>
         {hasPhoto(doctor.imageId as ImageId) ? (
           <Photo
             id={doctor.imageId as ImageId}
             shape="circle"
             aspect={1}
             sizes={featured ? '80px' : '(min-width: 768px) 64px, 56px'}
-            className={cn('shrink-0 ring-1 ring-line', featured ? 'size-20' : 'size-14 md:size-16')}
+            className={cn('shrink-0 ring-1 ring-line', featured ? 'size-28 md:size-32' : 'size-16 md:size-20')}
           />
         ) : (
           <div
@@ -69,20 +70,20 @@ export function DoctorCard({
             className={cn(
               'grid shrink-0 place-items-center rounded-full ring-1',
               featured
-                ? 'size-20 bg-clay-50 text-clay-700 ring-clay-200'
-                : 'size-14 bg-sand text-teal-800 ring-line md:size-16',
+                ? 'size-28 bg-clay-50 text-clay-700 ring-clay-200 md:size-32'
+                : 'size-16 bg-sand text-teal-800 ring-line md:size-20',
             )}
           >
-            <span className={cn('t-number', featured ? 'text-2xl' : 'text-lg')}>{initials}</span>
+            <span className={cn('t-number', featured ? 'text-4xl' : 'text-xl')}>{initials}</span>
           </div>
         )}
 
         <div className="min-w-0 flex-1">
           <h3 className={cn('text-teal-950', featured ? 't-h2' : 't-h3')}>{doctor.name}</h3>
-          <p className={cn('mt-1 font-medium text-teal-800', featured ? 't-small' : 't-meta')}>
+          <p className={cn('mt-1.5 font-medium text-teal-800', featured ? 't-body' : 't-meta')}>
             {profile.role}
           </p>
-          <p className="mt-1 t-meta text-ink-muted">{doctor.qualifications}</p>
+          <p className={cn('mt-1 text-ink-muted', featured ? 't-small' : 't-meta')}>{doctor.qualifications}</p>
         </div>
       </div>
 
@@ -90,15 +91,14 @@ export function DoctorCard({
       <p
         className={cn(
           'mt-4 t-small text-ink-soft',
-          featured ? 'max-w-[46rem]' : 'line-clamp-3',
+          featured ? 'text-ink lg:col-span-7 lg:col-start-6 lg:mt-0 lg:text-base' : 'line-clamp-3',
         )}
       >
         {featured ? profile.bio : profile.focus}
       </p>
 
       {/* Practicalities --------------------------------------------------- */}
-      <dl className="mt-4 grid gap-2 border-t border-line pt-4 t-small text-ink-soft">
-        <div className="flex items-start gap-2">
+      <dl className={cn('mt-4 flex items-start gap-2 border-t border-line pt-4 t-small text-ink-soft', featured && 'lg:col-span-7 lg:col-start-6')}>
           <dt className="mt-0.5 shrink-0">
             <Clock className="size-4 text-teal-700" aria-hidden="true" />
             <span className="sr-only">{copy.doctors.opd}</span>
@@ -112,24 +112,13 @@ export function DoctorCard({
               <span className="block text-ink-muted">{copy.doctors.opdUnconfirmed}</span>
             )}
           </dd>
-        </div>
-
-        <div className="flex items-start gap-2">
-          <dt className="mt-0.5 shrink-0">
-            <Languages className="size-4 text-teal-700" aria-hidden="true" />
-            <span className="sr-only">{copy.doctors.speaks}</span>
-          </dt>
-          <dd className="min-w-0 text-ink-muted">
-            {doctor.languages.map((l) => copy.doctors.languageNames[l]).join(', ')}
-          </dd>
-        </div>
       </dl>
 
       {/* Action ----------------------------------------------------------- */}
-      <div className="mt-4 flex flex-1 items-end">
+      <div className={cn('mt-4 flex flex-1 items-end', featured && 'lg:col-span-7 lg:col-start-6 lg:flex-none')}>
         <Button
           variant={featured ? 'primary' : 'secondary'}
-          className="w-full"
+          className={featured ? 'sm:w-auto' : 'w-full'}
           icon={<CalendarDays className="size-4" aria-hidden="true" />}
           aria-label={copy.doctors.bookWith(doctor.name)}
           onClick={() => open({ kind: 'doctor', id: doctor.id })}
