@@ -1,140 +1,108 @@
-import { CalendarDays, MessageCircle, Phone } from 'lucide-react';
+import { CalendarDays, Heart, MessageCircle, ShieldCheck, Stethoscope, UsersRound } from 'lucide-react';
+import { useState } from 'react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button, ButtonAnchor } from '../components/Button';
 import { Container } from '../components/Container';
-import { CareForm } from '../components/CareForm';
-import { address, contact, hours, whatsappLink } from '../content/site';
+import { contact, services, whatsappLink, type ServiceId } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
-import { formatDays, formatHours } from '../lib/format';
+import { getPhoto } from '../content/images';
 
-/**
- * Hero.
- *
- * Three zones, in descending order of weight: the claim (eyebrow, headline,
- * lead, actions), an abstract brand composition, and a trust band of three figures.
- *
- * The tagline sits inside the headline block as an italic accent rather than as
- * a second coloured line beneath it, which was competing with the headline for
- * attention. The trust band and the emergency note are driven by copy, so no
- * string is hardcoded here.
- */
+const trustIcons = [Heart, ShieldCheck, UsersRound, Stethoscope] as const;
+const trustIconFor = (i: number) => trustIcons[i % trustIcons.length];
+
+/** Only services that can actually be booked online appear in the selector. */
+const bookableServices = services.filter((s) => s.bookable);
+
+/** Hero recreation with the existing booking sheet preserved for every action. */
 export function Hero() {
   const copy = useCopy();
   const { open } = useBooking();
+  const [service, setService] = useState<ServiceId | ''>('');
+  const hero = getPhoto('hero-editorial');
+
+  /** Opens the sheet already on the chosen department, or on the first step
+      when nothing was chosen. */
+  const startBooking = () =>
+    open(service ? { kind: 'service', id: service } : undefined);
+
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-ivory ambient-mesh">
-      {/* Decorative ambient light orbs */}
-      <div
-        className="pointer-events-none absolute -left-20 top-1/4 size-96 rounded-full bg-teal-200/20 blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute right-0 top-10 size-96 rounded-full bg-clay-200/25 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <Container className="grid items-center gap-12 pt-12 pb-14 md:pt-16 lg:grid-cols-12 lg:gap-14 lg:pt-20 lg:pb-16 relative z-10">
-        {/* Claim --------------------------------------------------------- */}
-        <div className="lg:col-span-7">
-          <span className="inline-flex items-center rounded-full bg-teal-50/90 px-3 py-1 t-label text-teal-800 ring-1 ring-teal-600/15">
-            {copy.hero.tagline}
-          </span>
-
-          <h1 id="hero-title" className="t-display mt-5 max-w-[36rem] text-teal-950 font-bold">
-            {copy.hero.title}
+    <section aria-labelledby="hero-title" className="reference-hero">
+      {hero && (
+        <picture>
+          <source type="image/avif" srcSet={hero.avifSrcSet} sizes="100vw" />
+          <source type="image/webp" srcSet={hero.webpSrcSet} sizes="100vw" />
+          <img
+            src={hero.fallback}
+            alt="A mother holding her sleeping newborn against her chest in soft daylight"
+            className="reference-hero__image"
+            width={hero.width}
+            height={hero.height}
+            fetchPriority="high"
+            decoding="async"
+            style={{ backgroundImage: `url(${hero.blur})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+          />
+        </picture>
+      )}
+      <div className="reference-hero__wash" aria-hidden="true" />
+      <Container className="reference-hero__content relative z-10">
+        <div className="reference-hero__copy">
+          <p className="reference-hero__eyebrow"><span /> {copy.hero.eyebrow}</p>
+          <h1 id="hero-title" className="reference-hero__title">
+            {copy.hero.title.before}
+            <em>{copy.hero.title.accent}</em>
+            {copy.hero.title.after}
           </h1>
-
-          <p className="t-lead mt-6 max-w-[34rem]">{copy.hero.lead}</p>
-
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-            <Button size="lg" icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
-              {copy.actions.book}
-            </Button>
-            <ButtonAnchor
-              href={whatsappLink(copy.booking.whatsappGeneral)}
-              variant="quiet"
-              size="lg"
-              icon={<MessageCircle aria-hidden="true" />}
-            >
-              {copy.actions.chatWhatsapp}
-            </ButtonAnchor>
+          <p className="reference-hero__lead">{copy.hero.lead}</p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Button size="lg" icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>{copy.actions.book}</Button>
+            <ButtonAnchor href={whatsappLink(copy.booking.whatsappGeneral)} variant="secondary" size="lg" icon={<MessageCircle aria-hidden="true" />}>{copy.actions.chatWhatsapp}</ButtonAnchor>
           </div>
-
-          {/* Emergency line: present but quiet */}
-          <p className="mt-8 flex max-w-[34rem] items-start gap-2.5 border-t border-line/60 pt-5 t-small">
-            <Phone className="mt-[0.3rem] size-4 shrink-0 text-emergency" aria-hidden="true" />
-            <span>
-              {copy.hero.emergency(
-                <a
-                  key="tel"
-                  href={`tel:${contact.primary.tel}`}
-                  className="font-semibold tabular-nums text-ink underline decoration-emergency/40 underline-offset-4 transition-colors hover:decoration-emergency"
-                >
-                  {contact.primary.display}
-                </a>,
-              )}
-            </span>
+          <p className="mt-5 text-sm font-semibold text-teal-900">
+            {copy.hero.emergency(
+              <a key="tel" href={`tel:${contact.primary.tel}`} className="underline underline-offset-4 tabular-nums">
+                {contact.primary.display}
+              </a>,
+            )}
           </p>
         </div>
 
-        <div className="lg:col-span-5">
-          <div className="hero-composition relative mx-auto min-h-[16rem] max-w-[32rem] overflow-hidden rounded-[var(--radius-lg)] bg-teal-950 p-2 shadow-[var(--shadow-lift)] md:min-h-[31rem]">
-            <CareForm />
-            <aside
-              aria-labelledby="hero-visit-title"
-              className="absolute inset-x-4 bottom-4 rounded-[var(--radius-md)] bg-paper/95 p-5 shadow-[0_12px_32px_rgb(11_36_31/0.26)] backdrop-blur-md md:inset-x-5 md:bottom-5"
-            >
-            <h2 id="hero-visit-title" className="t-h4 text-teal-950">
-              {copy.visit.hoursTitle}
-            </h2>
-            <dl className="mt-4 grid grid-cols-2 gap-x-5 gap-y-4">
-              <div>
-                <dt className="t-small text-ink-soft">{copy.visit.hours.allDay}</dt>
-                <dd className="mt-0.5 font-semibold text-ink">{copy.time.open24EveryDay}</dd>
-              </div>
-              <div>
-                <dt className="t-small text-ink-soft">{copy.visit.hours.opd}</dt>
-                <dd className="mt-0.5 font-semibold text-ink">
-                  {formatDays(hours.opd.days, copy)}, {formatHours(hours.opd, copy)}
-                </dd>
-              </div>
-              <div className="col-span-2 border-t border-line pt-4">
-                <dt className="t-small text-ink-soft">{copy.visit.addressTitle}</dt>
-                <dd className="mt-0.5 text-ink">
-                  {address.postalLines.map((l) => (
-                    <span key={l} className="block">
-                      {l}
-                    </span>
-                  ))}
-                </dd>
-              </div>
-            </dl>
-            <ButtonAnchor href={address.directionsUrl} variant="quiet" size="md" className="mt-4">
-              {copy.actions.directions}
-            </ButtonAnchor>
-            </aside>
-          </div>
-        </div>
-      </Container>
+        <aside className="reference-booking" aria-labelledby="hero-booking-title">
+          <h2 id="hero-booking-title">{copy.hero.panel.title}</h2>
 
-      {/* Floating Glass Stat Tiles ---------------------------------------- */}
-      <div className="border-t border-line/50 bg-paper/60 backdrop-blur-md">
-        <Container className="py-8 md:py-10">
-          <dl className="grid grid-cols-1 divide-y divide-line/70 border-y border-line/70 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-            {copy.hero.trust.map((t) => (
-              <div
-                key={t.label}
-                className="px-1 py-5 sm:px-7 md:px-9 md:py-7"
-              >
-                <dd className="t-number text-[2.25rem] text-teal-900 tabular-nums md:text-[2.75rem] font-bold">
-                  {t.value}
-                </dd>
-                <dt className="mt-2 max-w-[17rem] t-small text-ink-soft">{t.label}</dt>
-              </div>
+          <label className="reference-booking__label" htmlFor="hero-service">
+            {copy.hero.panel.service}
+          </label>
+          <select
+            id="hero-service"
+            className="reference-booking__select"
+            value={service}
+            onChange={(e) => setService(e.target.value as ServiceId | '')}
+          >
+            <option value="">{copy.hero.panel.anyService}</option>
+            {bookableServices.map((s) => (
+              <option key={s.id} value={s.id}>
+                {copy.services.items[s.id].name}
+              </option>
             ))}
-          </dl>
-        </Container>
-      </div>
+          </select>
+
+          <Button className="mt-4 w-full" size="lg" onClick={startBooking}>
+            {copy.hero.panel.continue}
+          </Button>
+
+          <ButtonAnchor
+            href={whatsappLink(copy.booking.whatsappGeneral)}
+            variant="secondary"
+            className="mt-3 w-full"
+            icon={<MessageCircle aria-hidden="true" />}
+          >
+            {copy.hero.panel.whatsapp}
+          </ButtonAnchor>
+        </aside>
+      </Container>
+      <Container className="reference-hero__trust relative z-10">
+        <dl>{copy.hero.trust.map((item, index) => { const Icon = trustIconFor(index); return <div key={item.value}><dt><Icon aria-hidden="true" /></dt><dd><strong>{item.value}</strong><span>{item.label}</span></dd></div>; })}</dl>
+      </Container>
     </section>
   );
 }

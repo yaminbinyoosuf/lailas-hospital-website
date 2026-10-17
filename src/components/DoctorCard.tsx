@@ -66,7 +66,7 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
             {row ? profile.bio : profile.focus}
           </p>
 
-          <dl className="mt-5 space-y-2.5 border-t border-line pt-4 t-small">
+          <dl className="mt-5 space-y-2.5 border-t border-line pt-4 t-small text-ink-soft">
             <div className="flex items-start gap-2.5">
               <dt className="mt-0.5 shrink-0">
                 <Clock className="size-4 text-teal-700" aria-hidden="true" />

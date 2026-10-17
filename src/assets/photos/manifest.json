@@ -1,1 +1,12 @@
-{}
+{
+  "hero-editorial": {
+    "width": 1672,
+    "height": 941,
+    "blur": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAwCdASoYAA4ALrV2u12jqampiYC0SgCdAEN3oDwX83pmtJ4aydgA/vfvLmRm//hyDrb/0+tQ5Ns3DdfW1k/5Q9N9ZXKDG9cImpHzRrb899HmHs2+eQAA",
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  }
+}

@@ -67,15 +67,32 @@ export const en = {
 
   hero: {
     tagline: 'Humane Care; Divine Cure',
-    title: 'Your baby’s first hello, in safe hands.',
-    lead: 'Since 1994, families from Chemmad and across Malappuram have come to us to have their babies, care for their children and get help when trying to conceive. We are here for you, day and night.',
+    /** Eyebrow above the headline. */
+    eyebrow: 'Trusted healthcare since 1994',
+    /** Split so the middle segment can carry the accent colour without the
+        component hardcoding any of the words. */
+    title: {
+      before: 'Your baby’s ',
+      accent: 'first hello,',
+      after: ' in safe hands.',
+    },
+    lead: 'For over 30 years, Lailas Hospital has been a trusted name in women’s health, maternity, childcare and fertility care, with compassion at every step.',
     /** The phone number is passed in as a link. */
     emergency: <T,>(phone: T) => ['In an emergency, call ', phone, ' any time, day or night.'],
     trust: [
       { value: '70,000+', label: 'babies born with us' },
       { value: 'Since 1994', label: 'caring for Chemmad' },
+      { value: 'Specialist care', label: 'for women and children' },
       { value: '24/7', label: 'emergency, lab and pharmacy' },
     ],
+    /** The compact booking card in the hero. */
+    panel: {
+      title: 'Book an appointment',
+      service: 'Choose a service',
+      anyService: 'Any service',
+      continue: 'Continue',
+      whatsapp: 'Book on WhatsApp',
+    },
   },
 
   services: {

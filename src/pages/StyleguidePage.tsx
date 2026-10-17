@@ -38,7 +38,7 @@ export default function StyleguidePage() {
 
       <section className="space-y-6">
         <h2 className="t-h3">Type</h2>
-        <p className="t-display text-teal-950">{copy.hero.title}</p>
+        <p className="t-display text-teal-950">{copy.hero.title.before}{copy.hero.title.accent}{copy.hero.title.after}</p>
         <p className="t-h1 text-teal-950">{copy.pages.ivf.title}</p>
         <p className="t-h2 text-teal-950">{copy.services.title}</p>
         <p className="t-h3 text-teal-950">{copy.pregnancy.title}</p>

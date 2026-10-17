@@ -77,7 +77,13 @@ The body root is 16px, stepping to 17px from 768px up.
   inconsistency.
 - **Never override a `t-*` size with `text-[…]`.** Two such overrides once inverted the
   hierarchy, making an `<h3>` larger than the `<h2>` above it.
-- **Measure matters.** Body copy is capped near 65 to 70 characters per line. The FAQ answers use
+- **Measure matters.** **Typography utilities never set colour.** `t-small` and `t-meta` used to hardcode `ink-soft` and
+`ink-muted`, which meant any use inside a dark band rendered at about 2:1 and was effectively
+invisible. An axe audit caught it in the footer and the top strip. They now set type only; a
+muted colour is applied explicitly where it belongs, and text inside a dark surface inherits that
+surface's colour.
+
+Body copy is capped near 65 to 70 characters per line. The FAQ answers use
   `max-w-[34rem]`. No automated check measures this, so verify by hand after changing a
   paragraph width.
 - **Do not add a third family.** The two families are budgeted; the second serif that earlier
@@ -286,6 +292,11 @@ AVIF, WebP, a blur-up background and real alt text.
   not a grey box.
 - **Everything else** gets a flat tonal panel carrying the logo's circle-and-bud motif.
 - `omitIfMissing` renders nothing at all, for wide decorative bands that would otherwise be a void.
+
+The one real photograph (`hero-editorial`) goes through `npm run photos`, which writes AVIF and
+WebP at 480, 800 and 1200 px plus a blur preview. The hero serves it with `<picture>` and `sizes`,
+so a phone fetches the 8 KB AVIF rather than the 92 KB original, and there is no layout shift
+because width and height are set.
 
 `getPhoto()` returns `undefined` rather than substituting borrowed imagery. Several positions are
 named consultants or this hospital's own rooms, and a stranger's photograph above a real doctor's

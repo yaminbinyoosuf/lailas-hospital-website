@@ -21,6 +21,11 @@ export const images = {
     aspect: 4 / 5,
     tone: 'clay',
   },
+  'hero-editorial': {
+    alt: 'A mother holding her sleeping newborn against her chest in soft daylight',
+    aspect: 1672 / 941,
+    tone: 'sand',
+  },
   'hero-secondary': {
     alt: 'The clean modern facade and entrance of Lailas Hospital in Chemmad',
     aspect: 1,

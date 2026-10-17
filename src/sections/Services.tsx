@@ -28,13 +28,16 @@ export function Services() {
   };
 
   return (
-    <Section id="services" labelledBy="services-title" space="tight" className="border-t border-line">
+    <Section id="services" labelledBy="services-title" tone="teal" space="tight" className="reference-services">
       <Container>
         <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <h2 id="services-title" className="t-h2 text-teal-950 lg:col-span-7">
+          <div className="lg:col-span-7">
+          <p className="t-label text-teal-200">Our services</p>
+          <h2 id="services-title" className="t-h2 mt-3 text-ivory">
             {copy.services.title}
           </h2>
-          <p className="t-lead lg:col-span-5">{copy.services.lead}</p>
+          </div>
+          <p className="t-lead !text-teal-100 lg:col-span-5">{copy.services.lead}</p>
         </Reveal>
 
         <div className="mt-12 overflow-x-auto pb-2 scrollbar-none">
@@ -42,7 +45,7 @@ export function Services() {
             ref={tabsRef}
             role="tablist"
             aria-label={copy.services.groupsLabel}
-            className="inline-flex gap-1 border-b border-line"
+            className="inline-flex gap-1 border-b border-teal-700"
           >
             {serviceGroups.map((g) => {
               const selected = g === active;
@@ -61,9 +64,9 @@ export function Services() {
                     'min-h-11 border-b-2 border-transparent px-4 t-small font-semibold whitespace-nowrap transition-colors duration-300',
                     selected
                       ? g === 'emergency'
-                        ? 'border-emergency text-emergency'
-                        : 'border-teal-700 text-teal-900'
-                      : 'text-ink-soft hover:border-teal-300 hover:text-ink',
+                        ? 'border-emergency text-clay-200'
+                        : 'border-teal-200 text-ivory'
+                      : 'text-teal-200 hover:border-teal-300 hover:text-ivory',
                   )}
                 >
                   {copy.services.groups[g].name}
@@ -75,7 +78,6 @@ export function Services() {
 
         {serviceGroups.map((g) => {
           const items = services.filter((s) => s.group === g);
-          const single = items.length === 1;
           return (
             <div
               key={g}
@@ -85,42 +87,20 @@ export function Services() {
               hidden={g !== active}
               className="mt-8"
             >
-              <p className="max-w-2xl t-h3 text-ink">
+              <p className="max-w-2xl t-h3 text-ivory">
                 {copy.services.groups[g].intro}
               </p>
-              {/* A group of three is composed as one lead service plus a pair
-                  rather than three identical cards, so the eye has an entry
-                  point and the section does not read as a repeated grid. */}
-              {single || items.length === 3 ? (
-                <>
-                  <div className="mt-8">
-                    <ServiceCard service={items[0]} wide />
-                  </div>
-                  {items.length > 1 && (
-                    <ul className="mt-6 grid gap-6 sm:grid-cols-2">
-                      {items.slice(1).map((s) => (
-                        <li key={s.id} className="h-full">
-                          <ServiceCard service={s} />
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </>
-              ) : (
-                <ul
-                  className={cn(
-                    'scroll-row -mx-5 mt-8 auto-cols-[82%] gap-4 px-5 pb-2 xs:auto-cols-[70%]',
-                    'sm:mx-0 sm:grid sm:grid-flow-row sm:auto-cols-auto sm:gap-6 sm:overflow-visible sm:px-0',
-                    'sm:grid-cols-2',
-                  )}
-                >
-                  {items.map((s) => (
-                    <li key={s.id} className="h-full">
-                      <ServiceCard service={s} />
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <ul
+                className={cn(
+                  'scroll-row -mx-5 mt-8 auto-cols-[84%] gap-4 px-5 pb-2 xs:auto-cols-[72%]',
+                  'sm:mx-0 sm:grid sm:grid-flow-row sm:auto-cols-auto sm:gap-5 sm:overflow-visible sm:px-0',
+                  items.length === 3 ? 'lg:grid-cols-3' : 'sm:grid-cols-2 lg:grid-cols-3',
+                )}
+              >
+                {items.map((s) => (
+                  <li key={s.id} className="h-full"><ServiceCard service={s} /></li>
+                ))}
+              </ul>
             </div>
           );
         })}

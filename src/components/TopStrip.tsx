@@ -50,7 +50,10 @@ export function TopStrip() {
             className="inline-flex min-h-11 items-center gap-1.5 t-small font-medium text-teal-100 transition-colors hover:text-white"
           >
             <MessageCircle className="size-3.5 shrink-0 text-teal-300" aria-hidden="true" />
-            <span className="hidden xs:inline">{copy.actions.whatsapp}</span>
+            {/* The visible label is dropped below 26rem, which left this link
+                with no accessible name on a phone. The sr-only copy keeps it
+                announced at every width. */}
+            <span className="sr-only xs:not-sr-only">{copy.actions.whatsapp}</span>
           </a>
 
         </div>

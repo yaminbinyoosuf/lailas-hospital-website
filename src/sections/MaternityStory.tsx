@@ -36,7 +36,7 @@ export function MaternityStory() {
                   <p className="t-number text-[clamp(2rem,1.5rem+1.8vw,2.75rem)] text-teal-700">
                     <CountUp value={s.value} grouping={false} />
                   </p>
-                  <p className="mt-2 min-w-0 t-small [overflow-wrap:anywhere]">{s.label}</p>
+                  <p className="mt-2 min-w-0 t-small text-ink-soft [overflow-wrap:anywhere]">{s.label}</p>
                 </div>
               ))}
             </div>

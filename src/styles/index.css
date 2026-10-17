@@ -169,8 +169,9 @@
 @utility t-lead {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: clamp(1.0625rem, 1.02rem + 0.15vw, 1.1875rem);
-  line-height: 1.65;
+  /* Lead copy must read as a deliberate introduction, not card metadata. */
+  font-size: clamp(1.1875rem, 1.12rem + 0.3vw, 1.375rem);
+  line-height: 1.58;
   letter-spacing: -0.005em;
   color: var(--color-ink-soft);
 }
@@ -184,21 +185,20 @@
 @utility t-small {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--color-ink-soft);
+  font-size: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
+  line-height: 1.55;
 }
 @utility t-meta {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  color: var(--color-ink-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
 }
+
 /* Eyebrow above a section heading. Refined uppercase pill-like tracking */
 @utility t-label {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -347,6 +347,41 @@
 .ivf-mark { background: radial-gradient(circle at center, rgb(255 253 249 / 0.14) 0 12%, transparent 12.5%), linear-gradient(160deg, rgb(31 90 81 / 0.8), rgb(11 36 31 / 0.5)); color: var(--color-clay-200); }
 .maternity-mark span, .ivf-mark span { font: 650 clamp(3rem, 6vw, 6rem)/1 var(--font-heading); letter-spacing: -0.06em; }
 .page-hero { border-bottom: 1px solid var(--color-line); background: linear-gradient(110deg, var(--color-ivory), var(--color-paper)); }
+
+/* Approved homepage reference: visual rules are scoped to the hero so the
+   existing responsive page system remains intact below the fold. */
+.reference-hero { position: relative; min-height: 42rem; overflow: visible; background: #edf2ed; padding: clamp(3rem, 6vw, 6rem) 0 6.5rem; }
+.reference-hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.reference-hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(255 253 249 / .97) 0%, rgb(255 253 249 / .82) 31%, rgb(255 253 249 / .08) 60%, rgb(11 36 31 / .08) 100%); }
+.reference-hero__content { display: grid; min-height: 31rem; grid-template-columns: minmax(0, 1fr) minmax(23rem, 28rem); align-items: center; gap: 2rem; }
+.reference-hero__copy { max-width: 36rem; }
+.reference-hero__eyebrow { display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 1rem; border: 1px solid rgb(43 107 96 / .22); border-radius: 999px; background: rgb(255 253 249 / .72); padding: .45rem .8rem; color: #18473f; font-size: .8rem; font-weight: 700; }
+.reference-hero__eyebrow span { width: .55rem; height: .55rem; border-radius: 50%; background: #19a974; }
+.reference-hero__title { max-width: 34rem; font-size: clamp(3rem, 4.45vw, 5.2rem); line-height: .99; letter-spacing: -.065em; color: #062c28; }
+.reference-hero__title em { display: block; color: #49a38e; font-style: normal; }
+.reference-hero__lead { max-width: 31rem; margin-top: 1.25rem; color: #25524a; font-size: clamp(1.1875rem, 1.1rem + .35vw, 1.375rem); line-height: 1.55; letter-spacing: -.012em; }
+.reference-booking { border: 1px solid rgb(255 255 255 / .8); border-radius: 1.75rem; background: rgb(251 255 253 / .86); padding: 1.5rem; box-shadow: 0 1.5rem 3.5rem rgb(11 36 31 / .22), inset 0 1px 0 rgb(255 255 255 / .9); backdrop-filter: blur(18px); }
+.reference-booking h2 { font-size: 1.35rem; letter-spacing: -.04em; color: #082c28; }
+.reference-booking p { margin-top: .2rem; color: #4b5753; font-size: .9rem; }
+.reference-booking__care { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; background: #eef5f3; padding: .35rem .55rem; color: #175f50; font-size: .72rem; font-weight: 700; }
+.reference-booking__care svg { width: .9rem; }.reference-booking__select { display: block; width: 100%; min-height: 2.9rem; margin-top: .45rem; padding: 0 2.2rem 0 .9rem; border: 1px solid #cfe0da; border-radius: .7rem; background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23175f50' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; color: #0a332c; font: 600 .98rem/1.2 var(--font-sans); appearance: none; cursor: pointer; }
+.reference-booking__select:focus-visible { outline: 3px solid var(--color-teal-600); outline-offset: 2px; }.reference-hero__trust { position: absolute; right: 0; bottom: -3.1rem; left: 0; }
+.reference-hero__trust dl { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid rgb(255 255 255 / .78); border-radius: 1.6rem; background: rgb(255 255 255 / .85); padding: 1.3rem; box-shadow: 0 1rem 2.6rem rgb(11 36 31 / .12); backdrop-filter: blur(18px); }
+.reference-hero__trust dl > div { display: flex; align-items: center; gap: .8rem; min-width: 0; padding: .15rem 1.1rem; border-right: 1px solid #cbded8; }
+.reference-hero__trust dl > div:last-child { border-right: 0; }
+.reference-hero__trust dt { display: grid; width: 2.7rem; height: 2.7rem; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #e5f4f0; color: #08705b; }
+.reference-hero__trust dt svg { width: 1.35rem; }
+.reference-hero__trust dd { min-width: 0; }
+.reference-hero__trust strong { display: block; color: #072f2a; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.1; letter-spacing: -.045em; }
+.reference-hero__trust span { display: block; margin-top: .2rem; color: #33504a; font-size: .78rem; line-height: 1.3; }
+.service-card__visual { display: grid; width: 3.35rem; height: 3.35rem; place-items: center; margin-bottom: 1.4rem; border-radius: 1rem; color: #0a5a4c; }
+.service-card__visual svg { width: 1.55rem; height: 1.55rem; }
+.service-card__visual--women { background: linear-gradient(135deg, #e8f6f2, #cbe8df); }
+.service-card__visual--family { background: linear-gradient(135deg, #f8efd9, #edd9a9); }
+.service-card__visual--emergency { background: linear-gradient(135deg, #fde8e6, #f6c7c3); color: #a52f2a; }
+.service-card__visual--diagnostics { background: linear-gradient(135deg, #e8edf7, #d6e0ef); }
+@media (max-width: 900px) { .reference-hero { min-height: auto; padding-bottom: 8.5rem; } .reference-hero__content { grid-template-columns: 1fr; min-height: 0; } .reference-booking { max-width: 34rem; } .reference-hero__trust dl { grid-template-columns: repeat(2, 1fr); gap: .7rem; } .reference-hero__trust dl > div:nth-child(2) { border-right: 0; } }
+@media (max-width: 540px) { .reference-hero { padding-top: 2rem; } .reference-hero__image { object-position: 61% center; } .reference-hero__wash { background: linear-gradient(180deg, rgb(255 253 249 / .95) 0%, rgb(255 253 249 / .84) 50%, rgb(255 253 249 / .42) 100%); } .reference-hero__title { font-size: clamp(2.75rem, 14vw, 3.6rem); } .reference-hero__lead { font-size: 1.125rem; line-height: 1.58; } .reference-booking { padding: 1.1rem; border-radius: 1.25rem; }.reference-hero__trust { bottom: -5.3rem; } .reference-hero__trust dl { padding: .65rem; border-radius: 1rem; } .reference-hero__trust dl > div { gap: .5rem; padding: .35rem; border-right: 0; } .reference-hero__trust dt { width: 2.2rem; height: 2.2rem; } .reference-hero__trust strong { font-size: 1rem; } .reference-hero__trust span { font-size: .67rem; } }
 
 /* ==========================================================================
    Shapes: Clean contemporary architectural curves

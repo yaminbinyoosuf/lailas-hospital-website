@@ -6,8 +6,8 @@ pretends to be a finished photograph.
 
 ## Current status
 
-**All 26 positions are unfilled.** Every one renders as a deliberate tonal
-placeholder, which is why the site currently shows no photographs at all.
+**26 of 27 positions are unfilled.** `hero-editorial` is the one real photograph, and it is served
+as responsive AVIF and WebP. The rest render a deliberate placeholder.
 
 This is intentional, not an oversight. Four of these positions carry the names of
 real consultants (`doctor-laila-beegum`, `doctor-geethanjali-s`, `doctor-amith-k`,
@@ -46,6 +46,7 @@ per frame:
 | id | What to shoot | Shape on site | Orientation |
 |---|---|---|---|
 | `hero-main` | A mother holding her newborn in a recovery room. Soft window light, faces relaxed. The most important photo. | Tall arch | Portrait 4:5 |
+| `hero-editorial` | **Filled.** The homepage hero photograph, served responsive | Full bleed | Landscape 16:9 |
 | `hero-secondary` | The front entrance or building exterior at golden hour (late afternoon), Lailas sign visible | Circle | Square |
 | `visit-entrance` | Entrance plus parking area, with the wheelchair ramp visible | Rounded | Landscape 4:3 |
 | `staff-team` | Whole team (doctors, nurses, lab, pharmacy, reception) together outside or in the lobby | Wide | 21:9 (shoot wide) |
