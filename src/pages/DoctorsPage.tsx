@@ -39,12 +39,12 @@ export function DoctorsPage() {
 
         {/* Interactive Department Filter Bar */}
         <Container className="pt-2 pb-8">
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-[var(--radius-md)] glass-card border border-white/80 shadow-xs">
+          <div className="flex items-center gap-2 overflow-x-auto rounded-[var(--radius-md)] border border-white/80 p-1.5 glass-card shadow-xs [scrollbar-width:none] sm:flex-wrap sm:overflow-visible [&::-webkit-scrollbar]:hidden">
             <button
               type="button"
               onClick={() => setSelectedGroupIndex(null)}
               className={cn(
-                'min-h-11 rounded-[var(--radius-sm)] px-4.5 py-2 t-small font-semibold transition-all duration-300',
+                'min-h-11 shrink-0 whitespace-nowrap rounded-[var(--radius-sm)] px-4.5 py-2 t-small font-semibold transition-all duration-300',
                 selectedGroupIndex === null
                   ? 'bg-teal-800 text-ivory shadow-xs'
                   : 'text-ink-soft hover:bg-sand/60 hover:text-ink',
@@ -58,7 +58,7 @@ export function DoctorsPage() {
                 type="button"
                 onClick={() => setSelectedGroupIndex(idx)}
                 className={cn(
-                  'min-h-11 rounded-[var(--radius-sm)] px-4.5 py-2 t-small font-semibold transition-all duration-300',
+                  'min-h-11 shrink-0 whitespace-nowrap rounded-[var(--radius-sm)] px-4.5 py-2 t-small font-semibold transition-all duration-300',
                   selectedGroupIndex === idx
                     ? 'bg-teal-800 text-ivory shadow-xs'
                     : 'text-ink-soft hover:bg-sand/60 hover:text-ink',

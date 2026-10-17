@@ -62,7 +62,7 @@ export function DoctorCard({
             shape="circle"
             aspect={1}
             sizes={featured ? '80px' : '(min-width: 768px) 64px, 56px'}
-            className={cn('shrink-0 ring-1 ring-line', featured ? 'size-28 md:size-32' : 'size-16 md:size-20')}
+            className={cn('shrink-0 ring-1 ring-line', featured ? 'size-20 sm:size-28' : 'size-16 md:size-20')}
           />
         ) : (
           <div
@@ -70,7 +70,7 @@ export function DoctorCard({
             className={cn(
               'grid shrink-0 place-items-center rounded-full ring-1',
               featured
-                ? 'size-28 bg-clay-50 text-clay-700 ring-clay-200 md:size-32'
+                ? 'size-20 bg-clay-50 text-clay-700 ring-clay-200 sm:size-28'
                 : 'size-16 bg-sand text-teal-800 ring-line md:size-20',
             )}
           >
@@ -79,7 +79,7 @@ export function DoctorCard({
         )}
 
         <div className="min-w-0 flex-1">
-          <h3 className={cn('text-teal-950', featured ? 't-h2' : 't-h3')}>{doctor.name}</h3>
+          <h3 className={cn('text-teal-950', featured ? 't-h3 sm:t-h2' : 't-h3')}>{doctor.name}</h3>
           <p className={cn('mt-1.5 font-medium text-teal-800', featured ? 't-body' : 't-meta')}>
             {profile.role}
           </p>

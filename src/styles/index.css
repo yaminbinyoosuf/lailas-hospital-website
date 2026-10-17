@@ -379,8 +379,24 @@
 .service-card__visual--family { background: linear-gradient(135deg, #f8efd9, #edd9a9); }
 .service-card__visual--emergency { background: linear-gradient(135deg, #fde8e6, #f6c7c3); color: #a52f2a; }
 .service-card__visual--diagnostics { background: linear-gradient(135deg, #e8edf7, #d6e0ef); }
-@media (max-width: 900px) { .reference-hero { min-height: auto; padding-bottom: 8.5rem; } .reference-hero__content { grid-template-columns: 1fr; min-height: 0; } .reference-booking { max-width: 34rem; } .reference-hero__trust dl { grid-template-columns: repeat(2, 1fr); gap: .7rem; } .reference-hero__trust dl > div:nth-child(2) { border-right: 0; } }
-@media (max-width: 540px) { .reference-hero { padding-top: 2rem; } .reference-hero__image { left: -18%; width: 128%; object-position: 42% center; } .reference-hero__wash { background: linear-gradient(180deg, rgb(255 253 249 / .95) 0%, rgb(255 253 249 / .80) 46%, rgb(255 253 249 / .28) 100%); } .reference-hero__title { font-size: clamp(2.75rem, 14vw, 3.6rem); } .reference-hero__lead { font-size: 1.125rem; line-height: 1.58; } .reference-booking { padding: 1.1rem; border-radius: 1.25rem; }.reference-hero__trust { bottom: -5.3rem; } .reference-hero__trust dl { padding: .65rem; border-radius: 1rem; } .reference-hero__trust dl > div { gap: .5rem; padding: .35rem; border-right: 0; } .reference-hero__trust dt { width: 2.2rem; height: 2.2rem; } .reference-hero__trust strong { font-size: 1rem; } .reference-hero__trust span { font-size: .67rem; } }
+@media (max-width: 900px) {
+  .reference-hero { min-height: auto; padding-bottom: 3rem; }
+  .reference-hero__content { grid-template-columns: 1fr; min-height: 0; }
+  .reference-booking { max-width: 34rem; }
+  /* The band was absolutely positioned with a negative offset, so on a phone
+     it hung over the section below and was partly covered by it. In one column
+     there is nothing to hang beside, so it belongs in the flow. */
+  .reference-hero__trust { position: static; margin-top: 2.25rem; }
+  .reference-hero__trust dl { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+  .reference-hero__trust dl > div:nth-child(2) { border-right: 0; }
+}
+@media (max-width: 540px) {
+  .reference-hero { padding-top: 2rem; }
+  /* A second booking form in the hero cost 280px of first screen and pushed the
+     photograph and the figures out of view. The fixed bar already puts Book,
+     Call and WhatsApp one tap away at every scroll position, so on a phone the
+     hero is the claim and the photo. */
+  .reference-booking { display: none; } .reference-hero__image { left: 0; width: 100%; max-width: 100%; object-position: 42% center; } .reference-hero__wash { background: linear-gradient(180deg, rgb(255 253 249 / .96) 0%, rgb(255 253 249 / .82) 38%, rgb(255 253 249 / .34) 62%, rgb(255 253 249 / .12) 100%); } .reference-hero__title { font-size: clamp(2.75rem, 14vw, 3.6rem); } .reference-hero__lead { font-size: 1.125rem; line-height: 1.58; } .reference-booking { padding: 1.1rem; border-radius: 1.25rem; } .reference-hero__trust dl { padding: .65rem; border-radius: 1rem; } .reference-hero__trust dl > div { gap: .5rem; padding: .35rem; border-right: 0; } .reference-hero__trust dt { width: 2.2rem; height: 2.2rem; } .reference-hero__trust strong { font-size: 1rem; } .reference-hero__trust span { font-size: .67rem; } }
 
 /* ==========================================================================
    Shapes: Clean contemporary architectural curves
