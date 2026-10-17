@@ -41,12 +41,12 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
             'mt-12 grid gap-4 md:gap-5',
             few
               ? 'sm:grid-cols-2'
-              : 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+              : 'sm:grid-cols-2 lg:grid-cols-3',
           )}
         >
           {doctors.map((d, i) => (
             <Reveal as="li" key={d.id} delay={i * 0.05} className="h-full">
-              <DoctorCard doctor={d} layout="stack" />
+              <DoctorCard doctor={d} />
             </Reveal>
           ))}
         </ul>

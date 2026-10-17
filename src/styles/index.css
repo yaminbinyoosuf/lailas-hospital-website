@@ -1,6 +1,5 @@
 /* Self-hosted fonts (font-display: swap is set by Fontsource). */
 @import '@fontsource-variable/dm-sans/index.css';
-@import '@fontsource-variable/source-sans-3/index.css';
 
 @import 'tailwindcss';
 
@@ -13,7 +12,7 @@
      DM Sans gives headings a confident, contemporary voice; Source Sans 3
      remains exceptionally clear in dense clinical information and controls. */
   --font-heading: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-sans: 'Source Sans 3 Variable', 'Source Sans 3', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   /* Surfaces */
   --color-ivory: #fbf7f0;

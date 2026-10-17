@@ -30,22 +30,24 @@ something.
 
 ### Families
 
-Two variable families, both **self-hosted** through Fontsource. No network request to a font CDN
-is made at runtime, and `npm run check:fonts` fails the build if that stops being true.
+One variable family, **self-hosted** through Fontsource. No network request to a font CDN is made
+at runtime, and `npm run check:fonts` fails the build if that stops being true.
 
 | Token | Family | Role |
 | --- | --- | --- |
 | `--font-heading` | **DM Sans** | every heading, every figure, every statistic |
-| `--font-sans` | **Source Sans 3** | body copy, interface labels, controls, navigation |
+| `--font-sans` | **DM Sans** | body copy, interface labels, controls, navigation |
 
-**DM Sans** sets headings at weight 600 to 650. Its even geometry reads as clinical competence
-rather than fashion, and it holds its shape at the small sizes used for eyebrows and figures.
-**Source Sans 3** is drawn for reading; it stays comfortable at 16 to 17px and has the open
-apertures that help on a phone in daylight.
+**DM Sans** does both jobs. It was drawn for display and text, so the same geometry carries a 76px
+headline and a 13px credential without the two looking like they came from different sites.
 
-The split is not decorative. Headings never fall back to the body face. Earlier in the project 38
-headings rendered in the body font because one scale step pointed at `--font-sans`, which was the
-single largest source of inconsistency the site had.
+This replaced a two-family pairing with Source Sans 3, which was the wrong partner: Source Sans is
+narrow with a small x-height, DM Sans is geometric with a large one, so body text sat visibly
+lighter and smaller than the headings beside it. Hierarchy now comes from weight, size, spacing and
+colour within one typeface, which is also how Swiss clinical typography has always done it.
+
+It is one family, not one weight. Headings run at 650 and are tracked tight; body sits at 400 with
+normal spacing. The contrast is in the treatment, not the typeface.
 
 ### Scale
 

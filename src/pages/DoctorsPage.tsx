@@ -76,20 +76,19 @@ export function DoctorsPage() {
           {/* Founder Spotlight Card when showing all or maternity/gynaecology group */}
           {showFounderSpotlight && founderDoctor && (
             <div className="mb-8">
+              {/* The card labels the role itself, so a heading above it only
+                  repeated the same words in a different order. */}
               <Reveal>
-                <div className="mb-4">
-                  <span className="t-label text-clay-700">Founder &amp; Chief Consultant</span>
-                </div>
-                <DoctorCard doctor={founderDoctor} layout="row" />
+                <DoctorCard doctor={founderDoctor} featured />
               </Reveal>
             </div>
           )}
 
           {/* Consultants Bento Grid */}
-          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-5 md:grid-cols-2 md:gap-6">
             {regularDoctors.map((d, i) => (
               <Reveal as="li" key={d.id} delay={i * 0.05} className="min-w-0 h-full">
-                <DoctorCard doctor={d} layout="stack" />
+                <DoctorCard doctor={d} />
               </Reveal>
             ))}
           </ul>
@@ -99,7 +98,7 @@ export function DoctorsPage() {
       {/* 24/7 Duty Doctors High-Impact Glass Banner */}
       <section aria-labelledby="duty-title" className="pt-6 pb-20 md:pb-28">
         <Container>
-          <Reveal className="relative overflow-hidden rounded-[var(--radius-lg)] bg-teal-950 text-ivory p-8 md:p-12 shadow-[var(--shadow-lift)] border border-teal-800/40 glass-dark">
+          <Reveal className="relative overflow-hidden rounded-[var(--radius-lg)] bg-teal-950 p-8 text-ivory shadow-[var(--shadow-lift)] md:p-12">
             {/* Ambient Background Glow */}
             <div
               className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full bg-teal-500/15 blur-3xl"
@@ -117,11 +116,8 @@ export function DoctorsPage() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2.5">
-                    <span className="relative flex size-3">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex size-3 rounded-full bg-emerald-500" />
-                    </span>
-                    <span className="t-label text-teal-300">24/7 Availability</span>
+                    <span className="inline-flex size-2.5 rounded-full bg-emerald-400" aria-hidden="true" />
+                    <span className="t-label text-teal-300">{copy.doctors.duty.label}</span>
                   </div>
                   <h2 id="duty-title" className="t-h3 mt-2 text-ivory">
                     {copy.doctors.duty.title}

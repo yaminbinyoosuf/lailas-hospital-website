@@ -52,18 +52,9 @@ extend these rather than inventing values.
 
 ### Typography
 
-Two families, loaded from Google Fonts with self-hosted DM Sans and Source Sans 3 kept as
-fallbacks so the site still sets correctly if the CDN is unreachable:
-
-- **Outfit** for every heading and figure. Weight 600 to 800. A geometric sans with a tall
-  x-height that gives the headline its confident, contemporary edge.
-  It has a calm, even geometry that reads as clinical competence rather than fashion, and it
-  holds its shape at the small sizes used for eyebrows and table figures.
-- **Plus Jakarta Sans** for body copy and interface. Drawn for reading, it stays comfortable at
-  16–17px and has the wide apertures that help on a phone in daylight.
-
-They are deliberately not interchangeable: headings never fall back to the body face. That was
-the single largest source of inconsistency before, with 38 headings rendering in the body font.
+One family, self-hosted via Fontsource: **DM Sans**. It sets headings at weight 650 and body text
+at 400, so hierarchy comes from weight, size, spacing and colour rather than from pairing two
+typefaces. `npm run check:fonts` fails the build if the CSS names a family that is not bundled.
 
 **The scale.** One step per role, fluid between a 400px and a 1500px viewport so no component
 needs its own media query.

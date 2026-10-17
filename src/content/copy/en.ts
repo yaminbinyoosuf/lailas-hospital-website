@@ -282,6 +282,7 @@ export const en = {
     bookWith: (name: string) => `Book with ${name}`,
     languageNames: { en: 'English', ml: 'Malayalam', ta: 'Tamil' } satisfies Record<LanguageCode, string>,
     duty: {
+      label: '24 hour availability',
       title: 'Doctors on duty, every hour',
       body: 'Duty doctors, nurses, lab staff and pharmacists are here every hour of every day, including Sundays and holidays.',
     },
