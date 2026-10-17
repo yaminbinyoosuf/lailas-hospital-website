@@ -112,7 +112,7 @@ export function DoctorsPage() {
 
             <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="flex items-start gap-5">
-                <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-teal-900/90 text-teal-300 ring-1 ring-white/10 shadow-xs">
+                <div className="grid size-14 shrink-0 place-items-center rounded-[var(--radius-md)] bg-teal-900/90 text-teal-300 ring-1 ring-white/10 shadow-xs">
                   <Clock className="size-7" aria-hidden="true" />
                 </div>
                 <div>

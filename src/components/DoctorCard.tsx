@@ -52,7 +52,7 @@ export function DoctorCard({ doctor, layout = 'stack' }: { doctor: Doctor; layou
               {qualificationBadges.map((qual) => (
                 <span
                   key={qual}
-                  className="rounded-md bg-sand/70 px-2.5 py-0.5 t-meta font-medium text-ink-soft ring-1 ring-line/60"
+                  className="rounded-[var(--radius-sm)] bg-sand/70 px-2.5 py-0.5 t-meta font-medium text-ink-soft ring-1 ring-line/60"
                 >
                   {qual}
                 </span>

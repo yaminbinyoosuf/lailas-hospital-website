@@ -6,7 +6,7 @@ pretends to be a finished photograph.
 
 ## Current status
 
-**All 23 positions are unfilled.** Every one renders as a deliberate tonal
+**All 26 positions are unfilled.** Every one renders as a deliberate tonal
 placeholder, which is why the site currently shows no photographs at all.
 
 This is intentional, not an oversight. Four of these positions carry the names of
@@ -27,8 +27,8 @@ photographs present and the rest still waiting.
 If photography has to be staged in batches, this order gives the most improvement
 per frame:
 
-1. `hero-main` and `doctor-laila-beegum` to `doctor-jambir`. The hero and the four
-   consultant portraits carry the most credibility.
+1. `hero-main` and the seven `doctor-*` portraits. The hero and the consultant
+   portraits carry the most credibility.
 2. The four service images in the default tab (`service-maternity`,
    `service-ivf`, `service-gynaecology`, `service-paediatrics`).
 3. `maternity-story`, `staff-team`, `visit-entrance`.
@@ -68,5 +68,8 @@ per frame:
 | `doctor-geethanjali-s` | Portrait of Dr. Geethanjali S | Tall arch | Portrait 4:5 |
 | `doctor-amith-k` | Portrait of Dr. Amith K | Tall arch | Portrait 4:5 |
 | `doctor-jambir` | Portrait of Dr. Jambir | Tall arch | Portrait 4:5 |
+| `doctor-v-j-sonia` | Portrait of Dr. V. J. Sonia | Tall arch | Portrait 4:5 |
+| `doctor-jitha-vineeth` | Portrait of Dr. Jitha Vineeth | Tall arch | Portrait 4:5 |
+| `doctor-sumiya` | Portrait of Dr. Sumiya | Tall arch | Portrait 4:5 |
 
 **Doctor portraits:** same background and the same light for all four (a plain warm wall works well). Chest-up, looking at the camera, relaxed smile, usual work clothes. Leave space above the head, because the arch crops the top.

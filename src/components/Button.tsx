@@ -6,7 +6,7 @@ export type ButtonVariant = 'primary' | 'secondary' | 'quiet' | 'emergency' | 'l
 export type ButtonSize = 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2.5 rounded-lg font-sans font-semibold leading-tight text-center ' +
+  'inline-flex items-center justify-center gap-2.5 rounded-[var(--radius-sm)] font-sans font-semibold leading-tight text-center ' +
   'transition-colors duration-200 ease-[var(--ease-gentle)] ' +
   'disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4.5 [&_svg]:shrink-0';
 
