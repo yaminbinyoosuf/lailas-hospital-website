@@ -1,72 +1,82 @@
-import { ArrowRight, Baby, Check, Clock, HeartPulse, Microscope, Phone, Sparkles, Stethoscope } from 'lucide-react';
+import { ArrowRight, Clock, Phone } from 'lucide-react';
 import { contact, type Service } from '../content/site';
 import { useBooking } from '../booking/BookingProvider';
 import { useCopy } from '../i18n/LanguageProvider';
-import { cn } from '../lib/format';
 import { Button, ButtonAnchor } from './Button';
 
-export function ServiceCard({ service, wide, className }: { service: Service; wide?: boolean; className?: string }) {
+/**
+ * A service, presented as a row rather than a card.
+ *
+ * The services band is dark teal. Three white boxes sitting on it read as a
+ * template; a hairline list reads as a printed prospectus, which is closer to
+ * what this section is — a statement of what the hospital does.
+ *
+ * Order is fixed: index, name, what it includes, when it is available, action.
+ */
+export function ServiceRow({ service, index }: { service: Service; index: number }) {
   const copy = useCopy();
   const { open } = useBooking();
   const text = copy.services.items[service.id];
-  const visuals = {
-    maternity: Baby, ivf: Sparkles, gynaecology: HeartPulse, paediatrics: Baby,
-    'general-medicine': Stethoscope, emergency: HeartPulse, laboratory: Microscope, pharmacy: Stethoscope,
-  } as const;
-  const Visual = visuals[service.id];
 
   return (
-    <article
-      className={cn(
-        'group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] border border-white/20 bg-paper p-6 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-[var(--shadow-soft)] md:p-8',
-        wide && 'md:p-10',
-        className,
-      )}
-    >
-      <div className="flex flex-1 flex-col">
-        <div className={`service-card__visual service-card__visual--${service.group}`} aria-hidden="true"><Visual /></div>
-        <span className="t-label text-clay-700">{copy.services.groups[service.group].name}</span>
-        <h3 className="t-h3 text-teal-950 font-semibold">{text.name}</h3>
-        <p className="mt-2.5 t-small text-ink-soft leading-relaxed">{text.summary}</p>
+    <article className="group relative grid gap-x-8 gap-y-4 py-7 md:grid-cols-12 md:items-start md:py-8">
+      {/* Index ----------------------------------------------------------- */}
+      <div className="flex items-center gap-4 md:col-span-2 md:pt-1">
+        <span className="t-number text-2xl tabular-nums text-teal-300/75" aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <span className="t-label text-teal-300 md:hidden">
+          {copy.services.groups[service.group].name}
+        </span>
+      </div>
 
-        <ul className="mt-5 space-y-2.5">
+      {/* Name and inclusions -------------------------------------------- */}
+      <div className="min-w-0 md:col-span-6">
+        <h3 className="t-h3 text-ivory">{text.name}</h3>
+        <p className="mt-2 max-w-[38rem] t-small text-teal-100/85">{text.summary}</p>
+        <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
           {text.offerings.map((o) => (
-            <li key={o} className="flex items-start gap-2.5 t-small text-ink-soft">
-              <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-teal-50 text-teal-700 ring-1 ring-teal-600/20">
-                <Check className="size-3" aria-hidden="true" />
-              </span>
-              <span className="text-ink">{o}</span>
+            <li key={o} className="flex items-center gap-2 t-meta text-teal-100/70">
+              <span aria-hidden="true" className="size-1 rounded-full bg-teal-400/70" />
+              {o}
             </li>
           ))}
         </ul>
+      </div>
 
-        <div className="mt-auto pt-6">
-          <p className="flex items-center gap-2 t-small text-ink-muted">
-            <Clock className="size-4 shrink-0 text-teal-600" aria-hidden="true" />
-            {text.availability}
-          </p>
-          {service.bookable ? (
-            <Button
-              variant="quiet"
-              className="mt-3 !px-0"
-              iconAfter={<ArrowRight aria-hidden="true" />}
-              onClick={() => open({ kind: 'service', id: service.id })}
-            >
-              {copy.services.book}
-            </Button>
-          ) : service.id === 'emergency' ? (
-            <ButtonAnchor
-              href={`tel:${contact.primary.tel}`}
-              variant="emergency"
-              className="mt-4"
-              icon={<Phone aria-hidden="true" />}
-            >
-              {contact.primary.display}
-            </ButtonAnchor>
-          ) : (
-            <p className="mt-3 flex min-h-11 items-center font-semibold text-teal-800">{copy.services.walkIn}</p>
-          )}
-        </div>
+      {/* Availability and action ---------------------------------------- */}
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:col-span-4 md:justify-end">
+        <p className="flex items-center gap-2 t-meta text-teal-200/80">
+          <Clock className="size-3.5 shrink-0" aria-hidden="true" />
+          {text.availability}
+        </p>
+
+        {service.bookable ? (
+          <Button
+            variant="lightOutline"
+            className="shrink-0"
+            iconAfter={
+              <ArrowRight
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover:translate-x-0.5"
+              />
+            }
+            onClick={() => open({ kind: 'service', id: service.id })}
+          >
+            {copy.services.book}
+          </Button>
+        ) : service.id === 'emergency' ? (
+          <ButtonAnchor
+            href={`tel:${contact.primary.tel}`}
+            variant="emergency"
+            className="shrink-0"
+            icon={<Phone aria-hidden="true" />}
+          >
+            {contact.primary.display}
+          </ButtonAnchor>
+        ) : (
+          <p className="t-small font-semibold text-teal-100">{copy.services.walkIn}</p>
+        )}
       </div>
     </article>
   );

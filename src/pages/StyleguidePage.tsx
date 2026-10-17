@@ -8,7 +8,7 @@ import { Button } from '../components/Button';
 import { Container } from '../components/Container';
 import { DoctorCard } from '../components/DoctorCard';
 import { Photo, type PhotoShape } from '../components/Photo';
-import { ServiceCard } from '../components/ServiceCard';
+import { ServiceRow } from '../components/ServiceCard';
 import { doctors, services } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 
@@ -77,8 +77,8 @@ export default function StyleguidePage() {
       <section>
         <h2 className="t-h3">Cards</h2>
         <div className="mt-6 grid gap-8 md:grid-cols-3">
-          <ServiceCard service={services[0]} />
-          <ServiceCard service={services[6]} />
+          <ServiceRow service={services[0]} index={0} />
+          <ServiceRow service={services[6]} index={0} />
           <DoctorCard doctor={doctors[0]} />
         </div>
       </section>

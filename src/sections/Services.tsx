@@ -2,7 +2,7 @@ import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import { Container } from '../components/Container';
 import { Reveal } from '../components/Reveal';
 import { Section } from '../components/Section';
-import { ServiceCard } from '../components/ServiceCard';
+import { ServiceRow } from '../components/ServiceCard';
 import { serviceGroups, services, type ServiceGroup } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { cn } from '../lib/format';
@@ -90,15 +90,13 @@ export function Services() {
               <p className="max-w-2xl t-h3 text-ivory">
                 {copy.services.groups[g].intro}
               </p>
-              <ul
-                className={cn(
-                  'scroll-row -mx-5 mt-8 auto-cols-[84%] gap-4 px-5 pb-2 xs:auto-cols-[72%]',
-                  'sm:mx-0 sm:grid sm:grid-flow-row sm:auto-cols-auto sm:gap-5 sm:overflow-visible sm:px-0',
-                  items.length === 3 ? 'lg:grid-cols-3' : 'sm:grid-cols-2 lg:grid-cols-3',
-                )}
-              >
-                {items.map((s) => (
-                  <li key={s.id} className="h-full"><ServiceCard service={s} /></li>
+              {/* A hairline list, not a grid of boxes. On a dark band the three
+                  white cards read as a template; rows read as a prospectus. */}
+              <ul className="mt-8 divide-y divide-teal-700/60 border-t border-teal-700/60">
+                {items.map((s, i) => (
+                  <li key={s.id}>
+                    <ServiceRow service={s} index={i} />
+                  </li>
                 ))}
               </ul>
             </div>
