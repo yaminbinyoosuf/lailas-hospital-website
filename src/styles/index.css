@@ -350,8 +350,8 @@
 /* Approved homepage reference: visual rules are scoped to the hero so the
    existing responsive page system remains intact below the fold. */
 .reference-hero { position: relative; min-height: 42rem; overflow: visible; background: #edf2ed; padding: clamp(3rem, 6vw, 6rem) 0 6.5rem; }
-.reference-hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.reference-hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(255 253 249 / .97) 0%, rgb(255 253 249 / .82) 31%, rgb(255 253 249 / .08) 60%, rgb(11 36 31 / .08) 100%); }
+.reference-hero__image { position: absolute; top: 0; left: -34%; width: 134%; max-width: none; height: 100%; object-fit: cover; object-position: center; }
+.reference-hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(255 253 249 / .97) 0%, rgb(255 253 249 / .88) 34%, rgb(255 253 249 / .10) 56%, rgb(255 253 249 / .06) 100%); }
 .reference-hero__content { display: grid; min-height: 31rem; grid-template-columns: minmax(0, 1fr) minmax(23rem, 28rem); align-items: center; gap: 2rem; }
 .reference-hero__copy { max-width: 36rem; }
 .reference-hero__eyebrow { display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 1rem; border: 1px solid rgb(43 107 96 / .22); border-radius: 999px; background: rgb(255 253 249 / .72); padding: .45rem .8rem; color: #18473f; font-size: .8rem; font-weight: 700; }
@@ -380,7 +380,7 @@
 .service-card__visual--emergency { background: linear-gradient(135deg, #fde8e6, #f6c7c3); color: #a52f2a; }
 .service-card__visual--diagnostics { background: linear-gradient(135deg, #e8edf7, #d6e0ef); }
 @media (max-width: 900px) { .reference-hero { min-height: auto; padding-bottom: 8.5rem; } .reference-hero__content { grid-template-columns: 1fr; min-height: 0; } .reference-booking { max-width: 34rem; } .reference-hero__trust dl { grid-template-columns: repeat(2, 1fr); gap: .7rem; } .reference-hero__trust dl > div:nth-child(2) { border-right: 0; } }
-@media (max-width: 540px) { .reference-hero { padding-top: 2rem; } .reference-hero__image { object-position: 61% center; } .reference-hero__wash { background: linear-gradient(180deg, rgb(255 253 249 / .95) 0%, rgb(255 253 249 / .84) 50%, rgb(255 253 249 / .42) 100%); } .reference-hero__title { font-size: clamp(2.75rem, 14vw, 3.6rem); } .reference-hero__lead { font-size: 1.125rem; line-height: 1.58; } .reference-booking { padding: 1.1rem; border-radius: 1.25rem; }.reference-hero__trust { bottom: -5.3rem; } .reference-hero__trust dl { padding: .65rem; border-radius: 1rem; } .reference-hero__trust dl > div { gap: .5rem; padding: .35rem; border-right: 0; } .reference-hero__trust dt { width: 2.2rem; height: 2.2rem; } .reference-hero__trust strong { font-size: 1rem; } .reference-hero__trust span { font-size: .67rem; } }
+@media (max-width: 540px) { .reference-hero { padding-top: 2rem; } .reference-hero__image { left: -18%; width: 128%; object-position: 42% center; } .reference-hero__wash { background: linear-gradient(180deg, rgb(255 253 249 / .95) 0%, rgb(255 253 249 / .80) 46%, rgb(255 253 249 / .28) 100%); } .reference-hero__title { font-size: clamp(2.75rem, 14vw, 3.6rem); } .reference-hero__lead { font-size: 1.125rem; line-height: 1.58; } .reference-booking { padding: 1.1rem; border-radius: 1.25rem; }.reference-hero__trust { bottom: -5.3rem; } .reference-hero__trust dl { padding: .65rem; border-radius: 1rem; } .reference-hero__trust dl > div { gap: .5rem; padding: .35rem; border-right: 0; } .reference-hero__trust dt { width: 2.2rem; height: 2.2rem; } .reference-hero__trust strong { font-size: 1rem; } .reference-hero__trust span { font-size: .67rem; } }
 
 /* ==========================================================================
    Shapes: Clean contemporary architectural curves
