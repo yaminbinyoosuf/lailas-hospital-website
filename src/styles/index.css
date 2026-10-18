@@ -1,5 +1,5 @@
 /* Self-hosted fonts (font-display: swap is set by Fontsource). */
-@import '@fontsource/instrument-serif/index.css';
+@import '@fontsource-variable/newsreader/index.css';
 @import '@fontsource-variable/plus-jakarta-sans/index.css';
 
 @import 'tailwindcss';
@@ -12,7 +12,7 @@
   /* The two locally bundled variable families intentionally do different jobs:
      DM Sans gives headings a confident, contemporary voice; Source Sans 3
      remains exceptionally clear in dense clinical information and controls. */
-  --font-heading: 'Instrument Serif', serif;
+  --font-heading: 'Newsreader Variable', 'Newsreader', serif;
   --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
   /* Surfaces */
@@ -107,7 +107,7 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
-    font-weight: 400;
+    font-weight: 600;
     color: var(--color-ink);
     text-wrap: balance;
     letter-spacing: -0.015em;
@@ -134,28 +134,28 @@
    ========================================================================== */
 @utility t-display {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(2.75rem, 1.6rem + 4.4vw, 5.5rem);
   line-height: 1.03;
   letter-spacing: -0.018em;
 }
 @utility t-h1 {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(2.25rem, 1.55rem + 2.7vw, 4rem);
   line-height: 1.08;
   letter-spacing: -0.015em;
 }
 @utility t-h2 {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(1.75rem, 1.35rem + 1.35vw, 2.75rem);
   line-height: 1.12;
   letter-spacing: -0.014em;
 }
 @utility t-h3 {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(1.1875rem, 1.07rem + 0.55vw, 1.5rem);
   line-height: 1.22;
   letter-spacing: -0.01em;
