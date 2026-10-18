@@ -92,9 +92,9 @@ export function Services() {
               </p>
               {/* A hairline list, not a grid of boxes. On a dark band the three
                   white cards read as a template; rows read as a prospectus. */}
-              <ul className="mt-8 divide-y divide-teal-700/60 border-t border-teal-700/60">
+              <ul className="mt-8 border-b border-teal-700/60">
                 {items.map((s, i) => (
-                  <li key={s.id}>
+                  <li key={s.id} className="border-t border-teal-700/60 transition-colors duration-500 first:border-t-0 hover:border-teal-300">
                     <ServiceRow service={s} index={i} />
                   </li>
                 ))}

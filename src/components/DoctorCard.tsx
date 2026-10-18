@@ -40,11 +40,8 @@ export function DoctorCard({
   return (
     <article
       className={cn(
-        'group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] border bg-paper transition-[border-color,box-shadow] duration-300',
+        'group relative flex h-full flex-col',
         featured && 'lg:grid lg:grid-cols-12 lg:gap-x-10',
-        featured
-          ? 'border-clay-200 bg-sand/45 p-6 md:p-10'
-          : 'border-line p-5 hover:border-teal-600/40 hover:shadow-[var(--shadow-soft)] md:p-6',
       )}
     >
       {featured && (
@@ -59,7 +56,7 @@ export function DoctorCard({
         {hasPhoto(doctor.imageId as ImageId) ? (
           <Photo
             id={doctor.imageId as ImageId}
-            shape="circle"
+            shape="arch"
             aspect={1}
             sizes={featured ? '80px' : '(min-width: 768px) 64px, 56px'}
             className={cn('shrink-0 ring-1 ring-line', featured ? 'size-20 sm:size-28' : 'size-16 md:size-20')}
@@ -68,7 +65,7 @@ export function DoctorCard({
           <div
             aria-hidden="true"
             className={cn(
-              'grid shrink-0 place-items-center rounded-full ring-1',
+              'grid shrink-0 place-items-center shape-arch ring-1',
               featured
                 ? 'size-20 bg-clay-50 text-clay-700 ring-clay-200 sm:size-28'
                 : 'size-16 bg-sand text-teal-800 ring-line md:size-20',
@@ -79,11 +76,10 @@ export function DoctorCard({
         )}
 
         <div className="min-w-0 flex-1">
-          <h3 className={cn('text-teal-950', featured ? 't-h3 sm:t-h2' : 't-h3')}>{doctor.name}</h3>
-          <p className={cn('mt-1.5 font-medium text-teal-800', featured ? 't-body' : 't-meta')}>
-            {profile.role}
-          </p>
-          <p className={cn('mt-1 text-ink-muted', featured ? 't-small' : 't-meta')}>{doctor.qualifications}</p>
+          <span aria-hidden="true" className="mb-3 block h-px w-10 bg-clay-600/60" />
+          <h3 className={cn('text-teal-900', featured ? 't-h3 sm:t-h2' : 't-h3')}>{doctor.name}</h3>
+          <p className={cn('mt-1.5 text-clay-600', featured ? 't-body' : 't-meta')}>{profile.role}</p>
+          <p className="mt-1 t-meta text-ink-muted">{doctor.qualifications}</p>
         </div>
       </div>
 
@@ -98,7 +94,7 @@ export function DoctorCard({
       </p>
 
       {/* Practicalities --------------------------------------------------- */}
-      <dl className={cn('mt-4 flex items-start gap-2 border-t border-line pt-4 t-small text-ink-soft', featured && 'lg:col-span-7 lg:col-start-6')}>
+      <dl className={cn('mt-4 flex items-start gap-2 border-t border-line pt-4 t-meta text-ink-muted', featured && 'lg:col-span-7 lg:col-start-6')}>
           <dt className="mt-0.5 shrink-0">
             <Clock className="size-4 text-teal-700" aria-hidden="true" />
             <span className="sr-only">{copy.doctors.opd}</span>

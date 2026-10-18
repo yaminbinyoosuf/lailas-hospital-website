@@ -97,6 +97,22 @@ export const en = {
 
   /** The founder section on the home page. Only facts already established
       elsewhere on the site are stated here; no quotation is attributed to her. */
+  /** Indexed section labels. Indices reset per page. */
+  sections: {
+    services: 'Services',
+    maternity: 'Maternity',
+    fertility: 'Fertility',
+    founder: 'The founder',
+    doctors: 'Our doctors',
+    questions: 'Questions',
+    visit: 'Visit us',
+  },
+
+  colophon: {
+    line: 'Lailas Hospital \u00b7 Chemmad \u00b7 Established 1994',
+    closing: 'A family hospital in Malappuram District, Kerala.',
+  },
+
   founder: {
     label: 'The founder',
     title: 'The doctor who began it all in 1994, and still leads it today.',

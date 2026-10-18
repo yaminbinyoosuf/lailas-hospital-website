@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Phone } from 'lucide-react';
+import { ArrowUpRight, Clock, Phone } from 'lucide-react';
 import { contact, type Service } from '../content/site';
 import { useBooking } from '../booking/BookingProvider';
 import { useCopy } from '../i18n/LanguageProvider';
@@ -19,7 +19,7 @@ export function ServiceRow({ service, index }: { service: Service; index: number
   const text = copy.services.items[service.id];
 
   return (
-    <article className="group relative grid gap-x-8 gap-y-4 py-7 md:grid-cols-12 md:items-start md:py-8">
+    <article className="group relative grid gap-x-8 gap-y-4 py-9 md:grid-cols-12 md:items-start md:py-10">
       {/* Index ----------------------------------------------------------- */}
       <div className="flex items-center gap-4 md:col-span-2 md:pt-1">
         <span className="t-number text-2xl tabular-nums text-teal-300/75" aria-hidden="true">
@@ -56,9 +56,9 @@ export function ServiceRow({ service, index }: { service: Service; index: number
             variant="lightOutline"
             className="shrink-0"
             iconAfter={
-              <ArrowRight
+              <ArrowUpRight
                 aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-0.5"
+                className="transition-transform duration-500 ease-[var(--ease-editorial)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
             }
             onClick={() => open({ kind: 'service', id: service.id })}

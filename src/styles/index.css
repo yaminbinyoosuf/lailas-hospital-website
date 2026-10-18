@@ -121,9 +121,9 @@
     color: var(--color-ink);
   }
   :focus-visible {
-    outline: 3px solid var(--color-teal-600);
+    outline: 2px solid var(--color-teal-700);
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: 2px;
   }
   [id] {
     scroll-margin-top: 6rem;
@@ -352,6 +352,18 @@
 
 /* Approved homepage reference: visual rules are scoped to the hero so the
    existing responsive page system remains intact below the fold. */
+@utility measure {
+  max-width: 66ch;
+}
+
+@utility display-balance {
+  text-wrap: balance;
+}
+
+@utility display-pretty {
+  text-wrap: pretty;
+}
+
 /* ==========================================================================
    Grain. Paper texture for sand and teal bands only, never on ivory or paper.
    @layer components so Tailwind utilities still win on children: a child that
@@ -371,19 +383,29 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   .grain > * { position: relative; z-index: 1; }
+  /* multiply has no headroom on teal-900, so dark bands lighten instead. */
+  .grain-teal::after { mix-blend-mode: screen; opacity: 0.06; }
 }
 
 .reference-hero { position: relative; min-height: 42rem; overflow: visible; background: #edf2ed; padding: clamp(3rem, 6vw, 6rem) 0 6.5rem; }
 .reference-hero__image { position: absolute; top: 0; left: -34%; width: 134%; max-width: none; height: 100%; object-fit: cover; object-position: center; }
+@keyframes hero-settle {
+  from { opacity: 0; transform: scale(1.06); }
+  to { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reference-hero__image { animation: hero-settle 1.4s var(--ease-editorial) both; }
+}
+
 .reference-hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(255 253 249 / .97) 0%, rgb(255 253 249 / .88) 34%, rgb(255 253 249 / .10) 56%, rgb(255 253 249 / .06) 100%); }
 .reference-hero__content { display: grid; min-height: 31rem; grid-template-columns: minmax(0, 1fr) minmax(23rem, 28rem); align-items: center; gap: 2rem; }
 .reference-hero__copy { max-width: 36rem; }
 .reference-hero__eyebrow { display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 1rem; border: 1px solid rgb(43 107 96 / .22); border-radius: 999px; background: rgb(255 253 249 / .72); padding: .45rem .8rem; color: #18473f; font-size: .8rem; font-weight: 700; }
 .reference-hero__eyebrow span { width: .55rem; height: .55rem; border-radius: 50%; background: #19a974; }
-.reference-hero__title { max-width: 34rem; font-size: clamp(3.5rem, 4.45vw, 5.2rem); line-height: .99; letter-spacing: -.065em; color: #062c28; }
+.reference-hero__title { max-width: 14ch; text-wrap: balance; font-size: clamp(3.5rem, 4.45vw, 5.2rem); line-height: .99; letter-spacing: -.065em; color: #062c28; }
 .reference-hero__title em { display: block; color: #3f8f79; font-style: normal; }
 .reference-hero__lead { max-width: 31rem; margin-top: 1.25rem; color: #25524a; font-size: clamp(1.1875rem, 1.1rem + .35vw, 1.375rem); line-height: 1.55; letter-spacing: -.012em; }
-.reference-booking { border: 1px solid rgb(255 255 255 / .8); border-radius: 1.75rem; background: rgb(251 255 253 / .86); padding: 1.5rem; box-shadow: 0 1.5rem 3.5rem rgb(11 36 31 / .22), inset 0 1px 0 rgb(255 255 255 / .9); backdrop-filter: blur(18px); }
+.reference-booking { border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-paper); padding: 1.5rem; }
 .reference-booking h2 { font-size: 1.35rem; letter-spacing: -.04em; color: #082c28; }
 .reference-booking p { margin-top: .2rem; color: #4b5753; font-size: .9rem; }
 .reference-booking__care { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; background: #eef5f3; padding: .35rem .55rem; color: #175f50; font-size: .72rem; font-weight: 700; }
