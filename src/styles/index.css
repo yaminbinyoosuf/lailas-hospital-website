@@ -376,12 +376,6 @@
 .reference-hero__trust dd { min-width: 0; }
 .reference-hero__trust strong { display: block; color: #072f2a; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.1; letter-spacing: -.045em; }
 .reference-hero__trust span { display: block; margin-top: .2rem; color: #33504a; font-size: .78rem; line-height: 1.3; }
-.service-card__visual { display: grid; width: 3.35rem; height: 3.35rem; place-items: center; margin-bottom: 1.4rem; border-radius: 1rem; color: #0a5a4c; }
-.service-card__visual svg { width: 1.55rem; height: 1.55rem; }
-.service-card__visual--women { background: linear-gradient(135deg, #e8f6f2, #cbe8df); }
-.service-card__visual--family { background: linear-gradient(135deg, #f8efd9, #edd9a9); }
-.service-card__visual--emergency { background: linear-gradient(135deg, #fde8e6, #f6c7c3); color: #a52f2a; }
-.service-card__visual--diagnostics { background: linear-gradient(135deg, #e8edf7, #d6e0ef); }
 @media (max-width: 900px) {
   .reference-hero { min-height: auto; padding-bottom: 3rem; }
   .reference-hero__content { grid-template-columns: 1fr; min-height: 0; }
