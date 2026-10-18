@@ -148,14 +148,14 @@
 }
 @utility t-h2 {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 650;
   font-size: clamp(1.75rem, 1.35rem + 1.35vw, 2.75rem);
   line-height: 1.12;
   letter-spacing: -0.014em;
 }
 @utility t-h3 {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(1.1875rem, 1.07rem + 0.55vw, 1.5rem);
   line-height: 1.22;
   letter-spacing: -0.01em;
