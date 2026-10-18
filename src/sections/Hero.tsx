@@ -27,24 +27,7 @@ export function Hero() {
 
   return (
     <section aria-labelledby="hero-title" className="reference-hero">
-      {hero && (
-        <picture>
-          <source type="image/avif" srcSet={hero.avifSrcSet} sizes="100vw" />
-          <source type="image/webp" srcSet={hero.webpSrcSet} sizes="100vw" />
-          <img
-            src={hero.fallback}
-            alt="A mother holding her sleeping newborn against her chest in soft daylight"
-            className="reference-hero__image"
-            width={hero.width}
-            height={hero.height}
-            fetchPriority="high"
-            decoding="async"
-            style={{ backgroundImage: `url(${hero.blur})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-          />
-        </picture>
-      )}
-      <div className="reference-hero__wash" aria-hidden="true" />
-      <Container className="reference-hero__content relative z-10">
+      <Container className="reference-hero__content">
         <div className="reference-hero__copy">
           <p className="reference-hero__eyebrow"><span /> {copy.hero.eyebrow}</p>
           <h1 id="hero-title" className="reference-hero__title">
@@ -66,6 +49,29 @@ export function Hero() {
           </p>
         </div>
 
+        {hero && (
+          <figure className="reference-hero__figure">
+            <picture>
+              <source type="image/avif" srcSet={hero.avifSrcSet} sizes="(min-width: 1024px) 30vw, 100vw" />
+              <source type="image/webp" srcSet={hero.webpSrcSet} sizes="(min-width: 1024px) 30vw, 100vw" />
+              <img
+                src={hero.fallback}
+                alt="A mother holding her sleeping newborn against her chest in soft daylight"
+                className="reference-hero__image"
+                width={hero.width}
+                height={hero.height}
+                fetchPriority="high"
+                decoding="async"
+                style={{ backgroundImage: `url(${hero.blur})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+              />
+            </picture>
+          </figure>
+        )}
+      </Container>
+
+      {/* The booking controls sit on the bottom edge as a row, not over the
+          photograph as a panel. */}
+      <Container className="reference-hero__bookingrow">
         <aside className="reference-booking" aria-labelledby="hero-booking-title">
           <h2 id="hero-booking-title">{copy.hero.panel.title}</h2>
 
@@ -100,8 +106,23 @@ export function Hero() {
           </ButtonAnchor>
         </aside>
       </Container>
-      <Container className="reference-hero__trust relative z-10">
-        <dl>{copy.hero.trust.map((item, index) => { const Icon = trustIconFor(index); return <div key={item.value}><dt><Icon aria-hidden="true" /></dt><dd><strong>{item.value}</strong><span>{item.label}</span></dd></div>; })}</dl>
+
+      {/* F. Statistics carry the display size; the label sits above in small caps. */}
+      <Container className="reference-hero__trust">
+        <dl>
+          {copy.hero.trust.map((item, index) => {
+            const Icon = trustIconFor(index);
+            return (
+              <div key={item.value}>
+                <dt>
+                  <Icon aria-hidden="true" />
+                  <span className="t-label uppercase">{item.label}</span>
+                </dt>
+                <dd className="t-h2 tabular-nums">{item.value}</dd>
+              </div>
+            );
+          })}
+        </dl>
       </Container>
     </section>
   );

@@ -14,8 +14,14 @@ export function Footer() {
   const heading = 't-label border-b border-teal-800 pb-3 !text-teal-200';
   const link = 'text-teal-100 underline-offset-4 hover:text-ivory hover:underline';
   return (
-    <footer className="bg-teal-950 text-teal-100">
-      <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
+    <footer className="grain grain-teal bg-teal-950 text-teal-100">
+      {/* Colophon: one oversized line sets the place and the year, then the
+          practical columns follow quietly under it. */}
+      <Container className="pb-4 pt-16 lg:pt-20">
+        <p className="t-h2 max-w-[24ch] text-ivory">{copy.colophon.line}</p>
+      </Container>
+
+      <Container className="grid gap-12 pb-16 pt-12 md:grid-cols-2 lg:grid-cols-12 lg:pb-20">
         <div className="lg:col-span-4">
           <Logo light className="h-14" />
           <p className="mt-6 max-w-sm">{copy.footer.about}</p>
@@ -91,6 +97,9 @@ export function Footer() {
           <p className="max-w-[34rem] md:text-right">{copy.footer.disclaimer}</p>
         </Container>
       </div>
+      <Container className="border-t border-teal-800 py-6">
+        <p className="t-meta text-teal-200">{copy.colophon.closing}</p>
+      </Container>
     </footer>
   );
 }
