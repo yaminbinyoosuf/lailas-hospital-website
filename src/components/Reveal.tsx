@@ -1,5 +1,4 @@
 import { m } from 'motion/react';
-import { EASE_EDITORIAL } from '../lib/motion';
 import type { ReactNode } from 'react';
 
 interface RevealProps {
@@ -12,7 +11,7 @@ interface RevealProps {
 }
 
 /** Soft fade and rise when content scrolls into view. Runs once. */
-export function Reveal({ children, className, delay = 0, y = 16, as = 'div' }: RevealProps) {
+export function Reveal({ children, className, delay = 0, y = 20, as = 'div' }: RevealProps) {
   const Comp = as === 'li' ? m.li : m.div;
   return (
     <Comp
@@ -20,7 +19,7 @@ export function Reveal({ children, className, delay = 0, y = 16, as = 'div' }: R
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-      transition={{ duration: 0.72, ease: EASE_EDITORIAL, delay }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay }}
     >
       {children}
     </Comp>

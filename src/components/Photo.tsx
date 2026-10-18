@@ -6,26 +6,25 @@ export type PhotoShape = 'arch' | 'cradle' | 'soft' | 'circle' | 'none';
 
 const shapes: Record<PhotoShape, string> = {
   arch: 'shape-arch',
-  cradle: 'shape-arch',
+  cradle: 'shape-cradle',
   soft: 'shape-soft',
   circle: 'rounded-full',
   none: '',
 };
 
-/* A reserved slot, not a decoration: one flat tone and a hairline. The four
-   gradients that stood here were the only gradients on the site. */
+/* Rich, subtle modern hospital gradients for when a photo slot is unpopulated */
 const tiles: Record<Tone, string> = {
-  sand: 'bg-sand-deep text-clay-600',
-  sage: 'bg-sand-deep text-clay-600',
-  clay: 'bg-sand-deep text-clay-600',
-  teal: 'bg-sand-deep text-clay-600',
+  sand: 'bg-gradient-to-br from-sand via-[#f7f0e6] to-sand-deep text-clay-600',
+  sage: 'bg-gradient-to-br from-sage-50 via-sage-100 to-sage-200 text-teal-700',
+  clay: 'bg-gradient-to-br from-clay-50 via-[#fcf5ef] to-clay-100 text-clay-700',
+  teal: 'bg-gradient-to-br from-teal-50 via-teal-100/70 to-teal-100 text-teal-800',
 };
 
 const darkTiles: Record<Tone, string> = {
-  sand: 'bg-teal-950 text-teal-300',
-  sage: 'bg-teal-950 text-teal-300',
-  clay: 'bg-teal-950 text-teal-300',
-  teal: 'bg-teal-950 text-teal-300',
+  sand: 'bg-gradient-to-br from-teal-900 via-teal-850 to-teal-950 text-teal-300',
+  sage: 'bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 text-teal-200',
+  clay: 'bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 text-clay-300',
+  teal: 'bg-gradient-to-br from-teal-950 via-teal-900 to-teal-800 text-teal-300',
 };
 
 interface PhotoProps {
@@ -71,7 +70,7 @@ export function Photo({
     if (imgRef.current?.complete) setLoaded(true);
   }, []);
 
-  const frame = cn('relative isolate overflow-hidden', shapes[shape], className);
+  const frame = cn('relative isolate overflow-hidden ring-1 ring-black/[0.04]', shapes[shape], className);
 
 const doctorInitials: Record<string, string> = {
   'doctor-laila-beegum': 'LB',
@@ -92,7 +91,7 @@ const doctorInitials: Record<string, string> = {
           aria-hidden="true"
           className={cn(
             frame,
-            'flex flex-col items-center justify-center border border-line bg-sand-deep text-teal-900 relative select-none',
+            'flex flex-col items-center justify-center bg-gradient-to-br from-teal-50/90 via-[#f7f1e7] to-teal-100/70 text-teal-900 border border-white/80 shadow-xs relative select-none',
           )}
           style={{ aspectRatio: ratio }}
         >
@@ -178,7 +177,7 @@ const doctorInitials: Record<string, string> = {
           decoding="async"
           onLoad={() => setLoaded(true)}
           className={cn(
-            'absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out',
+            'absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.03]',
             loaded || priority ? 'opacity-100' : 'opacity-0',
           )}
         />

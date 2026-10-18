@@ -14,18 +14,16 @@ type Space = 'tight' | 'base' | 'loose';
 
 const spaces: Record<Space, string> = {
   tight: 'py-14 md:py-20',
-  base: 'py-20 md:py-32',
-  loose: 'py-24 md:py-40',
+  base: 'py-20 md:py-28',
+  loose: 'py-24 md:py-36',
 };
 
 const tones: Record<Tone, string> = {
   ivory: 'bg-ivory',
   paper: 'bg-paper',
-  /* Grain is texture, not decoration: it belongs to the two materials that
-     would carry it in print, sand and deep teal. Ivory and paper stay clean. */
-  sand: 'bg-sand grain',
+  sand: 'bg-sand',
   sage: 'bg-sage-50',
-  teal: 'bg-teal-900 text-ivory grain grain-teal',
+  teal: 'bg-teal-900 text-ivory',
 };
 
 interface SectionProps {

@@ -11,9 +11,6 @@
   /* The two locally bundled variable families intentionally do different jobs:
      DM Sans gives headings a confident, contemporary voice; Source Sans 3
      remains exceptionally clear in dense clinical information and controls. */
-  /* The only easing curve on the site. Slow out, no bounce. */
-  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
-
   --font-heading: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-sans: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
@@ -117,13 +114,13 @@
     text-wrap: pretty;
   }
   ::selection {
-    background: var(--color-clay-200);
-    color: var(--color-ink);
+    background: var(--color-teal-200);
+    color: var(--color-teal-950);
   }
   :focus-visible {
-    outline: 2px solid var(--color-teal-700);
+    outline: 3px solid var(--color-teal-600);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 6px;
   }
   [id] {
     scroll-margin-top: 6rem;
@@ -352,93 +349,66 @@
 
 /* Approved homepage reference: visual rules are scoped to the hero so the
    existing responsive page system remains intact below the fold. */
-@utility measure {
-  max-width: 66ch;
-}
-
-@utility display-balance {
-  text-wrap: balance;
-}
-
-@utility display-pretty {
-  text-wrap: pretty;
-}
-
-/* ==========================================================================
-   Grain. Paper texture for sand and teal bands only, never on ivory or paper.
-   @layer components so Tailwind utilities still win on children: a child that
-   sets position: absolute keeps it.
-   ========================================================================== */
-@layer components {
-  .grain { position: relative; }
-  .grain::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.04;
-    mix-blend-mode: multiply;
-    background-size: 160px 160px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .grain > * { position: relative; z-index: 1; }
-  /* multiply has no headroom on teal-900, so dark bands lighten instead. */
-  .grain-teal::after { mix-blend-mode: screen; opacity: 0.06; }
-}
-
-.reference-hero { position: relative; background: var(--color-ivory); padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem); }
-.reference-hero__content { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; align-items: end; }
+.reference-hero { position: relative; min-height: 42rem; overflow: visible; background: #edf2ed; padding: clamp(3rem, 6vw, 6rem) 0 6.5rem; }
+.reference-hero__image { position: absolute; top: 0; left: -34%; width: 134%; max-width: none; height: 100%; object-fit: cover; object-position: center; }
+.reference-hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(255 253 249 / .97) 0%, rgb(255 253 249 / .88) 34%, rgb(255 253 249 / .10) 56%, rgb(255 253 249 / .06) 100%); }
+.reference-hero__content { display: grid; min-height: 31rem; grid-template-columns: minmax(0, 1fr) minmax(23rem, 28rem); align-items: center; gap: 2rem; }
 .reference-hero__copy { max-width: 36rem; }
-
-.reference-hero__eyebrow { display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 1.25rem; border: 1px solid rgb(43 107 96 / .22); border-radius: 999px; background: var(--color-paper); padding: .45rem .8rem; color: #18473f; font-size: .8rem; font-weight: 600; }
-.reference-hero__eyebrow span { width: .5rem; height: .5rem; border-radius: 50%; background: var(--color-teal-600); }
-.reference-hero__title { max-width: 14ch; text-wrap: balance; font-size: clamp(3.5rem, 4.45vw, 5.2rem); line-height: .99; letter-spacing: -.055em; color: #062c28; }
+.reference-hero__eyebrow { display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 1rem; border: 1px solid rgb(43 107 96 / .22); border-radius: 999px; background: rgb(255 253 249 / .72); padding: .45rem .8rem; color: #18473f; font-size: .8rem; font-weight: 700; }
+.reference-hero__eyebrow span { width: .55rem; height: .55rem; border-radius: 50%; background: #19a974; }
+.reference-hero__title { max-width: 34rem; font-size: clamp(3.5rem, 4.45vw, 5.2rem); line-height: .99; letter-spacing: -.065em; color: #062c28; }
 .reference-hero__title em { display: block; color: #3f8f79; font-style: normal; }
-.reference-hero__lead { max-width: 31rem; margin-top: 1.5rem; color: #25524a; font-size: clamp(1.1875rem, 1.1rem + .35vw, 1.375rem); line-height: 1.55; letter-spacing: -.012em; text-wrap: pretty; }
+.reference-hero__lead { max-width: 31rem; margin-top: 1.25rem; color: #25524a; font-size: clamp(1.1875rem, 1.1rem + .35vw, 1.375rem); line-height: 1.55; letter-spacing: -.012em; }
+.reference-booking { border: 1px solid rgb(255 255 255 / .8); border-radius: 1.75rem; background: rgb(251 255 253 / .86); padding: 1.5rem; box-shadow: 0 1.5rem 3.5rem rgb(11 36 31 / .22), inset 0 1px 0 rgb(255 255 255 / .9); backdrop-filter: blur(18px); }
+.reference-booking h2 { font-size: 1.35rem; letter-spacing: -.04em; color: #082c28; }
+.reference-booking p { margin-top: .2rem; color: #4b5753; font-size: .9rem; }
+.reference-booking__care { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; background: #eef5f3; padding: .35rem .55rem; color: #175f50; font-size: .72rem; font-weight: 700; }
+.reference-booking__care svg { width: .9rem; }.reference-booking__select { display: block; width: 100%; min-height: 2.9rem; margin-top: .45rem; padding: 0 2.2rem 0 .9rem; border: 1px solid #cfe0da; border-radius: .7rem; background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23175f50' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; color: #0a332c; font: 600 .98rem/1.2 var(--font-sans); appearance: none; cursor: pointer; }
+.reference-booking__select:focus-visible { outline: 3px solid var(--color-teal-600); outline-offset: 2px; }.reference-hero__trust { position: absolute; right: 0; bottom: -3.1rem; left: 0; }
+.reference-hero__trust dl { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid rgb(255 255 255 / .78); border-radius: 1.6rem; background: rgb(255 255 255 / .85); padding: 1.3rem; box-shadow: 0 1rem 2.6rem rgb(11 36 31 / .12); backdrop-filter: blur(18px); }
+.reference-hero__trust dl > div { display: flex; align-items: center; gap: .8rem; min-width: 0; padding: .15rem 1.1rem; border-right: 1px solid #cbded8; }
+.reference-hero__trust dl > div:last-child { border-right: 0; }
+.reference-hero__trust dt { display: grid; width: 2.7rem; height: 2.7rem; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #e5f4f0; color: #08705b; }
+.reference-hero__trust dt svg { width: 1.35rem; }
+.reference-hero__trust dd { min-width: 0; }
+.reference-hero__trust strong { display: block; color: #072f2a; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.1; letter-spacing: -.045em; }
+.reference-hero__trust span { display: block; margin-top: .2rem; color: #33504a; font-size: .78rem; line-height: 1.3; }
+.service-card__visual { display: grid; width: 3.35rem; height: 3.35rem; place-items: center; margin-bottom: 1.4rem; border-radius: 1rem; color: #0a5a4c; }
+.service-card__visual svg { width: 1.55rem; height: 1.55rem; }
+.service-card__visual--women { background: linear-gradient(135deg, #e8f6f2, #cbe8df); }
+.service-card__visual--family { background: linear-gradient(135deg, #f8efd9, #edd9a9); }
+.service-card__visual--emergency { background: linear-gradient(135deg, #fde8e6, #f6c7c3); color: #a52f2a; }
+.service-card__visual--diagnostics { background: linear-gradient(135deg, #e8edf7, #d6e0ef); }
+@media (max-width: 900px) {
+  .reference-hero { min-height: auto; padding-bottom: 3rem; }
+  .reference-hero__content { grid-template-columns: 1fr; min-height: 0; }
+  .reference-booking { max-width: 34rem; }
+  /* The band was absolutely positioned with a negative offset, so on a phone
+     it hung over the section below and was partly covered by it. In one column
+     there is nothing to hang beside, so it belongs in the flow. */
+  .reference-hero__trust { position: static; margin-top: 2.25rem; }
+  .reference-hero__trust dl { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+  .reference-hero__trust dl > div:nth-child(2) { border-right: 0; }
+}
+@media (max-width: 540px) {
+  .reference-hero { padding-top: 1.5rem; background: var(--color-ivory); }
+  /* As a full background the photograph washed out to a smudge behind the copy.
+     As a band at the top it keeps its colour, and the text below sits on solid
+     paper, which is both more legible and a better use of the picture. */
+  /* A photograph sitting directly above the headline read as a stock banner
+     rather than an editorial choice. On a phone the hero is typographic: the
+     headline does the work, and the first face a visitor meets is a real
+     consultant further down rather than a borrowed one at the top. */
+  .reference-hero picture { display: none; }
+  .reference-hero__wash { display: none; }
+  .reference-hero__content { padding-top: 1.25rem; }
+  .reference-hero__content { padding-top: 2.25rem; }
+  /* A second booking form in the hero cost 280px of first screen and pushed the
+     photograph and the figures out of view. The fixed bar already puts Book,
+     Call and WhatsApp one tap away at every scroll position, so on a phone the
+     hero is the claim and the photo. */
+  .reference-booking { display: none; } .reference-hero__image { left: 0; width: 100%; max-width: 100%; object-position: 42% center; } .reference-hero__wash { background: linear-gradient(180deg, rgb(255 253 249 / .96) 0%, rgb(255 253 249 / .82) 38%, rgb(255 253 249 / .34) 62%, rgb(255 253 249 / .12) 100%); } .reference-hero__title { font-size: clamp(2.75rem, 14vw, 3.6rem); } .reference-hero__lead { font-size: 1.125rem; line-height: 1.58; } .reference-booking { padding: 1.1rem; border-radius: 1.25rem; } .reference-hero__trust dl { padding: .65rem; border-radius: 1rem; } .reference-hero__trust dl > div { gap: .5rem; padding: .35rem; border-right: 0; } .reference-hero__trust dt { width: 2.2rem; height: 2.2rem; } .reference-hero__trust strong { font-size: 1rem; } .reference-hero__trust span { font-size: .67rem; } }
 
-/* The photograph is a column of the grid, not a backdrop. Landscape asset, so
-   it is framed with a hairline rather than cropped into an arch. */
-.reference-hero__figure { margin: 0; }
-.reference-hero__figure picture { display: block; }
-.reference-hero__image { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 30%; border: 1px solid var(--color-line); }
-@keyframes hero-settle { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: scale(1); } }
-@media (prefers-reduced-motion: no-preference) {
-  .reference-hero__image { animation: hero-settle 1.4s var(--ease-editorial) both; }
-}
-
-/* Booking sits on the bottom edge as a row. No panel over the photograph. */
-.reference-hero__bookingrow { margin-top: clamp(2.5rem, 4vw, 3.5rem); border-top: 1px solid var(--color-line); padding-top: 1.75rem; }
-.reference-booking { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; align-items: end; }
-.reference-booking h2 { font-size: 1.0625rem; letter-spacing: -.02em; color: var(--color-teal-900); }
-.reference-booking__label { display: block; margin-bottom: .4rem; font-size: .75rem; letter-spacing: .085em; text-transform: uppercase; color: var(--color-ink-muted); }
-.reference-booking__select { width: 100%; min-height: 2.75rem; border: 1px solid var(--color-line); border-radius: var(--radius-sm); background: var(--color-paper); padding: .5rem .75rem; color: var(--color-ink); }
-.reference-booking__select:focus-visible { outline: 2px solid var(--color-teal-700); outline-offset: 3px; }
-
-.reference-hero__trust { margin-top: clamp(2.5rem, 5vw, 4rem); }
-.reference-hero__trust dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; }
-.reference-hero__trust dl > div { border-left: 1px solid var(--color-line); padding-left: 1.25rem; }
-.reference-hero__trust dl > div:first-child { border-left: 0; padding-left: 0; }
-.reference-hero__trust dt { display: flex; align-items: center; gap: .5rem; color: var(--color-ink-muted); }
-.reference-hero__trust dt svg { width: 1rem; height: 1rem; color: var(--color-teal-700); }
-.reference-hero__trust dd { margin: .6rem 0 0; color: var(--color-teal-900); }
-
-@media (min-width: 640px) {
-  .reference-hero__trust dl { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-}
-@media (min-width: 768px) {
-  .reference-booking { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .reference-booking h2 { grid-column: 1 / -1; }
-}
-@media (min-width: 1024px) {
-  .reference-booking { grid-template-columns: minmax(11rem, 1fr) minmax(14rem, 2fr) auto auto; }
-}
-@media (min-width: 1024px) {
-  .reference-hero__image { aspect-ratio: 4 / 5; }
-  .reference-hero__content { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.5rem 2.5rem; }
-  .reference-hero__copy { grid-column: 1 / span 7; }
-  .reference-hero__figure { grid-column: 9 / span 4; }
-}
 /* ==========================================================================
    Shapes: Clean contemporary architectural curves
    ========================================================================== */
