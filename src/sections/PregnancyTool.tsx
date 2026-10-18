@@ -51,7 +51,7 @@ export function PregnancyTool() {
             <p className="t-lead mt-6">{copy.pregnancy.lead}</p>
 
             <div className="mt-10">
-              <p className="t-number text-[clamp(3.5rem,2.5rem+4vw,5.5rem)] text-teal-800" aria-hidden="true">
+              <p className="font-sans text-[clamp(3.5rem,2.5rem+4vw,5.5rem)] font-bold leading-none tracking-[-0.03em] tabular-nums text-teal-800" aria-hidden="true">
                 {copy.pregnancy.week(week)}
               </p>
               <label htmlFor={`${ids}-range`} className="sr-only">
@@ -81,7 +81,7 @@ export function PregnancyTool() {
                     onClick={() => setWeek(m.week)}
                     aria-pressed={week === m.week}
                     className={cn(
-                      'min-h-11 rounded-[var(--radius-sm)] px-4 t-small font-semibold transition-all duration-200',
+                      'min-h-11 rounded-full px-5 t-small font-semibold transition-[background-color,color,box-shadow] duration-300',
                       week === m.week
                         ? 'bg-teal-800 text-ivory shadow-xs'
                         : 'glass-pill text-ink-soft hover:bg-sand/60 hover:text-ink',
@@ -97,7 +97,7 @@ export function PregnancyTool() {
           <Reveal className="lg:col-span-7" delay={0.1}>
             <div
               aria-live="polite"
-              className="glass-card rounded-[var(--radius-lg)] p-8 md:p-10 shadow-[var(--shadow-lift)] ring-1 ring-white/80"
+              className="glass-card p-8 md:p-10"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                 <h3 className="t-h3 text-teal-950">{stage.name}</h3>
@@ -109,7 +109,7 @@ export function PregnancyTool() {
               <ul className="mt-3.5 space-y-3">
                 {stage.care.map((c) => (
                   <li key={c} className="flex items-start gap-3">
-                    <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-teal-100 text-teal-800">
+                    <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-teal-100/80 text-teal-800">
                       <Check className="size-3.5" aria-hidden="true" />
                     </span>
                     <span className="text-ink-soft">{c}</span>
@@ -117,7 +117,7 @@ export function PregnancyTool() {
                 ))}
               </ul>
 
-              <div className="mt-8 rounded-[var(--radius-md)] bg-clay-50/80 p-5 ring-1 ring-clay-200/60">
+              <div className="mt-8 rounded-[var(--radius-md)] border-l-2 border-clay-400 bg-clay-50/60 p-5">
                 <p className="font-semibold text-clay-700">{copy.pregnancy.dueTitle}</p>
                 <p className="mt-1 min-h-[1.6em] t-h3 text-ink font-bold">{due ?? ' '}</p>
               </div>
