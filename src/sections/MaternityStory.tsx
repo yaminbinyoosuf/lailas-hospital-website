@@ -5,6 +5,7 @@ import { CountUp } from '../components/CountUp';
 import { Reveal } from '../components/Reveal';
 import { Section } from '../components/Section';
 import { useCopy } from '../i18n/LanguageProvider';
+import { SectionLabel } from '../components/SectionLabel';
 
 /** Big editorial numbers, then what to expect. */
 export function MaternityStory() {
@@ -16,6 +17,8 @@ export function MaternityStory() {
       <Container className="grid min-w-0 gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="min-w-0 lg:col-span-8">
           <Reveal>
+            <SectionLabel index={2} name={copy.sections.maternity} />
+
             <h2 id="maternity-title" className="t-h2 text-teal-950">
               {copy.maternity.title}
             </h2>

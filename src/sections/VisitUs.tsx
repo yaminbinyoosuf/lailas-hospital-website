@@ -6,6 +6,7 @@ import { Section } from '../components/Section';
 import { address, contact, flags, hours, routes } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { formatDays, formatHours } from '../lib/format';
+import { SectionLabel } from '../components/SectionLabel';
 
 export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
   const copy = useCopy();
@@ -16,6 +17,8 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
     <Section tone="sand" labelledBy="visit-title">
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
+          <SectionLabel index={7} name={copy.sections.visit} />
+
           <Heading id="visit-title" className="t-h2 text-teal-950">
             {copy.visit.title}
           </Heading>

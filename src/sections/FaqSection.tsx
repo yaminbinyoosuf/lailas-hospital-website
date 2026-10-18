@@ -6,6 +6,7 @@ import { Reveal } from '../components/Reveal';
 import { Section } from '../components/Section';
 import { contact, faqs, whatsappLink, type FaqId } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
+import { SectionLabel } from '../components/SectionLabel';
 
 export function FaqSection({ ids, title }: { ids?: FaqId[]; title?: string }) {
   const copy = useCopy();
@@ -16,6 +17,8 @@ export function FaqSection({ ids, title }: { ids?: FaqId[]; title?: string }) {
     <Section tone="paper" labelledBy="faq-title" className="border-y border-line">
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
+          <SectionLabel index={6} name={copy.sections.questions} />
+
           <h2 id="faq-title" className="t-h2 text-teal-950">
             {title ?? copy.faq.title}
           </h2>

@@ -7,6 +7,7 @@ import { Section } from '../components/Section';
 import { doctors as allDoctors, type Doctor } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { cn } from '../lib/format';
+import { SectionLabel } from '../components/SectionLabel';
 
 interface Props {
   title?: string;
@@ -25,6 +26,8 @@ export function DoctorsSection({ title, lead, doctors = allDoctors, showAllLink 
       <Container>
         <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
+            <SectionLabel index={5} name={copy.sections.doctors} />
+
             <h2 id="doctors-title" className="t-h2 text-teal-950">
               {title ?? copy.doctors.title}
             </h2>
