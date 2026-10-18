@@ -45,6 +45,7 @@ export const en = {
   actions: {
     book: 'Book appointment',
     bookShort: 'Book',
+    requestSlot: 'Request slot',
     call: 'Call',
     whatsapp: 'WhatsApp',
     chatWhatsapp: 'Chat on WhatsApp',
@@ -285,7 +286,7 @@ export const en = {
     } satisfies Record<DoctorId, { role: string; focus: string; bio: string }>,
     speaks: 'Speaks',
     opd: 'OPD',
-    opdUnconfirmed: 'Please call to confirm OPD timings',
+    opdUnconfirmed: 'Consultation by prior reservation',
     bookWith: (name: string) => `Book with ${name}`,
     languageNames: { en: 'English', ml: 'Malayalam', ta: 'Tamil' } satisfies Record<LanguageCode, string>,
     duty: {

@@ -1,5 +1,6 @@
 /* Self-hosted fonts (font-display: swap is set by Fontsource). */
-@import '@fontsource-variable/dm-sans/index.css';
+@import '@fontsource-variable/newsreader/index.css';
+@import '@fontsource-variable/plus-jakarta-sans/index.css';
 
 @import 'tailwindcss';
 
@@ -11,8 +12,8 @@
   /* The two locally bundled variable families intentionally do different jobs:
      DM Sans gives headings a confident, contemporary voice; Source Sans 3
      remains exceptionally clear in dense clinical information and controls. */
-  --font-heading: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-sans: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: 'Newsreader Variable', 'Newsreader', serif;
+  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
   /* Surfaces */
   --color-ivory: #fbf7f0;
@@ -22,7 +23,8 @@
   --color-line: #e2d8c8;
 
   /* Text */
-  --color-ink: #1f2a27;
+  --color-ink: #1a2522;
+  --color-emerald: #0b2b20;
   --color-ink-soft: #4b5753;
   --color-ink-muted: #5f6a66;
 
