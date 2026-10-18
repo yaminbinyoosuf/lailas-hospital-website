@@ -372,6 +372,29 @@ export const en = {
   contact: {
     primaryLabel: 'Emergency, appointments and WhatsApp',
     landlineLabels: ['Reception', 'OPD and appointments', 'Helpdesk'],
+    enquiry: {
+      title: 'Send us a message',
+      lead: 'Tell us your name and number and we will reply. Nothing is sent until you send it in WhatsApp.',
+      disclaimer: 'This opens WhatsApp with your message ready to send. We only receive it once you press send there, and a member of our team will reply.',
+      name: 'Your name',
+      phone: 'Phone number',
+      note: 'Anything you would like us to know',
+      noteHelp: 'Please do not send medical reports or health details here. We will ask for what we need when we speak.',
+      submit: 'Continue in WhatsApp',
+      errors: {
+        name: 'Please enter your name.',
+        phone: 'Please enter a 10 digit phone number.',
+        blocked: 'Your browser blocked the WhatsApp window. Allow pop-ups for this site, or call us instead.',
+      },
+      message: (d: { name: string; phone: string; note: string }) =>
+        [
+          `Name: ${d.name}`,
+          `Phone: ${d.phone}`,
+          d.note ? `Message: ${d.note}` : '',
+        ]
+          .filter(Boolean)
+          .join('\n'),
+    },
     phonesTitle: 'Phone numbers',
     emailTitle: 'Email',
   },
@@ -419,6 +442,7 @@ export const en = {
       name: 'Please enter your name.',
       phone: 'Please enter a 10 digit phone number.',
       send: 'Sorry, we could not send your request. Please call us or use WhatsApp.',
+      blocked: 'Your browser blocked the WhatsApp window. Allow pop-ups, or call us on the emergency number.',
     },
     next: 'Continue',
     back: 'Back',

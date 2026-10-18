@@ -1,6 +1,7 @@
 import { CalendarDays, Mail, Phone } from 'lucide-react';
 import { useBooking } from '../booking/BookingProvider';
 import { Button } from '../components/Button';
+import { ContactEnquiry } from '../components/ContactEnquiry';
 import { Container } from '../components/Container';
 import { PageMeta } from '../components/PageMeta';
 import { Reveal } from '../components/Reveal';
@@ -68,6 +69,11 @@ export function ContactPage() {
           </Reveal>
         </Container>
       </section>
+      <Container>
+        <Reveal>
+          <ContactEnquiry />
+        </Reveal>
+      </Container>
       <VisitUs />
     </>
   );

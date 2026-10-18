@@ -1,6 +1,7 @@
 /* Self-hosted fonts (font-display: swap is set by Fontsource). */
 
-@import '@fontsource-variable/plus-jakarta-sans/index.css';
+@import '@fontsource-variable/manrope/index.css';
+@import '@fontsource-variable/inter/index.css';
 
 @import 'tailwindcss';
 
@@ -9,11 +10,10 @@
    Contrast (WCAG AA) is checked by `npm run check:contrast`.
    ========================================================================== */
 @theme {
-  /* The two locally bundled variable families intentionally do different jobs:
-     DM Sans gives headings a confident, contemporary voice; Source Sans 3
-     remains exceptionally clear in dense clinical information and controls. */
-  --font-heading: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', sans-serif;
-  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  /* Two locally bundled variable families. Manrope carries headings and
+     figures; Inter carries body copy and every interface element. */
+  --font-heading: 'Manrope Variable', 'Manrope', sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   /* Surfaces */
   --color-ivory: #fbf7f0;
@@ -130,7 +130,7 @@
 }
 
 /* ==========================================================================
-   Type scale: DM Sans headings + Source Sans 3 body and UI
+   Type scale: Manrope headings + Inter body and UI
    ========================================================================== */
 @utility t-display {
   font-family: var(--font-heading);

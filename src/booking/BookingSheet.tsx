@@ -119,7 +119,13 @@ export default function BookingSheet({ initialTarget, onClosed }: Props) {
       return;
     }
 
-    window.open(whatsappLink(copy.booking.message(details)), '_blank', 'noopener');
+    /* window.open returns null when the popup is blocked. Without this the sheet
+       advanced to "Almost done" with no message and no way forward. */
+    const opened = window.open(whatsappLink(copy.booking.message(details)), '_blank', 'noopener');
+    if (!opened) {
+      setErrors({ send: copy.booking.errors.blocked });
+      return;
+    }
     setSentVia('whatsapp');
     setStep('done');
   };
