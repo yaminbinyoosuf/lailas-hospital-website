@@ -13,9 +13,9 @@ type Tone = 'ivory' | 'paper' | 'sand' | 'sage' | 'teal';
 type Space = 'tight' | 'base' | 'loose';
 
 const spaces: Record<Space, string> = {
-  tight: 'py-16 md:py-20',
-  base: 'py-24 md:py-32',
-  loose: 'py-28 md:py-40',
+  tight: 'py-14 md:py-20',
+  base: 'py-20 md:py-28',
+  loose: 'py-24 md:py-36',
 };
 
 const tones: Record<Tone, string> = {
