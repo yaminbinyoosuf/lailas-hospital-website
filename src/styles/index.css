@@ -576,3 +576,19 @@ dialog.sheet[open]::backdrop {
   }
   .ambient > * { position: relative; z-index: 1; }
 }
+
+/* ==========================================================================
+   Statistics stay in the sans. The serif belongs to headings; a number set in
+   a display serif at 18px reads decorative rather than factual, and tabular
+   figures do not line up in it.
+   ========================================================================== */
+.reference-hero__trust strong {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.reference-hero__trust span {
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+}
