@@ -42,14 +42,14 @@ export function FertilitySection() {
           </ul>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <ButtonLink to="/ivf" size="lg" className="whitespace-nowrap" iconAfter={<ArrowRight aria-hidden="true" />}>
+            <ButtonLink to="/ivf" size="lg" className="sm:whitespace-nowrap" iconAfter={<ArrowRight aria-hidden="true" />}>
               {copy.fertility.cta}
             </ButtonLink>
             <ButtonAnchor
               href={whatsappLink(copy.ivf.whatsappMessage)}
               variant="secondary"
               size="lg"
-              className="whitespace-nowrap"
+              className="sm:whitespace-nowrap"
               icon={<MessageCircle aria-hidden="true" />}
             >
               {copy.fertility.whatsapp}

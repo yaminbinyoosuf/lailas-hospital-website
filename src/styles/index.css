@@ -180,20 +180,20 @@
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 /* Supporting copy inside cards and lists */
 @utility t-small {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
-  line-height: 1.55;
+  font-size: clamp(1rem, 0.97rem + 0.24vw, 1.125rem);
+  line-height: 1.6;
 }
 @utility t-meta {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.45;
+  font-size: 0.9375rem;
+  line-height: 1.55;
 }
 
 /* Eyebrow above a section heading. Refined uppercase pill-like tracking */
