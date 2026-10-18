@@ -1,5 +1,5 @@
 /* Self-hosted fonts (font-display: swap is set by Fontsource). */
-@import '@fontsource-variable/newsreader/index.css';
+
 @import '@fontsource-variable/plus-jakarta-sans/index.css';
 
 @import 'tailwindcss';
@@ -12,7 +12,7 @@
   /* The two locally bundled variable families intentionally do different jobs:
      DM Sans gives headings a confident, contemporary voice; Source Sans 3
      remains exceptionally clear in dense clinical information and controls. */
-  --font-heading: 'Newsreader Variable', 'Newsreader', serif;
+  --font-heading: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', sans-serif;
   --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
   /* Surfaces */
@@ -134,28 +134,28 @@
    ========================================================================== */
 @utility t-display {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(2.75rem, 1.6rem + 4.4vw, 5.5rem);
   line-height: 1.03;
   letter-spacing: -0.018em;
 }
 @utility t-h1 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(2.25rem, 1.55rem + 2.7vw, 4rem);
   line-height: 1.08;
   letter-spacing: -0.015em;
 }
 @utility t-h2 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(1.75rem, 1.35rem + 1.35vw, 2.75rem);
   line-height: 1.12;
   letter-spacing: -0.014em;
 }
 @utility t-h3 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(1.1875rem, 1.07rem + 0.55vw, 1.5rem);
   line-height: 1.22;
   letter-spacing: -0.01em;
@@ -347,7 +347,7 @@
 }
 .maternity-mark { background: linear-gradient(160deg, rgb(255 253 249 / 0.72), rgb(237 205 182 / 0.5)); color: var(--color-clay-600); }
 .ivf-mark { background: radial-gradient(circle at center, rgb(255 253 249 / 0.14) 0 12%, transparent 12.5%), linear-gradient(160deg, rgb(31 90 81 / 0.8), rgb(11 36 31 / 0.5)); color: var(--color-clay-200); }
-.maternity-mark span, .ivf-mark span { font: 650 clamp(3rem, 6vw, 6rem)/1 var(--font-heading); letter-spacing: -0.02em; }
+.maternity-mark span, .ivf-mark span { font: 650 clamp(3rem, 6vw, 6rem)/1 var(--font-heading); letter-spacing: -0.035em; }
 .page-hero { border-bottom: 1px solid var(--color-line); background: linear-gradient(110deg, var(--color-ivory), var(--color-paper)); }
 
 /* Approved homepage reference: visual rules are scoped to the hero so the
