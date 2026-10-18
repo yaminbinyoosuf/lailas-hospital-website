@@ -54,7 +54,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? null : item.id)}
                 onKeyDown={onKeyDown}
-                className="flex min-h-16 w-full items-center justify-between gap-6 py-5 text-left t-h4 font-semibold text-ink transition-colors hover:text-teal-800"
+                className="flex min-h-16 w-full items-center justify-between gap-6 py-5 text-left t-h4 text-ink transition-colors hover:text-teal-800"
               >
                 <span>{item.title}</span>
                 <span

@@ -50,7 +50,7 @@ export function IvfTimeline({ onDark = true }: { onDark?: boolean }) {
           </div>
 
           <div className="mt-4">
-            <h3 className={`t-h3 ${title} font-semibold`}>{s.title}</h3>
+            <h3 className={`t-h3 ${title}`}>{s.title}</h3>
             <p className={`mt-2 t-small ${body} leading-relaxed`}>{s.body}</p>
           </div>
         </Reveal>

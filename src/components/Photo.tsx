@@ -107,7 +107,7 @@ const doctorInitials: Record<string, string> = {
             <circle cx="50" cy="50" r="16" stroke="currentColor" strokeWidth="0.8" />
           </svg>
           <div className="relative z-10 flex flex-col items-center">
-            <span className="font-heading font-semibold text-teal-900 text-xl sm:text-2xl tracking-tight drop-shadow-xs">
+            <span className="font-heading text-teal-900 text-xl sm:text-2xl tracking-tight drop-shadow-xs">
               {initials}
             </span>
           </div>

@@ -59,7 +59,7 @@ export function MaternityStory() {
               delay={i * 0.08}
               className="border-t-2 border-clay-400 pt-5"
             >
-              <h4 className="t-h3 text-ink font-semibold">{e.title}</h4>
+              <h4 className="t-h3 text-ink">{e.title}</h4>
               <p className="mt-2.5 text-ink-soft leading-relaxed">{e.body}</p>
             </Reveal>
           ))}

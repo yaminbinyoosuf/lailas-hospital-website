@@ -99,7 +99,7 @@ export function PregnancyTool() {
               className="glass-card rounded-[var(--radius-lg)] p-8 md:p-10 shadow-[var(--shadow-lift)] ring-1 ring-white/80"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                <h3 className="t-h3 text-teal-950 font-semibold">{stage.name}</h3>
+                <h3 className="t-h3 text-teal-950">{stage.name}</h3>
                 <p className="text-ink-muted">{stage.range}</p>
               </div>
               <p className="mt-2 t-h4 text-clay-600 font-medium">{stage.focus}</p>
