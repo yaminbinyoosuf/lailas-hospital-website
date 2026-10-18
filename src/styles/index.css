@@ -1,7 +1,7 @@
 /* Self-hosted fonts (font-display: swap is set by Fontsource). */
 
 @import '@fontsource-variable/manrope/index.css';
-@import '@fontsource-variable/inter/index.css';
+@import '@fontsource-variable/inter/opsz.css';
 
 @import 'tailwindcss';
 
@@ -96,6 +96,7 @@
     font-family: var(--font-sans);
     font-size: 1rem; /* 16px */
     line-height: 1.7;
+    font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -185,13 +186,13 @@
 /* Supporting copy inside cards and lists */
 @utility t-small {
   font-family: var(--font-sans);
-  font-weight: 400;
+  font-weight: 450;
   font-size: clamp(1rem, 0.97rem + 0.24vw, 1.125rem);
   line-height: 1.6;
 }
 @utility t-meta {
   font-family: var(--font-sans);
-  font-weight: 400;
+  font-weight: 450;
   font-size: 0.9375rem;
   line-height: 1.55;
 }
