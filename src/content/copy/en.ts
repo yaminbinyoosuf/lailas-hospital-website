@@ -98,6 +98,16 @@ export const en = {
 
   /** The founder section on the home page. Only facts already established
       elsewhere on the site are stated here; no quotation is attributed to her. */
+  /** Home page fertility section. Highlights are taken from the approved
+      services copy, not repeated here. */
+  fertility: {
+    eyebrow: 'Fertility and IVF',
+    title: 'Hope for your tomorrow, with expert care.',
+    lead: 'Every fertility journey is different. Our team offers consultations, appropriate assessments, and guidance to help you understand your options.',
+    cta: 'Explore IVF care',
+    whatsapp: 'Talk privately on WhatsApp',
+  },
+
   sections: {
     services: 'Services',
     maternity: 'Maternity',

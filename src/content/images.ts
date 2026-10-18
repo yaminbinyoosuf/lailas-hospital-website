@@ -92,7 +92,7 @@ export const images = {
     tone: 'clay',
   },
   'ivf-consultation': {
-    alt: 'Private confidential fertility and embryology counselling',
+    alt: 'A couple sitting close together at home',
     aspect: 4 / 5,
     tone: 'teal',
   },

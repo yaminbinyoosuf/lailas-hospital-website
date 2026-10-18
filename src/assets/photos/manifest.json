@@ -65,5 +65,14 @@
       480,
       800
     ]
+  },
+  "ivf-consultation": {
+    "width": 1122,
+    "height": 1402,
+    "blur": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAAAwBQCdASoYAB4APu1qqFAppiOiqA1RMB2JQBfPZfgg4gj1ABN1E8Gwppv+S//Ph30UAAD+7gv1ARHU3dAgM48iHLQemfktB5CNHAwPkrWU3El62FlnXCjqUbyyJ8rmCJd6yrGAcB4u7XzhSYB8qwJT5x6BJU6yLF/DrTpqy/bhlw6ckoOhg2q1ugDGpgAA",
+    "widths": [
+      480,
+      800
+    ]
   }
 }
