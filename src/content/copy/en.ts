@@ -98,6 +98,16 @@ export const en = {
 
   /** The founder section on the home page. Only facts already established
       elsewhere on the site are stated here; no quotation is attributed to her. */
+  sections: {
+    services: 'Services',
+    maternity: 'Maternity',
+    fertility: 'Fertility',
+    founder: 'The founder',
+    doctors: 'Our doctors',
+    questions: 'Questions',
+    visit: 'Visit us',
+  },
+
   founder: {
     label: 'The founder',
     title: 'The doctor who began it all in 1994, and still leads it today.',

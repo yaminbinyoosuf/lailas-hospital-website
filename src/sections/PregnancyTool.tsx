@@ -8,6 +8,7 @@ import { Section } from '../components/Section';
 import { pregnancy, type PregnancyStageId } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { addDays, cn, formatDate } from '../lib/format';
+import { SectionLabel } from '../components/SectionLabel';
 
 const stageFor = (week: number): PregnancyStageId =>
   pregnancy.stages.find((s) => week >= s.fromWeek && week <= s.toWeek)?.id ?? 'third';
@@ -43,7 +44,7 @@ export function PregnancyTool() {
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <p className="t-label text-sage-700">{copy.pregnancy.label}</p>
+            <SectionLabel index={3} name={copy.pregnancy.label} />
             <h2 id={`${ids}-title`} className="t-h2 mt-5 text-teal-950">
               {copy.pregnancy.title}
             </h2>

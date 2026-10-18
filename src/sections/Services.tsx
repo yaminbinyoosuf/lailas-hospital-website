@@ -6,6 +6,7 @@ import { ServiceRow } from '../components/ServiceCard';
 import { serviceGroups, services, type ServiceGroup } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { cn } from '../lib/format';
+import { SectionLabel } from '../components/SectionLabel';
 
 /** Services grouped into four tabs. Each tab shows photo cards for its group. */
 export function Services() {
@@ -32,7 +33,7 @@ export function Services() {
       <Container>
         <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-          <p className="t-label text-teal-200">Our services</p>
+          <SectionLabel index={1} name={copy.sections.services} tone="dark" />
           <h2 id="services-title" className="t-h2 mt-3 text-ivory">
             {copy.services.title}
           </h2>

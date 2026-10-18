@@ -7,6 +7,7 @@ import { Section } from '../components/Section';
 import { Lock } from 'lucide-react';
 import { whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
+import { SectionLabel } from '../components/SectionLabel';
 
 /** The 4 step path as a timeline. Horizontal on desktop, vertical on phones. */
 /**
@@ -68,7 +69,7 @@ export function IvfPath() {
     <Section tone="teal" labelledBy="ivf-title" space="loose">
       <Container className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
         <Reveal className="lg:col-span-8">
-          <p className="t-label text-teal-200">{copy.ivf.label}</p>
+          <SectionLabel index={1} name={copy.sections.fertility} tone="dark" />
           <h2 id="ivf-title" className="t-h2 mt-5 text-ivory">
             {copy.ivf.title}
           </h2>

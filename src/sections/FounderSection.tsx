@@ -6,6 +6,7 @@ import { Photo } from '../components/Photo';
 import { Section } from '../components/Section';
 import { getDoctor } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
+import { SectionLabel } from '../components/SectionLabel';
 
 /**
  * The founder, on the home page.
@@ -52,7 +53,7 @@ export function FounderSection() {
 
         {/* Statement ------------------------------------------------------- */}
         <div className="lg:col-span-6 lg:col-start-7">
-          <p className="t-label text-clay-700">{copy.founder.label}</p>
+          <SectionLabel index={4} name={copy.sections.founder} />
 
           <h2 id="founder-title" className="t-h1 mt-4 text-teal-950">
             {founder.name}
