@@ -24,7 +24,7 @@ export function TopStrip() {
               <Phone className="size-3 text-white" aria-hidden="true" />
             </span>
             <span className="hidden text-teal-100 sm:inline">{copy.strip.emergency}</span>
-            <span className="font-semibold tabular-nums underline-offset-4 group-hover:underline">
+            <span className="whitespace-nowrap font-semibold tabular-nums underline-offset-4 group-hover:underline">
               {contact.primary.display}
             </span>
           </a>
@@ -36,7 +36,7 @@ export function TopStrip() {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="hidden items-center gap-1.5 t-meta text-teal-200 lg:flex">
+          <div className="hidden items-center gap-1.5 whitespace-nowrap t-meta text-teal-200 xl:flex">
             <MapPin className="size-3.5 shrink-0 text-teal-300" aria-hidden="true" />
             <span>
               {address.locality}, {address.district}

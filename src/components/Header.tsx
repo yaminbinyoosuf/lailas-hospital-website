@@ -40,7 +40,7 @@ export function Header() {
           <Logo className={cn('transition-[height] duration-300', scrolled ? 'h-10 lg:h-12' : 'h-11 lg:h-16')} />
         </Link>
 
-        <nav aria-label={copy.a11y.mainNav} className="hidden lg:block">
+        <nav aria-label={copy.a11y.mainNav} className="hidden xl:block">
           <ul className="flex items-center gap-1 rounded-full border border-white/80 bg-white/70 p-1 shadow-[0_10px_25px_rgb(11_36_31/0.07)] backdrop-blur-xl">
             {mainNav.map((item) => (
               <li key={item.key}>
@@ -64,10 +64,10 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href={`tel:${contact.primary.tel}`} className="hidden min-h-11 items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 text-sm font-semibold text-teal-950 shadow-[0_10px_25px_rgb(11_36_31/0.07)] backdrop-blur-xl lg:inline-flex">
+          <a href={`tel:${contact.primary.tel}`} className="hidden min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-white/80 bg-white/70 px-4 text-sm font-semibold text-teal-950 shadow-[0_10px_25px_rgb(11_36_31/0.07)] backdrop-blur-xl xl:inline-flex">
             <Phone className="size-4" aria-hidden="true" /> {contact.primary.display}
           </a>
-          <div className="hidden lg:block">
+          <div className="hidden shrink-0 xl:block">
             <Button icon={<CalendarDays aria-hidden="true" />} onClick={() => open()}>
               {copy.actions.book}
             </Button>
@@ -93,7 +93,7 @@ function MobileMenu() {
       <button
         type="button"
         onClick={() => ref.current?.showModal()}
-        className="grid size-12 place-items-center rounded-full border border-ink/15 text-ink lg:hidden"
+        className="grid size-12 shrink-0 place-items-center rounded-full border border-ink/15 text-ink xl:hidden"
         aria-label={copy.a11y.openMenu}
         aria-haspopup="dialog"
       >
