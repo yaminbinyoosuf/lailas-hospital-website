@@ -6,8 +6,8 @@ export type ButtonVariant = 'primary' | 'secondary' | 'quiet' | 'emergency' | 'l
 export type ButtonSize = 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2.5 rounded-[var(--radius-sm)] font-sans font-semibold leading-tight text-center ' +
-  'transition-colors duration-200 ease-[var(--ease-gentle)] ' +
+  'inline-flex items-center justify-center gap-2.5 rounded-full font-sans font-semibold leading-tight text-center ' +
+  'transition-[color,background-color,border-color,transform,box-shadow] duration-300 ease-[var(--ease-gentle)] ' +
   'disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4.5 [&_svg]:shrink-0';
 
 const sizes: Record<ButtonSize, string> = {
@@ -16,8 +16,10 @@ const sizes: Record<ButtonSize, string> = {
 };
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-teal-800 text-ivory hover:bg-teal-900',
-  secondary: 'border border-line bg-paper text-ink hover:border-teal-700 hover:text-teal-950 hover:bg-white',
+  primary:
+    'border border-white/15 bg-[linear-gradient(145deg,#184d3b_0%,#0b2b20_100%)] text-white shadow-[0_8px_24px_-2px_rgb(11_43_32/0.25)] hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-2px_rgb(11_43_32/0.3)]',
+  secondary:
+    'border border-[rgb(15_45_36/0.15)] bg-white/50 text-[#0b2b20] backdrop-blur-[10px] hover:-translate-y-0.5 hover:bg-white/70',
   quiet:
     '!min-h-11 !px-0 rounded-none text-teal-800 underline decoration-teal-300 decoration-2 underline-offset-[6px] hover:decoration-teal-700 hover:text-teal-950',
   emergency: 'bg-emergency text-white hover:bg-emergency-700',
