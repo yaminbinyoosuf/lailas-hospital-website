@@ -4,6 +4,7 @@ import { Button, ButtonAnchor, ButtonLink } from '../components/Button';
 import { Container } from '../components/Container';
 import { Reveal } from '../components/Reveal';
 import { Section } from '../components/Section';
+import { Lock } from 'lucide-react';
 import { whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 
@@ -81,6 +82,12 @@ export function IvfPath() {
             >
               {copy.ivf.whatsapp}
             </ButtonAnchor>
+            {/* Discretion made visible. The wording is the site's existing
+                privacy claim, not a new guarantee. */}
+            <p className="flex items-center gap-2 t-meta text-teal-100/85">
+              <Lock className="size-3.5 shrink-0 text-teal-300" aria-hidden="true" />
+              {copy.ivf.confidential}
+            </p>
             <Button
               variant="lightOutline"
               size="lg"

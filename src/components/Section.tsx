@@ -19,8 +19,8 @@ const spaces: Record<Space, string> = {
 };
 
 const tones: Record<Tone, string> = {
-  ivory: 'bg-ivory',
-  paper: 'bg-paper',
+  ivory: 'bg-ivory ambient',
+  paper: 'bg-paper ambient',
   sand: 'bg-sand',
   sage: 'bg-sage-50',
   teal: 'bg-teal-900 text-ivory',

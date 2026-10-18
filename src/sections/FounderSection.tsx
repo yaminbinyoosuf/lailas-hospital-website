@@ -35,6 +35,19 @@ export function FounderSection() {
             sizes="(min-width: 1024px) 34vw, 80vw"
             className="mx-auto w-[78%] max-w-[24rem] lg:mx-0 lg:w-full"
           />
+
+          {/* Two figures that carry the whole story, set on glass over the
+              portrait rather than in a row of statistics underneath it. */}
+          <div className="glass-card relative z-10 mx-auto -mt-12 w-[88%] max-w-[22rem] px-6 py-5 lg:mx-0 lg:-mt-16 lg:ml-6">
+            <dl className="grid grid-cols-2 gap-4">
+              {copy.founder.facts.slice(1).map((fact) => (
+                <div key={fact.value}>
+                  <dt className="t-label uppercase text-ink-muted">{fact.label}</dt>
+                  <dd className="mt-1 t-h3 tabular-nums text-teal-900">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
 
         {/* Statement ------------------------------------------------------- */}

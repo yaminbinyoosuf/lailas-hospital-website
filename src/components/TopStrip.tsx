@@ -1,4 +1,5 @@
 import { Clock, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { address, contact, whatsappLink } from '../content/site';
 import { useCopy } from '../i18n/LanguageProvider';
 import { Container } from './Container';
@@ -12,8 +13,27 @@ import { Container } from './Container';
  */
 export function TopStrip() {
   const copy = useCopy();
+  const [hidden, setHidden] = useState(false);
+
+  /* Collapses by height rather than transform: transform would leave the strip's
+     space behind and show a gap above the header. */
+  useEffect(() => {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setHidden(y > last && y > 80);
+      last = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <div className="border-b border-white/10 bg-teal-950/95 backdrop-blur-md text-ivory">
+    <div
+      className={`overflow-hidden border-b border-white/10 bg-teal-950/95 text-ivory backdrop-blur-md transition-[max-height,opacity] duration-300 ${
+        hidden ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
+      }`}
+    >
       <Container className="flex min-h-11 items-center justify-between gap-4 py-1">
         <div className="flex items-center gap-6">
           <a

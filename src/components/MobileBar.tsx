@@ -10,7 +10,7 @@ export function MobileBar() {
   const item =
     'flex min-h-14 min-w-0 flex-col items-center justify-center gap-0.5 px-1 text-center t-meta font-semibold leading-tight [overflow-wrap:anywhere]';
   return (
-    <div className="fixed bottom-0 left-0 z-40 w-screen max-w-full overflow-hidden border-t border-white/80 bg-paper/85 backdrop-blur-xl pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgb(11_36_31/0.08)] lg:hidden">
+    <div className="fixed inset-x-4 bottom-4 z-40 overflow-hidden rounded-full border border-white/80 bg-paper/75 shadow-[0_16px_40px_-8px_rgb(11_43_32/0.18)] backdrop-blur-xl lg:hidden">
       <div className="grid min-w-0 grid-cols-[repeat(3,minmax(0,1fr))]">
         <a href={`tel:${contact.primary.tel}`} className={`${item} text-emergency`}>
           <Phone className="size-5" aria-hidden="true" />

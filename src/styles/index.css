@@ -555,3 +555,24 @@ dialog.sheet[open]::backdrop {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================================================
+   Ambient light. Oversized, heavily blurred washes behind flat bands, so an
+   ivory section has depth without a gradient anyone can point at.
+   In @layer components so Tailwind utilities still win on children.
+   ========================================================================== */
+@layer components {
+  .ambient { position: relative; }
+  .ambient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(60rem 40rem at 12% 0%, rgb(20 80 60 / 0.08), transparent 70%),
+      radial-gradient(50rem 34rem at 92% 18%, rgb(225 205 175 / 0.15), transparent 70%);
+    filter: blur(80px);
+  }
+  .ambient > * { position: relative; z-index: 1; }
+}

@@ -204,6 +204,7 @@ export const en = {
     whatsapp: 'Talk privately on WhatsApp',
     book: 'Book a private visit',
     more: 'More about fertility care',
+    confidential: 'Private consultations, kept in confidence',
     whatsappMessage: 'Hello Lailas IVF Centre, I would like to speak privately about fertility care.',
   },
 
