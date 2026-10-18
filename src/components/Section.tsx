@@ -21,9 +21,11 @@ const spaces: Record<Space, string> = {
 const tones: Record<Tone, string> = {
   ivory: 'bg-ivory',
   paper: 'bg-paper',
-  sand: 'bg-sand',
+  /* Grain is texture, not decoration: it belongs to the two materials that
+     would carry it in print, sand and deep teal. Ivory and paper stay clean. */
+  sand: 'bg-sand grain',
   sage: 'bg-sage-50',
-  teal: 'bg-teal-900 text-ivory',
+  teal: 'bg-teal-900 text-ivory grain',
 };
 
 interface SectionProps {

@@ -11,6 +11,9 @@
   /* The two locally bundled variable families intentionally do different jobs:
      DM Sans gives headings a confident, contemporary voice; Source Sans 3
      remains exceptionally clear in dense clinical information and controls. */
+  /* The only easing curve on the site. Slow out, no bounce. */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+
   --font-heading: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-sans: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
@@ -114,8 +117,8 @@
     text-wrap: pretty;
   }
   ::selection {
-    background: var(--color-teal-200);
-    color: var(--color-teal-950);
+    background: var(--color-clay-200);
+    color: var(--color-ink);
   }
   :focus-visible {
     outline: 3px solid var(--color-teal-600);
@@ -349,6 +352,27 @@
 
 /* Approved homepage reference: visual rules are scoped to the hero so the
    existing responsive page system remains intact below the fold. */
+/* ==========================================================================
+   Grain. Paper texture for sand and teal bands only, never on ivory or paper.
+   @layer components so Tailwind utilities still win on children: a child that
+   sets position: absolute keeps it.
+   ========================================================================== */
+@layer components {
+  .grain { position: relative; }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+    background-size: 160px 160px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .grain > * { position: relative; z-index: 1; }
+}
+
 .reference-hero { position: relative; min-height: 42rem; overflow: visible; background: #edf2ed; padding: clamp(3rem, 6vw, 6rem) 0 6.5rem; }
 .reference-hero__image { position: absolute; top: 0; left: -34%; width: 134%; max-width: none; height: 100%; object-fit: cover; object-position: center; }
 .reference-hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(255 253 249 / .97) 0%, rgb(255 253 249 / .88) 34%, rgb(255 253 249 / .10) 56%, rgb(255 253 249 / .06) 100%); }
