@@ -45,7 +45,7 @@ export function Accordion({ items, defaultOpen }: { items: AccordionItem[]; defa
               isOpen && 'bg-sand/35',
             )}
           >
-            <h3 className="t-h4">
+            <h3 className="t-h3">
               <button
                 id={triggerId}
                 type="button"

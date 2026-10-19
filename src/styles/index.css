@@ -187,14 +187,14 @@
 @utility t-small {
   font-family: var(--font-sans);
   font-weight: 450;
-  font-size: clamp(1rem, 0.97rem + 0.24vw, 1.125rem);
+  font-size: clamp(1.0625rem, 1.03rem + 0.18vw, 1.125rem);
   line-height: 1.6;
 }
 @utility t-meta {
   font-family: var(--font-sans);
   font-weight: 450;
-  font-size: 1rem; /* bumped from 0.9375rem — 15px was too small for body-copy contexts */
-  line-height: 1.6;
+  font-size: 0.875rem;
+  line-height: 1.55;
 }
 
 /* Small uppercase label: section eyebrows and field labels. */
@@ -361,7 +361,7 @@
 .reference-hero__eyebrow span { display: none; }
 .reference-hero__title { word-spacing: normal; max-width: 34rem; font-size: clamp(3.25rem, 4.9vw, 6rem); line-height: .99; letter-spacing: -.02em; color: #062c28; }
 .reference-hero__title em { display: block; color: #3f8f79; font-style: normal; }
-.reference-hero__lead { max-width: 31rem; margin-top: 1.5rem; color: #25524a; font-size: clamp(1.125rem, 1.05rem + .35vw, 1.3125rem); line-height: 1.62; letter-spacing: -.008em; font-weight: 440; }
+.reference-hero__lead { max-width: 31rem; margin-top: 1.5rem; color: #25524a; font-size: clamp(1.125rem, 1.05rem + .35vw, 1.3125rem); line-height: 1.62; letter-spacing: -.008em; font-weight: 450; }
 .reference-booking { border: 1px solid rgb(226 216 200 / 0.9); border-radius: 1.75rem; background: rgb(255 251 246 / 0.94); padding: 1.25rem; box-shadow: 0 1.5rem 3.5rem rgb(11 36 31 / .20), inset 0 1px 0 rgb(255 255 255 / .95); backdrop-filter: blur(18px); }
 .reference-booking h2 { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em; color: #082c28; }
 .reference-booking p { margin-top: .2rem; color: #4b5753; font-size: .9rem; }

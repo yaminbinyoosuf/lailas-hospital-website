@@ -26,7 +26,7 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
 
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
             <div>
-              <h3 className="t-h4 text-clay-700">{copy.visit.addressTitle}</h3>
+              <h3 className="t-h3 text-clay-700">{copy.visit.addressTitle}</h3>
               <address className="mt-2 not-italic">
                 {address.postalLines.map((l) => (
                   <span key={l} className="block">
@@ -39,7 +39,7 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
               </address>
             </div>
             <div>
-              <h3 className="t-h4 text-clay-700">{copy.visit.hoursTitle}</h3>
+              <h3 className="t-h3 text-clay-700">{copy.visit.hoursTitle}</h3>
               <dl className="mt-2 space-y-3">
                 <div>
                   <dt className="text-ink-soft">{copy.visit.hours.allDay}</dt>
@@ -55,7 +55,7 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
             </div>
           </div>
 
-          <h3 className="mt-8 t-h4 text-clay-700">{copy.visit.accessTitle}</h3>
+          <h3 className="mt-8 t-h3 text-clay-700">{copy.visit.accessTitle}</h3>
           <ul className="mt-2 space-y-2">
             {copy.visit.access.map((a, i) => {
               const Icon = accessIcons[i] ?? Car;
@@ -70,7 +70,7 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
 
           {flags.showTravelTimes && (
             <>
-              <h3 className="mt-8 t-h4 text-clay-700">{copy.visit.routesTitle}</h3>
+              <h3 className="mt-8 t-h3 text-clay-700">{copy.visit.routesTitle}</h3>
               <ul className="mt-2 space-y-1">
                 {routes.map((r) => (
                   <li key={r.id}>
