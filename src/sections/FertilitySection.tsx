@@ -20,7 +20,7 @@ export function FertilitySection() {
   const offerings = copy.services.items.ivf.offerings;
 
   return (
-    <Section tone="sand" labelledBy="fertility-title" space="loose">
+    <Section tone="sage-light" labelledBy="fertility-title" space="loose">
       <Container className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
         {/* Statement ------------------------------------------------------- */}
         <div className="lg:col-span-6">

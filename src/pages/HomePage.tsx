@@ -7,6 +7,7 @@ import { Hero } from '../sections/Hero';
 import { MaternityStory } from '../sections/MaternityStory';
 import { PregnancyTool } from '../sections/PregnancyTool';
 import { Services } from '../sections/Services';
+import { CtaHomeBand } from '../sections/CtaBand';
 import { VisitUs } from '../sections/VisitUs';
 
 export function HomePage() {
@@ -15,6 +16,7 @@ export function HomePage() {
       <PageMeta page="home" />
       <Hero />
       <Services />
+      <CtaHomeBand />
       <MaternityStory />
       <FertilitySection />
       <PregnancyTool />

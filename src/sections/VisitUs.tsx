@@ -99,7 +99,8 @@ export function VisitUs({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
                 src={address.mapEmbedUrl}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0 h-full w-full border-0 grayscale-[20%]"
+                className="absolute inset-0 h-full w-full border-0"
+                style={{ filter: 'saturate(0.7) sepia(0.15) brightness(1.02)' }}
               />
             </div>
           </div>

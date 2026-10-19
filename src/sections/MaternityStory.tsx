@@ -13,7 +13,7 @@ export function MaternityStory() {
   const [births, founded, ultrasound] = copy.maternity.stats;
 
   return (
-    <Section tone="sand" labelledBy="maternity-title" space="loose">
+    <Section tone="sand" labelledBy="maternity-title" space="loose" className="section-after-dark">
       <Container className="grid min-w-0 gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="min-w-0 lg:col-span-8">
           <Reveal>
@@ -60,8 +60,15 @@ export function MaternityStory() {
               as="li"
               key={e.title}
               delay={i * 0.08}
-              className="border-t-2 border-clay-400 pt-5"
+              className="relative pt-2"
             >
+              {/* Step number + extending line */}
+              <div className="mb-5 flex items-center gap-3">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-800 text-xs font-bold text-ivory tabular-nums">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span className="h-px flex-1 bg-clay-300/70" aria-hidden="true" />
+              </div>
               <h4 className="t-h3 text-ink">{e.title}</h4>
               <p className="mt-2.5 text-ink-soft leading-relaxed">{e.body}</p>
             </Reveal>

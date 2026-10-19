@@ -22,10 +22,10 @@ export function ServiceRow({ service, index }: { service: Service; index: number
     <article className="group relative grid gap-x-8 gap-y-4 py-7 md:grid-cols-12 md:items-start md:py-8">
       {/* Index ----------------------------------------------------------- */}
       <div className="flex items-center gap-4 md:col-span-2 md:pt-1">
-        <span className="t-number text-2xl tabular-nums text-teal-300/75" aria-hidden="true">
+        <span className="t-number text-xl tabular-nums text-teal-300/80" aria-hidden="true">
           {String(index + 1).padStart(2, '0')}
         </span>
-        <span className="t-label text-teal-300 md:hidden">
+        <span className="t-label uppercase tracking-widest text-teal-300 md:hidden">
           {copy.services.groups[service.group].name}
         </span>
       </div>

@@ -17,7 +17,7 @@ export function Footer() {
     <footer className="bg-teal-950 text-teal-100">
       <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-4">
-          <Logo light className="h-14" />
+          <Logo light className="h-16" />
           <p className="mt-6 max-w-sm">{copy.footer.about}</p>
         </div>
         <div className="lg:col-span-3">

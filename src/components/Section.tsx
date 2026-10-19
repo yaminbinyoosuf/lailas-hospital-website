@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { cn } from '../lib/format';
 
-type Tone = 'ivory' | 'paper' | 'sand' | 'sage' | 'teal';
+type Tone = 'ivory' | 'paper' | 'sand' | 'sage' | 'sage-light' | 'teal';
 
 /**
  * Vertical rhythm. Not every section deserves the same amount of air — a run of
@@ -22,6 +22,7 @@ const tones: Record<Tone, string> = {
   ivory: 'bg-ivory ambient',
   paper: 'bg-paper ambient',
   sand: 'bg-sand',
+  'sage-light': 'bg-teal-50/70 ambient',   /* subtle teal wash — breaks sand→sand monotony */
   sage: 'bg-sage-50',
   teal: 'bg-teal-900 text-ivory',
 };

@@ -24,7 +24,7 @@ const variants: Record<ButtonVariant, string> = {
     '!min-h-11 !px-0 rounded-none text-teal-800 underline decoration-teal-300 decoration-2 underline-offset-[6px] hover:decoration-teal-700 hover:text-teal-950',
   emergency: 'bg-emergency text-white hover:bg-emergency-700',
   light: 'bg-ivory text-teal-950 hover:bg-white',
-  lightOutline: 'border border-ivory/50 text-ivory hover:border-ivory hover:bg-ivory/10',
+  lightOutline: 'border-2 border-ivory/60 text-ivory hover:border-ivory hover:bg-white/10 active:bg-white/15',
 };
 
 interface StyleProps {

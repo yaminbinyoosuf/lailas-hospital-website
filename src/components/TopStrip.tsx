@@ -40,7 +40,7 @@ export function TopStrip() {
             href={`tel:${contact.primary.tel}`}
             className="group inline-flex min-h-11 items-center gap-2.5 t-small font-medium transition-colors hover:text-white"
           >
-            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-emergency">
+            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-clay-400">
               <Phone className="size-3 text-white" aria-hidden="true" />
             </span>
             <span className="hidden text-teal-100 sm:inline">{copy.strip.emergency}</span>

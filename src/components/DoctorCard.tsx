@@ -40,11 +40,11 @@ export function DoctorCard({
   return (
     <article
       className={cn(
-        'group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] border bg-paper transition-[border-color,box-shadow] duration-300',
+        'group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] border transition-[border-color,box-shadow,transform] duration-300',
         featured && 'lg:grid lg:grid-cols-12 lg:gap-x-10',
         featured
-          ? 'border-clay-200 bg-sand/45 p-6 md:p-10'
-          : 'border-line p-5 hover:border-teal-600/40 hover:shadow-[var(--shadow-soft)] md:p-6',
+          ? 'border-clay-200 bg-sand/45 p-6 md:p-10 shadow-[var(--shadow-soft)]'
+          : 'border-line/70 bg-gradient-to-b from-teal-50/60 to-paper p-6 shadow-[0_4px_20px_rgb(11_36_31/0.06)] hover:border-teal-600/40 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)] md:p-7',
       )}
     >
       {featured && (
@@ -79,11 +79,11 @@ export function DoctorCard({
         )}
 
         <div className="min-w-0 flex-1">
-          <h3 className={cn('text-teal-950', featured ? 't-h3 sm:t-h2' : 't-h3')}>{doctor.name}</h3>
-          <p className={cn('mt-1.5 font-medium text-teal-800', featured ? 't-body' : 't-meta')}>
+          <h3 className={cn('text-teal-950 leading-tight', featured ? 't-h3 sm:t-h2' : 't-h4 font-bold')}>{doctor.name}</h3>
+          <p className={cn('mt-1 font-semibold text-teal-700', featured ? 't-small' : 'text-[0.8125rem]')}>
             {profile.role}
           </p>
-          <p className={cn('mt-1 text-ink-muted', featured ? 't-small' : 't-meta')}>{doctor.qualifications}</p>
+          <p className={cn('mt-0.5 text-ink-muted', featured ? 't-meta' : 'text-[0.8125rem] leading-snug')}>{doctor.qualifications}</p>
         </div>
       </div>
 

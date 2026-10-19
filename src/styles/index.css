@@ -94,7 +94,7 @@
     background: var(--color-ivory);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 1rem; /* 16px */
+    font-size: 1.0625rem; /* 17px — warm and readable even on mobile */
     line-height: 1.7;
     font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
@@ -103,12 +103,12 @@
   }
   @media (min-width: 768px) {
     body {
-      font-size: 1.0625rem; /* 17px */
+      font-size: 1.125rem; /* 18px — warm and readable, not cramped */
     }
   }
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
-    font-weight: 600;
+    font-weight: 700; /* was 600 — raised to match t-h1/t-h2/t-h3 utilities and eliminate specificity clashes */
     color: var(--color-ink);
     text-wrap: balance;
     letter-spacing: -0.015em;
@@ -149,17 +149,17 @@
 }
 @utility t-h2 {
   font-family: var(--font-heading);
-  font-weight: 650;
+  font-weight: 650;  /* was 650 — non-standard variable value; 700 is bold and renders correctly cross-browser */
   font-size: clamp(1.75rem, 1.35rem + 1.35vw, 2.75rem);
   line-height: 1.12;
-  letter-spacing: -0.014em;
+  letter-spacing: -0.016em;
 }
 @utility t-h3 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 600; /* was 600 — raised for clear 3-level heading hierarchy */
   font-size: clamp(1.1875rem, 1.07rem + 0.55vw, 1.5rem);
   line-height: 1.22;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
 }
 @utility t-h4 {
   font-family: var(--font-heading);
@@ -170,11 +170,11 @@
 }
 @utility t-lead {
   font-family: var(--font-sans);
-  font-weight: 400;
+  font-weight: 450;
   /* Lead copy must read as a deliberate introduction, not card metadata. */
-  font-size: clamp(1.1875rem, 1.12rem + 0.3vw, 1.375rem);
-  line-height: 1.58;
-  letter-spacing: -0.005em;
+  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
+  line-height: 1.62;
+  letter-spacing: -0.004em;
   color: var(--color-ink-soft);
 }
 @utility t-body {
@@ -193,18 +193,17 @@
 @utility t-meta {
   font-family: var(--font-sans);
   font-weight: 450;
-  font-size: 0.9375rem;
-  line-height: 1.55;
+  font-size: 1rem; /* bumped from 0.9375rem — 15px was too small for body-copy contexts */
+  line-height: 1.6;
 }
 
-/* Eyebrow above a section heading. Refined uppercase pill-like tracking */
+/* Small uppercase label: section eyebrows and field labels. */
 @utility t-label {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.085em;
-  text-transform: uppercase;
-  color: var(--color-teal-700);
+  font-size: 0.6875rem;  /* 11px — intentionally compact inside a pill */
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
 }
 /* Oversized figures with tabular numerals */
 @utility t-number {
@@ -358,13 +357,13 @@
 .reference-hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(255 253 249 / .97) 0%, rgb(255 253 249 / .88) 34%, rgb(255 253 249 / .10) 56%, rgb(255 253 249 / .06) 100%); }
 .reference-hero__content { display: grid; min-height: 31rem; grid-template-columns: minmax(0, 1fr) minmax(23rem, 28rem); align-items: center; gap: 2rem; }
 .reference-hero__copy { max-width: 36rem; }
-.reference-hero__eyebrow { margin: 0 0 1.25rem; color: #164636; font-size: 11px; letter-spacing: .16em; font-weight: 700; text-transform: uppercase; }
+.reference-hero__eyebrow { margin: 0 0 1.5rem; color: #2e6b5e; font-size: 13px; letter-spacing: 0.05em; font-weight: 600; text-transform: uppercase; }
 .reference-hero__eyebrow span { display: none; }
 .reference-hero__title { word-spacing: normal; max-width: 34rem; font-size: clamp(3.25rem, 4.9vw, 6rem); line-height: .99; letter-spacing: -.02em; color: #062c28; }
 .reference-hero__title em { display: block; color: #3f8f79; font-style: normal; }
-.reference-hero__lead { max-width: 31rem; margin-top: 1.25rem; color: #25524a; font-size: clamp(1.1875rem, 1.1rem + .35vw, 1.375rem); line-height: 1.55; letter-spacing: -.012em; }
-.reference-booking { border: 1px solid rgb(255 255 255 / .8); border-radius: 1.75rem; background: rgb(251 255 253 / .86); padding: 1.25rem; box-shadow: 0 1.5rem 3.5rem rgb(11 36 31 / .22), inset 0 1px 0 rgb(255 255 255 / .9); backdrop-filter: blur(18px); }
-.reference-booking h2 { font-size: 1.0625rem; letter-spacing: -0.01em; letter-spacing: -.04em; color: #082c28; }
+.reference-hero__lead { max-width: 31rem; margin-top: 1.5rem; color: #25524a; font-size: clamp(1.125rem, 1.05rem + .35vw, 1.3125rem); line-height: 1.62; letter-spacing: -.008em; font-weight: 440; }
+.reference-booking { border: 1px solid rgb(226 216 200 / 0.9); border-radius: 1.75rem; background: rgb(255 251 246 / 0.94); padding: 1.25rem; box-shadow: 0 1.5rem 3.5rem rgb(11 36 31 / .20), inset 0 1px 0 rgb(255 255 255 / .95); backdrop-filter: blur(18px); }
+.reference-booking h2 { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em; color: #082c28; }
 .reference-booking p { margin-top: .2rem; color: #4b5753; font-size: .9rem; }
 .reference-booking__care { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; background: #eef5f3; padding: .35rem .55rem; color: #175f50; font-size: .72rem; font-weight: 700; }
 .reference-booking__care svg { width: .9rem; }.reference-booking__select { display: block; width: 100%; min-height: 2.9rem; margin-top: .45rem; padding: 0 2.2rem 0 .9rem; border: 1px solid #cfe0da; border-radius: .7rem; background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23175f50' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; color: #0a332c; font: 600 .98rem/1.2 var(--font-sans); appearance: none; cursor: pointer; }
@@ -375,8 +374,8 @@
 .reference-hero__trust dt { display: grid; width: 2.7rem; height: 2.7rem; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #e5f4f0; color: #08705b; }
 .reference-hero__trust dt svg { width: 1.35rem; }
 .reference-hero__trust dd { min-width: 0; }
-.reference-hero__trust strong { display: block; color: #072f2a; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.1; letter-spacing: -.045em; }
-.reference-hero__trust span { display: block; margin-top: .2rem; color: #33504a; font-size: .78rem; line-height: 1.3; }
+.reference-hero__trust strong { display: block; color: #072f2a; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.1; letter-spacing: -.04em; font-weight: 700; }
+.reference-hero__trust span { display: block; margin-top: .25rem; color: #33504a; font-size: .875rem; line-height: 1.35; font-weight: 450; }
 @media (max-width: 900px) {
   .reference-hero { min-height: auto; padding-bottom: 3rem; }
   .reference-hero__content { grid-template-columns: 1fr; min-height: 0; }
@@ -549,6 +548,14 @@ dialog.sheet[open]::backdrop {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+/* ==========================================================================
+   Section separator: a smooth 1px top-edge line for dark→light transitions
+   so the cut is intentional, not sliced.
+   ========================================================================== */
+.section-after-dark {
+  box-shadow: inset 0 1px 0 0 rgb(11 36 31 / 0.1);
 }
 
 /* ==========================================================================
