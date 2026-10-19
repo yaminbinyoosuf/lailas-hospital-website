@@ -40,7 +40,7 @@ export function App() {
         <MotionConfig reducedMotion="user">
           <SkipLink />
           <ScrollManager />
-          <div className="flex min-h-dvh flex-col pb-[calc(3.5rem+env(safe-area-inset-bottom))] lg:pb-0">
+          <div className="flex min-h-dvh flex-col pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-0">
             <TopStrip />
             <Header />
             <main id="main" tabIndex={-1} className="flex-1 outline-none">
