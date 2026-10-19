@@ -79,7 +79,7 @@ export function DoctorCard({
         )}
 
         <div className="min-w-0 flex-1">
-          <h3 className={cn('text-teal-950 leading-tight', featured ? 't-h3 sm:t-h2' : 't-h4 font-bold')}>{doctor.name}</h3>
+          <h3 className={cn('text-teal-950 leading-tight', featured ? 't-h3 sm:t-h2' : 't-h3')}>{doctor.name}</h3>
           <p className={cn('mt-1 font-semibold text-teal-700', featured ? 't-small' : 'text-[0.8125rem]')}>
             {profile.role}
           </p>

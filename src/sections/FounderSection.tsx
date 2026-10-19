@@ -55,7 +55,7 @@ export function FounderSection() {
         <div className="lg:col-span-6 lg:col-start-7">
           <SectionLabel index={4} name={copy.sections.founder} />
 
-          <h2 id="founder-title" className="t-h1 mt-4 text-teal-950">
+          <h2 id="founder-title" className="t-h2 mt-4 text-teal-950">
             {founder.name}
           </h2>
           <p className="mt-2 t-body font-medium text-teal-800">{profile.role}</p>

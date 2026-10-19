@@ -54,7 +54,7 @@ export function CtaHomeBand() {
             <span className="inline-flex items-center rounded-full bg-teal-800/70 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-teal-200 ring-1 ring-teal-600/40">
               {copy.strip.emergency.split(',')[0]}
             </span>
-            <h2 id="cta-home-title" className="t-h1 mt-5 text-ivory max-w-[22ch]">
+            <h2 id="cta-home-title" className="t-h2 mt-5 max-w-[22ch] text-ivory">
               Ready to take the next step?
             </h2>
             <p className="t-lead mt-4 max-w-[38rem] !text-teal-100/80">
