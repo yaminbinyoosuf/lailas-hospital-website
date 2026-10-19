@@ -49,15 +49,14 @@ export function CtaHomeBand() {
 
       <Container className="relative z-10 py-20 md:py-28">
         <Reveal className="grid gap-10 md:grid-cols-12 md:items-center">
-          {/* Copy */}
           <div className="md:col-span-7">
-            <span className="inline-flex items-center rounded-full bg-teal-800/70 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-teal-200 ring-1 ring-teal-600/40">
-              {copy.strip.emergency.split(',')[0]}
+            <span className="t-label inline-flex items-center rounded-full bg-teal-800/70 px-3 py-1.5 text-teal-200 ring-1 ring-teal-600/40">
+              Ready when you are
             </span>
-            <h2 id="cta-home-title" className="t-h2 mt-5 max-w-[22ch] text-ivory">
+            <h2 id="cta-home-title" className="t-h1 mt-5 max-w-[22ch] text-ivory">
               Ready to take the next step?
             </h2>
-            <p className="t-lead mt-4 max-w-[38rem] !text-teal-100/80">
+            <p className="t-lead mt-4 max-w-[38rem] !text-teal-100/85">
               Our team is here every day. Book an appointment online, or call us right now.
             </p>
           </div>

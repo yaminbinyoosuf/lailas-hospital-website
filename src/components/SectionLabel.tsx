@@ -1,12 +1,12 @@
 import { cn } from '../lib/format';
 
 /**
- * An indexed section label: a clay hairline, a zero-padded number and a name.
- * Indices are passed explicitly and reset per page. Colour lives here rather
- * than in the type utilities, which deliberately carry no colour.
+ * Section eyebrow pill label.
+ * Rendered as a compact tinted pill — no dash separators, no index numbers.
+ * t-label handles: 11px, font-weight 700, letter-spacing 0.09em, uppercase.
  */
 export function SectionLabel({
-  index,
+  index: _index,
   name,
   tone = 'light',
   className,
@@ -17,15 +17,16 @@ export function SectionLabel({
   className?: string;
 }) {
   return (
-    <p className={cn('flex items-center gap-3 t-label uppercase', className)}>
-      <span
-        aria-hidden="true"
-        className={cn('h-px w-8 shrink-0', tone === 'dark' ? 'bg-clay-200/70' : 'bg-clay-600/60')}
-      />
-      <span className={cn('tabular-nums', tone === 'dark' ? 'text-clay-200' : 'text-clay-600')}>
-        {String(index).padStart(2, '0')}
-      </span>
-      <span className={tone === 'dark' ? 'text-teal-100/80' : 'text-ink-muted'}>{name}</span>
-    </p>
+    <span
+      className={cn(
+        't-label inline-flex items-center rounded-full px-3 py-1.5',
+        tone === 'dark'
+          ? 'bg-white/10 text-teal-100 ring-1 ring-white/20'
+          : 'bg-teal-700/10 text-teal-700 ring-1 ring-teal-600/20',
+        className,
+      )}
+    >
+      {name}
+    </span>
   );
 }

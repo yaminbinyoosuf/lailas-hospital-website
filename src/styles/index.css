@@ -94,24 +94,23 @@
     background: var(--color-ivory);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 1.0625rem; /* 17px — warm and readable even on mobile */
-    line-height: 1.7;
+    font-size: 1rem; /* 16px mobile — scale up at md */
+    line-height: 1.72;
     font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
   @media (min-width: 768px) {
-    body {
-      font-size: 1.125rem; /* 18px — warm and readable, not cramped */
-    }
+    body { font-size: 1.0625rem; } /* 17px desktop — warm, not bloated */
   }
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
-    font-weight: 700; /* was 600 — raised to match t-h1/t-h2/t-h3 utilities and eliminate specificity clashes */
+    font-weight: 800; /* high base so utility overrides always win downward */
     color: var(--color-ink);
     text-wrap: balance;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
   }
   p, li {
     text-wrap: pretty;
@@ -133,84 +132,109 @@
 /* ==========================================================================
    Type scale: Manrope headings + Inter body and UI
    ========================================================================== */
+/* ------------------------------------------------------------------ *
+ *  TYPE SCALE — Manrope (headings/numbers) + Inter (body/UI)          *
+ *  All sizes fluid via clamp() so every breakpoint is covered.        *
+ * ------------------------------------------------------------------ */
+
+/* Hero-scale display: one-liners only */
 @utility t-display {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(2.75rem, 1.6rem + 4.4vw, 5.5rem);
-  line-height: 1.03;
-  letter-spacing: -0.018em;
+  font-weight: 800;
+  font-size: clamp(2.75rem, 2rem + 3.75vw, 5.5rem);
+  line-height: 1.0;
+  letter-spacing: -0.022em;
 }
+
+/* Page and section hero headline */
 @utility t-h1 {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(2.25rem, 1.55rem + 2.7vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: -0.015em;
+  font-weight: 800;
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
 }
+
+/* Section heading — the workhorse */
 @utility t-h2 {
   font-family: var(--font-heading);
-  font-weight: 650;  /* was 650 — non-standard variable value; 700 is bold and renders correctly cross-browser */
-  font-size: clamp(1.75rem, 1.35rem + 1.35vw, 2.75rem);
-  line-height: 1.12;
-  letter-spacing: -0.016em;
+  font-weight: 700;
+  font-size: clamp(1.625rem, 1.2rem + 2.1vw, 2.5rem);
+  line-height: 1.14;
+  letter-spacing: -0.018em;
 }
+
+/* Card and sub-section heading */
 @utility t-h3 {
   font-family: var(--font-heading);
-  font-weight: 600; /* was 600 — raised for clear 3-level heading hierarchy */
-  font-size: clamp(1.1875rem, 1.07rem + 0.55vw, 1.5rem);
-  line-height: 1.22;
-  letter-spacing: -0.012em;
+  font-weight: 700;
+  font-size: clamp(1.125rem, 0.98rem + 0.72vw, 1.5rem);
+  line-height: 1.24;
+  letter-spacing: -0.014em;
 }
+
+/* Tight label heading, doctor name, FAQ question */
 @utility t-h4 {
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: clamp(1.0625rem, 0.9943rem + 0.2727vw, 1.25rem);
-  line-height: 1.38;
+  font-weight: 700;
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.1875rem);
+  line-height: 1.32;
   letter-spacing: -0.01em;
 }
+
+/* Introductory paragraph — larger than body, lighter than a heading */
 @utility t-lead {
   font-family: var(--font-sans);
-  font-weight: 450;
-  /* Lead copy must read as a deliberate introduction, not card metadata. */
-  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
-  line-height: 1.62;
-  letter-spacing: -0.004em;
+  font-weight: 400;
+  font-size: clamp(1.0625rem, 0.98rem + 0.4vw, 1.25rem);
+  line-height: 1.65;
+  letter-spacing: -0.003em;
   color: var(--color-ink-soft);
 }
+
+/* Standard prose body copy */
 @utility t-body {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 1rem;
-  line-height: 1.7;
-}
-/* Supporting copy inside cards and lists */
-@utility t-small {
-  font-family: var(--font-sans);
-  font-weight: 450;
-  font-size: clamp(1.0625rem, 1.03rem + 0.18vw, 1.125rem);
-  line-height: 1.6;
-}
-@utility t-meta {
-  font-family: var(--font-sans);
-  font-weight: 450;
-  font-size: 0.875rem;
-  line-height: 1.55;
+  line-height: 1.72;
+  letter-spacing: 0;
 }
 
-/* Small uppercase label: section eyebrows and field labels. */
+/* Card body / secondary copy — slightly smaller than body */
+@utility t-small {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(0.9375rem, 0.9rem + 0.19vw, 1rem);
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+/* Metadata, timestamps, captions — never go below 14px */
+@utility t-meta {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.875rem; /* 14px — minimum legible UI text */
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+}
+
+/* Pill labels, eyebrow tags, field labels */
 @utility t-label {
   font-family: var(--font-sans);
-  font-size: 0.6875rem;  /* 11px — intentionally compact inside a pill */
+  font-size: 0.6875rem;   /* 11px — only used inside a pill with padding */
   font-weight: 700;
-  letter-spacing: 0.14em;
-  line-height: 1.2;
+  letter-spacing: 0.09em; /* reduced from 0.14em — less aggressive */
+  line-height: 1;
+  text-transform: uppercase; /* baked in: pills are always caps */
 }
-/* Oversized figures with tabular numerals */
+
+/* Large editorial numbers / statistics */
 @utility t-number {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.025em;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -347,35 +371,40 @@
 }
 .maternity-mark { background: linear-gradient(160deg, rgb(255 253 249 / 0.72), rgb(237 205 182 / 0.5)); color: var(--color-clay-600); }
 .ivf-mark { background: radial-gradient(circle at center, rgb(255 253 249 / 0.14) 0 12%, transparent 12.5%), linear-gradient(160deg, rgb(31 90 81 / 0.8), rgb(11 36 31 / 0.5)); color: var(--color-clay-200); }
-.maternity-mark span, .ivf-mark span { font: 650 clamp(3rem, 6vw, 6rem)/1 var(--font-heading); letter-spacing: -0.015em; }
+.maternity-mark span, .ivf-mark span { font: 800 clamp(3rem, 6vw, 6rem)/1 var(--font-heading); letter-spacing: -0.022em; }
 .page-hero { border-bottom: 1px solid var(--color-line); background: linear-gradient(110deg, var(--color-ivory), var(--color-paper)); }
 
 /* Approved homepage reference: visual rules are scoped to the hero so the
    existing responsive page system remains intact below the fold. */
-.reference-hero { position: relative; min-height: 42rem; overflow: visible; background: #edf2ed; padding: clamp(3rem, 6vw, 6rem) 0 6.5rem; }
+.reference-hero { position: relative; min-height: 42rem; overflow: visible; background: #edf2ed; padding: clamp(3.5rem, 7vw, 6.5rem) 0 7rem; }
 .reference-hero__image { position: absolute; top: 0; left: -34%; width: 134%; max-width: none; height: 100%; object-fit: cover; object-position: center; }
 .reference-hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(255 253 249 / .97) 0%, rgb(255 253 249 / .88) 34%, rgb(255 253 249 / .10) 56%, rgb(255 253 249 / .06) 100%); }
 .reference-hero__content { display: grid; min-height: 31rem; grid-template-columns: minmax(0, 1fr) minmax(23rem, 28rem); align-items: center; gap: 2rem; }
 .reference-hero__copy { max-width: 36rem; }
-.reference-hero__eyebrow { margin: 0 0 1.5rem; color: #2e6b5e; font-size: 13px; letter-spacing: 0.05em; font-weight: 600; text-transform: uppercase; }
+/* Eyebrow: readable, not aggressive. Matches t-label sizing but in-line (not pill). */
+.reference-hero__eyebrow { margin: 0 0 1.25rem; color: #2b6b5e; font-size: 0.75rem; letter-spacing: 0.08em; font-weight: 700; text-transform: uppercase; font-family: var(--font-sans); }
 .reference-hero__eyebrow span { display: none; }
-.reference-hero__title { word-spacing: normal; max-width: 34rem; font-size: clamp(3.25rem, 4.9vw, 6rem); line-height: .99; letter-spacing: -.02em; color: #062c28; }
+/* Title: uses t-h1 sizing directly. font-weight 800 for impact. */
+.reference-hero__title { word-spacing: normal; max-width: 34rem; font-size: clamp(2.5rem, 1.6rem + 4.5vw, 5.5rem); line-height: 1.02; letter-spacing: -0.022em; color: #062c28; font-weight: 800; font-family: var(--font-heading); }
 .reference-hero__title em { display: block; color: #3f8f79; font-style: normal; }
-.reference-hero__lead { max-width: 31rem; margin-top: 1.5rem; color: #25524a; font-size: clamp(1.125rem, 1.05rem + .35vw, 1.3125rem); line-height: 1.62; letter-spacing: -.008em; font-weight: 450; }
-.reference-booking { border: 1px solid rgb(226 216 200 / 0.9); border-radius: 1.75rem; background: rgb(255 251 246 / 0.94); padding: 1.25rem; box-shadow: 0 1.5rem 3.5rem rgb(11 36 31 / .20), inset 0 1px 0 rgb(255 255 255 / .95); backdrop-filter: blur(18px); }
-.reference-booking h2 { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em; color: #082c28; }
-.reference-booking p { margin-top: .2rem; color: #4b5753; font-size: .9rem; }
-.reference-booking__care { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; background: #eef5f3; padding: .35rem .55rem; color: #175f50; font-size: .72rem; font-weight: 700; }
-.reference-booking__care svg { width: .9rem; }.reference-booking__select { display: block; width: 100%; min-height: 2.9rem; margin-top: .45rem; padding: 0 2.2rem 0 .9rem; border: 1px solid #cfe0da; border-radius: .7rem; background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23175f50' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; color: #0a332c; font: 600 .98rem/1.2 var(--font-sans); appearance: none; cursor: pointer; }
-.reference-booking__select:focus-visible { outline: 3px solid var(--color-teal-600); outline-offset: 2px; }.reference-hero__trust { position: absolute; right: 0; bottom: -3.1rem; left: 0; }
-.reference-hero__trust dl { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid rgb(255 255 255 / .78); border-radius: 1.6rem; background: rgb(255 255 255 / .85); padding: 1.3rem; box-shadow: 0 1rem 2.6rem rgb(11 36 31 / .12); backdrop-filter: blur(18px); }
-.reference-hero__trust dl > div { display: flex; align-items: center; gap: .8rem; min-width: 0; padding: .15rem 1.1rem; border-right: 1px solid #cbded8; }
+/* Lead: matches t-lead clamp range, slightly warmer colour. */
+.reference-hero__lead { max-width: 31rem; margin-top: 1.25rem; color: #2d5e55; font-size: clamp(1.0625rem, 0.98rem + 0.4vw, 1.25rem); line-height: 1.65; letter-spacing: -0.003em; font-weight: 400; font-family: var(--font-sans); }
+/* Booking card */
+.reference-booking { border: 1px solid rgb(226 216 200 / 0.9); border-radius: 1.75rem; background: rgb(255 251 246 / 0.94); padding: 1.375rem; box-shadow: 0 1.5rem 3.5rem rgb(11 36 31 / .20), inset 0 1px 0 rgb(255 255 255 / .95); backdrop-filter: blur(18px); }
+.reference-booking h2 { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.015em; color: #082c28; font-family: var(--font-heading); line-height: 1.2; }
+.reference-booking p { margin-top: .2rem; color: #4b5753; font-size: .875rem; font-family: var(--font-sans); }
+.reference-booking__care { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; background: #eef5f3; padding: .35rem .55rem; color: #175f50; font-size: .6875rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+.reference-booking__care svg { width: .9rem; }.reference-booking__select { display: block; width: 100%; min-height: 2.9rem; margin-top: .45rem; padding: 0 2.2rem 0 .9rem; border: 1px solid #cfe0da; border-radius: .7rem; background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23175f50' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; color: #0a332c; font: 600 .9375rem/1.2 var(--font-sans); appearance: none; cursor: pointer; }
+.reference-booking__select:focus-visible { outline: 3px solid var(--color-teal-600); outline-offset: 2px; }.reference-hero__trust { position: absolute; right: 0; bottom: -3.25rem; left: 0; }
+.reference-hero__trust dl { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid rgb(255 255 255 / .78); border-radius: 1.6rem; background: rgb(255 255 255 / .88); padding: 1.4rem 1rem; box-shadow: 0 1rem 2.6rem rgb(11 36 31 / .12); backdrop-filter: blur(18px); }
+.reference-hero__trust dl > div { display: flex; align-items: center; gap: .8rem; min-width: 0; padding: .2rem 1.2rem; border-right: 1px solid #cbded8; }
 .reference-hero__trust dl > div:last-child { border-right: 0; }
-.reference-hero__trust dt { display: grid; width: 2.7rem; height: 2.7rem; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #e5f4f0; color: #08705b; }
-.reference-hero__trust dt svg { width: 1.35rem; }
+.reference-hero__trust dt { display: grid; width: 2.6rem; height: 2.6rem; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #e5f4f0; color: #08705b; }
+.reference-hero__trust dt svg { width: 1.3rem; }
 .reference-hero__trust dd { min-width: 0; }
-.reference-hero__trust strong { display: block; color: #072f2a; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.1; letter-spacing: -.04em; font-weight: 700; }
-.reference-hero__trust span { display: block; margin-top: .25rem; color: #33504a; font-size: .875rem; line-height: 1.35; font-weight: 450; }
+/* Trust stats: bold number, legible label. Was 0.78rem — now 0.8125rem (13px). */
+.reference-hero__trust strong { display: block; color: #072f2a; font-family: var(--font-heading); font-size: 1.125rem; line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; }
+.reference-hero__trust span { display: block; margin-top: .2rem; color: #33504a; font-size: 0.8125rem; line-height: 1.4; font-weight: 400; font-family: var(--font-sans); }
 @media (max-width: 900px) {
   .reference-hero { min-height: auto; padding-bottom: 3rem; }
   .reference-hero__content { grid-template-columns: 1fr; min-height: 0; }
