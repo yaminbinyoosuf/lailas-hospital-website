@@ -208,7 +208,7 @@
 /* Oversized figures with tabular numerals */
 @utility t-number {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -0.012em;
   font-variant-numeric: lining-nums tabular-nums;
